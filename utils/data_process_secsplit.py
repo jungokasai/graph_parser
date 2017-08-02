@@ -14,15 +14,21 @@ class Dataset(object):
     def __init__(self, opts, test_opts=None):
         path_to_text = opts.text_train
         path_to_tag = opts.tag_train
-        path_to_pos = opts.pos_train
+        path_to_jk = opts.jk_train
+        path_to_arc = opts.arc_train
+        path_to_rel = opts.rel_train
         if test_opts is None:
             path_to_text_test = opts.text_test
             path_to_tag_test = opts.tag_test
-            path_to_pos_test = opts.jk_test
+            path_to_jk_test = opts.jk_test
+            path_to_arc_test = opts.arc_test
+            path_to_rel_test = opts.rel_test
         else:
             path_to_text_test = test_opts.text_test
             path_to_tag_test = test_opts.tag_test
-            path_to_pos_test = test_opts.jk_test
+            path_to_jk_test = test_opts.jk_test
+            path_to_arc_test = test_opts.arc_test
+            path_to_rel_test = test_opts.rel_test
 
         self.inputs_train = {}
         self.inputs_test = {}
@@ -56,7 +62,7 @@ class Dataset(object):
 
         unseens = list(set(self.embeddings_index.keys()) - set(self.word_index.keys())) ## list of words that appear in glove but not in the training set
         nb_unseens = len(unseens)
-        print('Found {} words not in the training set'.format(nb_unseens))
+        print('Found {} words not in the training set but in the glove data'.format(nb_unseens))
 
         self.word_embeddings = np.zeros((self.nb_words+1+nb_unseens, glove_size)) ## +1 for padding (idx 0)
         for word, i in self.word_index.items(): ## first index the words in the training set
@@ -74,34 +80,9 @@ class Dataset(object):
         f_test.close()
         text_sequences = tokenizer.texts_to_sequences(texts)
         #print(map(lambda x: self.idx_to_word[x], text_sequences[self.nb_train_samples]))
-        self.inputs_train.append(text_sequences[:self.nb_train_samples])
-        self.inputs_test.append(text_sequences[self.nb_train_samples:])
+        self.inputs_train['words'] = text_sequences[:self.nb_train_samples]
+        self.inputs_test['words'] = text_sequences[self.nb_train_samples:]
         ## indexing sents files ends
-        ## indexing suffixes 
-        suffix = tokenizer.suffix_extract(texts)
-        suffix_tokenizer = Tokenizer()
-        suffix_tokenizer.fit_on_texts(suffix[:self.nb_train_samples], non_split=True)
-        self.suffix_index = suffix_tokenizer.word_index
-        self.nb_suffixes = len(self.suffix_index)
-        self.idx_to_suffix = invert_dict(self.suffix_index)
-        print('Found {} unique suffixes including -unseen-.'.format(self.nb_suffixes))
-        suffix_sequences = suffix_tokenizer.texts_to_sequences(suffix, non_split=True)
-        #print(map(lambda x: self.idx_to_suffix[x], suffix_sequences[self.nb_train_samples]))
-        self.inputs_train.append(suffix_sequences[:self.nb_train_samples])
-        self.inputs_test.append(suffix_sequences[self.nb_train_samples:])
-        ## indexing suffixes ends
-        ## indexing capitalization 
-        cap_sequences = tokenizer.cap_indicator(texts)
-        #print(cap_sequences[self.nb_train_samples])
-        self.inputs_train.append(cap_sequences[:self.nb_train_samples])
-        self.inputs_test.append(cap_sequences[self.nb_train_samples:])
-        ## indexing capitalization ends
-        ## indexing numbers
-        num_sequences = tokenizer.num_indicator(texts)
-        #print(num_sequences[self.nb_train_samples])
-        self.inputs_train.append(num_sequences[:self.nb_train_samples])
-        self.inputs_test.append(num_sequences[self.nb_train_samples:])
-        ## indexing numbers ends
         ## indexing jackknife files
         f_train = open(path_to_jk)
         texts = f_train.readlines()
@@ -117,8 +98,8 @@ class Dataset(object):
         f_test.close()
         jk_sequences = tokenizer.texts_to_sequences(texts)
         #print(map(lambda x: self.idx_to_jk[x], jk_sequences[self.nb_train_samples]))
-        self.inputs_train.append(jk_sequences[:self.nb_train_samples])
-        self.inputs_test.append(jk_sequences[self.nb_train_samples:])
+        self.inputs_train['jk'] = jk_sequences[:self.nb_train_samples]
+        self.inputs_test['jk'] = jk_sequences[self.nb_train_samples:]
         ## indexing jackknife files ends
         ## indexing stag files
         f_train = open(path_to_tag)
@@ -136,39 +117,26 @@ class Dataset(object):
         f_test.close()
         tag_sequences = tokenizer.texts_to_sequences(texts)
         #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
-        self.inputs_train.append(tag_sequences[:self.nb_train_samples])
-        self.inputs_test.append(tag_sequences[self.nb_train_samples:])
-
+        self.inputs_train['tags'] = tag_sequences[:self.nb_train_samples]
+        self.inputs_test['tags'] = tag_sequences[self.nb_train_samples:]
         ## indexing stag files ends
-        self.test_gold = np.hstack(tag_sequences[self.nb_train_samples:]) ## for calculation of accuracy
+
         ## padding the train inputs and test inputs
-        self.inputs_train = [pad_sequences(x) for x in self.inputs_train]
+        self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.itmes()}
         random.seed(0)
         perm = np.arange(self.nb_train_samples)
         random.shuffle(perm)
-        self.inputs_train = [x[perm] for x in self.inputs_train]
+        self.inputs_train = {key: x[perm] for key, x in self.inputs_train.items()}
 
-        self.inputs_test = [pad_sequences(x) for x in self.inputs_test]
+        self.inputs_test = {key: pad_sequences(x) for key, x in self.inputs_test.items()}
+
+        ## padding ends
 
         ## setting the current indices
         self._index_in_epoch = 0
         self._epoch_completed = 0
         self._index_in_test = 0
 
-#        indices = np.arange(self.nb_train_added)
-#        np.random.shuffle(indices)
-#
-#        self.X_train = self.X_train[indices]
-#        if self.opts.jackknife:
-#            self.jk_labels = self.jk_labels[indices]
-#
-#        self.train_cap_indicator = self.train_cap_indicator[indices]
-#        self.train_num_indicator = self.train_num_indicator[indices]
-#        self.suffix_train = self.suffix_train[indices]
-#        self.y_train = self.y_train[indices]
-#        if self.opts.joint:
-#            self.pos_train = self.pos_train[indices]
-#
     def next_batch(self, batch_size):
 
         start = self._index_in_epoch
