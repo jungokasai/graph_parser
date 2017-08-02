@@ -8,7 +8,6 @@ import random
 
 np.random.seed(1234)
 
-
 class Dataset(object):
 
     def __init__(self, opts, test_opts=None):
@@ -43,7 +42,7 @@ class Dataset(object):
         #print(tokenizer.word_index['-unseen-'])
         self.word_index = tokenizer.word_index
         self.nb_words = len(self.word_index)
-        print('Found {} unique lowercased words including -unseen-.'.format(self.nb_words))
+        print('Found {} unique lowercased words including -unseen- and -ROOT-.'.format(self.nb_words))
 
         # lookup the glove word embeddings
         # need to reserve indices for testing file. 
@@ -92,7 +91,7 @@ class Dataset(object):
         self.jk_index = tokenizer.word_index
         self.nb_jk = len(self.jk_index)
         self.idx_to_jk = invert_dict(self.jk_index)
-        print('Found {} unique tags including -unseen-.'.format(self.nb_jk))
+        print('Found {} unique tags including -unseen- and -ROOT-.'.format(self.nb_jk))
         f_test = open(path_to_jk_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
@@ -111,7 +110,7 @@ class Dataset(object):
         self.tag_index = tokenizer.word_index
         self.nb_tags = len(self.tag_index)
         self.idx_to_tag = invert_dict(self.tag_index)
-        print('Found {} unique tags including -unseen-.'.format(self.nb_tags))
+        print('Found {} unique tags including -unseen- and -ROOT-.'.format(self.nb_tags))
         f_test = open(path_to_tag_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
@@ -120,6 +119,38 @@ class Dataset(object):
         self.inputs_train['tags'] = tag_sequences[:self.nb_train_samples]
         self.inputs_test['tags'] = tag_sequences[self.nb_train_samples:]
         ## indexing stag files ends
+
+        ## indexing rel files
+        f_train = open(path_to_rel)
+        texts = f_train.readlines()
+        f_train.close()
+        tokenizer = Tokenizer(lower=False)
+        tokenizer.fit_on_texts(texts, zero_padding=False)
+        self.rel_index = tokenizer.word_index
+        self.nb_rels = len(self.rel_index)
+        self.idx_to_rel = invert_dict(self.rel_index)
+        print('Found {} unique rels including -unseen-.'.format(self.nb_tags))
+        f_test = open(path_to_rel_test)
+        texts = texts + f_test.readlines() ## do not lowercase tCO
+        f_test.close()
+        rel_sequences = tokenizer.texts_to_sequences(texts)
+        #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
+        self.inputs_train['rels'] = rel_sequences[:self.nb_train_samples]
+        self.inputs_test['rels'] = rel_sequences[self.nb_train_samples:]
+        ## indexing rel files ends
+
+        ## indexing arc files
+        ## Notice arc sequences are already integers
+        f_train = open(path_to_arc)
+        arc_sequences = f_train.readlines()
+        f_train.close()
+        f_test = open(path_to_rel_test)
+        arc_sequences = arc_sequences + f_test.readlines()
+        f_test.close()
+        arc_sequences = map(int, arc_sequences)
+        self.inputs_train['arcs'] = rel_sequences[:self.nb_train_samples]
+        self.inputs_test['arcs'] = rel_sequences[self.nb_train_samples:]
+        ## indexing arc files ends
 
         ## padding the train inputs and test inputs
         self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.itmes()}

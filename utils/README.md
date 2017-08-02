@@ -14,6 +14,9 @@ All the inputs listed above are sequences of length equal to the sentence length
 
 ## Notes on the Implementation
 
+### One-sentence-per-line Format
+The input format is the one-sentence-per-line format. However, we also add the '-ROOT-' token at the beginning of each line. We might change the code so that we add '-ROOT-' in a later process, but this way avoids a potential bug.
+
 ### Data Loader
 ``data_process_secsplit.py`` serves as the universal data loader.
 test_opts is None when you train the model. 

@@ -18,11 +18,14 @@ def conllu2sents(idx, input_dir, output_dir):
             if len(tokens) == 0: 
                 if len(words_sent)>0: ## avoid multiple empty lines that sometimes happen
                     words.append(words_sent)
-                    #if not 'root' in words_sent:
-                    #    print('no root')
-                    #    print(count)
                     words_sent = []
                 continue
+                    ##if idx in [1, 4, 10]: ## words, pos, or stags
+                    #    words.append(['-ROOT-'] + words_sent)
+                    #    #if not 'root' in words_sent:
+                    #    #    print('no root')
+                    #    #    print(count)
+                    #    words_sent = []
             word = tokens[idx]
             words_sent.append(word)
 
