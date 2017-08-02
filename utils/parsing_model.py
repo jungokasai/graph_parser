@@ -1,9 +1,9 @@
 from __future__ import print_function
-import matplotlib
+#import matplotlib
 from data_process_secsplit import Dataset
 from lstm import get_lstm_weights, lstm
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+#matplotlib.use('Agg')
+#import matplotlib.pyplot as plt
 import numpy as np
 import time
 import pickle
@@ -13,7 +13,7 @@ import os
 import sys
 
 
-class Stagging_Model(object):
+class Parsing_Model(object):
     def add_placeholders(self):
         #self.inputs_placeholder_list = [tf.placeholder(tf.int32, shape = [None, None]) for _ in xrange(2+self.opts.suffix+self.opts.num+self.opts.cap+self.opts.jackknife)] # 2 for text_sequences and tag_sequences, necessary no matter what
         self.inputs_placeholder_list = [tf.placeholder(tf.int32, shape = [None, None]) for _ in xrange(6)] # 2 for text_sequences and tag_sequences, necessary no matter what
@@ -87,8 +87,7 @@ class Stagging_Model(object):
 
     def add_loss_op(self, output):
         cross_entropy = sequence_loss(output, self.inputs_placeholder_list[5], self.weight)
-        tf.add_to_collection('total loss', cross_entropy)
-        loss = tf.add_n(tf.get_collection('total loss'))
+        loss = tf.reduce_sum(cross_entropy)
         return loss
 
     def add_accuracy(self, output):
