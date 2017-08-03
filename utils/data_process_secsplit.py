@@ -1,6 +1,5 @@
 import numpy as np
-from preprocessing import Tokenizer
-from preprocessing import pad_sequences 
+from preprocessing import Tokenizer, pad_sequences, arcs2seq
 import os
 import sys
 import pickle
@@ -42,7 +41,7 @@ class Dataset(object):
         #print(tokenizer.word_index['-unseen-'])
         self.word_index = tokenizer.word_index
         self.nb_words = len(self.word_index)
-        print('Found {} unique lowercased words including -unseen- and -ROOT-.'.format(self.nb_words))
+        print('Found {} unique lowercased words including -unseen- and <-root->.'.format(self.nb_words))
 
         # lookup the glove word embeddings
         # need to reserve indices for testing file. 
@@ -91,12 +90,11 @@ class Dataset(object):
         self.jk_index = tokenizer.word_index
         self.nb_jk = len(self.jk_index)
         self.idx_to_jk = invert_dict(self.jk_index)
-        print('Found {} unique tags including -unseen- and -ROOT-.'.format(self.nb_jk))
+        print('Found {} unique POS tags including -unseen- and <-root->.'.format(self.nb_jk))
         f_test = open(path_to_jk_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
         jk_sequences = tokenizer.texts_to_sequences(texts)
-        #print(map(lambda x: self.idx_to_jk[x], jk_sequences[self.nb_train_samples]))
         self.inputs_train['jk'] = jk_sequences[:self.nb_train_samples]
         self.inputs_test['jk'] = jk_sequences[self.nb_train_samples:]
         ## indexing jackknife files ends
@@ -106,11 +104,11 @@ class Dataset(object):
         f_train.close()
         tokenizer = Tokenizer(lower=False) ## for tCO
         tokenizer.fit_on_texts(texts, zero_padding=False)
-        #print(tokenizer.word_index['-unseen-'])
+        ## if zero_padding is true, index 0 is reserved, never assigned to an existing word
         self.tag_index = tokenizer.word_index
         self.nb_tags = len(self.tag_index)
         self.idx_to_tag = invert_dict(self.tag_index)
-        print('Found {} unique tags including -unseen- and -ROOT-.'.format(self.nb_tags))
+        print('Found {} unique supertags including -unseen- and <-root->.'.format(self.nb_tags))
         f_test = open(path_to_tag_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
@@ -129,7 +127,7 @@ class Dataset(object):
         self.rel_index = tokenizer.word_index
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)
-        print('Found {} unique rels including -unseen-.'.format(self.nb_tags))
+        print('Found {} unique rels including -unseen- and <-root->.'.format(self.nb_tags))
         f_test = open(path_to_rel_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
@@ -144,16 +142,15 @@ class Dataset(object):
         f_train = open(path_to_arc)
         arc_sequences = f_train.readlines()
         f_train.close()
-        f_test = open(path_to_rel_test)
-        arc_sequences = arc_sequences + f_test.readlines()
+        f_test = open(path_to_arc_test)
+        arc_sequences = arcs2seq(arc_sequences + f_test.readlines())
         f_test.close()
-        arc_sequences = map(int, arc_sequences)
-        self.inputs_train['arcs'] = rel_sequences[:self.nb_train_samples]
-        self.inputs_test['arcs'] = rel_sequences[self.nb_train_samples:]
+        self.inputs_train['arcs'] = arc_sequences[:self.nb_train_samples]
+        self.inputs_test['arcs'] = arc_sequences[self.nb_train_samples:]
         ## indexing arc files ends
 
         ## padding the train inputs and test inputs
-        self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.itmes()}
+        self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.items()}
         random.seed(0)
         perm = np.arange(self.nb_train_samples)
         random.shuffle(perm)
@@ -222,16 +219,25 @@ def invert_dict(index_dict):
     return {j:i for i,j in index_dict.items()}
 
 
-#if __name__ == '__main__':
-#    class Opts(object):
-#        def __init__(self):
-#            self.task = 'Super_models'
-#            self.jackknife = 1
-#            self.embedding_dim = 100
-#    opts = Opts()
-#    data_loader = Dataset(opts)
+if __name__ == '__main__':
+    class Opts(object):
+        def __init__(self):
+            self.jackknife = 1
+            self.embedding_dim = 100
+            self.text_train = 'sample_data/sents/train.txt'
+            self.tag_train = 'sample_data/predicted_stag/train.txt'
+            self.jk_train = 'sample_data/predicted_pos/train.txt'
+            self.arc_train = 'sample_data/arcs/train.txt'
+            self.rel_train = 'sample_data/rels/train.txt'
+            self.text_test = 'sample_data/sents/dev.txt'
+            self.tag_test = 'sample_data/predicted_stag/dev.txt'
+            self.jk_test = 'sample_data/predicted_pos/dev.txt'
+            self.arc_test = 'sample_data/arcs/dev.txt'
+            self.rel_test = 'sample_data/rels/dev.txt'
+    opts = Opts()
+    data_loader = Dataset(opts)
 #    data_loader.next_batch(2)
-#    print(data_loader.inputs_train_batch[0])
+#   print(data_loader.inputs_train_batch[0])
 #    data_loader.next_test_batch(3)
 #    print(data_loader.inputs_test_batch[0])
 #

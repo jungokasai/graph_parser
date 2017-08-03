@@ -137,7 +137,7 @@ class Tokenizer(object):
         self.document_count = 0
         self.char_level = char_level
 
-    def fit_on_texts(self, texts, zero_padding = True, non_split = False):
+    def fit_on_texts(self, texts, zero_padding = True, non_split = False, root = True):
         '''Required before using texts_to_sequences or texts_to_matrix
         # Arguments
             texts: can be a list of strings,
@@ -168,6 +168,8 @@ class Tokenizer(object):
         self.word_index = dict(list(zip(sorted_voc, list(range(zero_padding, len(sorted_voc) + zero_padding)))))
 
         self.word_index['-unseen-'] = len(self.word_index) + zero_padding
+        if root:
+            self.word_index['<-root->'] = len(self.word_index) + zero_padding
 
         self.index_docs = {}
         for w, c in list(self.word_docs.items()):
@@ -211,7 +213,7 @@ class Tokenizer(object):
             res.append(vect)
         return res
 
-    def texts_to_sequences_generator(self, texts, non_split):
+    def texts_to_sequences_generator(self, texts, non_split, root = True):
         '''Transforms each text in texts in a sequence of integers.
         Only top "nb_words" most frequent words will be taken into account.
         Only words known by the tokenizer will be taken into account.
@@ -222,7 +224,10 @@ class Tokenizer(object):
         nb_words = self.nb_words
         for text in texts:
             seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
-            vect = []
+            if root:
+                vect = [self.word_index['<-root->']]
+            else:
+                vect = []
             for w in seq:
                 i = self.word_index.get(w, self.word_index['-unseen-']) ## unseeen word
                # if i is not None:
@@ -363,3 +368,12 @@ def get_scores(tag_file):
                     scores_dict[(sent_idx, word_number, i)] = score
                 word_number += 1
     return scores_dict
+
+def arcs2seq(texts):
+    seq = []
+    for text in texts:
+        vect = []
+        for w in text.split():
+            vect.append(int(w))
+        seq.append(vect)
+    return seq

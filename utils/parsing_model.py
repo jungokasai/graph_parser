@@ -131,7 +131,8 @@ class Parsing_Model(object):
             lstm_outputs = tf.concat([lstm_outputs, backward_inputs_tensor], 2) ## [seq_len, batch_size, outputs_dim]
         projected_outputs = tf.map_fn(lambda x: self.add_projection(x), lstm_outputs) #[seq_len, batch_size, nb_tags]
         projected_outputs = tf.transpose(projected_outputs, perm=[1, 0, 2]) # [batch_size, seq_len, nb_tags]
-        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_list[0], tf.zeros(tf.shape(self.inputs_placeholder_list[0]), tf.int32)), tf.float32) ## [batch_size, seq_len]
+        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_list[0], tf.zeros(tf.shape(self.inputs_placeholder_list[0]), tf.int32)), tf.float32)*tf.cast(tf.not_equal(self.inputs_placeholder_list[0], tf.ones(tf.shape(self.inputs_placeholder_list[0]), tf.int32)*self.loader.word_index['<-root->']), tf.float32) ## [batch_size, seq_len]
+        ## no need to worry about the heads of <-root-> and zero-pads
         self.loss = self.add_loss_op(projected_outputs)
         self.train_op = self.add_train_op(self.loss)
         self.add_accuracy(projected_outputs)

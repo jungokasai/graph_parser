@@ -15,7 +15,7 @@ All the inputs listed above are sequences of length equal to the sentence length
 ## Notes on the Implementation
 
 ### One-sentence-per-line Format
-The input format is the one-sentence-per-line format. However, we also add the '-ROOT-' token at the beginning of each line. We might change the code so that we add '-ROOT-' in a later process, but this way avoids a potential bug.
+The input format is the one-sentence-per-line format. However, we also add the '<-root->' token at the beginning of each line. We might change the code so that we add '<-root->' in a later process, but this way avoids a potential bug. '<-root->' should be distinguished from the arc label 'root'.
 
 ### Data Loader
 ``data_process_secsplit.py`` serves as the universal data loader.
