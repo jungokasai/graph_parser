@@ -127,7 +127,7 @@ class Dataset(object):
         self.rel_index = tokenizer.word_index
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)
-        print('Found {} unique rels including -unseen- and <-root->.'.format(self.nb_tags))
+        print('Found {} unique rels including -unsee-, NOT including <-roots->.'.format(self.nb_tags))
         f_test = open(path_to_rel_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
@@ -174,16 +174,18 @@ class Dataset(object):
             self._epoch_completed+=1
             perm = np.arange(self.nb_train_samples)
             random.shuffle(perm)
-            self.inputs_train = [x[perm] for x in self.inputs_train]
+            self.inputs_train = {key: x[perm] for key, x in self.inputs_train.items()}
             return False
         self._index_in_epoch += batch_size
         end = self._index_in_epoch
-        self.inputs_train_batch = []
-        for i, x in enumerate(self.inputs_train):
+        self.inputs_train_batch = {}
+        i = 0
+        for key, x in self.inputs_train.items():
             x_batch = x[start:end]
             if i == 0:
                 max_len = np.max(np.sum(x_batch!=0, axis=-1))
-            self.inputs_train_batch.append(x_batch[:, :max_len])
+            i += 1
+            self.inputs_train_batch[key] = x_batch[:, :max_len]
         return True
 
     def next_test_batch(self, batch_size):
@@ -195,12 +197,14 @@ class Dataset(object):
             return False
         self._index_in_test += batch_size
         end = self._index_in_test
-        self.inputs_test_batch = []
-        for i, x in enumerate(self.inputs_test):
+        self.inputs_test_batch = {}
+        i = 0
+        for key, x in self.inputs_test.items():
             x_batch = x[start:end]
             if i == 0:
                 max_len = np.max(np.sum(x_batch!=0, axis=-1))
-            self.inputs_test_batch.append(x_batch[:, :max_len])
+            i += 1
+            self.inputs_test_batch[key] = x_batch[:, :max_len]
         return True
 
     def output_stags(self, predictions, filename):
@@ -236,6 +240,7 @@ if __name__ == '__main__':
             self.rel_test = 'sample_data/rels/dev.txt'
     opts = Opts()
     data_loader = Dataset(opts)
+    print(data_loader.inputs_train)
 #    data_loader.next_batch(2)
 #   print(data_loader.inputs_train_batch[0])
 #    data_loader.next_test_batch(3)

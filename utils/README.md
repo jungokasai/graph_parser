@@ -19,5 +19,7 @@ The input format is the one-sentence-per-line format. However, we also add the '
 
 ### Data Loader
 ``data_process_secsplit.py`` serves as the universal data loader.
-test_opts is None when you train the model. 
+test_opts is ``None`` when you train the model. 
+
+We do not reserve the zero index for the arc labels (rels); zero is used both for zero-padding and the most frequent label. This is because we can extract where those paddings are by looking at zero's in word sequences, and we do not
 

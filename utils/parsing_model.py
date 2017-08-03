@@ -2,6 +2,9 @@ from __future__ import print_function
 #import matplotlib
 from data_process_secsplit import Dataset
 from lstm import get_lstm_weights, lstm
+from mlp import get_mlp_weights, mlp
+from arc import get_arc_weights, arc_equation
+from rel import get_rel_weights, rel_equation
 #matplotlib.use('Agg')
 #import matplotlib.pyplot as plt
 import numpy as np
@@ -15,9 +18,10 @@ import sys
 
 class Parsing_Model(object):
     def add_placeholders(self):
-        #self.inputs_placeholder_list = [tf.placeholder(tf.int32, shape = [None, None]) for _ in xrange(2+self.opts.suffix+self.opts.num+self.opts.cap+self.opts.jackknife)] # 2 for text_sequences and tag_sequences, necessary no matter what
-        self.inputs_placeholder_list = [tf.placeholder(tf.int32, shape = [None, None]) for _ in xrange(6)] # 2 for text_sequences and tag_sequences, necessary no matter what
-
+        features = ['words', 'jk', 'stags', 'arcs', 'rels']
+        self.inputs_placeholder_dict = {}
+        for feature in features:
+            self.inputs_placeholder_dict[feature] = tf.placeholder(tf.int32, shape = [None, None])
         self.keep_prob = tf.placeholder(tf.float32)  
         self.input_keep_prob = tf.placeholder(tf.float32)  
         self.hidden_prob = tf.placeholder(tf.float32)  
@@ -27,34 +31,23 @@ class Parsing_Model(object):
             with tf.variable_scope('word_embedding') as scope:
                 embedding = tf.get_variable('word_embedding_mat', self.loader.word_embeddings.shape, initializer=tf.constant_initializer(self.loader.word_embeddings))
 
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_list[0]) ## [batch_size, seq_len, embedding_dim]
+            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['words']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
         return inputs 
-
-    def add_suffix_embedding(self):
-        with tf.device('/cpu:0'):
-            with tf.variable_scope('suffix_embedding') as scope:
-                embedding = tf.get_variable('suffix_embedding_mat', [self.loader.nb_suffixes+1, self.opts.suffix_dim]) # +1 for padding
-
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_list[1]) ## [batch_size, seq_len, embedding_dim]
-            inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
-        return inputs 
-
-    def add_cap(self):
-        inputs = tf.cast(tf.expand_dims(self.inputs_placeholder_list[2], -1), tf.float32)
-        inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, 1]
-        return inputs # [seq_length, batch_size, 1]
-
-    def add_num(self):
-        inputs = tf.cast(tf.expand_dims(self.inputs_placeholder_list[3], -1), tf.float32)
-        inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, 1]
-        return inputs # [seq_length, batch_size, 1]
 
     def add_jackknife_embedding(self):
         with tf.device('/cpu:0'):
             with tf.variable_scope('jk_embedding') as scope:
                 embedding = tf.get_variable('jk_embedding_mat', [self.loader.nb_jk+1, self.opts.jk_dim]) # +1 for padding
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_list[4]) ## [batch_size, seq_len, embedding_dim]
+            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['jk']) ## [batch_size, seq_len, embedding_dim]
+            inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
+        return inputs 
+
+    def add_stag_embedding(self):
+        with tf.device('/cpu:0'):
+            with tf.variable_scope('stag_embedding') as scope:
+                embedding = tf.get_variable('stag_embedding_mat', [self.loader.nb_jk+1, self.opts.stag_dim]) # +1 for padding
+            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stag']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
         return inputs 
 
@@ -71,11 +64,10 @@ class Parsing_Model(object):
         h = tf.unstack(cell_hidden, 2, axis=1)[1] #[seq_len, batch_size, units]
         return h
 
-    def add_dropout(self, inputs, keep_prob, name):
+    def add_dropout(self, inputs, keep_prob):
         ## inputs [seq_len, batch_size, inputs_dims/units]
-        with tf.variable_scope(name) as scope:
-            dummy_dp = tf.ones(tf.shape(inputs)[1:])
-            dummy_dp = tf.nn.dropout(dummy_dp, keep_prob)
+        dummy_dp = tf.ones(tf.shape(inputs)[1:])
+        dummy_dp = tf.nn.dropout(dummy_dp, keep_prob)
         return tf.map_fn(lambda x: dummy_dp*x, inputs)
 
     def add_projection(self, inputs): 
@@ -99,6 +91,29 @@ class Parsing_Model(object):
         optimizer = tf.train.AdamOptimizer()
         train_op = optimizer.minimize(loss)
         return train_op
+
+    def add_biaffine(self, inputs):
+        ## inputs [seq_len, batch_size, units]
+        ## first define four different MLPs
+        roles = ['arc-dep', 'arc-head', 'rel-dep', 'rel-head']
+        vectors = {}
+        batch_size = tf.shape(inputs)[1]
+        for i in xrange(self.opts.num_mlp_layers):
+            if i == 0:
+                inputs_dim = self.outputs_dim
+            else:
+                inputs_dim = self.opts.units
+            weights = get_mlp_weights('MLP_Layer{}'.format(i), inputs_dim, self.opts.mlp_units, batch_size, self.opts.mlp_prob)
+            vectors_mlps = tf.map_fn(lambda x: mlp(x, weights), inputs)
+            ## [seq_len, batch_size, 4*mlp_units]
+            vectors_mlps = tf.split(vectors, 4, axis=2)
+            for role, vectors_mlp in zip(roles, vectors_mlps):
+                vectors[role] = vectors_mlp
+        weights = get_arc_weights
+        arc_output = arc_equation(vectors['arc-head'], vectors['arc-dep'], weights) # [batch_size, seq_len, seq_len] dim 1: deps, dim 2: heads
+        weights = get_rel_weights
+        rel_output = rel_equation(vectors['rel-head'], vectors['rel-dep'], weights) 
+        return arc_output, rel_output
     
     def __init__(self, opts, test_opts=None):
        
@@ -107,31 +122,28 @@ class Parsing_Model(object):
         self.loader = Dataset(opts, test_opts)
         self.batch_size = 100
         self.add_placeholders()
-        self.inputs_dim = self.opts.embedding_dim + self.opts.suffix_dim + self.opts.cap + self.opts.num + self.opts.jk_dim
+        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim
         self.outputs_dim = (1+self.opts.bi)*self.opts.units
         inputs_list = [self.add_word_embedding()]
-        if self.opts.suffix_dim > 0:
-            inputs_list.append(self.add_suffix_embedding())
-        if self.opts.cap:
-            inputs_list.append(self.add_cap())
-        if self.opts.num:
-            inputs_list.append(self.add_num())
-        if self.opts.jk_dim > 0:
+        if self.opts.jk_dim:
             inputs_list.append(self.add_jackknife_embedding())
+        if self.opts.stag_dim > 0:
+            inputs_list.append(self.add_stag_embedding())
         inputs_tensor = tf.concat(inputs_list, 2) ## [seq_len, batch_size, inputs_dim]
-        forward_inputs_tensor = self.add_dropout(inputs_tensor, self.input_keep_prob, 'ForwardInputs')
+        forward_inputs_tensor = self.add_dropout(inputs_tensor, self.input_keep_prob)
         for i in xrange(self.opts.num_layers):
-            forward_inputs_tensor = self.add_dropout(self.add_lstm(forward_inputs_tensor, i, 'Forward'), self.keep_prob, 'ForwardLayer{}'.format(i)) ## [seq_len, batch_size, units]
+            forward_inputs_tensor = self.add_dropout(self.add_lstm(forward_inputs_tensor, i, 'Forward'), self.keep_prob) ## [seq_len, batch_size, units]
         lstm_outputs = forward_inputs_tensor
         if self.opts.bi:
-            backward_inputs_tensor = self.add_dropout(tf.reverse(inputs_tensor, [0]), self.input_keep_prob, 'BackwardInputs')
+            backward_inputs_tensor = self.add_dropout(tf.reverse(inputs_tensor, [0]), self.input_keep_prob)
             for i in xrange(self.opts.num_layers):
-                backward_inputs_tensor = self.add_dropout(self.add_lstm(backward_inputs_tensor, i, 'Backward'), self.keep_prob, 'BackwardLayer{}'.format(i)) ## [seq_len, batch_size, units]
+                backward_inputs_tensor = self.add_dropout(self.add_lstm(backward_inputs_tensor, i, 'Backward'), self.keep_prob) ## [seq_len, batch_size, units]
             backward_inputs_tensor = tf.reverse(backward_inputs_tensor, [0])
             lstm_outputs = tf.concat([lstm_outputs, backward_inputs_tensor], 2) ## [seq_len, batch_size, outputs_dim]
-        projected_outputs = tf.map_fn(lambda x: self.add_projection(x), lstm_outputs) #[seq_len, batch_size, nb_tags]
-        projected_outputs = tf.transpose(projected_outputs, perm=[1, 0, 2]) # [batch_size, seq_len, nb_tags]
-        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_list[0], tf.zeros(tf.shape(self.inputs_placeholder_list[0]), tf.int32)), tf.float32)*tf.cast(tf.not_equal(self.inputs_placeholder_list[0], tf.ones(tf.shape(self.inputs_placeholder_list[0]), tf.int32)*self.loader.word_index['<-root->']), tf.float32) ## [batch_size, seq_len]
+#        projected_outputs = tf.map_fn(lambda x: self.add_projection(x), lstm_outputs) #[seq_len, batch_size, nb_tags]
+#        projected_outputs = tf.transpose(projected_outputs, perm=[1, 0, 2]) # [batch_size, seq_len, nb_tags]
+        inputs_shape = tf.shape(self.inputs_placeholder_dict['words'])
+        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32)*tf.cast(tf.not_equal(self.inputs_placeholder_list[0], tf.ones(inputs_shape, tf.int32)*self.loader.word_index['<-root->']), tf.float32) ## [batch_size, seq_len]
         ## no need to worry about the heads of <-root-> and zero-pads
         self.loss = self.add_loss_op(projected_outputs)
         self.train_op = self.add_train_op(self.loss)
