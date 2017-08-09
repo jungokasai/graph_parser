@@ -106,16 +106,16 @@ class Dataset(object):
         tokenizer.fit_on_texts(texts, zero_padding=False)
         ## if zero_padding is true, index 0 is reserved, never assigned to an existing word
         self.tag_index = tokenizer.word_index
-        self.nb_tags = len(self.tag_index)
+        self.nb_stags = len(self.tag_index)
         self.idx_to_tag = invert_dict(self.tag_index)
-        print('Found {} unique supertags including -unseen- and <-root->.'.format(self.nb_tags))
+        print('Found {} unique supertags including -unseen- and <-root->.'.format(self.nb_stags))
         f_test = open(path_to_tag_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
         tag_sequences = tokenizer.texts_to_sequences(texts)
         #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
-        self.inputs_train['tags'] = tag_sequences[:self.nb_train_samples]
-        self.inputs_test['tags'] = tag_sequences[self.nb_train_samples:]
+        self.inputs_train['stags'] = tag_sequences[:self.nb_train_samples]
+        self.inputs_test['stags'] = tag_sequences[self.nb_train_samples:]
         ## indexing stag files ends
 
         ## indexing rel files
@@ -127,7 +127,7 @@ class Dataset(object):
         self.rel_index = tokenizer.word_index
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)
-        print('Found {} unique rels including -unsee-, NOT including <-roots->.'.format(self.nb_tags))
+        print('Found {} unique rels including -unseen-, NOT including <-roots->.'.format(self.nb_rels))
         f_test = open(path_to_rel_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()

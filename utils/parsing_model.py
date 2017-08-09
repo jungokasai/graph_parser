@@ -5,6 +5,7 @@ from lstm import get_lstm_weights, lstm
 from mlp import get_mlp_weights, mlp
 from arc import get_arc_weights, arc_equation
 from rel import get_rel_weights, rel_equation
+from mst import get_arcs
 #matplotlib.use('Agg')
 #import matplotlib.pyplot as plt
 import numpy as np
@@ -46,8 +47,8 @@ class Parsing_Model(object):
     def add_stag_embedding(self):
         with tf.device('/cpu:0'):
             with tf.variable_scope('stag_embedding') as scope:
-                embedding = tf.get_variable('stag_embedding_mat', [self.loader.nb_jk+1, self.opts.stag_dim]) # +1 for padding
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stag']) ## [batch_size, seq_len, embedding_dim]
+                embedding = tf.get_variable('stag_embedding_mat', [self.loader.nb_stags+1, self.opts.stag_dim]) # +1 for padding
+            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stags']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
         return inputs 
 
@@ -77,16 +78,16 @@ class Parsing_Model(object):
             outputs = tf.matmul(inputs, proj_U)+proj_b 
             return outputs
 
-    def add_loss_op(self, output):
-        cross_entropy = sequence_loss(output, self.inputs_placeholder_list[5], self.weight)
+    def add_loss_op(self, output, gold):
+        cross_entropy = sequence_loss(output, gold, self.weight)
         loss = tf.reduce_sum(cross_entropy)
         return loss
 
-    def add_accuracy(self, output):
-        self.predictions = tf.cast(tf.argmax(output, 2), tf.int32) ## [batch_size, seq_len]
-        correct_predictions = self.weight*tf.cast(tf.equal(self.predictions, self.inputs_placeholder_list[5]), tf.float32)
-        self.accuracy = tf.reduce_sum(tf.cast(correct_predictions, tf.float32))/tf.reduce_sum(tf.cast(self.weight, tf.float32))
-
+#    def add_accuracy(self, output):
+#        self.predictions = tf.cast(tf.argmax(output, 2), tf.int32) ## [batch_size, seq_len]
+#        correct_predictions = self.weight*tf.cast(tf.equal(self.predictions, self.inputs_placeholder_list[5]), tf.float32)
+#        self.accuracy = tf.reduce_sum(tf.cast(correct_predictions, tf.float32))/tf.reduce_sum(tf.cast(self.weight, tf.float32))
+#
     def add_train_op(self, loss):
         optimizer = tf.train.AdamOptimizer()
         train_op = optimizer.minimize(loss)
@@ -96,7 +97,6 @@ class Parsing_Model(object):
         ## inputs [seq_len, batch_size, units]
         ## first define four different MLPs
         roles = ['arc-dep', 'arc-head', 'rel-dep', 'rel-head']
-        vectors = {}
         batch_size = tf.shape(inputs)[1]
         for i in xrange(self.opts.num_mlp_layers):
             if i == 0:
@@ -106,13 +106,16 @@ class Parsing_Model(object):
             weights = get_mlp_weights('MLP_Layer{}'.format(i), inputs_dim, self.opts.mlp_units, batch_size, self.opts.mlp_prob)
             vectors_mlps = tf.map_fn(lambda x: mlp(x, weights), inputs)
             ## [seq_len, batch_size, 4*mlp_units]
-            vectors_mlps = tf.split(vectors, 4, axis=2)
+            vectors_mlps = tf.split(vectors_mlps, 4, axis=2)
+            vectors = {}
             for role, vectors_mlp in zip(roles, vectors_mlps):
                 vectors[role] = vectors_mlp
-        weights = get_arc_weights
+        weights = get_arc_weights('arc', self.opts.mlp_units)
         arc_output = arc_equation(vectors['arc-head'], vectors['arc-dep'], weights) # [batch_size, seq_len, seq_len] dim 1: deps, dim 2: heads
-        weights = get_rel_weights
-        rel_output = rel_equation(vectors['rel-head'], vectors['rel-dep'], weights) 
+#        arc_predictions = get_arcs(arc_output, self.test_opts) # [batch_size, seq_len]
+        arc_predictions = tf.argmax(arc_output, 2) # [batch_size, seq_len]
+        weights = get_rel_weights('rel', self.opts.mlp_units, self.loader.nb_rels)
+        rel_output = rel_equation(vectors['rel-head'], vectors['rel-dep'], weights, arc_predictions)  #[batch_size, seq_len, nb_rels]
         return arc_output, rel_output
     
     def __init__(self, opts, test_opts=None):
@@ -140,26 +143,26 @@ class Parsing_Model(object):
                 backward_inputs_tensor = self.add_dropout(self.add_lstm(backward_inputs_tensor, i, 'Backward'), self.keep_prob) ## [seq_len, batch_size, units]
             backward_inputs_tensor = tf.reverse(backward_inputs_tensor, [0])
             lstm_outputs = tf.concat([lstm_outputs, backward_inputs_tensor], 2) ## [seq_len, batch_size, outputs_dim]
+        arc_outputs, rel_outputs = self.add_biaffine(lstm_outputs)
 #        projected_outputs = tf.map_fn(lambda x: self.add_projection(x), lstm_outputs) #[seq_len, batch_size, nb_tags]
 #        projected_outputs = tf.transpose(projected_outputs, perm=[1, 0, 2]) # [batch_size, seq_len, nb_tags]
         inputs_shape = tf.shape(self.inputs_placeholder_dict['words'])
-        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32)*tf.cast(tf.not_equal(self.inputs_placeholder_list[0], tf.ones(inputs_shape, tf.int32)*self.loader.word_index['<-root->']), tf.float32) ## [batch_size, seq_len]
+        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32)*tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.ones(inputs_shape, tf.int32)*self.loader.word_index['<-root->']), tf.float32) ## [batch_size, seq_len]
         ## no need to worry about the heads of <-root-> and zero-pads
-        self.loss = self.add_loss_op(projected_outputs)
+        self.loss = self.add_loss_op(arc_outputs, self.inputs_placeholder_dict['arcs']) + self.add_loss_op(rel_outputs, self.inputs_placeholder_dict['rels'])
         self.train_op = self.add_train_op(self.loss)
-        self.add_accuracy(projected_outputs)
 
     def run_batch(self, session, testmode = False):
         if not testmode:
             feed = {}
-            for placeholder, data in zip(self.inputs_placeholder_list, self.loader.inputs_train_batch):
-                feed[placeholder] = data
+            for feat in self.inputs_placeholder_dict.keys():
+                feed[self.inputs_placeholder_dict[feat]] = self.loader.inputs_train_batch[feat]
             feed[self.keep_prob] = self.opts.dropout_p
             feed[self.hidden_prob] = self.opts.hidden_p
             feed[self.input_keep_prob] = self.opts.input_dp
             train_op = self.train_op
-            _, loss, accuracy = session.run([train_op, self.loss, self.accuracy], feed_dict=feed)
-            return loss, accuracy
+            _, loss = session.run([train_op, self.loss], feed_dict=feed)
+            return loss
         else:
             feed = {}
             for placeholder, data in zip(self.inputs_placeholder_list, self.loader.inputs_test_batch):
@@ -167,10 +170,10 @@ class Parsing_Model(object):
             feed[self.keep_prob] = 1.0
             feed[self.hidden_prob] = 1.0
             feed[self.input_keep_prob] = 1.0
-            loss, accuracy, predictions, weight = session.run([self.loss, self.accuracy, self.predictions, self.weight], feed_dict=feed)
+#            loss, accuracy, predictions, weight = session.run([self.loss, self.accuracy, self.predictions, self.weight], feed_dict=feed)
+            loss, weight = session.run([self.loss, self.weight], feed_dict=feed)
             weight = weight.astype(bool)
-            predictions = predictions[weight]
-            return loss, accuracy, predictions
+            return loss
 
     def run_epoch(self, session, testmode = False):
 
@@ -179,11 +182,11 @@ class Parsing_Model(object):
             next_batch = self.loader.next_batch
             epoch_incomplete = next_batch(self.batch_size)
             while epoch_incomplete:
-                loss, accuracy = self.run_batch(session)
-                print('{}/{}, loss {:.4f}, accuracy {:.4f}'.format(self.loader._index_in_epoch, self.loader.nb_train_samples, loss, accuracy), end = '\r')
+                loss = self.run_batch(session)
+                print('{}/{}, loss {:.4f}'.format(self.loader._index_in_epoch, self.loader.nb_train_samples, loss), end = '\r')
                 epoch_incomplete = next_batch(self.batch_size)
             print('\nEpoch Training Time {}'.format(time.time() - epoch_start_time))
-            return loss, accuracy
+            return loss
         else: 
             next_test_batch = self.loader.next_test_batch
             test_incomplete = next_test_batch(self.batch_size)

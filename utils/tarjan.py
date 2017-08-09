@@ -1,33 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
- 
-
-from __future__ import division
+from __future__ import division 
 from __future__ import print_function
-
 from collections import defaultdict
 
 
-#***************************************************************
 class Tarjan:
-    """
-        Computes Tarjan's algorithm for finding strongly connected components (cycles) of a graph
-        
-        Attributes:
-            edges: dictionary of edges such that edges[dep] = head
-            vertices: set of dependents
-            SCCs: list of sets of strongly connected components. Non-singleton sets are cycles.
-    """
-    
-    #=============================================================
     def __init__(self, prediction, tokens):
-        """
-            Inputs:
-                prediction: a predicted dependency tree where
-                    prediction[dep_idx] = head_idx
-                tokens: the tokens we care about (i.e. exclude _GO, _EOS, and _PAD)
-        """
-        
         self._edges = defaultdict(set)
         self._vertices = set((0,))
         for dep, head in enumerate(prediction[tokens]):
@@ -44,7 +23,6 @@ class Tarjan:
             if v not in self.indices:
                 self.strongconnect(v, index, stack)
     
-    #=============================================================
     def strongconnect(self, v, index, stack):
         """"""
         
@@ -71,7 +49,6 @@ class Tarjan:
             self._SCCs[-1].add(w)
         return
     
-    #======================
     @property
     def edges(self):
         return self._edges
@@ -84,3 +61,11 @@ class Tarjan:
     @property
     def SCCs(self):
         return self._SCCs
+if __name__ == '__main__':
+    import numpy as np
+    tokens = np.arange(1, 6)
+    predictions = np.array([0, 2, 0, 5, 3, 4])
+    test = Tarjan(predictions, tokens)
+    print(test._SCCs)
+    print(test._edges)
+    print(test._vertices)
