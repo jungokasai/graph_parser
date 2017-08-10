@@ -8,9 +8,7 @@ parser = ArgumentParser()
 subparsers = parser.add_subparsers(title='different modes', dest = 'mode', description='train or test')
 train_parser=subparsers.add_parser('train', help='train parsing')
 
-
-
-## train options
+# train options
 ## data information
 train_parser.add_argument("--base_dir", dest="base_dir", help="base directory for data")
 train_parser.add_argument("--text_train", dest="text_train", help="text data for training")
@@ -25,34 +23,43 @@ train_parser.add_argument("--arc_test", dest="arc_test", help="arc data for test
 train_parser.add_argument("--rel_test", dest="tag_test", help="rel data for testing")
 
 ## model configuration
+
+### LSTM config
 train_parser.add_argument("--lstm", dest="lstm", help="rnn architecutre", type = int, default = 1)
 train_parser.add_argument("--bidirectional", dest="bi", help="bidirectional LSTM", type = int, default = 1)
 train_parser.add_argument("--max_epochs",  dest="max_epochs", help="max_epochs", type=int, default = 100)
 train_parser.add_argument("--num_layers",  dest="num_layers", help="number of layers", type=int, default = 2)
-train_parser.add_argument("--num_mlp_layers",  dest="num_mlp_layers", help="number of MLP layers", type=int, default = 1)
 train_parser.add_argument("--units", dest="units", help="hidden units size", type=int, default = 64)
-train_parser.add_argument("--mlp_units", dest="mlp_units", help="MLP units size", type=int, default = 64)
+train_parser.add_argument("--hidden_p", dest="hidden_p", help="keep fraction of hidden units", type=float, default = 1.0)
+train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction", type=float, default = 1.0)
+
+### MLP config
+train_parser.add_argument("--num_mlp_layers",  dest="num_mlp_layers", help="number of MLP layers", type=int, default = 1)
+train_parser.add_argument("--arc_mlp_units", dest="arc_mlp_units", help="MLP units size", type=int, default = 64)
+train_parser.add_argument("--rel_mlp_units", dest="rel_mlp_units", help="MLP units size", type=int, default = 32)
 train_parser.add_argument("--mlp_prob", dest="mlp_prob", help="MLP units size", type=int, default = 1.0)
-train_parser.add_argument("-E", "--seed", dest="seed", help="set seed", type= int, default = 0)
+train_parser.add_argument("--seed", dest="seed", help="set seed", type= int, default = 0)
+
+### Input Config
 train_parser.add_argument("--stag_dim", dest="stag_dim", help="supertag dimension", type=int, default = 5)
 train_parser.add_argument("--jk_dim", dest="jk_dim", help="jakcknife dimension", type=int, default = 5)
 train_parser.add_argument("--embedding_dim", dest="embedding_dim", help="embedding dim", type=int, default = 100)
 train_parser.add_argument("--early_stopping", dest="early_stopping", help="early stopping", type=int, default = 2)
-train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.01)
-train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction", type=float, default = 1.0)
-train_parser.add_argument("--hidden_p", dest="hidden_p", help="keep fraction of hidden units", type=float, default = 1.0)
 train_parser.add_argument("--input_p", dest="input_dp", help="keep fraction for input", type=float, default = 1.0)
 
+### Train Config
+train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.01)
+
 ## test options
-test_parser=subparsers.add_parser('test', help='test tagging')
-## data information
+test_parser=subparsers.add_parser('test', help='test parser')
+### data information
 test_parser.add_argument("--base_dir", dest="base_dir", help="base directory for data")
 test_parser.add_argument("--text_test", dest="text_test", help="text data for testing")
 test_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing")
 test_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
-## Model Information
+### Model Information
 test_parser.add_argument("--model", dest="modelname", help="model name")
-## Output Options
+### Output Options
 test_parser.add_argument("--get_accuracy",  help="compute tag accuracy", action="store_true", default=False)
 test_parser.add_argument("--save_tags", dest="save_tags", help="save 1-best tags")
 

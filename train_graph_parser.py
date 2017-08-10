@@ -52,21 +52,25 @@ def train_pos_tagger(config):
     complete_command = base_command + train_data_info + dev_data_info + model_config_info
     subprocess.check_call(complete_command, shell=True)
 
-def train_stagger(config):
+def train_parser(config):
     base_dir = config['data']['base_dir']
-    base_command = 'python bilstm_stagger_main.py train --task Super_models --base_dir {}'.format(base_dir)
-    train_data_info = ' --text_train {} --jk_train {} --tag_train {}'.format(os.path.join(base_dir, 'sents', 'train.txt'), os.path.join(base_dir, 'gold_stag', 'train.txt'), os.path.join(base_dir, 'gold_stag', 'train.txt'))
-    dev_data_info = ' --text_test {} --jk_test {} --tag_test {}'.format(os.path.join(base_dir, 'sents', 'dev.txt'), os.path.join(base_dir, 'gold_stag', 'dev.txt'), os.path.join(base_dir, 'gold_stag', 'dev.txt'))
-    model_config_dict = config['stag_parameters']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
+    base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
+    train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
+    train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
+    dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
+    dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*dev_data_dirs)
+    model_config_dict = config['parser']
     model_config_info = ''
-    for option, value in model_config_dict.items():
-        model_config_info += ' --{} {}'.format(option, value)
-    complete_command = base_command + train_data_info + dev_data_info + model_config_info
-#    complete_command += ' --max_epochs 1' ## for debugging
+    for param_type in model_config_dict.keys():
+        for option, value in model_config_dict[param_type].items():
+            model_config_info += ' --{} {}'.format(option, value)
+    complete_command = base_command + train_data_info + dev_data_info #+ model_config_info
+    complete_command += ' --max_epochs 1' ## for debugging
     subprocess.check_call(complete_command, shell=True)
 
-def test_stagger(config, best_model, data_types):
-    base_dir = config['data']['base_dir']
+def test_parser(config, best_model, data_types):
+    base_dir = config['data']['base_dir'] 
     base_command = 'python bilstm_stagger_main.py test'
     model_info = ' --model {}'.format(best_model)
     for data_type in data_types:
@@ -88,10 +92,10 @@ if __name__ == '__main__':
 #    print('Train POS-tagger')
 #    train_pos_tagger(config_file)
 #    print('Run Jackknife Training of POS tagging for Supertagging')
-    print('Train Supertagger')
-    train_stagger(config_file)
-    print('Training is done. Run the supertagger.')
-    best_model = get_best_model(config_file)
-    data_types = config_file['data']['split'].keys()
-    test_stagger(config_file, best_model, data_types)
+    print('Train Parser')
+    train_parser(config_file)
+    print('Training is done. Run the parser.')
+#    best_model = get_best_model(config_file)
+#    data_types = config_file['data']['split'].keys()
+#    test_stagger(config_file, best_model, data_types)
 #    test_stagger(config_file, best_model, ['train'])

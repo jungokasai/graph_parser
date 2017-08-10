@@ -148,15 +148,20 @@ class Dataset(object):
         self.inputs_train['arcs'] = arc_sequences[:self.nb_train_samples]
         self.inputs_test['arcs'] = arc_sequences[self.nb_train_samples:]
         ## indexing arc files ends
+        self.gold_arcs = np.hstack(arc_sequences[self.nb_train_samples:])
 
         ## padding the train inputs and test inputs
         self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.items()}
+        self.inputs_train['arcs'] = np.hstack([np.zeros([self.inputs_train['arcs'].shape[0], 1]).astype(int), self.inputs_train['arcs']])
+        ## dummy parents for the roots
         random.seed(0)
         perm = np.arange(self.nb_train_samples)
         random.shuffle(perm)
         self.inputs_train = {key: x[perm] for key, x in self.inputs_train.items()}
 
         self.inputs_test = {key: pad_sequences(x) for key, x in self.inputs_test.items()}
+        ## dummy parents for the roots
+        self.inputs_test['arcs'] = np.hstack([np.zeros([self.inputs_test['arcs'].shape[0], 1]).astype(int), self.inputs_test['arcs']])
 
         ## padding ends
 
@@ -179,12 +184,11 @@ class Dataset(object):
         self._index_in_epoch += batch_size
         end = self._index_in_epoch
         self.inputs_train_batch = {}
-        i = 0
+        x = self.inputs_test['words']
+        x_batch = x[start:end]
+        max_len = np.max(np.sum(x_batch!=0, axis=-1))
         for key, x in self.inputs_train.items():
             x_batch = x[start:end]
-            if i == 0:
-                max_len = np.max(np.sum(x_batch!=0, axis=-1))
-            i += 1
             self.inputs_train_batch[key] = x_batch[:, :max_len]
         return True
 
@@ -198,12 +202,11 @@ class Dataset(object):
         self._index_in_test += batch_size
         end = self._index_in_test
         self.inputs_test_batch = {}
-        i = 0
+        x = self.inputs_test['words']
+        x_batch = x[start:end]
+        max_len = np.max(np.sum(x_batch!=0, axis=-1))
         for key, x in self.inputs_test.items():
             x_batch = x[start:end]
-            if i == 0:
-                max_len = np.max(np.sum(x_batch!=0, axis=-1))
-            i += 1
             self.inputs_test_batch[key] = x_batch[:, :max_len]
         return True
 

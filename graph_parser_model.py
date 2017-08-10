@@ -21,7 +21,7 @@ def run_model(opts, loader = None, epoch=0):
                 print('Epoch {}'.format(i+1))
                 loss, accuracy = model.run_epoch(session)
                 test_accuracy = model.run_epoch(session, True)
-                print('test accuracy {}'.format(test_accuracy))
+                print('\nTest Accuracy {:.5f}'.format(test_accuracy))
                 if best_accuracy < test_accuracy:
                     best_accuracy = test_accuracy 
                     #saving_file = os.path.join(opts.model_dir, 'epoch{0}_accuracy{1:.5f}'.format(i+1, test_accuracy))
