@@ -42,7 +42,7 @@ def get_best_model(config):
 
 def train_pos_tagger(config):
     base_dir = config['data']['base_dir']
-    base_command = 'python bilstm_stagger_main.py train --task POS_models --base_dir {}'.format(base_dir)
+    base_command = 'python graph_parser_main.py train --task POS_models --base_dir {}'.format(base_dir)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {}'.format(os.path.join(base_dir, 'sents', 'train.txt'), os.path.join(base_dir, 'gold_pos', 'train.txt'), os.path.join(base_dir, 'gold_pos', 'train.txt'))
     dev_data_info = ' --text_test {} --jk_test {} --tag_test {}'.format(os.path.join(base_dir, 'sents', 'dev.txt'), os.path.join(base_dir, 'gold_pos', 'dev.txt'), os.path.join(base_dir, 'gold_pos', 'dev.txt'))
     model_config_dict = config['pos_parameters']
@@ -58,8 +58,9 @@ def train_parser(config):
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
     train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
-    dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*dev_data_dirs)
+    dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test'.format(*dev_data_dirs)
     model_config_dict = config['parser']
     model_config_info = ''
     for param_type in model_config_dict.keys():
@@ -71,17 +72,19 @@ def train_parser(config):
 
 def test_parser(config, best_model, data_types):
     base_dir = config['data']['base_dir'] 
-    base_command = 'python bilstm_stagger_main.py test'
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
+    base_command = 'python graph_parser_main.py test'
     model_info = ' --model {}'.format(best_model)
     for data_type in data_types:
-        output_file = os.path.join(base_dir, 'predicted_stag', '{}.txt'.format(data_type))
+        output_file = os.path.join(base_dir, 'predicted_arcs', '{}.txt'.format(data_type))
         if not os.path.isdir(os.path.dirname(output_file)):
             os.makedirs(os.path.dirname(output_file))
         output_info = ' --save_tags {} --get_accuracy'.format(output_file)
-        test_data_info = ' --text_test {} --jk_test {} --tag_test {}'.format(os.path.join(base_dir, 'sents', '{}.txt'.format(data_type)), os.path.join(base_dir, 'gold_stag', '{}.txt'.format(data_type)), os.path.join(base_dir, 'gold_stag', '{}.txt'.format(data_type)))
+        test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
+        test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*test_data_dirs)
         complete_command = base_command + model_info + output_info + test_data_info
         subprocess.check_call(complete_command, shell=True)
-        output_conllu(output_file, os.path.join(base_dir, config['data']['split'][data_type]), os.path.join(base_dir, config['data']['split'][data_type]+'_stag'))
+        #output_conllu(output_file, os.path.join(base_dir, config['data']['split'][data_type]), os.path.join(base_dir, config['data']['split'][data_type]+'_stag'))
 ######### main ##########
 
 if __name__ == '__main__':
@@ -93,9 +96,10 @@ if __name__ == '__main__':
 #    train_pos_tagger(config_file)
 #    print('Run Jackknife Training of POS tagging for Supertagging')
     print('Train Parser')
-    train_parser(config_file)
+#    train_parser(config_file)
     print('Training is done. Run the parser.')
-#    best_model = get_best_model(config_file)
+    best_model = get_best_model(config_file)
 #    data_types = config_file['data']['split'].keys()
-#    test_stagger(config_file, best_model, data_types)
+    data_types = ['dev']
+    test_parser(config_file, best_model, data_types)
 #    test_stagger(config_file, best_model, ['train'])

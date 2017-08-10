@@ -1,4 +1,4 @@
-from graph_parser_model import run_model
+from graph_parser_model import run_model, run_model_test
 import os
 from argparse import ArgumentParser 
 import pickle
@@ -21,6 +21,7 @@ train_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing
 train_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
 train_parser.add_argument("--arc_test", dest="arc_test", help="arc data for testing")
 train_parser.add_argument("--rel_test", dest="rel_test", help="rel data for testing")
+train_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
 
 ## model configuration
 
@@ -57,6 +58,10 @@ test_parser.add_argument("--base_dir", dest="base_dir", help="base directory for
 test_parser.add_argument("--text_test", dest="text_test", help="text data for testing")
 test_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing")
 test_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
+test_parser.add_argument("--arc_test", dest="arc_test", help="tag data for testing")
+test_parser.add_argument("--rel_test", dest="rel_test", help="tag data for testing")
+test_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
+
 ### Model Information
 test_parser.add_argument("--model", dest="modelname", help="model name")
 ### Output Options

@@ -217,5 +217,5 @@ class Parsing_Model(object):
             predictions = np.hstack(predictions)
 #            if self.test_opts is not None:
 #                self.loader.output_stags(predictions, self.test_opts.save_tags)
-            UAS = np.mean(predictions == self.loader.gold_arcs)
+            UAS = np.mean(predictions[self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             return UAS

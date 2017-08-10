@@ -21,12 +21,14 @@ class Dataset(object):
             path_to_jk_test = opts.jk_test
             path_to_arc_test = opts.arc_test
             path_to_rel_test = opts.rel_test
+            path_to_punc_test = opts.punc_test
         else:
             path_to_text_test = test_opts.text_test
             path_to_tag_test = test_opts.tag_test
             path_to_jk_test = test_opts.jk_test
             path_to_arc_test = test_opts.arc_test
             path_to_rel_test = test_opts.rel_test
+            path_to_punc_test = test_opts.punc_test
 
         self.inputs_train = {}
         self.inputs_test = {}
@@ -149,6 +151,13 @@ class Dataset(object):
         self.inputs_test['arcs'] = arc_sequences[self.nb_train_samples:]
         ## indexing arc files ends
         self.gold_arcs = np.hstack(arc_sequences[self.nb_train_samples:])
+        self.punc = arc_sequences[self.nb_train_samples:]
+        with open(path_to_punc_test) as fhand:
+            for sent_idx, line in zip(xrange(len(self.punc)), fhand):
+                self.punc[sent_idx] = [True for _ in xrange(len(self.punc[sent_idx]))]
+                for punc_idx in map(int, line.split()):
+                    self.punc[sent_idx][punc_idx-1] = False
+        self.punc = np.hstack(self.punc)#.astype(bool)
 
         ## padding the train inputs and test inputs
         self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.items()}
@@ -231,30 +240,38 @@ if __name__ == '__main__':
         def __init__(self):
             self.jackknife = 1
             self.embedding_dim = 100
-            self.text_train = 'sample_data/sents/train.txt'
-            self.tag_train = 'sample_data/predicted_stag/train.txt'
-            self.jk_train = 'sample_data/predicted_pos/train.txt'
-            self.arc_train = 'sample_data/arcs/train.txt'
-            self.rel_train = 'sample_data/rels/train.txt'
-            self.text_test = 'sample_data/sents/dev.txt'
-            self.tag_test = 'sample_data/predicted_stag/dev.txt'
-            self.jk_test = 'sample_data/predicted_pos/dev.txt'
-            self.arc_test = 'sample_data/arcs/dev.txt'
-            self.rel_test = 'sample_data/rels/dev.txt'
-#            self.text_train = 'data/tag_wsj/sents/train.txt'
-#            self.tag_train = 'data/tag_wsj/predicted_stag/train.txt'
-#            self.jk_train = 'data/tag_wsj/predicted_pos/train.txt'
-#            self.arc_train = 'data/tag_wsj/arcs/train.txt'
-#            self.rel_train = 'data/tag_wsj/rels/train.txt'
-#            self.text_test = 'data/tag_wsj/sents/dev.txt'
-#            self.tag_test = 'data/tag_wsj/predicted_stag/dev.txt'
-#            self.jk_test = 'data/tag_wsj/predicted_pos/dev.txt'
-#            self.arc_test = 'data/tag_wsj/arcs/dev.txt'
-#            self.rel_test = 'data/tag_wsj/rels/dev.txt'
+#            self.text_train = 'sample_data/sents/train.txt'
+#            self.tag_train = 'sample_data/predicted_stag/train.txt'
+#            self.jk_train = 'sample_data/predicted_pos/train.txt'
+#            self.arc_train = 'sample_data/arcs/train.txt'
+#            self.rel_train = 'sample_data/rels/train.txt'
+#            self.text_test = 'sample_data/sents/dev.txt'
+#            self.tag_test = 'sample_data/predicted_stag/dev.txt'
+#            self.jk_test = 'sample_data/predicted_pos/dev.txt'
+#            self.arc_test = 'sample_data/arcs/dev.txt'
+#            self.rel_test = 'sample_data/rels/dev.txt'
+            self.text_train = 'data/tag_wsj/sents/train.txt'
+            self.tag_train = 'data/tag_wsj/predicted_stag/train.txt'
+            self.jk_train = 'data/tag_wsj/predicted_pos/train.txt'
+            self.arc_train = 'data/tag_wsj/arcs/train.txt'
+            self.rel_train = 'data/tag_wsj/rels/train.txt'
+            self.text_test = 'data/tag_wsj/sents/dev.txt'
+            self.tag_test = 'data/tag_wsj/predicted_stag/dev.txt'
+            self.jk_test = 'data/tag_wsj/predicted_pos/dev.txt'
+            self.arc_test = 'data/tag_wsj/arcs/dev.txt'
+            self.rel_test = 'data/tag_wsj/rels/dev.txt'
+            self.punc_test = 'data/tag_wsj/punc/dev.txt'
     opts = Opts()
     data_loader = Dataset(opts)
     #print(data_loader.inputs_train)
     data_loader.next_batch(10)
+    print(data_loader.gold_arcs.shape)
+    print(data_loader.punc.shape)
+#    print(data_loader.punc[-1])
+    print(np.sum(data_loader.punc))
+    print(data_loader.gold_arcs[data_loader.punc].shape)
+    print(data_loader.gold_arcs.shape)
+    print(data_loader.gold_arcs[np.invert(data_loader.punc)].shape)
 #   print(data_loader.inputs_train_batch[0])
 #    data_loader.next_test_batch(3)
 #    print(data_loader.inputs_test_batch[0])
