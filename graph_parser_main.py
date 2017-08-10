@@ -20,7 +20,7 @@ train_parser.add_argument("--text_test", dest="text_test", help="text data for t
 train_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing")
 train_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
 train_parser.add_argument("--arc_test", dest="arc_test", help="arc data for testing")
-train_parser.add_argument("--rel_test", dest="tag_test", help="rel data for testing")
+train_parser.add_argument("--rel_test", dest="rel_test", help="rel data for testing")
 
 ## model configuration
 
@@ -34,10 +34,10 @@ train_parser.add_argument("--hidden_p", dest="hidden_p", help="keep fraction of 
 train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction", type=float, default = 1.0)
 
 ### MLP config
-train_parser.add_argument("--num_mlp_layers",  dest="num_mlp_layers", help="number of MLP layers", type=int, default = 1)
+train_parser.add_argument("--mlp_num_layers",  dest="mlp_num_layers", help="number of MLP layers", type=int, default = 1)
 train_parser.add_argument("--arc_mlp_units", dest="arc_mlp_units", help="MLP units size", type=int, default = 64)
 train_parser.add_argument("--rel_mlp_units", dest="rel_mlp_units", help="MLP units size", type=int, default = 32)
-train_parser.add_argument("--mlp_prob", dest="mlp_prob", help="MLP units size", type=int, default = 1.0)
+train_parser.add_argument("--mlp_prob", dest="mlp_prob", help="MLP units size", type=float, default = 1.0)
 train_parser.add_argument("--seed", dest="seed", help="set seed", type= int, default = 0)
 
 ### Input Config
@@ -48,7 +48,7 @@ train_parser.add_argument("--early_stopping", dest="early_stopping", help="early
 train_parser.add_argument("--input_p", dest="input_dp", help="keep fraction for input", type=float, default = 1.0)
 
 ### Train Config
-train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.01)
+train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.1)
 
 ## test options
 test_parser=subparsers.add_parser('test', help='test parser')
@@ -66,17 +66,17 @@ test_parser.add_argument("--save_tags", dest="save_tags", help="save 1-best tags
 opts = parser.parse_args()
 
 if opts.mode == "train":
-    opts.base_dir = 'sample_data'
-    opts.text_train = 'sample_data/sents/train.txt'
-    opts.tag_train = 'sample_data/predicted_stag/train.txt'
-    opts.jk_train = 'sample_data/predicted_pos/train.txt'
-    opts.arc_train = 'sample_data/arcs/train.txt'
-    opts.rel_train = 'sample_data/rels/train.txt'
-    opts.text_test = 'sample_data/sents/dev.txt'
-    opts.tag_test = 'sample_data/predicted_stag/dev.txt'
-    opts.jk_test = 'sample_data/predicted_pos/dev.txt'
-    opts.arc_test = 'sample_data/arcs/dev.txt'
-    opts.rel_test = 'sample_data/rels/dev.txt'
+#    opts.base_dir = 'sample_data'
+#    opts.text_train = 'sample_data/sents/train.txt'
+#    opts.tag_train = 'sample_data/predicted_stag/train.txt'
+#    opts.jk_train = 'sample_data/predicted_pos/train.txt'
+#    opts.arc_train = 'sample_data/arcs/train.txt'
+#    opts.rel_train = 'sample_data/rels/train.txt'
+#    opts.text_test = 'sample_data/sents/dev.txt'
+#    opts.tag_test = 'sample_data/predicted_stag/dev.txt'
+#    opts.jk_test = 'sample_data/predicted_pos/dev.txt'
+#    opts.arc_test = 'sample_data/arcs/dev.txt'
+#    opts.rel_test = 'sample_data/rels/dev.txt'
     model_dir = 'Graph_Parsers/bi{}_numlayers{}_embeddim{}_seed{}_units{}_dropout{}_inputdp{}_hp{}_jkdim{}'.format(opts.bi, opts.num_layers, opts.embedding_dim, opts.seed, opts.units, opts.dropout_p, opts.input_dp, opts.hidden_p, opts.jk_dim)
     opts.model_dir = os.path.join(opts.base_dir, model_dir)
     print('Model Dirctory: {}'.format(opts.model_dir))

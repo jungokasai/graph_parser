@@ -184,7 +184,7 @@ class Dataset(object):
         self._index_in_epoch += batch_size
         end = self._index_in_epoch
         self.inputs_train_batch = {}
-        x = self.inputs_test['words']
+        x = self.inputs_train['words']
         x_batch = x[start:end]
         max_len = np.max(np.sum(x_batch!=0, axis=-1))
         for key, x in self.inputs_train.items():
@@ -241,10 +241,20 @@ if __name__ == '__main__':
             self.jk_test = 'sample_data/predicted_pos/dev.txt'
             self.arc_test = 'sample_data/arcs/dev.txt'
             self.rel_test = 'sample_data/rels/dev.txt'
+#            self.text_train = 'data/tag_wsj/sents/train.txt'
+#            self.tag_train = 'data/tag_wsj/predicted_stag/train.txt'
+#            self.jk_train = 'data/tag_wsj/predicted_pos/train.txt'
+#            self.arc_train = 'data/tag_wsj/arcs/train.txt'
+#            self.rel_train = 'data/tag_wsj/rels/train.txt'
+#            self.text_test = 'data/tag_wsj/sents/dev.txt'
+#            self.tag_test = 'data/tag_wsj/predicted_stag/dev.txt'
+#            self.jk_test = 'data/tag_wsj/predicted_pos/dev.txt'
+#            self.arc_test = 'data/tag_wsj/arcs/dev.txt'
+#            self.rel_test = 'data/tag_wsj/rels/dev.txt'
     opts = Opts()
     data_loader = Dataset(opts)
-    print(data_loader.inputs_train)
-#    data_loader.next_batch(2)
+    #print(data_loader.inputs_train)
+    data_loader.next_batch(10)
 #   print(data_loader.inputs_train_batch[0])
 #    data_loader.next_test_batch(3)
 #    print(data_loader.inputs_test_batch[0])

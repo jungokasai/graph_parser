@@ -102,7 +102,7 @@ class Parsing_Model(object):
         rel_roles = ['rel-dep', 'rel-head']
         vectors = {}
         for arc_role in arc_roles:
-            for i in xrange(self.opts.num_mlp_layers):
+            for i in xrange(self.opts.mlp_num_layers):
                 if i == 0:
                     inputs_dim = self.outputs_dim
                     vector_mlp = inputs
@@ -117,7 +117,7 @@ class Parsing_Model(object):
 #        arc_predictions = get_arcs(arc_output, self.test_opts) # [batch_size, seq_len]
         arc_predictions = tf.argmax(arc_output, 2) # [batch_size, seq_len]
         for rel_role in rel_roles:
-            for i in xrange(self.opts.num_mlp_layers):
+            for i in xrange(self.opts.mlp_num_layers):
                 if i == 0:
                     inputs_dim = self.outputs_dim
                     vector_mlp = inputs

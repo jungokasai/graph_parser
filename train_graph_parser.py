@@ -8,7 +8,7 @@ from tools.converters.sents2conllustag import output_conllu
 
 def converter(config):
     data_types = config['data']['split'].keys()
-    features = ['sents', 'predicted_pos', 'predicted_stag', 'rels', 'arcs']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
     for feature in features:
         for data_type in data_types:
             input_file = os.path.join(config['data']['base_dir'], config['data']['split'][data_type])
@@ -65,8 +65,8 @@ def train_parser(config):
     for param_type in model_config_dict.keys():
         for option, value in model_config_dict[param_type].items():
             model_config_info += ' --{} {}'.format(option, value)
-    complete_command = base_command + train_data_info + dev_data_info #+ model_config_info
-    complete_command += ' --max_epochs 1' ## for debugging
+    complete_command = base_command + train_data_info + dev_data_info + model_config_info
+#    complete_command += ' --max_epochs 1' ## for debugging
     subprocess.check_call(complete_command, shell=True)
 
 def test_parser(config, best_model, data_types):
@@ -87,7 +87,7 @@ def test_parser(config, best_model, data_types):
 if __name__ == '__main__':
     config_file = sys.argv[1]
     config_file = read_config(config_file)
-    print('Convert conllu+stag file to sentences, pos, stag, rels, and arcs')
+    print('Convert conllu+stag file to sentences, pos, stag, arcs, and rels')
     converter(config_file)
 #    print('Train POS-tagger')
 #    train_pos_tagger(config_file)
