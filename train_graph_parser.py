@@ -40,18 +40,6 @@ def get_best_model(config):
     return best_model
 
 
-def train_pos_tagger(config):
-    base_dir = config['data']['base_dir']
-    base_command = 'python graph_parser_main.py train --task POS_models --base_dir {}'.format(base_dir)
-    train_data_info = ' --text_train {} --jk_train {} --tag_train {}'.format(os.path.join(base_dir, 'sents', 'train.txt'), os.path.join(base_dir, 'gold_pos', 'train.txt'), os.path.join(base_dir, 'gold_pos', 'train.txt'))
-    dev_data_info = ' --text_test {} --jk_test {} --tag_test {}'.format(os.path.join(base_dir, 'sents', 'dev.txt'), os.path.join(base_dir, 'gold_pos', 'dev.txt'), os.path.join(base_dir, 'gold_pos', 'dev.txt'))
-    model_config_dict = config['pos_parameters']
-    model_config_info = ''
-    for option, value in model_config_dict.items():
-        model_config_info += ' --{} {}'.format(option, value)
-    complete_command = base_command + train_data_info + dev_data_info + model_config_info
-    subprocess.check_call(complete_command, shell=True)
-
 def train_parser(config):
     base_dir = config['data']['base_dir']
     features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
@@ -73,13 +61,25 @@ def train_parser(config):
 def test_parser(config, best_model, data_types):
     base_dir = config['data']['base_dir'] 
     features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
-    base_command = 'python graph_parser_main.py test'
+    base_command = 'python graph_parser_main.py test --get_accuracy'
     model_info = ' --model {}'.format(best_model)
     for data_type in data_types:
         output_file = os.path.join(base_dir, 'predicted_arcs', '{}.txt'.format(data_type))
         if not os.path.isdir(os.path.dirname(output_file)):
             os.makedirs(os.path.dirname(output_file))
-        output_info = ' --save_tags {} --get_accuracy'.format(output_file)
+        output_info = ' --predicted_arcs_file {}'.format(output_file)
+        output_file = os.path.join(base_dir, 'predicted_rels', '{}.txt'.format(data_type))
+        if not os.path.isdir(os.path.dirname(output_file)):
+            os.makedirs(os.path.dirname(output_file))
+        output_info += ' --predicted_rels_file {}'.format(output_file)
+        output_file = os.path.join(base_dir, 'predicted_arcs_greedy', '{}.txt'.format(data_type))
+        if not os.path.isdir(os.path.dirname(output_file)):
+            os.makedirs(os.path.dirname(output_file))
+        output_info += ' --predicted_arcs_file_greedy {}'.format(output_file)
+        output_file = os.path.join(base_dir, 'predicted_rels_greedy', '{}.txt'.format(data_type))
+        if not os.path.isdir(os.path.dirname(output_file)):
+            os.makedirs(os.path.dirname(output_file))
+        output_info += ' --predicted_rels_file_greedy {}'.format(output_file)
         test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
         test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*test_data_dirs)
         complete_command = base_command + model_info + output_info + test_data_info

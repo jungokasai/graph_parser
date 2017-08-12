@@ -3,7 +3,7 @@ import numpy as np
 
 def chu_liu_edmonds(scores_sent, dep2vertex, parent2vertex, committed_edges):
     ## scores_sent [sent_len, sent_len]
-    MIN = -1000
+    MIN = -10000
     greedy_sent = np.argmax(scores_sent, axis=1)
     tokens = np.arange(1, greedy_sent.shape[0]) 
     graph = Tarjan(greedy_sent, tokens)
@@ -41,7 +41,7 @@ def chu_liu_edmonds(scores_sent, dep2vertex, parent2vertex, committed_edges):
             in_score = scores_into_cycle.reshape(-1)[in_max_idx]
             in_dep = in_max_idx//scores_into_cycle.shape[1]
 #            in_parent = non_cycle[in_max_idx - in_dep*scores_out_cycle.shape[1]] 
-            in_parent_non_cycle = in_max_idx - in_dep*scores_out_cycle.shape[1]
+            in_parent_non_cycle = in_max_idx - in_dep*scores_into_cycle.shape[1]
             in_dep = cycle[in_dep]
             new_dep2vertex[len(new_dep2vertex)] = dep2vertex[in_dep]
             for idx in cycle:
@@ -76,8 +76,9 @@ if __name__ == '__main__':
     weight = np.ones([b, n]).astype(bool)
     scores[0] = np.array([[0, 0, 0, 0], [9, 0, 30, 11], [10, 20, 0, 0], [9, 3, 30, 0]])
 #    scores_sent = scores[0]
-    predictions = get_mst(scores[0])
-    print(predictions)
+    for i in xrange(200):
+        predictions = get_mst(scores[0])
+        print(predictions)
 #    get_mst(scores_sent, dep2vertex, parent2vertex, {})
 
         

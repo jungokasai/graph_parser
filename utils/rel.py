@@ -14,7 +14,7 @@ def get_rel_weights(name, units, nb_rels): # no dropout
 ## nb_rels: r 
 ## seq_len (including root): n
 
-def rel_equation(H_rel_head, H_rel_dep, weights, predictions, test_opts=None): 
+def rel_equation(H_rel_head, H_rel_dep, weights, predictions): 
     ## H_rel_head: [n, b, d]
     ## H_rel_dep: [n, b, d]
     ## predictions: [b, n]
@@ -25,20 +25,34 @@ def rel_equation(H_rel_head, H_rel_dep, weights, predictions, test_opts=None):
     H_rel_dep = tf.transpose(H_rel_dep, [1, 0, 2]) 
     ## H_rel_head: [b, n, d]
     ## H_rel_dep: [b, n, d]
-    if test_opts is None:
-        one_hot_pred = tf.one_hot(predictions, n)
-        ## [b, n] => [b, n, n]
-        H_rel_head = tf.matmul(one_hot_pred, H_rel_head) ## filtered through predictions
-        ## [b, n, n] x [b, n, d] => [b, n, d]
-        U_rel = tf.reshape(weights['U-rel'], [d, r*d]) ## [d, rd]
-        interactions = tf.reshape(tf.matmul(tf.reshape(H_rel_head, [b*n, d]), U_rel), [b*n, r, d])
-        ## [bn, d] x [d, rd] => [bn, rd] => [bn, r, d]
-        interactions = tf.reshape(tf.matmul(interactions, tf.reshape(H_rel_dep, [b*n, d, 1])), [b, n, r])
-        ## [bn, r, d] x [bn, d, 1] => [bn, r, 1] => [b, n, r]
-        sums = tf.reshape(tf.matmul(tf.reshape(H_rel_head+H_rel_dep, [b*n, d]), weights['W-rel']) + weights['b-rel'], [b, n, r])
-        ## [b*n, d] x [d, r] + [r] => [b*n, r] (broadcast) => [b, n, r]
-        output = interactions + sums
-        return output
+
+    ## Not Assuming Predictions (postpone arc decisions until the MST algorithm) for Testing
+    ## [b, n, n] x [b, n, d] => [b, n, d]
+    U_rel = tf.reshape(weights['U-rel'], [d, r*d]) ## [d, rd]
+    interactions = tf.reshape(tf.matmul(tf.reshape(H_rel_head, [b*n, d]), U_rel), [b, n*r, d])
+    ## [bn, d] x [d, rd] => [bn, rd] => [b, nr, d]
+    interactions = tf.reshape(tf.matmul(interactions, tf.transpose(H_rel_dep, [0, 2, 1])), [b, n, r, n])
+    ## [b, nr, d] x [b, d, n] => [b, nr, n] => [b, n, r, n]
+    interactions = tf.transpose(interactions, [0, 3, 1, 2])
+    ## [b, n (parent), r, n (child)] => [b, n (child), n (parent), r]
+    sums = tf.reshape(tf.matmul(tf.reshape(tf.reshape(H_rel_head, [b, 1, n, d])+tf.reshape(H_rel_dep, [b, n, 1, d]), [b*n*n, d]), weights['W-rel']) + weights['b-rel'], [b, n, n, r])
+    ## ([b, n, n, d] => [b*n*n, d]) x [d, r] + [r] => [b*n*n, r] => [b, n, n, r]
+    rel_scores = interactions + sums
+
+    ## Assuming Predictions for Training
+    one_hot_pred = tf.one_hot(predictions, n)
+    ## [b, n] => [b, n, n]
+    H_rel_head = tf.matmul(one_hot_pred, H_rel_head) ## filtered through predictions
+    ## [b, n, n] x [b, n, d] => [b, n, d]
+    U_rel = tf.reshape(weights['U-rel'], [d, r*d]) ## [d, rd]
+    interactions = tf.reshape(tf.matmul(tf.reshape(H_rel_head, [b*n, d]), U_rel), [b*n, r, d])
+    ## [bn, d] x [d, rd] => [bn, rd] => [bn, r, d]
+    interactions = tf.reshape(tf.matmul(interactions, tf.reshape(H_rel_dep, [b*n, d, 1])), [b, n, r])
+    ## [bn, r, d] x [bn, d, 1] => [bn, r, 1] => [b, n, r]
+    sums = tf.reshape(tf.matmul(tf.reshape(H_rel_head+H_rel_dep, [b*n, d]), weights['W-rel']) + weights['b-rel'], [b, n, r])
+    ## [b*n, d] x [d, r] + [r] => [b*n, r] (broadcast) => [b, n, r]
+    output = interactions + sums
+    return output, rel_scores
 
 
 #    predictions = tf.reshape(predictions, [b*n, 1])

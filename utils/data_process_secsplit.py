@@ -219,11 +219,21 @@ class Dataset(object):
             self.inputs_test_batch[key] = x_batch[:, :max_len]
         return True
 
-    def output_stags(self, predictions, filename):
-        stags = map(lambda x: self.idx_to_tag[x], predictions)
+    def output_rels(self, predictions, filename):
+        stags = map(lambda x: self.idx_to_rel[x], predictions)
         ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
-        ## To Do: allow for the CoNLL format
-        sents_lengths = np.sum(self.inputs_test[0]!=0, 1)
+        sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
+        stag_idx = 0
+        with open(filename, 'wt') as fwrite:
+            for sent_idx in xrange(len(sents_lengths)):
+                fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                fwrite.write('\n')
+                stag_idx += sents_lengths[sent_idx]
+
+    def output_arcs(self, predictions, filename):
+        stags = map(str, predictions)
+        ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
+        sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
         stag_idx = 0
         with open(filename, 'wt') as fwrite:
             for sent_idx in xrange(len(sents_lengths)):
@@ -275,4 +285,7 @@ if __name__ == '__main__':
 #   print(data_loader.inputs_train_batch[0])
 #    data_loader.next_test_batch(3)
 #    print(data_loader.inputs_test_batch[0])
+    sents_lengths = np.sum(np.sum(data_loader.inputs_test['words']!=0, 1) - 1) ## dummy ROOT
+    print(sents_lengths)
+    print(data_loader.gold_arcs.shape)
 #

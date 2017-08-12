@@ -67,6 +67,10 @@ test_parser.add_argument("--model", dest="modelname", help="model name")
 ### Output Options
 test_parser.add_argument("--get_accuracy",  help="compute tag accuracy", action="store_true", default=False)
 test_parser.add_argument("--save_tags", dest="save_tags", help="save 1-best tags")
+test_parser.add_argument("--predicted_arcs_file", dest="predicted_arcs_file", help="filename for predicted arcs")
+test_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", help="filename for predicted rels")
+test_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
+test_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
 
 opts = parser.parse_args()
 

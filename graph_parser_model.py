@@ -20,7 +20,8 @@ def run_model(opts, loader = None, epoch=0):
             for i in xrange(opts.max_epochs):
                 print('Epoch {}'.format(i+1))
                 loss, accuracy = model.run_epoch(session)
-                test_accuracy = model.run_epoch(session, True)
+                scores = model.run_epoch(session, True)
+                test_accuracy = scores['UAS']
                 print('\nTest Accuracy {:.5f}'.format(test_accuracy))
                 if best_accuracy < test_accuracy:
                     best_accuracy = test_accuracy 
@@ -54,6 +55,6 @@ def run_model_test(opts, test_opts):
         with tf.Session() as session: 
             session.run(tf.global_variables_initializer())
             saver.restore(session, test_opts.modelname)
-            test_accuracy = model.run_epoch(session, True)
+            scores = model.run_epoch(session, True)
             if test_opts.get_accuracy:
-                print('\nTest accuracy {}'.format(test_accuracy))
+                print('\nTest accuracy UAS: {}, UAS Greedy {}'.format(scores['UAS'], scores['UAS_greedy']))
