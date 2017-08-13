@@ -6,21 +6,22 @@ def read_sents(sents_file):
             stags.append(stags_sent)
     return stags
     
-def output_conllu(sents_file, input_conllu_file, output_conllu_file, pos_file=None):
+## inputs is a dictionry {index_in_conllu: sents_file}
+def output_conllu(input_conllu_file, output_conllu_file, inputs):
     sent_idx = 0 
-    word_idx = 0 
-    stags = read_sents(sents_file)
-    if pos_file is not None:
-        postags = read_sents(pos_file)
+    word_idx = 0
+    for idx, sents_file in inputs.items():
+        inputs[idx] = read_sents(sents_file)
     with open(output_conllu_file, 'wt') as fwrite:
         with open(input_conllu_file) as fhand:
             for line in fhand:
                 tokens = line.split()
-                if len(tokens) == 10: 
-                    tokens.append(stags[sent_idx][word_idx])
-                    if pos_file is not None:
-                        tokens[4] = postags[sent_idx][word_idx]
-
+                if len(tokens) >= 10: 
+                    for idx in inputs.keys():
+                        if idx <= len(tokens)-1:
+                            tokens[idx] = inputs[idx][sent_idx][word_idx]
+                        else:
+                            tokens.append(inputs[idx][sent_idx][word_idx])
                     word_idx += 1
                 else:
                     sent_idx += 1
@@ -35,10 +36,11 @@ if __name__ == '__main__':
 #    output_conllu(sents_file, input_conllu_file, output_conllu_file)
     data_types = ['dev', 'test', 'train']
     for data_type in data_types:
-        stag_file = 'data/tag_wsj/predicted_stag/{}.txt'.format(data_type)
-        pos_file = 'data/tag_wsj/predicted_pos/{}.txt'.format(data_type)
+        inputs = {}
+        inputs[10] = 'data/tag_wsj/predicted_stag/{}.txt'.format(data_type)
+        inputs[4] = 'data/tag_wsj/predicted_pos/{}.txt'.format(data_type)
         input_conllu_file = 'data/tag_wsj/conllu/{}.conllu'.format(data_type)
-        output_conllu_file = 'data/tag_wsj/conllu/{}.conllu0_pos_stag'.format(data_type)
-        output_conllu(stag_file, input_conllu_file, output_conllu_file, pos_file)
+#        output_conllu_file = 'data/tag_wsj/conllu/{}.conllu0_pos_stag'.format(data_type)
+        output_conllu(input_conllu_file, 'test', inputs)
 
 

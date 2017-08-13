@@ -39,7 +39,6 @@ train_parser.add_argument("--mlp_num_layers",  dest="mlp_num_layers", help="numb
 train_parser.add_argument("--arc_mlp_units", dest="arc_mlp_units", help="MLP units size", type=int, default = 64)
 train_parser.add_argument("--rel_mlp_units", dest="rel_mlp_units", help="MLP units size", type=int, default = 32)
 train_parser.add_argument("--mlp_prob", dest="mlp_prob", help="MLP units size", type=float, default = 1.0)
-train_parser.add_argument("--seed", dest="seed", help="set seed", type= int, default = 0)
 
 ### Input Config
 train_parser.add_argument("--stag_dim", dest="stag_dim", help="supertag dimension", type=int, default = 5)
@@ -50,6 +49,7 @@ train_parser.add_argument("--input_p", dest="input_dp", help="keep fraction for 
 
 ### Train Config
 train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.1)
+train_parser.add_argument("--seed", dest="seed", help="set seed", type= int, default = 0)
 
 ## test options
 test_parser=subparsers.add_parser('test', help='test parser')
@@ -86,7 +86,8 @@ if opts.mode == "train":
 #    opts.jk_test = 'sample_data/predicted_pos/dev.txt'
 #    opts.arc_test = 'sample_data/arcs/dev.txt'
 #    opts.rel_test = 'sample_data/rels/dev.txt'
-    model_dir = 'Graph_Parsers/bi{}_numlayers{}_embeddim{}_seed{}_units{}_dropout{}_inputdp{}_hp{}_jkdim{}'.format(opts.bi, opts.num_layers, opts.embedding_dim, opts.seed, opts.units, opts.dropout_p, opts.input_dp, opts.hidden_p, opts.jk_dim)
+    params = ['bi', 'num_layers', 'units', 'hidden_p', 'dropout_p', 'mlp_num_layers', 'arc_mlp_units', 'rel_mlp_units', 'stag_dim', 'jk_dim', 'embedding_dim', 'input_dp', 'lrate', 'seed']
+    model_dir = 'Graph_Parsers/' + '-'.join(map(lambda x: str(getattr(opts, x)), params))
     opts.model_dir = os.path.join(opts.base_dir, model_dir)
     print('Model Dirctory: {}'.format(opts.model_dir))
     if not os.path.isdir(opts.model_dir):

@@ -1,4 +1,4 @@
 ## Tools
 
 - ``converters/`` contains converters between the conllu/conllustag and one-sentence-per-line
-- ``tarjan.py`` fixes cycles in the decoding phase.
+- ``analyzers/`` contains scripts to analyze well-formedness of dependency graphs

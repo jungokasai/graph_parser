@@ -21,7 +21,7 @@ def run_model(opts, loader = None, epoch=0):
                 print('Epoch {}'.format(i+1))
                 loss, accuracy = model.run_epoch(session)
                 scores = model.run_epoch(session, True)
-                test_accuracy = scores['UAS']
+                test_accuracy = scores['UAS_greedy']
                 print('\nTest Accuracy {:.5f}'.format(test_accuracy))
                 if best_accuracy < test_accuracy:
                     best_accuracy = test_accuracy 
