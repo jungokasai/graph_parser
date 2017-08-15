@@ -48,9 +48,9 @@ def train_parser(config):
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
     train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
-    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
-    dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*dev_data_dirs)
+    dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*dev_data_dirs)
     model_config_dict = config['parser']
     model_config_info = ''
     for param_type in model_config_dict.keys():
@@ -62,9 +62,10 @@ def train_parser(config):
 
 def test_parser(config, best_model, data_types):
     base_dir = config['data']['base_dir'] 
-    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
     base_command = 'python graph_parser_main.py test --get_accuracy'
     model_info = ' --model {}'.format(best_model)
+    model_info += ' --metrics {}'.format(config['parser']['scores']['metrics'])
     for data_type in data_types:
         inputs = {}
         output_file = os.path.join(base_dir, 'predicted_arcs', '{}.txt'.format(data_type))
@@ -89,7 +90,7 @@ def test_parser(config, best_model, data_types):
             os.makedirs(os.path.dirname(output_file))
         output_info += ' --predicted_rels_file_greedy {}'.format(output_file)
         test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
-        test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*test_data_dirs)
+        test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*test_data_dirs)
         complete_command = base_command + model_info + output_info + test_data_info
         subprocess.check_call(complete_command, shell=True)
         output_conllu(os.path.join(base_dir, config['data']['split'][data_type]), os.path.join(base_dir, config['data']['split'][data_type]+'_arc_rel'), inputs)

@@ -1,6 +1,6 @@
 import numpy as np
 from preprocessing import Tokenizer, pad_sequences, arcs2seq
-import os
+import os 
 import sys
 import pickle
 import random
@@ -50,7 +50,7 @@ class Dataset(object):
         glove_size = opts.embedding_dim
         self.embeddings_index = {}
         print('Indexing word vectors.')
-        f = open('glovevector/glove.6B.{}d.txt'.format(glove_size))
+        f = open(opts.word_embeddings_file)
         for line in f:
             values = line.split()
             word = values[0]
@@ -137,6 +137,7 @@ class Dataset(object):
         #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
         self.inputs_train['rels'] = rel_sequences[:self.nb_train_samples]
         self.inputs_test['rels'] = rel_sequences[self.nb_train_samples:]
+        self.gold_rels = np.hstack(map(lambda x: x[1:], rel_sequences[self.nb_train_samples:]))
         ## indexing rel files ends
 
         ## indexing arc files
@@ -151,13 +152,14 @@ class Dataset(object):
         self.inputs_test['arcs'] = arc_sequences[self.nb_train_samples:]
         ## indexing arc files ends
         self.gold_arcs = np.hstack(arc_sequences[self.nb_train_samples:])
-        self.punc = arc_sequences[self.nb_train_samples:]
-        with open(path_to_punc_test) as fhand:
-            for sent_idx, line in zip(xrange(len(self.punc)), fhand):
-                self.punc[sent_idx] = [True for _ in xrange(len(self.punc[sent_idx]))]
-                for punc_idx in map(int, line.split()):
-                    self.punc[sent_idx][punc_idx-1] = False
-        self.punc = np.hstack(self.punc)#.astype(bool)
+        if path_to_punc_test is not None:
+            self.punc = arc_sequences[self.nb_train_samples:]
+            with open(path_to_punc_test) as fhand:
+                for sent_idx, line in zip(xrange(len(self.punc)), fhand):
+                    self.punc[sent_idx] = [True for _ in xrange(len(self.punc[sent_idx]))]
+                    for punc_idx in map(int, line.split()):
+                        self.punc[sent_idx][punc_idx-1] = False
+            self.punc = np.hstack(self.punc)#.astype(bool)
 
         ## padding the train inputs and test inputs
         self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.items()}
@@ -220,30 +222,53 @@ class Dataset(object):
         return True
 
     def output_rels(self, predictions, filename):
-        stags = map(lambda x: self.idx_to_rel[x], predictions)
-        ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
-        sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
-        stag_idx = 0
-        with open(filename, 'wt') as fwrite:
-            for sent_idx in xrange(len(sents_lengths)):
-                fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
-                fwrite.write('\n')
-                stag_idx += sents_lengths[sent_idx]
+        if filename is not None:
+            stags = map(lambda x: self.idx_to_rel[x], predictions)
+            ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
+            sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
+            stag_idx = 0
+            with open(filename, 'wt') as fwrite:
+                for sent_idx in xrange(len(sents_lengths)):
+                    fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                    fwrite.write('\n')
+                    stag_idx += sents_lengths[sent_idx]
 
     def output_arcs(self, predictions, filename):
-        stags = map(str, predictions)
-        ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
-        sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
-        stag_idx = 0
-        with open(filename, 'wt') as fwrite:
-            for sent_idx in xrange(len(sents_lengths)):
-                fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
-                fwrite.write('\n')
-                stag_idx += sents_lengths[sent_idx]
+        if filename is not None:
+            stags = map(str, predictions)
+            ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
+            sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
+            stag_idx = 0
+            with open(filename, 'wt') as fwrite:
+                for sent_idx in xrange(len(sents_lengths)):
+                    fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                    fwrite.write('\n')
+                    stag_idx += sents_lengths[sent_idx]
+    def get_scores(self, predictions, opts, test_opts):
+        if test_opts is None:
+            metrics = opts.metrics ## use train opts
+        else:
+            metrics = test_opts.metrics
+        scores = {}
+        for metric in metrics:
+            if metric == 'NoPunct_UAS':
+                scores[metric] = np.mean(predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])
+            elif metric == 'NoPunct_LAS':
+                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc]))
+            elif metric == 'UAS':
+                scores[metric] = np.mean(predictions['arcs_greedy'] == self.gold_arcs)
+            elif metric == 'LAS':
+                scores[metric] = np.mean((predictions['arcs_greedy'] == self.gold_arcs)*(predictions['rels_greedy'] == self.gold_rels))
+            elif metric == 'CUAS':
+                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*self.content)
+            elif metric == 'CLAS':
+                scores[metric] = np.mean(((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc]))*self.content)
+        return scores
 
 def invert_dict(index_dict): 
     return {j:i for i,j in index_dict.items()}
 
+        
 
 if __name__ == '__main__':
     class Opts(object):
@@ -271,21 +296,10 @@ if __name__ == '__main__':
             self.arc_test = 'data/tag_wsj/arcs/dev.txt'
             self.rel_test = 'data/tag_wsj/rels/dev.txt'
             self.punc_test = 'data/tag_wsj/punc/dev.txt'
+            self.word_embeddings_file = 'glovevector/glove.6B.100d.txt'
     opts = Opts()
     data_loader = Dataset(opts)
     #print(data_loader.inputs_train)
-    data_loader.next_batch(10)
-    print(data_loader.gold_arcs.shape)
-    print(data_loader.punc.shape)
-#    print(data_loader.punc[-1])
-    print(np.sum(data_loader.punc))
-    print(data_loader.gold_arcs[data_loader.punc].shape)
-    print(data_loader.gold_arcs.shape)
-    print(data_loader.gold_arcs[np.invert(data_loader.punc)].shape)
-#   print(data_loader.inputs_train_batch[0])
-#    data_loader.next_test_batch(3)
-#    print(data_loader.inputs_test_batch[0])
-    sents_lengths = np.sum(np.sum(data_loader.inputs_test['words']!=0, 1) - 1) ## dummy ROOT
-    print(sents_lengths)
+    print(data_loader.gold_rels.shape)
     print(data_loader.gold_arcs.shape)
 #

@@ -21,8 +21,11 @@ def run_model(opts, loader = None, epoch=0):
                 print('Epoch {}'.format(i+1))
                 loss, accuracy = model.run_epoch(session)
                 scores = model.run_epoch(session, True)
-                test_accuracy = scores['UAS_greedy']
+                test_accuracy = scores[opts.metrics[0]]
                 print('\nTest Accuracy {:.5f}'.format(test_accuracy))
+                print('Test Accuracies:')
+                for metric in opts.metrics:
+                    print('{}: {:.5f}'.format(metric, scores[metric]))
                 if best_accuracy < test_accuracy:
                     best_accuracy = test_accuracy 
                     #saving_file = os.path.join(opts.model_dir, 'epoch{0}_accuracy{1:.5f}'.format(i+1, test_accuracy))
@@ -57,4 +60,6 @@ def run_model_test(opts, test_opts):
             saver.restore(session, test_opts.modelname)
             scores = model.run_epoch(session, True)
             if test_opts.get_accuracy:
-                print('\nTest accuracy UAS: {}, UAS Greedy {}'.format(scores['UAS'], scores['UAS_greedy']))
+                print('\nTest Accuracies:')
+                for metric in test_opts.metrics:
+                    print('{}: {:.5f}'.format(metric, scores[metric]))

@@ -164,7 +164,7 @@ class Parsing_Model(object):
         ## no need to worry about the heads of <-root-> and zero-pads
         self.loss = self.add_loss_op(self.arc_outputs, self.inputs_placeholder_dict['arcs']) + self.add_loss_op(rel_outputs, self.inputs_placeholder_dict['rels'])
         self.predicted_arcs, self.UAS = self.add_accuracy(self.arc_outputs, self.inputs_placeholder_dict['arcs'])
-        self.predicted_rels, rel_acc = self.add_accuracy(rel_outputs, self.inputs_placeholder_dict['rels'])
+        self.predicted_rels, self.rel_acc = self.add_accuracy(rel_outputs, self.inputs_placeholder_dict['rels'])
         self.train_op = self.add_train_op(self.loss)
 
     def run_batch(self, session, testmode = False):
@@ -177,8 +177,8 @@ class Parsing_Model(object):
             feed[self.input_keep_prob] = self.opts.input_dp
             feed[self.mlp_prob] = self.opts.mlp_prob
             train_op = self.train_op
-            _, loss, UAS = session.run([train_op, self.loss, self.UAS], feed_dict=feed)
-            return loss, UAS
+            _, loss, UAS, rel_acc = session.run([train_op, self.loss, self.UAS, self.rel_acc], feed_dict=feed)
+            return loss, UAS, rel_acc
         else:
             feed = {}
             predictions_batch = {}
@@ -212,8 +212,8 @@ class Parsing_Model(object):
             next_batch = self.loader.next_batch
             epoch_incomplete = next_batch(self.batch_size)
             while epoch_incomplete:
-                loss, UAS = self.run_batch(session)
-                print('{}/{}, loss {:.4f}, Raw UAS {:.4f}'.format(self.loader._index_in_epoch, self.loader.nb_train_samples, loss, UAS), end = '\r')
+                loss, UAS, rel_acc = self.run_batch(session)
+                print('{}/{}, loss {:.4f}, Raw UAS {:.4f}, Rel Acc {:.4f}'.format(self.loader._index_in_epoch, self.loader.nb_train_samples, loss, UAS, rel_acc), end = '\r')
                 epoch_incomplete = next_batch(self.batch_size)
             print('\nEpoch Training Time {}'.format(time.time() - epoch_start_time))
             return loss, UAS
@@ -232,11 +232,11 @@ class Parsing_Model(object):
             for name, pred in predictions.items():
                 predictions[name] = np.hstack(pred)
             if self.test_opts is not None:
-                self.loader.output_arcs(predictions['arcs'], self.test_opts.predicted_arcs_file)
-                self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
+                #self.loader.output_arcs(predictions['arcs'], self.test_opts.predicted_arcs_file)
+                #self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
                 self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
-            scores = {}
-            scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
-            scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
+            scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
+            #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
+            #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             return scores

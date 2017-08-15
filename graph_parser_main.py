@@ -21,7 +21,6 @@ train_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing
 train_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
 train_parser.add_argument("--arc_test", dest="arc_test", help="arc data for testing")
 train_parser.add_argument("--rel_test", dest="rel_test", help="rel data for testing")
-train_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
 
 ## model configuration
 
@@ -33,6 +32,7 @@ train_parser.add_argument("--num_layers",  dest="num_layers", help="number of la
 train_parser.add_argument("--units", dest="units", help="hidden units size", type=int, default = 64)
 train_parser.add_argument("--hidden_p", dest="hidden_p", help="keep fraction of hidden units", type=float, default = 1.0)
 train_parser.add_argument("--dropout_p", dest="dropout_p", help="keep fraction", type=float, default = 1.0)
+train_parser.add_argument("--word_embeddings_file", dest="word_embeddings_file", help="embeddings file", default = 'glovevector/glove.6B.100d.txt')
 
 ### MLP config
 train_parser.add_argument("--mlp_num_layers",  dest="mlp_num_layers", help="number of MLP layers", type=int, default = 1)
@@ -48,8 +48,13 @@ train_parser.add_argument("--early_stopping", dest="early_stopping", help="early
 train_parser.add_argument("--input_p", dest="input_dp", help="keep fraction for input", type=float, default = 1.0)
 
 ### Train Config
-train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.1)
+train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.01)
 train_parser.add_argument("--seed", dest="seed", help="set seed", type= int, default = 0)
+
+### Scores
+train_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
+train_parser.add_argument("--content_test", dest="content_test", help="content data for testing")
+train_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content data for testing")
 
 ## test options
 test_parser=subparsers.add_parser('test', help='test parser')
@@ -60,7 +65,6 @@ test_parser.add_argument("--jk_test", dest="jk_test", help="jk data for testing"
 test_parser.add_argument("--tag_test", dest="tag_test", help="tag data for testing")
 test_parser.add_argument("--arc_test", dest="arc_test", help="tag data for testing")
 test_parser.add_argument("--rel_test", dest="rel_test", help="tag data for testing")
-test_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
 
 ### Model Information
 test_parser.add_argument("--model", dest="modelname", help="model name")
@@ -72,9 +76,15 @@ test_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", he
 test_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
 test_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
 
+### Scores
+test_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")
+test_parser.add_argument("--content_test", dest="content_test", help="content data for testing")
+test_parser.add_argument("--metrics", nargs='+', dest="metrics", help="content data for testing")
+
 opts = parser.parse_args()
 
 if opts.mode == "train":
+    print(opts.metrics)
 #    opts.base_dir = 'sample_data'
 #    opts.text_train = 'sample_data/sents/train.txt'
 #    opts.tag_train = 'sample_data/predicted_stag/train.txt'

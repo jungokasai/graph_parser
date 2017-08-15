@@ -11,3 +11,4 @@ sample_data/predicted_stag/*
 sample_data/sents/*
 sample_data/Graph_Parsers/*
 sample_data/checkpoint.txt
+word_embeddings/*
