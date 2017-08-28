@@ -1,0 +1,19 @@
+1	Pierre	Pierre	PROPN	NNP	_	2	compound	_	_	s1
+2	Vinken	Vinken	PROPN	NNP	_	9	nsubj	_	_	s2
+3	,	,	PUNCT	,	_	2	punct	_	_	s3
+4	61	61	NUM	CD	_	5	nummod	_	_	s4
+5	years	year	NOUN	NNS	_	6	nmod:npmod	_	_	s5
+6	old	old	ADJ	JJ	_	2	amod	_	_	s6
+7	,	,	PUNCT	,	_	2	punct	_	_	s3
+8	will	will	AUX	MD	_	9	aux	_	_	s7
+9	join	join	VERB	VB	_	0	root	_	_	s8
+10	the	the	DET	DT	_	11	det	_	_	s9
+11	board	board	NOUN	NN	_	9	dobj	_	_	s10
+12	as	as	ADP	IN	_	15	case	_	_	s11
+13	a	a	DET	DT	_	15	det	_	_	s9
+14	nonexecutive	nonexecutive	ADJ	JJ	_	15	amod	_	_	s12
+15	director	director	NOUN	NN	_	9	nmod	_	_	s13
+16	Nov.	Nov.	PROPN	NNP	_	9	nmod:tmod	_	_	s14
+17	29	29	NUM	CD	_	16	nummod	_	_	s15
+18	.	.	PUNCT	.	_	9	punct	_	_	s3
+

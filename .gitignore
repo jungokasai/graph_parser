@@ -1,1 +1,15 @@
 data/*
+glovevector/*
+*pyc
+*~
+*.sh
+1best_stags.txt
+data/*
+sample_data/arcs/*
+sample_data/predicted_pos/*     
+sample_data/rels/*
+sample_data/predicted_stag/*    
+sample_data/sents/*
+sample_data/Graph_Parsers/*
+sample_data/checkpoint.txt
+word_embeddings/*
