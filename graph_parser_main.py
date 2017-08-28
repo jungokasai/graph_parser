@@ -44,7 +44,7 @@ train_parser.add_argument("--mlp_prob", dest="mlp_prob", help="MLP units size", 
 train_parser.add_argument("--stag_dim", dest="stag_dim", help="supertag dimension", type=int, default = 5)
 train_parser.add_argument("--jk_dim", dest="jk_dim", help="jakcknife dimension", type=int, default = 5)
 train_parser.add_argument("--embedding_dim", dest="embedding_dim", help="embedding dim", type=int, default = 100)
-train_parser.add_argument("--early_stopping", dest="early_stopping", help="early stopping", type=int, default = 2)
+train_parser.add_argument("--early_stopping", dest="early_stopping", help="early stopping", type=int, default = 5)
 train_parser.add_argument("--input_p", dest="input_dp", help="keep fraction for input", type=float, default = 1.0)
 
 ### Train Config
