@@ -9,6 +9,7 @@ subparsers = parser.add_subparsers(title='different modes', dest = 'mode', descr
 train_parser=subparsers.add_parser('train', help='train parsing')
 
 # train options
+train_parser.add_argument("--model", dest="model", help="model", default='Parsing_Model')
 ## data information
 train_parser.add_argument("--base_dir", dest="base_dir", help="base directory for data")
 train_parser.add_argument("--text_train", dest="text_train", help="text data for training")
@@ -97,7 +98,7 @@ if opts.mode == "train":
 #    opts.arc_test = 'sample_data/arcs/dev.txt'
 #    opts.rel_test = 'sample_data/rels/dev.txt'
     params = ['bi', 'num_layers', 'units', 'hidden_p', 'dropout_p', 'mlp_num_layers', 'arc_mlp_units', 'rel_mlp_units', 'stag_dim', 'jk_dim', 'embedding_dim', 'input_dp', 'lrate', 'seed']
-    model_dir = 'Graph_Parsers/' + '-'.join(map(lambda x: str(getattr(opts, x)), params))
+    model_dir = '{}/'.format(opts.model) + '-'.join(map(lambda x: str(getattr(opts, x)), params))
     opts.model_dir = os.path.join(opts.base_dir, model_dir)
     print('Model Dirctory: {}'.format(opts.model_dir))
     if not os.path.isdir(opts.model_dir):

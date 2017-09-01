@@ -5,13 +5,14 @@ import pickle
 import tensorflow as tf
 import os
 import sys
-from utils.parsing_model import Parsing_Model
+import utils
 
         
 def run_model(opts, loader = None, epoch=0):
     g = tf.Graph()
     with g.as_default():
-        model = Parsing_Model(opts)
+        Model = getattr(utils, opts.model)
+        model = Model(opts)
         saver = tf.train.Saver(max_to_keep=1)
         with tf.Session() as session: 
             session.run(tf.global_variables_initializer())
@@ -53,7 +54,9 @@ def run_model(opts, loader = None, epoch=0):
 def run_model_test(opts, test_opts):
     g = tf.Graph()
     with g.as_default():
-        model = Parsing_Model(opts, test_opts)
+        Model = getattr(utils, opts.model)
+        model = Model(opts, test_opts)
+        #model = Parsing_Model(opts, test_opts)
         saver = tf.train.Saver(max_to_keep=1)
         with tf.Session() as session: 
             session.run(tf.global_variables_initializer())

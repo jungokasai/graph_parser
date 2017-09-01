@@ -44,11 +44,11 @@ def get_best_model(config):
 
 def train_parser(config):
     base_dir = config['data']['base_dir']
-    features = ['sents', 'predicted_pos', 'predicted_stag_new', 'arcs', 'rels']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
     train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
-    features = ['sents', 'predicted_pos', 'predicted_stag_new', 'arcs', 'rels', 'punc']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
     dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*dev_data_dirs)
     model_config_dict = config['parser']
@@ -82,6 +82,11 @@ def test_parser(config, best_model, data_types):
         inputs_greedy[6] = output_file
         if not os.path.isdir(os.path.dirname(output_file)):
             os.makedirs(os.path.dirname(output_file))
+        model_config_dict = config['parser']
+        for param_type in model_config_dict.keys():
+            if param_type == 'scores':
+                for option, value in model_config_dict[param_type].items():
+                    model_config_info = ' --{} {}'.format(option, value)
         output_info += ' --predicted_arcs_file_greedy {}'.format(output_file)
         output_file = os.path.join(base_dir, 'predicted_rels_greedy', '{}.txt'.format(data_type))
         inputs_greedy[7] = output_file
@@ -90,10 +95,10 @@ def test_parser(config, best_model, data_types):
         output_info += ' --predicted_rels_file_greedy {}'.format(output_file)
         test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
         test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*test_data_dirs)
-        complete_command = base_command + model_info + output_info + test_data_info
+        complete_command = base_command + model_info + output_info + test_data_info + model_config_info
         subprocess.check_call(complete_command, shell=True)
-        output_conllu(os.path.join(base_dir, config['data']['split'][data_type]), os.path.join(base_dir, config['data']['split'][data_type]+'_arc_rel'), inputs)
-        output_conllu(os.path.join(base_dir, config['data']['split'][data_type]), os.path.join(base_dir, config['data']['split'][data_type]+'_arc_rel_greedy'), inputs_greedy)
+        #output_conllu(os.path.join(base_dir, config['data']['split'][data_type]), os.path.join(base_dir, config['data']['split'][data_type]+'_arc_rel'), inputs)
+        #output_conllu(os.path.join(base_dir, config['data']['split'][data_type]), os.path.join(base_dir, config['data']['split'][data_type]+'_arc_rel_greedy'), inputs_greedy)
 ######### main ##########
 
 if __name__ == '__main__':
@@ -102,10 +107,11 @@ if __name__ == '__main__':
     print('Convert conllu+stag file to sentences, pos, stag, arcs, and rels')
 #    converter(config_file)
     print('Train Parser')
-    train_parser(config_file)
+#    train_parser(config_file)
     print('Training is done. Run the parser.')
 #    best_model = get_best_model(config_file)
 #    data_types = config_file['data']['split'].keys()
-#    data_types = ['dev']
-#    test_parser(config_file, best_model, data_types)
+    best_model = 'data/tag_wsj/Graph_Parsers/1-3-400-0.67-0.67-1-500-100-0-0-100-0.67-0.01-0/best_model'
+    data_types = ['test', 'dev']
+    test_parser(config_file, best_model, data_types)
 #    test_stagger(config_file, best_model, ['train'])
