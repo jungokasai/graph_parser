@@ -177,7 +177,7 @@ class Parsing_Model(object):
         self.batch_size = 100
 	self.get_features()
         self.add_placeholders()
-        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters
+        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters*self.opts.chars_dim
         self.outputs_dim = (1+self.opts.bi)*self.opts.units
         inputs_list = [self.add_word_embedding()]
         if self.opts.jk_dim:

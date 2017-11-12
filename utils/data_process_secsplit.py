@@ -106,41 +106,43 @@ class Dataset(object):
             ## indexing char files ends
 
         ## indexing jackknife files
-        f_train = open(path_to_jk)
-        texts = f_train.readlines()
-        f_train.close()
-        tokenizer = Tokenizer(lower=False) 
-        tokenizer.fit_on_texts(texts)
-        self.jk_index = tokenizer.word_index
-        self.nb_jk = len(self.jk_index)
-        self.idx_to_jk = invert_dict(self.jk_index)
-        print('Found {} unique POS tags including -unseen- and <-root->.'.format(self.nb_jk))
-        f_test = open(path_to_jk_test)
-        texts = texts + f_test.readlines() ## do not lowercase tCO
-        f_test.close()
-        jk_sequences = tokenizer.texts_to_sequences(texts)
-        self.inputs_train['jk'] = jk_sequences[:self.nb_train_samples]
-        self.inputs_test['jk'] = jk_sequences[self.nb_train_samples:]
-        ## indexing jackknife files ends
+        if opts.jk_dim > 0:
+            f_train = open(path_to_jk)
+            texts = f_train.readlines()
+            f_train.close()
+            tokenizer = Tokenizer(lower=False) 
+            tokenizer.fit_on_texts(texts)
+            self.jk_index = tokenizer.word_index
+            self.nb_jk = len(self.jk_index)
+            self.idx_to_jk = invert_dict(self.jk_index)
+            print('Found {} unique POS tags including -unseen- and <-root->.'.format(self.nb_jk))
+            f_test = open(path_to_jk_test)
+            texts = texts + f_test.readlines() ## do not lowercase tCO
+            f_test.close()
+            jk_sequences = tokenizer.texts_to_sequences(texts)
+            self.inputs_train['jk'] = jk_sequences[:self.nb_train_samples]
+            self.inputs_test['jk'] = jk_sequences[self.nb_train_samples:]
+            ## indexing jackknife files ends
         ## indexing stag files
-        f_train = open(path_to_tag)
-        texts = f_train.readlines()
-        f_train.close()
-        tokenizer = Tokenizer(lower=False) ## for tCO
-        tokenizer.fit_on_texts(texts, zero_padding=False)
-        ## if zero_padding is true, index 0 is reserved, never assigned to an existing word
-        self.tag_index = tokenizer.word_index
-        self.nb_stags = len(self.tag_index)
-        self.idx_to_tag = invert_dict(self.tag_index)
-        print('Found {} unique supertags including -unseen- and <-root->.'.format(self.nb_stags))
-        f_test = open(path_to_tag_test)
-        texts = texts + f_test.readlines() ## do not lowercase tCO
-        f_test.close()
-        tag_sequences = tokenizer.texts_to_sequences(texts)
-        #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
-        self.inputs_train['stags'] = tag_sequences[:self.nb_train_samples]
-        self.inputs_test['stags'] = tag_sequences[self.nb_train_samples:]
-        ## indexing stag files ends
+        if opts.stag_dim > 0:
+            f_train = open(path_to_tag)
+            texts = f_train.readlines()
+            f_train.close()
+            tokenizer = Tokenizer(lower=False) ## for tCO
+            tokenizer.fit_on_texts(texts, zero_padding=False)
+            ## if zero_padding is true, index 0 is reserved, never assigned to an existing word
+            self.tag_index = tokenizer.word_index
+            self.nb_stags = len(self.tag_index)
+            self.idx_to_tag = invert_dict(self.tag_index)
+            print('Found {} unique supertags including -unseen- and <-root->.'.format(self.nb_stags))
+            f_test = open(path_to_tag_test)
+            texts = texts + f_test.readlines() ## do not lowercase tCO
+            f_test.close()
+            tag_sequences = tokenizer.texts_to_sequences(texts)
+            #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
+            self.inputs_train['stags'] = tag_sequences[:self.nb_train_samples]
+            self.inputs_test['stags'] = tag_sequences[self.nb_train_samples:]
+            ## indexing stag files ends
 
         ## indexing rel files
         f_train = open(path_to_rel)

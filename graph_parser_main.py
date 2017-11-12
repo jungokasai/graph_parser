@@ -103,7 +103,7 @@ if opts.mode == "train":
 #    opts.jk_test = 'sample_data/predicted_pos/dev.txt'
 #    opts.arc_test = 'sample_data/arcs/dev.txt'
 #    opts.rel_test = 'sample_data/rels/dev.txt'
-    params = ['bi', 'num_layers', 'units', 'hidden_p', 'dropout_p', 'mlp_num_layers', 'arc_mlp_units', 'rel_mlp_units', 'stag_dim', 'jk_dim', 'embedding_dim', 'input_dp', 'lrate', 'seed']
+    params = ['bi', 'num_layers', 'units', 'hidden_p', 'dropout_p', 'mlp_num_layers', 'arc_mlp_units', 'rel_mlp_units', 'stag_dim', 'jk_dim', 'embedding_dim', 'input_dp', 'chars_dim', 'nb_filters', 'chars_window_size', 'lrate', 'seed']
     model_dir = '{}/'.format(opts.model) + '-'.join(map(lambda x: str(getattr(opts, x)), params))
     opts.model_dir = os.path.join(opts.base_dir, model_dir)
     print('Model Dirctory: {}'.format(opts.model_dir))
