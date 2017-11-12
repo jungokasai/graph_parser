@@ -177,7 +177,7 @@ class Parsing_Model(object):
         self.batch_size = 100
 	self.get_features()
         self.add_placeholders()
-        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters*self.opts.chars_dim
+        self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters
         self.outputs_dim = (1+self.opts.bi)*self.opts.units
         inputs_list = [self.add_word_embedding()]
         if self.opts.jk_dim:
@@ -192,7 +192,7 @@ class Parsing_Model(object):
         ## no need to worry about the heads of <-root-> and zero-pads
         ## Let's get those non-padding places so we can reinitialize hidden states after each padding in the backward path
         ### because the backward path starts with zero pads.
-        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32)*tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.ones(inputs_shape, tf.int32)*self.loader.word_index['<-root->']), tf.float32) ## [batch_size, seq_len]
+        self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32) ## [batch_size, seq_len]
         for i in xrange(self.opts.num_layers):
             forward_outputs_tensor = self.add_dropout(self.add_lstm(inputs_tensor, i, 'Forward'), self.keep_prob) ## [seq_len, batch_size, units]
             if self.opts.bi:
@@ -200,6 +200,7 @@ class Parsing_Model(object):
                 inputs_tensor = tf.concat([forward_outputs_tensor, tf.reverse(backward_outputs_tensor, [0])], 2)
             else:
                 inputs_tensor = forward_outputs_tensor
+        self.weight = self.weight*tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.ones(inputs_shape, tf.int32)*self.loader.word_index['<-root->']), tf.float32) ## [batch_size, seq_len]
         lstm_outputs = inputs_tensor ## [seq_len, batch_size, outputs_dim]
 
         self.arc_outputs, rel_outputs, self.rel_scores = self.add_biaffine(lstm_outputs)
