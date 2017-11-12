@@ -40,7 +40,7 @@ def one_hot(text, n, filters=base_filter(), lower=True, split=" "):
     seq = text_to_word_sequence(text, filters=filters, lower=lower, split=split)
     return [(abs(hash(w)) % (n - 1) + 1) for w in seq]
 
-def pad_sequences(sequences, window = False, dtype='int32',
+def pad_sequences(sequences, feature, window = False, dtype='int32',
                   padding='post', truncating='post', value=0.):
     '''Pads each sequence to the same length:
     the length of the longest sequence.
@@ -60,54 +60,94 @@ def pad_sequences(sequences, window = False, dtype='int32',
     # Returns
         x: numpy array with dimensions (number_of_sequences, maxlen)
     '''
-    
-    maxlen=None
-    lengths = [len(s) for s in sequences]
 
-    window_size = 0
+    if feature == 'chars':
+        maxlen=None
+        lengths = [len(s) for s in sequences]
+
+        window_size = 0
+
+        nb_samples = len(sequences)
+        if maxlen is None:
+            maxlen = np.max(lengths)
+
+        # take the sample shape from the first non empty sequence
+        # checking for consistency in the main loop below.
+        sample_shape = tuple()
+        max_word_len = 0
+        for s in sequences:
+            for word in s:
+                if max_word_len < len(word):
+                    max_word_len = len(word)
+        x = np.zeros((nb_samples, maxlen + 2*window_size, max_word_len)).astype(dtype)
+
+        for sent_idx, s in enumerate(sequences):
+            for word_idx, word in enumerate(s):
+                if truncating == 'pre':
+                    trunc = word[-max_word_len:]
+                elif truncating == 'post':
+                    trunc = word[:max_word_len]
+                else:
+                    raise ValueError('Truncating type "%s" not understood' % truncating)
+
+                # check `trunc` has expected shape
+                trunc = np.asarray(trunc, dtype=dtype)
+
+                if padding == 'post':
+                    x[sent_idx, word_idx, :len(trunc)] = trunc
+                elif padding == 'pre':
+                    x[sent_idx, word_idx, -len(trunc):] = trunc
+                else:
+                    raise ValueError('Padding type "%s" not understood' % padding)
+        return x
+    else:
+        maxlen=None
+        lengths = [len(s) for s in sequences]
+
+        window_size = 0
 
 
-    nb_samples = len(sequences)
-    if maxlen is None:
-        maxlen = np.max(lengths)
+        nb_samples = len(sequences)
+        if maxlen is None:
+            maxlen = np.max(lengths)
 
-    # take the sample shape from the first non empty sequence
-    # checking for consistency in the main loop below.
-    sample_shape = tuple()
-    for s in sequences:
-        if len(s) > 0:
-            sample_shape = np.asarray(s).shape[1:]
-            break
-    x = (np.zeros((nb_samples, maxlen + 2*window_size) + sample_shape)).astype(dtype)
+        # take the sample shape from the first non empty sequence
+        # checking for consistency in the main loop below.
+        sample_shape = tuple()
+        for s in sequences:
+            if len(s) > 0:
+                sample_shape = np.asarray(s).shape[1:]
+                break
+        x = (np.zeros((nb_samples, maxlen + 2*window_size) + sample_shape)).astype(dtype)
 
-    for idx, s in enumerate(sequences):
-        if len(s) == 0:
-            continue  # empty list was found
-       
-        if truncating == 'pre':
-            trunc = s[-maxlen:]
-        elif truncating == 'post':
-            trunc = s[:maxlen]
-        else:
-            raise ValueError('Truncating type "%s" not understood' % truncating)
+        for idx, s in enumerate(sequences):
+            if len(s) == 0:
+                continue  # empty list was found
+           
+            if truncating == 'pre':
+                trunc = s[-maxlen:]
+            elif truncating == 'post':
+                trunc = s[:maxlen]
+            else:
+                raise ValueError('Truncating type "%s" not understood' % truncating)
 
-        # check `trunc` has expected shape
-        trunc = np.asarray(trunc, dtype=dtype)
-        if trunc.shape[1:] != sample_shape:
-            raise ValueError('Shape of sample %s of sequence at position %s is different from expected shape %s' %
-                             (trunc.shape[1:], idx, sample_shape))
+            # check `trunc` has expected shape
+            trunc = np.asarray(trunc, dtype=dtype)
+            if trunc.shape[1:] != sample_shape:
+                raise ValueError('Shape of sample %s of sequence at position %s is different from expected shape %s' %
+                                 (trunc.shape[1:], idx, sample_shape))
 
-        if padding == 'post':
-            x[idx, :len(trunc)] = trunc
-        elif padding == 'pre':
-            x[idx, -len(trunc):] = trunc
-        else:
-            raise ValueError('Padding type "%s" not understood' % padding)
-    return x
+            if padding == 'post':
+                x[idx, :len(trunc)] = trunc
+            elif padding == 'pre':
+                x[idx, -len(trunc):] = trunc
+            else:
+                raise ValueError('Padding type "%s" not understood' % padding)
+        return x
 
 class Tokenizer(object):
     def __init__(self, nb_words=None, filters=base_filter(),
-                 lower=True, split=' ', char_level=False):
+                 lower=True, split=' ', char_level=False, char_encoding=False, root=True):
         '''The class allows to vectorize a text corpus, by turning each
         text into either a sequence of integers (each integer being the index
         of a token in a dictionary) or into a vector where the coefficient
@@ -136,27 +176,40 @@ class Tokenizer(object):
         self.nb_words = nb_words
         self.document_count = 0
         self.char_level = char_level
+        self.char_encoding = char_encoding
+        self.root = root
 
-    def fit_on_texts(self, texts, zero_padding = True, non_split = False, root = True):
+    def fit_on_texts(self, texts, zero_padding = True, non_split = False):
         '''Required before using texts_to_sequences or texts_to_matrix
         # Arguments
             texts: can be a list of strings,
                 or a generator of strings (for memory-efficiency)
         '''
         self.document_count = 0
-        for text in texts:
-            self.document_count += 1
-            seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
-            for w in seq:
-                if w in self.word_counts:
-                    self.word_counts[w] += 1
-                else:
-                    self.word_counts[w] = 1
-            for w in set(seq):
-                if w in self.word_docs:
-                    self.word_docs[w] += 1
-                else:
-                    self.word_docs[w] = 1
+        if self.char_encoding:
+            for text in texts:
+                self.document_count += 1
+                seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
+                for w in seq:
+                    for char in w:
+                        if char in self.word_counts:
+                            self.word_counts[char] += 1
+                        else:
+                            self.word_counts[char] = 1
+	else:
+	    for text in texts:
+		self.document_count += 1
+		seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
+		for w in seq:
+		    if w in self.word_counts:
+			self.word_counts[w] += 1
+		    else:
+			self.word_counts[w] = 1
+		for w in set(seq):
+		    if w in self.word_docs:
+			self.word_docs[w] += 1
+		    else:
+			self.word_docs[w] = 1
 
         wcounts = list(self.word_counts.items())
             
@@ -168,7 +221,7 @@ class Tokenizer(object):
         self.word_index = dict(list(zip(sorted_voc, list(range(zero_padding, len(sorted_voc) + zero_padding)))))
 
         self.word_index['-unseen-'] = len(self.word_index) + zero_padding
-        if root:
+        if self.root:
             self.word_index['<-root->'] = len(self.word_index) + zero_padding
 
         self.index_docs = {}
@@ -213,7 +266,7 @@ class Tokenizer(object):
             res.append(vect)
         return res
 
-    def texts_to_sequences_generator(self, texts, non_split, root = True):
+    def texts_to_sequences_generator(self, texts, non_split):
         '''Transforms each text in texts in a sequence of integers.
         Only top "nb_words" most frequent words will be taken into account.
         Only words known by the tokenizer will be taken into account.
@@ -222,20 +275,32 @@ class Tokenizer(object):
             texts: list of strings.
         '''
         nb_words = self.nb_words
-        for text in texts:
-            seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
-            if root:
-                vect = [self.word_index['<-root->']]
-            else:
-                vect = []
-            for w in seq:
-                i = self.word_index.get(w, self.word_index['-unseen-']) ## unseeen word
-               # if i is not None:
-               #     if nb_words and i >= nb_words:
-               #         continue
-               #     else:
-                vect.append(i)
-            yield vect
+        if self.char_encoding:
+            for text in texts:
+                seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
+                vects = []
+                for w in seq:
+                    vect = []
+                    for char in w:
+                        i = self.word_index.get(char, self.word_index['-unseen-']) ## unseeen word
+                        vect.append(i)
+                    vects.append(vect)
+                yield vects
+        else:
+            for text in texts:
+                seq = text if self.char_level or non_split else text_to_word_sequence(text, self.filters, self.lower, self.split)
+                if self.root:
+                    vect = [self.word_index['<-root->']]
+                else:
+                    vect = []
+                for w in seq:
+                    i = self.word_index.get(w, self.word_index['-unseen-']) ## unseeen word
+                   # if i is not None:
+                   #     if nb_words and i >= nb_words:
+                   #         continue
+                   #     else:
+                    vect.append(i)
+                yield vect
 
     def cap_indicator(self, texts):
         vects =[]

@@ -4,6 +4,7 @@ import os
 import sys
 import pickle
 import random
+import io
 
 np.random.seed(1234)
 
@@ -83,6 +84,27 @@ class Dataset(object):
         self.inputs_train['words'] = text_sequences[:self.nb_train_samples]
         self.inputs_test['words'] = text_sequences[self.nb_train_samples:]
         ## indexing sents files ends
+        ## indexing char files
+        if opts.chars_dim > 0:
+            f_train = io.open(path_to_text, encoding='utf-8')
+            texts = f_train.readlines()
+            f_train.close()
+            tokenizer = Tokenizer(lower=False,char_encoding=True, root=False) 
+            ## char embedding for <-root-> does not make sense
+            tokenizer.fit_on_texts(texts) ## char embedding for <-root-> does not make sense
+            self.char_index = tokenizer.word_index
+            self.nb_chars = len(self.char_index)
+            self.idx_to_char = invert_dict(self.char_index)
+            print('Found {} unique characters including -unseen-. NOT including <-root->.'.format(self.nb_chars))
+            f_test = io.open(path_to_text_test, encoding='utf-8')
+            texts = texts + f_test.readlines() ## do not lowercase tCO
+            f_test.close()
+            char_sequences = tokenizer.texts_to_sequences(texts)
+            #print(map(lambda x: self.idx_to_jk[x], jk_sequences[self.nb_train_samples]))
+            self.inputs_train['chars'] = char_sequences[:self.nb_train_samples]
+            self.inputs_test['chars'] = char_sequences[self.nb_train_samples:]
+            ## indexing char files ends
+
         ## indexing jackknife files
         f_train = open(path_to_jk)
         texts = f_train.readlines()
@@ -129,7 +151,7 @@ class Dataset(object):
         self.rel_index = tokenizer.word_index
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)
-        print('Found {} unique rels including -unseen-, NOT including <-roots->.'.format(self.nb_rels))
+        print('Found {} unique rels including -unseen-, NOT including <-root->.'.format(self.nb_rels))
         f_test = open(path_to_rel_test)
         texts = texts + f_test.readlines() ## do not lowercase tCO
         f_test.close()
@@ -162,7 +184,7 @@ class Dataset(object):
             self.punc = np.hstack(self.punc)#.astype(bool)
 
         ## padding the train inputs and test inputs
-        self.inputs_train = {key: pad_sequences(x) for key, x in self.inputs_train.items()}
+        self.inputs_train = {key: pad_sequences(x, key) for key, x in self.inputs_train.items()}
         self.inputs_train['arcs'] = np.hstack([np.zeros([self.inputs_train['arcs'].shape[0], 1]).astype(int), self.inputs_train['arcs']])
         ## dummy parents for the roots
         random.seed(0)
@@ -170,7 +192,7 @@ class Dataset(object):
         random.shuffle(perm)
         self.inputs_train = {key: x[perm] for key, x in self.inputs_train.items()}
 
-        self.inputs_test = {key: pad_sequences(x) for key, x in self.inputs_test.items()}
+        self.inputs_test = {key: pad_sequences(x, key) for key, x in self.inputs_test.items()}
         ## dummy parents for the roots
         self.inputs_test['arcs'] = np.hstack([np.zeros([self.inputs_test['arcs'].shape[0], 1]).astype(int), self.inputs_test['arcs']])
 
@@ -182,7 +204,6 @@ class Dataset(object):
         self._index_in_test = 0
 
     def next_batch(self, batch_size):
-
         start = self._index_in_epoch
         if self._index_in_epoch >= self.nb_train_samples:
                 # iterate until the very end do not throw away
@@ -197,14 +218,17 @@ class Dataset(object):
         self.inputs_train_batch = {}
         x = self.inputs_train['words']
         x_batch = x[start:end]
-        max_len = np.max(np.sum(x_batch!=0, axis=-1))
+        max_len = np.max(np.sum(x_batch!=0, axis=1))
         for key, x in self.inputs_train.items():
             x_batch = x[start:end]
-            self.inputs_train_batch[key] = x_batch[:, :max_len]
+            if key == 'chars':
+                max_word_len = np.max(np.sum(x_batch!=0, axis=2))
+                self.inputs_train_batch[key] = x_batch[:, :max_len-1, :max_word_len] ## max_len-1 because chars do not have <-root->
+            else:
+                self.inputs_train_batch[key] = x_batch[:, :max_len]
         return True
 
     def next_test_batch(self, batch_size):
-
         start = self._index_in_test
         if self._index_in_test >= self.nb_validation_samples:
                 # iterate until the very end do not throw away
@@ -215,10 +239,14 @@ class Dataset(object):
         self.inputs_test_batch = {}
         x = self.inputs_test['words']
         x_batch = x[start:end]
-        max_len = np.max(np.sum(x_batch!=0, axis=-1))
+        max_len = np.max(np.sum(x_batch!=0, axis=1))
         for key, x in self.inputs_test.items():
             x_batch = x[start:end]
-            self.inputs_test_batch[key] = x_batch[:, :max_len]
+            if key == 'chars':
+                max_word_len = np.max(np.sum(x_batch!=0, axis=2))
+                self.inputs_test_batch[key] = x_batch[:, :max_len-1, :max_word_len] ## max_len-1 because chars do not have <-root->
+            else:
+                self.inputs_test_batch[key] = x_batch[:, :max_len]
         return True
 
     def output_rels(self, predictions, filename):
@@ -297,9 +325,15 @@ if __name__ == '__main__':
             self.rel_test = 'data/tag_wsj/rels/dev.txt'
             self.punc_test = 'data/tag_wsj/punc/dev.txt'
             self.word_embeddings_file = 'glovevector/glove.6B.100d.txt'
+            self.chars_dim = 30
+            self.chars_window_size = 30
+            self.nb_filters = 30
     opts = Opts()
     data_loader = Dataset(opts)
     #print(data_loader.inputs_train)
-    print(data_loader.gold_rels.shape)
-    print(data_loader.gold_arcs.shape)
+    print(data_loader.inputs_train['chars'].shape)
+    print(data_loader.inputs_train['words'].shape)
+    data_loader.next_batch(10)
+    print(data_loader.inputs_train_batch['chars'].shape)
+    print(data_loader.inputs_train_batch['words'].shape)
 #

@@ -48,6 +48,12 @@ train_parser.add_argument("--embedding_dim", dest="embedding_dim", help="embeddi
 train_parser.add_argument("--early_stopping", dest="early_stopping", help="early stopping", type=int, default = 5)
 train_parser.add_argument("--input_p", dest="input_dp", help="keep fraction for input", type=float, default = 1.0)
 
+## Char Encoding
+## Default same as Ma and Hovy 2016
+train_parser.add_argument("--chars_dim", dest="chars_dim", help="character embedding dim", type=int, default = 30)
+train_parser.add_argument("--chars_window_size", dest="chars_window_size", help="character embedding dim", type=int, default = 3)
+train_parser.add_argument("--nb_filters", dest="nb_filters", help="nb_filters", type=int, default = 30)
+
 ### Train Config
 train_parser.add_argument("--lrate", dest="lrate", help="lrate", type=float, default = 0.01)
 train_parser.add_argument("--seed", dest="seed", help="set seed", type= int, default = 0)
