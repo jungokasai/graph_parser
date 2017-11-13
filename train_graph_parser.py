@@ -44,11 +44,19 @@ def get_best_model(config):
 
 def train_parser(config):
     base_dir = config['data']['base_dir']
-    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
+    model_type = config['parser']['model_options']['model']
+    if model_type == 'Parsing_Model_Joint':
+        print('Run joint training. Use gold supertags')
+        features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels']
+    else:
+        features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
     train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
-    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
+    if model_type == 'Parsing_Model_Joint':
+        features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels', 'punc']
+    else:
+        features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
     dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*dev_data_dirs)
     model_config_dict = config['parser']

@@ -39,6 +39,7 @@ train_parser.add_argument("--word_embeddings_file", dest="word_embeddings_file",
 train_parser.add_argument("--mlp_num_layers",  dest="mlp_num_layers", help="number of MLP layers", type=int, default = 1)
 train_parser.add_argument("--arc_mlp_units", dest="arc_mlp_units", help="MLP units size", type=int, default = 64)
 train_parser.add_argument("--rel_mlp_units", dest="rel_mlp_units", help="MLP units size", type=int, default = 32)
+train_parser.add_argument("--joint_mlp_units", dest="joint_mlp_units", help="MLP units size", type=int, default = 500)
 train_parser.add_argument("--mlp_prob", dest="mlp_prob", help="MLP units size", type=float, default = 1.0)
 
 ### Input Config

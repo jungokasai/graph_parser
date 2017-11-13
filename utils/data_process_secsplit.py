@@ -124,7 +124,7 @@ class Dataset(object):
             self.inputs_test['jk'] = jk_sequences[self.nb_train_samples:]
             ## indexing jackknife files ends
         ## indexing stag files
-        if opts.stag_dim > 0:
+        if (opts.stag_dim > 0) or (opts.model == 'Parsing_Model_Joint'):
             f_train = open(path_to_tag)
             texts = f_train.readlines()
             f_train.close()
@@ -142,6 +142,7 @@ class Dataset(object):
             #print(map(lambda x: self.idx_to_tag[x], tag_sequences[self.nb_train_samples+8]))
             self.inputs_train['stags'] = tag_sequences[:self.nb_train_samples]
             self.inputs_test['stags'] = tag_sequences[self.nb_train_samples:]
+            self.gold_stags = np.hstack(map(lambda x: x[1:], tag_sequences[self.nb_train_samples:]))
             ## indexing stag files ends
 
         ## indexing rel files
@@ -293,6 +294,10 @@ class Dataset(object):
                 scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*self.content)
             elif metric == 'CLAS':
                 scores[metric] = np.mean(((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc]))*self.content)
+            elif metric == 'Stagging':
+                scores[metric] = np.mean((predictions['stags'] == self.gold_stags))
+            elif metric == 'NoPunct_LAS_Stagging':
+                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc])*(predictions['stags'][self.punc] == self.gold_stags[self.punc]))
         return scores
 
 def invert_dict(index_dict): 
