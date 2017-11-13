@@ -44,11 +44,11 @@ def get_best_model(config):
 
 def train_parser(config):
     base_dir = config['data']['base_dir']
-    features = ['sents', 'predicted_pos', 'predicted_stag_new', 'arcs', 'rels']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
     train_data_dirs = map(lambda x: os.path.join(base_dir, x, 'train.txt'), features)
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
-    features = ['sents', 'predicted_pos', 'predicted_stag_new', 'arcs', 'rels', 'punc']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
     dev_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*dev_data_dirs)
     model_config_dict = config['parser']
@@ -62,7 +62,7 @@ def train_parser(config):
 
 def test_parser(config, best_model, data_types):
     base_dir = config['data']['base_dir'] 
-    features = ['sents', 'predicted_pos', 'predicted_stag_new', 'arcs', 'rels', 'punc']
+    features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
     base_command = 'python graph_parser_main.py test --get_accuracy'
     model_info = ' --model {}'.format(best_model)
     for data_type in data_types:

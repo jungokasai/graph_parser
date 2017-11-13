@@ -111,7 +111,7 @@ if __name__ == '__main__':
     print('Training is done. Run the parser.')
 #    best_model = get_best_model(config_file)
 #    data_types = config_file['data']['split'].keys()
-    best_model = 'data/tag_wsj/Parsing_Model_Global/1-3-400-0.67-0.67-1-500-100-0-100-100-0.67-0.01-0/best_model'
+    best_model = sys.argv[2]#'data/tag_wsj/Parsing_Model_Global/1-3-400-0.67-0.67-1-500-100-0-100-100-0.67-0.01-0/best_model'
     data_types = ['test', 'dev']
     test_parser(config_file, best_model, data_types)
 #    test_stagger(config_file, best_model, ['train'])
