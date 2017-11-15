@@ -1,4 +1,4 @@
-from mst import get_mst
+from edmonds import get_mst
 import numpy as np
 
 def predict_arcs_rels(arc_outputs, rel_scores, non_padding):
@@ -9,11 +9,9 @@ def predict_arcs_rels(arc_outputs, rel_scores, non_padding):
     predicted_rels = []
     for sent_idx in xrange(arc_outputs.shape[0]):
         scores_sent = arc_outputs[sent_idx][non_padding[sent_idx], :][:, non_padding[sent_idx]] 
-        best_root = np.argmax(scores_sent[:, 0])
-        non_roots = np.ones([scores_sent.shape[0]]).astype(bool)
-        non_roots[best_root] = False
-        scores_sent[non_roots, 0] = MIN
-        scores_sent[best_root] = -MIN
+        #non_roots[best_root] = False
+        #scores_sent[non_roots, 0] = MIN
+        #scores_sent[best_root] = -MIN
         predicted_arcs_sent = get_mst(scores_sent)
         predicted_arcs.append(predicted_arcs_sent[1:]) ## skip ROOT
         rel_scores_sent = rel_scores[sent_idx][np.arange(predicted_arcs_sent.shape[0]), predicted_arcs_sent, :] ## [n, r]

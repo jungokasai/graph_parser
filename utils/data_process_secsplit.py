@@ -283,9 +283,9 @@ class Dataset(object):
         scores = {}
         for metric in metrics:
             if metric == 'NoPunct_UAS':
-                scores[metric] = np.mean(predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])
+                scores[metric] = np.mean(predictions['arcs'][self.punc] == self.gold_arcs[self.punc])
             elif metric == 'NoPunct_LAS':
-                scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc]))
+                scores[metric] = np.mean((predictions['arcs'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels'][self.punc] == self.gold_rels[self.punc]))
             elif metric == 'UAS':
                 scores[metric] = np.mean(predictions['arcs_greedy'] == self.gold_arcs)
             elif metric == 'LAS':

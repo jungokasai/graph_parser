@@ -62,7 +62,13 @@ def train_parser(config):
 
 def test_parser(config, best_model, data_types):
     base_dir = config['data']['base_dir'] 
-    features = ['sents', 'predicted_pos', 'predicted_stag_new', 'arcs', 'rels', 'punc']
+    model_type = config['parser']['model_options']['model']
+    if model_type == 'Parsing_Model_Joint':
+        print('Run joint training. Use gold supertags')
+        features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels', 'punc']
+    else:
+        features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
+
     base_command = 'python graph_parser_main.py test --get_accuracy'
     model_info = ' --model {}'.format(best_model)
     for data_type in data_types:
