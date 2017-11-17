@@ -276,8 +276,8 @@ class Parsing_Model_Highway(object):
             for name, pred in predictions.items():
                 predictions[name] = np.hstack(pred)
             if self.test_opts is not None:
-                #self.loader.output_arcs(predictions['arcs'], self.test_opts.predicted_arcs_file)
-                #self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
+                self.loader.output_arcs(predictions['arcs'], self.test_opts.predicted_arcs_file)
+                self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
                 self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
             scores = self.loader.get_scores(predictions, self.opts, self.test_opts)

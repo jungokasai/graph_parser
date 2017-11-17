@@ -83,6 +83,7 @@ test_parser.add_argument("--predicted_arcs_file", dest="predicted_arcs_file", he
 test_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", help="filename for predicted rels")
 test_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
 test_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
+test_parser.add_argument("--predicted_stags_file", dest="predicted_stags_file", help="filename for predicted rels") ## for joint
 
 ### Scores
 test_parser.add_argument("--punc_test", dest="punc_test", help="punctuation data for testing")

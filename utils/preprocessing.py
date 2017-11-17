@@ -439,6 +439,9 @@ def arcs2seq(texts):
     for text in texts:
         vect = []
         for w in text.split():
-            vect.append(int(w))
+            try:
+                vect.append(int(w))
+            except:
+                vect.append(0) ## dummy for no_gold
         seq.append(vect)
     return seq

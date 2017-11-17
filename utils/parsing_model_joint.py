@@ -295,10 +295,11 @@ class Parsing_Model_Joint(object):
             for name, pred in predictions.items():
                 predictions[name] = np.hstack(pred)
             if self.test_opts is not None:
-                #self.loader.output_arcs(predictions['arcs'], self.test_opts.predicted_arcs_file)
-                #self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
+                self.loader.output_arcs(predictions['arcs'], self.test_opts.predicted_arcs_file)
+                self.loader.output_rels(predictions['rels'], self.test_opts.predicted_rels_file)
                 self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
+                self.loader.output_stags(predictions['stags'], self.test_opts.predicted_stags_file)
             scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
