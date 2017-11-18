@@ -1,5 +1,6 @@
 import numpy as np
 from preprocessing import Tokenizer, pad_sequences, arcs2seq
+from mica.nbest import output_mica_nbest
 import os 
 import sys
 import pickle
@@ -287,6 +288,9 @@ class Dataset(object):
                 fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
                 fwrite.write('\n')
                 stag_idx += sents_lengths[sent_idx]
+
+    def output_probs(self, probs):
+        output_mica_nbest(probs, self.idx_to_tag)
 
     def get_scores(self, predictions, opts, test_opts):
         if test_opts is None:

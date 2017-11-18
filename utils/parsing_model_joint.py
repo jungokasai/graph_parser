@@ -56,6 +56,7 @@ class Parsing_Model_Joint(object):
                 embedding = tf.get_variable('stag_embedding_mat', [self.loader.nb_stags, self.opts.stag_dim]) # +1 for padding
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stags']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
+            tf.add_to_collection('stag_embedding', embedding)
         return inputs 
 
     def add_char_embedding(self):
@@ -119,6 +120,9 @@ class Parsing_Model_Joint(object):
         correct_predictions = self.weight*tf.cast(tf.equal(predictions, gold), tf.float32)
         accuracy = tf.reduce_sum(tf.cast(correct_predictions, tf.float32))/tf.reduce_sum(tf.cast(self.weight, tf.float32))
         return predictions, accuracy
+
+    def add_probs(self, output):
+        self.probs = tf.nn.softmax(output)
 
     def add_train_op(self, loss):
         optimizer = tf.train.AdamOptimizer()
@@ -223,6 +227,7 @@ class Parsing_Model_Joint(object):
 #        projected_outputs = tf.map_fn(lambda x: self.add_projection(x), lstm_outputs) #[seq_len, batch_size, nb_tags]
 #        projected_outputs = tf.transpose(projected_outputs, perm=[1, 0, 2]) # [batch_size, seq_len, nb_tags]
         self.loss = self.add_loss_op(self.arc_outputs, self.inputs_placeholder_dict['arcs']) + self.add_loss_op(rel_outputs, self.inputs_placeholder_dict['rels']) + self.add_loss_op(joint_output, self.inputs_placeholder_dict['stags'])
+        self.add_probs(joint_output)
         self.predicted_arcs, self.UAS = self.add_accuracy(self.arc_outputs, self.inputs_placeholder_dict['arcs'])
         self.predicted_rels, self.rel_acc = self.add_accuracy(rel_outputs, self.inputs_placeholder_dict['rels'])
         self.predicted_stags, self.stag_acc = self.add_accuracy(joint_output, self.inputs_placeholder_dict['stags'])
@@ -250,7 +255,7 @@ class Parsing_Model_Joint(object):
             feed[self.input_keep_prob] = 1.0
             feed[self.mlp_prob] = 1.0
 #            loss, accuracy, predictions, weight = session.run([self.loss, self.accuracy, self.predictions, self.weight], feed_dict=feed)
-            loss, predicted_arcs, predicted_rels, UAS, weight, arc_outputs, rel_scores, stag_acc, predicted_stags = session.run([self.loss, self.predicted_arcs, self.predicted_rels, self.UAS, self.weight, self.arc_outputs, self.rel_scores, self.stag_acc, self.predicted_stags], feed_dict=feed)
+            loss, predicted_arcs, predicted_rels, UAS, weight, arc_outputs, rel_scores, stag_acc, predicted_stags, probs = session.run([self.loss, self.predicted_arcs, self.predicted_rels, self.UAS, self.weight, self.arc_outputs, self.rel_scores, self.stag_acc, self.predicted_stags, self.probs], feed_dict=feed)
             weight = weight.astype(bool)
             predicted_arcs_greedy = predicted_arcs[weight]
             predicted_rels_greedy = predicted_rels[weight]
@@ -263,10 +268,11 @@ class Parsing_Model_Joint(object):
             predicted_arcs, predicted_rels = predict_arcs_rels(arc_outputs, rel_scores, non_padding)
             predictions_batch['arcs'] = predicted_arcs
             predictions_batch['rels'] = predicted_rels
+            probs = probs[weight]
 #            print(predicted_greedy_arcs.shape)
 #            print(predicted_arcs.shape)
             #print(arc_outputs.shape)
-            return loss, predictions_batch, UAS
+            return loss, predictions_batch, UAS, probs
 
     def run_epoch(self, session, testmode = False):
 
@@ -285,11 +291,14 @@ class Parsing_Model_Joint(object):
             test_incomplete = next_test_batch(self.batch_size)
             output_types = ['arcs', 'rels', 'arcs_greedy', 'rels_greedy', 'stags']
             predictions = {output_type: [] for output_type in output_types}
+            probs = []
             while test_incomplete:
-                loss, predictions_batch, UAS = self.run_batch(session, True)
+                loss, predictions_batch, UAS, probs_batch = self.run_batch(session, True)
+                    
                 for name, pred in predictions_batch.items():
                     predictions[name].append(pred)
                 #print('Testmode {}/{}, loss {}, accuracy {}'.format(self.loader._index_in_test, self.loader.nb_validation_samples, loss, accuracy), end = '\r')
+                probs.append(probs_batch)
                 print('Test mode {}/{}, Raw UAS {:.4f}'.format(self.loader._index_in_test, self.loader.nb_validation_samples, UAS), end='\r') #, end = '\r')
                 test_incomplete = next_test_batch(self.batch_size)
             for name, pred in predictions.items():
@@ -300,6 +309,9 @@ class Parsing_Model_Joint(object):
                 self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
                 self.loader.output_stags(predictions['stags'], self.test_opts.predicted_stags_file)
+                if self.test_opts.save_probs:
+                    self.loader.output_probs(np.vstack(probs))
+
             scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])

@@ -11,6 +11,7 @@ parser = ArgumentParser()
 parser.add_argument('config_file', metavar='N', help='an integer for the accumulator')
 parser.add_argument('model_name', metavar='N', help='an integer for the accumulator')
 parser.add_argument("--no_gold",  help="compute tag accuracy", action="store_true", default=False)
+parser.add_argument("--save_probs",  help="save tag probabilities", action="store_true", default=False)
 opts = parser.parse_args()
 
 
@@ -27,7 +28,7 @@ def test_parser(config, best_model, data_types, no_gold):
         if no_gold:
             features = ['sents', 'predicted_pos', 'sents', 'sents', 'sents', 'punc']
         else:
-            features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels']
+            features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels', 'punc']
     else:
         if no_gold:
             features = ['sents', 'predicted_pos', 'predicted_stag', 'sents', 'sents']
@@ -74,6 +75,8 @@ def test_parser(config, best_model, data_types, no_gold):
         if not os.path.isdir(os.path.dirname(output_file)):
             os.makedirs(os.path.dirname(output_file))
         output_info += ' --predicted_rels_file_greedy {}'.format(output_file)
+        if opts.save_probs: 
+            output_info += ' --save_probs'
         if no_gold:
             test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
             test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*test_data_dirs)
