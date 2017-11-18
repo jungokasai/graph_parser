@@ -186,6 +186,7 @@ class Parsing_Model_Joint(object):
                 ## [seq_len, batch_size, 2*mlp_units]
             vectors[joint_role] = vector_mlp
         weights = get_joint_weights('stag', self.opts.joint_mlp_units, self.loader.nb_stags)
+        self.stag_embeddings = tf.transpose(weights['W-joint'], [1,0])
         joint_output = joint_equation(vectors['stag'], weights) # [batch_size, seq_len, nb_stags]
         return arc_output, rel_output, rel_scores, joint_output
     
@@ -311,6 +312,9 @@ class Parsing_Model_Joint(object):
                 self.loader.output_stags(predictions['stags'], self.test_opts.predicted_stags_file)
                 if self.test_opts.save_probs:
                     self.loader.output_probs(np.vstack(probs))
+                if self.test_opts.get_weight:
+                    stag_embeddings = session.run(self.stag_embeddings)
+                    self.loader.output_weight(stag_embeddings)
 
             scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])

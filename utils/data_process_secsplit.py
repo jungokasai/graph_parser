@@ -292,6 +292,14 @@ class Dataset(object):
     def output_probs(self, probs):
         output_mica_nbest(probs, self.idx_to_tag)
 
+    def output_weight(self, stag_embeddings):
+        filename = 'stag_embeddings.txt'
+        with open(filename, 'wt') as fout:
+            for i in xrange(stag_embeddings.shape[0]):
+                output_row = [self.idx_to_tag[i]]+map(str, stag_embeddings[i])
+                fout.write(' '.join(output_row))
+                fout.write('\n')
+
     def get_scores(self, predictions, opts, test_opts):
         if test_opts is None:
             metrics = opts.metrics ## use train opts
