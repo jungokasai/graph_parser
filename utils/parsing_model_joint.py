@@ -56,7 +56,7 @@ class Parsing_Model_Joint(object):
                 embedding = tf.get_variable('stag_embedding_mat', [self.loader.nb_stags, self.opts.stag_dim]) # +1 for padding
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stags']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
-            tf.add_to_collection('stag_embedding', embedding)
+            #tf.add_to_collection('stag_embedding', embedding)
         return inputs 
 
     def add_char_embedding(self):

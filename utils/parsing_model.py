@@ -55,6 +55,7 @@ class Parsing_Model(object):
                 embedding = tf.get_variable('stag_embedding_mat', [self.loader.nb_stags+1, self.opts.stag_dim]) # +1 for padding
             inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stags']) ## [batch_size, seq_len, embedding_dim]
             inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
+        self.stag_embeddings = embedding
         return inputs 
 
     def add_char_embedding(self):
@@ -281,6 +282,9 @@ class Parsing_Model(object):
                 self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
             scores = self.loader.get_scores(predictions, self.opts, self.test_opts)
+            if self.test_opts.get_weight:
+                stag_embeddings = session.run(self.stag_embeddings)
+                self.loader.output_weight(stag_embeddings)
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             return scores

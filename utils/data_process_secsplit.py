@@ -296,9 +296,10 @@ class Dataset(object):
         filename = 'stag_embeddings.txt'
         with open(filename, 'wt') as fout:
             for i in xrange(stag_embeddings.shape[0]):
-                output_row = [self.idx_to_tag[i]]+map(str, stag_embeddings[i])
-                fout.write(' '.join(output_row))
-                fout.write('\n')
+                if i in self.idx_to_tag.keys():
+                    output_row = [self.idx_to_tag[i]]+map(str, stag_embeddings[i])
+                    fout.write(' '.join(output_row))
+                    fout.write('\n')
 
     def get_scores(self, predictions, opts, test_opts):
         if test_opts is None:
