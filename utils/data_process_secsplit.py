@@ -125,7 +125,7 @@ class Dataset(object):
             self.inputs_test['jk'] = jk_sequences[self.nb_train_samples:]
             ## indexing jackknife files ends
         ## indexing stag files
-        if (opts.stag_dim > 0) or (opts.model == 'Parsing_Model_Joint'):
+        if (opts.stag_dim > 0) or (opts.model in ['Parsing_Model_Joint', 'Parsing_Model_Shuffle']):
             f_train = open(path_to_tag)
             texts = f_train.readlines()
             f_train.close()

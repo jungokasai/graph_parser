@@ -48,6 +48,9 @@ def train_parser(config):
     if model_type == 'Parsing_Model_Joint':
         print('Run joint training. Use gold supertags')
         features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels']
+    elif model_type == 'Parsing_Model_Shuffle':
+        print('Run joint training. Use shuffled supertags')
+        features = ['sents', 'predicted_pos', 'shuffle_stag', 'arcs', 'rels']
     else:
         features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels']
     base_command = 'python graph_parser_main.py train --base_dir {}'.format(base_dir)
@@ -55,6 +58,8 @@ def train_parser(config):
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
     if model_type == 'Parsing_Model_Joint':
         features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels', 'punc']
+    elif model_type == 'Parsing_Model_Shuffle':
+        features = ['sents', 'predicted_pos', 'shuffle_stag', 'arcs', 'rels', 'punc']
     else:
         features = ['sents', 'predicted_pos', 'predicted_stag', 'arcs', 'rels', 'punc']
     dev_data_dirs = map(lambda x: os.path.join(base_dir, x, 'dev.txt'), features)
