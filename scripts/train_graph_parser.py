@@ -48,6 +48,9 @@ def train_parser(config):
     if model_type == 'Parsing_Model_Joint':
         print('Run joint training. Use gold supertags')
         features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels']
+    elif model_type == 'Parsing_Model_Joint_Both':
+        print('Run joint training. Use gold supertags')
+        features = ['sents', 'gold_pos', 'gold_stag', 'arcs', 'rels']
     elif model_type == 'Parsing_Model_Shuffle':
         print('Run joint training. Use shuffled supertags')
         features = ['sents', 'predicted_pos', 'shuffle_stag', 'arcs', 'rels']
@@ -58,6 +61,8 @@ def train_parser(config):
     train_data_info = ' --text_train {} --jk_train {} --tag_train {} --arc_train {} --rel_train {}'.format(*train_data_dirs)
     if model_type == 'Parsing_Model_Joint':
         features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels', 'punc']
+    elif model_type == 'Parsing_Model_Joint_Both':
+        features = ['sents', 'gold_pos', 'gold_stag', 'arcs', 'rels', 'punc']
     elif model_type == 'Parsing_Model_Shuffle':
         features = ['sents', 'predicted_pos', 'shuffle_stag', 'arcs', 'rels', 'punc']
     else:

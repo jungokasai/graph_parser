@@ -1,3 +1,6 @@
+## Syntactic Analogy Tests
+## Written by R. Thomas McCoy
+
 import numpy as np
 from numpy.linalg import norm
 import sys

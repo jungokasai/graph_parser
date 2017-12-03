@@ -30,6 +30,12 @@ def test_parser(config, best_model, data_types, no_gold):
             features = ['sents', 'predicted_pos', 'sents', 'sents', 'sents', 'punc']
         else:
             features = ['sents', 'predicted_pos', 'gold_stag', 'arcs', 'rels', 'punc']
+    elif model_type == 'Parsing_Model_Joint_Both':
+        print('Run joint training. Use gold supertags')
+        if no_gold:
+            features = ['sents', 'gold_pos', 'sents', 'sents', 'sents', 'punc']
+        else:
+            features = ['sents', 'gold_pos', 'gold_stag', 'arcs', 'rels', 'punc']
     else:
         if no_gold:
             features = ['sents', 'predicted_pos', 'predicted_stag', 'sents', 'sents']
@@ -42,7 +48,7 @@ def test_parser(config, best_model, data_types, no_gold):
         base_command = 'python graph_parser_main.py test --get_accuracy'
     model_info = ' --model {}'.format(best_model)
     for data_type in data_types:
-        if model_type == 'Parsing_Model_Joint':
+        if model_type in ['Parsing_Model_Joint', 'Parsing_Model_Joint_Both']:
             output_file = os.path.join(base_dir, 'predicted_stag', '{}.txt'.format(data_type))
             if not os.path.isdir(os.path.dirname(output_file)):
                 os.makedirs(os.path.dirname(output_file))
