@@ -84,6 +84,7 @@ test_parser.add_argument("--predicted_rels_file", dest="predicted_rels_file", he
 test_parser.add_argument("--predicted_arcs_file_greedy", dest="predicted_arcs_file_greedy", help="filename for predicted arcs")
 test_parser.add_argument("--predicted_rels_file_greedy", dest="predicted_rels_file_greedy", help="filename for predicted rels")
 test_parser.add_argument("--predicted_stags_file", dest="predicted_stags_file", help="filename for predicted rels") ## for joint
+test_parser.add_argument("--predicted_pos_file", dest="predicted_pos_file", help="filename for predicted rels") ## for joint
 test_parser.add_argument("--save_probs", dest="save_probs", help="save probabilities", action="store_true", default=False)
 test_parser.add_argument("--get_weight", dest="get_weight", help="save stag weight", action="store_true", default=False)
 

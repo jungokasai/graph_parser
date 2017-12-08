@@ -313,6 +313,7 @@ class Parsing_Model_Joint_Both(object):
                 self.loader.output_arcs(predictions['arcs_greedy'], self.test_opts.predicted_arcs_file_greedy)
                 self.loader.output_rels(predictions['rels_greedy'], self.test_opts.predicted_rels_file_greedy)
                 self.loader.output_stags(predictions['stags'], self.test_opts.predicted_stags_file)
+                self.loader.output_pos(predictions['jk'], self.test_opts.predicted_pos_file)
                 if self.test_opts.save_probs:
                     self.loader.output_probs(np.vstack(probs))
                 if self.test_opts.get_weight:

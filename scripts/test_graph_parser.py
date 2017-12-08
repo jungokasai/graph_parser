@@ -33,7 +33,7 @@ def test_parser(config, best_model, data_types, no_gold):
     elif model_type == 'Parsing_Model_Joint_Both':
         print('Run joint training. Use gold supertags')
         if no_gold:
-            features = ['sents', 'gold_pos', 'sents', 'sents', 'sents', 'punc']
+            features = ['sents', 'sents', 'sents', 'sents', 'sents', 'punc']
         else:
             features = ['sents', 'gold_pos', 'gold_stag', 'arcs', 'rels', 'punc']
     else:
@@ -53,6 +53,10 @@ def test_parser(config, best_model, data_types, no_gold):
             if not os.path.isdir(os.path.dirname(output_file)):
                 os.makedirs(os.path.dirname(output_file))
             output_info = ' --predicted_stags_file {}'.format(output_file)
+            output_file = os.path.join(base_dir, 'predicted_pos', '{}.txt'.format(data_type))
+            if not os.path.isdir(os.path.dirname(output_file)):
+                os.makedirs(os.path.dirname(output_file))
+            output_info += ' --predicted_pos_file {}'.format(output_file)
         else:
             output_info = '' ## no stag output
         inputs = {}

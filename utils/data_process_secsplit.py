@@ -290,6 +290,17 @@ class Dataset(object):
                 fwrite.write('\n')
                 stag_idx += sents_lengths[sent_idx]
 
+    def output_pos(self, predictions, filename): ## output stags for joint
+        stags = map(lambda x: self.idx_to_jk[x], predictions)
+        ## For formatting, let's calculate sentence lengths. np.sum is also faster than a for loop
+        ## To Do: allow for the CoNLL format
+        sents_lengths = np.sum(self.inputs_test['words']!=0, 1) - 1 ## dummy ROOT
+        stag_idx = 0
+        with open(filename, 'wt') as fwrite:
+            for sent_idx in xrange(len(sents_lengths)):
+                fwrite.write(' '.join(stags[stag_idx:stag_idx+sents_lengths[sent_idx]]))
+                fwrite.write('\n')
+                stag_idx += sents_lengths[sent_idx]
     def output_probs(self, probs):
         output_mica_nbest(probs, self.idx_to_tag)
 
