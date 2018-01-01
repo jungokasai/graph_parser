@@ -334,6 +334,8 @@ class Dataset(object):
                 scores[metric] = np.mean(((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc]))*self.content)
             elif metric == 'Stagging':
                 scores[metric] = np.mean((predictions['stags'] == self.gold_stags))
+            elif metric == 'POS':
+                scores[metric] = np.mean((predictions['jk'] == self.gold_jk))
             elif metric == 'NoPunct_LAS_Stagging':
                 scores[metric] = np.mean((predictions['arcs_greedy'][self.punc] == self.gold_arcs[self.punc])*(predictions['rels_greedy'][self.punc] == self.gold_rels[self.punc])*(predictions['stags'][self.punc] == self.gold_stags[self.punc]))
             elif metric == 'NoPunct_LAS_Both':
