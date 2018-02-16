@@ -31,24 +31,19 @@ python train_graph_parser.py sample_data/config_demo.json
 After running this command, you should be getting the following files and directories in sample_data/:
 
 
-## <a name="jackknife"></a>Jackknife POS tagging
-To Be Added.
-
-
-## <a name="pretrained"></a>Run a pre-trained TAG Supertagger
+## <a name="pretrained"></a>Run a pre-trained TAG Parser
 
 To Be Added.
 
-<!-- ## Notes
+## Notes
 
 If you use this tool for your research, please consider citing:
 ```
-@InProceedings{Kasai&al.17,
-  author =  {Jungo Kasai and Robert Frank and R. Thomas McCoy and Owen Rambow and Alexis Nasr},
-  title =   {TAG Parsing with Neural Networks and Vector Representations of Supertags},
-  year =    {2017},  
-  booktitle =   {Proceedings of EMNLP},  
+@InProceedings{Kasai&al.18,
+  author =  {Jungo Kasai and Robert Frank and Pauli Xu and William Merrill and Owen Rambow},
+  title =   {End-to-end Graph-based TAG Parsing with Neural Networks},
+  year =    {2018},  
+  booktitle =   {Proceedings of NAACL},  
   publisher =   {Association for Computational Linguistics},
 }
 ```
--->
