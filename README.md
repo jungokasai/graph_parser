@@ -50,6 +50,17 @@ After running this command, you should be getting the following files and direct
 |Parsing_Models/|Stores the best model.|
 |conllu/sample.conllustag_stag|Contains the predicted supertags in the conllustag format|
 
+## <a name="structure"></a>Structure of the Code
+| File | Description |
+|------|--------|
+|``utils/preprocessing.py``|Contains tools for preprocessing. Mainly for tokenizing and indexing words/tags. Gets imported to ``utils/data_process_secsplit.py``|
+|``utils/data_process_secsplit.py``|Reads training and test data and tokenize/index words, POS tags, stags, and characters.|
+|``utils/parsing_model.py``|Contains the ``Parsing_Model`` class that constructs our LSTM computation graph. The class has the necessary methods for training and testing. Gets imported to ``bilstm_stagger_model.py``. For more details, read [README for utils](utils/README.md).|
+|``utils/lstm.py``|Contains tensorflow LSTM equations. Gets imported to ``utils/stagging_model.py``.|
+|``graph_parser_model.py``|Contains functions that instantiate the ``Parsing_Model`` class and train/test a model. Gets imported to ``graph_parser_main.py``|
+|``graph_parser_main.py``|Main file to run experiments. Reads model and data options.|
+|``scripts/train_graph_parser.py``|Runs ``graph_parser_main.py`` in bash according to the json file that gets passed.|
+
 
 ## <a name="pretrained"></a>Run a pre-trained TAG Parser
 
