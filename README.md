@@ -43,8 +43,11 @@ After running this command, you should be getting the following files and direct
 |sents/|Contains the words in the one-sentence-per-line format|
 |gold_pos/|Contains the gold POS tags in the one-sentence-per-line format|
 |gold_stag/|Contains the gold supertags in the one-sentence-per-line format|
-|predicted_stag/|Contains the predicted supertags in the one-sentence-per-line format|
-|Parsing_models/|Stores the best model.|
+|arcs/|Contains the gold arcs in the one-sentence-per-line format|
+|rels/|Contains the gold rels in the one-sentence-per-line format|
+|predicted_arcs/|Contains the predicted arcs in the one-sentence-per-line format|
+|predicted_rels/|Contains the gold rels in the one-sentence-per-line format|
+|Parsing_Models/|Stores the best model.|
 |conllu/sample.conllustag_stag|Contains the predicted supertags in the conllustag format|
 
 
