@@ -1,0 +1,18 @@
+This folder contains code for evaluating accuracy at resolving PP attachment.
+It is based on the PP attachment dataset from Ratnaparkhi, Reynar, and Roukos
+(1994).
+
+The files contained here are:
+	d6.treeproperties: Contains info about the tree structure of each
+		supertag in the MICA database
+	test_set.txt: Each line corresponds to one test sentence. Each line
+		has 4 tab-separated items, which are: (i) The correct assignment 
+		of N or V describing the PP attachment, (ii) the noun that appears
+		directly before the ambiguous PP, (iii) the preposition that
+		begins the ambiguous PP, and (iv) the full test sentence.
+	test_tags.txt: Each line i contains the supertags given to the
+		sentence at line i of test_set.txt. To evaluate a different 
+		supertagger, you would need to re-tag the sentences 
+		from test_set.txt.
+	pp_attachment_evaluator.py: The evaluation program. Run with: 
+		python pp_attachment_evaluator.py	

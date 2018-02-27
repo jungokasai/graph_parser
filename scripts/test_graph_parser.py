@@ -92,7 +92,7 @@ def test_parser(config, best_model, data_types, no_gold):
             output_info += ' --get_weight'
         if no_gold:
             test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
-            test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {}'.format(*test_data_dirs)
+            test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*test_data_dirs)
         else:
             test_data_dirs = map(lambda x: os.path.join(base_dir, x, '{}.txt'.format(data_type)), features)
             test_data_info = ' --text_test {} --jk_test {} --tag_test {} --arc_test {} --rel_test {} --punc_test {}'.format(*test_data_dirs)
