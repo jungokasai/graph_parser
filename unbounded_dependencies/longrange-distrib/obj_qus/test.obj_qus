@@ -1,0 +1,320 @@
+xx00.mrg
+What country is Berlin in ?
+pobj in_4 country_1
+
+xx00.mrg
+What do the initials CPR stand for ?
+pobj for_6 What_0
+
+xx00.mrg
+What city is Purdue University in ?
+pobj in_5 city_1
+
+xx00.mrg
+What is Betsy Ross famous for ?
+pobj for_5 What_0
+
+xx00.mrg
+What does target heart rate mean ?
+dobj mean_5 What_0
+
+xx00.mrg
+What is the text of an opera called ?
+dobj called_7 What_0
+
+xx00.mrg
+What did Peter Minuit buy for the equivalent of $ 24.00 ?
+dobj buy_4 What_0
+
+xx00.mrg
+What does a defibrillator do ?
+dobj do_4 What_0
+
+xx00.mrg
+What is pastrami made of ?
+pobj of_4 What_0
+
+xx00.mrg
+How many battles did she win ?
+dobj win_5 battles_2
+
+xx00.mrg
+How much vitamin C should you take in a day ?
+dobj take_6 C_3
+
+xx00.mrg
+What did Edward Binney and Howard Smith invent in 1903 ?
+dobj invent_7 What_0
+
+xx00.mrg
+How many members does it have ?
+dobj have_5 members_2
+
+xx00.mrg
+What songs did he sing ?
+dobj sing_4 songs_1
+
+xx00.mrg
+What did she die of ?
+pobj of_4 What_0
+
+xx00.mrg
+What festivals does it have ?
+dobj have_4 festivals_1
+
+xx00.mrg
+What state does Martha Stewart live in ?
+pobj in_6 state_1
+
+xx00.mrg
+What country is he associated with ?
+pobj with_5 country_1
+
+xx00.mrg
+What countries has the IFC financed projects in ?
+pobj in_7 countries_1
+
+xx00.mrg
+What did he wear as a hat ?
+dobj wear_3 What_0
+
+xx00.mrg
+What did Sherlock Holmes call the street gang that helped him crack cases ?
+dobj call_4 What_0
+
+xx00.mrg
+What do you call a baby sloth ?
+dobj call_3 What_0
+
+xx00.mrg
+What is a group of antelope called ?
+dobj called_6 What_0
+
+xx00.mrg
+What is rum made out of ?
+pobj of_5 What_0
+
+xx00.mrg
+What award did Sterling North 's book `` Rascal '' win in 1963 ?
+dobj win_10 award_1
+
+xx00.mrg
+What city is Logan Airport in ?
+pobj in_5 city_1
+
+xx00.mrg
+What city in Louisiana was Britney Spears born in ?
+pobj in_8 city_1
+
+xx00.mrg
+What city is 94.5 KDGE Radio located in ?
+pobj in_7 city_1
+
+xx00.mrg
+What city is the Liberty Bell currently located in ?
+pobj in_8 city_1
+
+xx00.mrg
+What town was he native of ?
+pobj of_5 town_1
+
+xx00.mrg
+What is typhoid fever ?
+nsubj What_0 fever_3
+
+xx00.mrg
+What fruit 's stone does Laetrile come from ?
+pobj from_7 stone_3
+
+xx00.mrg
+What does the acronym CPR mean ?
+dobj mean_5 What_0
+
+xx00.mrg
+What does the abbreviation OAS stand for ?
+pobj for_6 What_0
+
+xx00.mrg
+What state is Niagra Falls located in ?
+pobj in_6 state_1
+
+xx00.mrg
+What schools did he attend ?
+dobj attend_4 schools_1
+
+xx00.mrg
+What do most tourists visit in Reims ?
+dobj visit_4 What_0
+
+xx00.mrg
+What is the big prize called in Canadian football ?
+dobj called_5 What_0
+
+xx00.mrg
+How much fiber should you have per day ?
+dobj have_5 fiber_2
+
+xx00.mrg
+Where is the tallest roller coaster located ?
+dobj located_6 Where_0
+
+xx00.mrg
+What Cruise Line does Kathie Lee Gifford advertise for ?
+pobj for_8 Line_2
+
+xx00.mrg
+What is a baby turkey called ?
+dobj called_5 What_0
+
+xx00.mrg
+What buildings has he designed ?
+dobj designed_4 buildings_1
+
+xx00.mrg
+What did Caesar say before he died ?
+dobj say_3 What_0
+
+xx00.mrg
+What is Pittsburg 's baseball team called ?
+dobj called_6 What_0
+
+xx00.mrg
+What instrument did the jazz musician Art Tatum play ?
+dobj play_8 instrument_1
+
+xx00.mrg
+What other name were the `` Little Rascals '' known as ?
+pobj as_10 name_2
+
+xx00.mrg
+What flower did Vincent Van Gogh paint ?
+dobj paint_6 flower_1
+
+xx00.mrg
+What branch of the service did he serve in ?
+pobj in_8 branch_1
+
+xx00.mrg
+What do river otters eat ?
+dobj eat_4 What_0
+
+xx00.mrg
+What do penguins eat ?
+dobj eat_3 What_0
+
+xx00.mrg
+What does AARP stand for ?
+pobj for_4 What_0
+
+xx00.mrg
+What do manatees eat ?
+dobj eat_3 What_0
+
+xx00.mrg
+Where was the F Troop stationed ?
+dobj stationed_5 Where_0
+
+xx00.mrg
+What is a group of turkeys called ?
+dobj called_6 What_0
+
+xx00.mrg
+What do the French call the English Channel ?
+dobj call_4 What_0
+
+xx00.mrg
+What does caliente mean -LRB- in English -RRB- ?
+dobj mean_3 What_0
+
+xx00.mrg
+What does your spleen do ?
+dobj do_4 What_0
+
+xx00.mrg
+What does R&B stand for ?
+pobj for_4 What_0
+
+xx00.mrg
+What college did Magic Johnson attend ?
+dobj attend_5 college_1
+
+xx00.mrg
+What is D.B. Cooper known for ?
+pobj for_5 What_0
+
+xx00.mrg
+What does Knight Ridder publish ?
+dobj publish_4 What_0
+
+xx00.mrg
+What Cuban dictator did Fidel Castro force out of power in 1958 ?
+dobj force_6 dictator_2
+
+xx00.mrg
+What percent of the nation 's cheese does Wisconsin produce ?
+dobj produce_9 percent_1
+
+xx00.mrg
+What are baby frogs called ?
+dobj called_4 What_0
+
+xx00.mrg
+What are the headpieces called that the Saudi Arabians wear ?
+dobj called_4 What_0
+
+xx00.mrg
+What continent is Egypt on ?
+pobj on_4 continent_1
+
+xx00.mrg
+What continent is Scotland in ?
+pobj in_4 continent_1
+
+xx00.mrg
+What countries have Rhodes scholars come from ?
+pobj from_6 countries_1
+
+xx00.mrg
+What does `` E Pluribus Unum '' mean ?
+dobj mean_7 What_0
+
+xx00.mrg
+What sport do the Cleaveland Cavaliers play ?
+dobj play_6 sport_1
+
+xx00.mrg
+What continent is India on ?
+pobj on_4 continent_1
+
+xx00.mrg
+What did Ozzy Osbourne bite the head off of ?
+pobj of_8 What_0
+
+xx00.mrg
+What does SIDS stand for ?
+pobj for_4 What_0
+
+xx00.mrg
+What color does litmus paper turn when it comes into contact with a strong acid ?
+dobj turn_5 color_1
+
+xx00.mrg
+If something has petrified , what has it turned into ?
+pobj into_9 what_5
+
+xx00.mrg
+How many hearts does an octopus have ?
+dobj have_6 hearts_2
+
+xx00.mrg
+What industry is Rohm and Haas in ?
+pobj in_6 industry_1
+
+xx00.mrg
+What amount of folic acid should an expectant mother take daily ?
+dobj take_9 amount_1
+
+xx00.mrg
+What city is Southwestern University in ?
+pobj in_5 city_1
+

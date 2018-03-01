@@ -1,0 +1,100 @@
+xx00.mrg
+What country did Catherine the Great rule ?
+dobj rule_6 country_1
+
+xx00.mrg
+What does CPR stand for ?
+pobj for_4 What_0
+
+xx00.mrg
+What city does the Tour de France end in ?
+pobj in_8 city_1
+
+xx00.mrg
+What movies did she appear in ?
+pobj in_5 movies_1
+
+xx00.mrg
+What did Alfred Noble invent ?
+dobj invent_4 What_0
+
+xx00.mrg
+What cemetery is Thurgood Marshall buried in ?
+pobj in_6 cemetery_1
+
+xx00.mrg
+Which planet did the spacecraft Magellan enable scientists to research extensively ?
+dobj research_9 planet_1
+
+xx00.mrg
+What is Jane Goodall known for ?
+pobj for_5 What_0
+
+xx00.mrg
+What are the people who make fireworks called ?
+dobj called_7 What_0
+
+xx00.mrg
+What do you call a professional map drawer ?
+dobj call_3 What_0
+
+xx00.mrg
+What country did Ponce de Leon come from ?
+pobj from_7 country_1
+
+xx00.mrg
+How many siblings does she have ?
+dobj have_5 siblings_2
+
+xx00.mrg
+What effect does a prism have on light ?
+dobj have_5 effect_1
+
+xx00.mrg
+How many chromosomes does a human zygote have ?
+dobj have_7 chromosomes_2
+
+xx00.mrg
+What countries does it operate in ?
+pobj in_5 countries_1
+
+xx00.mrg
+What kind of music does the band play ?
+dobj play_7 kind_1
+
+xx00.mrg
+What was President Lyndon Johnson 's reform program called ?
+dobj called_8 What_0
+
+xx00.mrg
+What did Charles Babbage invent ?
+dobj invent_4 What_0
+
+xx00.mrg
+What position did Satchel Paige play in professional baseball ?
+dobj play_5 position_1
+
+xx00.mrg
+What is the esophagus used for ?
+pobj for_5 What_0
+
+xx00.mrg
+What type of plant does it damage ?
+dobj damage_6 type_1
+
+xx00.mrg
+What countries have they played in ?
+pobj in_5 countries_1
+
+xx00.mrg
+What city in Florida is Sea World in ?
+pobj in_7 city_1
+
+xx00.mrg
+What is the colorful Korean traditional dress called ?
+dobj called_7 What_0
+
+xx00.mrg
+What continent is the world 's largest dessert on ?
+pobj on_8 continent_1
+
