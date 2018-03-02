@@ -15,20 +15,13 @@
 
 """
 
-import os
-assert(os.path.isdir(os.path.join(os.getcwd(), 'data')))
-
-
-data_path = "data/supertag_info/"
-treeprops_file = "d6.treeproperties"
-tree_strings_file = "d6.clean2.f.str"
 
 
 
 
 
 # read and format the properties for each tree,
-def get_t2props_dict(fn=(data_path+treeprops_file)):
+def get_t2props_dict(fn):
 
     with open(fn, "r") as f:
         properties_txt = f.read()
@@ -77,7 +70,7 @@ def get_t2props_dict(fn=(data_path+treeprops_file)):
 """
 
 # read and format the properties for each tree,
-def get_t2topsub_dict(fn=(data_path + tree_strings_file)):
+def get_t2topsub_dict(fn):
     t2topsub_dict = {}
     
     with open(fn, "r") as f:
@@ -100,4 +93,7 @@ def get_t2topsub_dict(fn=(data_path + tree_strings_file)):
     
     return(t2topsub_dict)
 
-
+if __name__ == '__main__':
+    import os
+    treeprops_file = "d6.treeproperties"
+    get_t2props_dict(treeprops_file)

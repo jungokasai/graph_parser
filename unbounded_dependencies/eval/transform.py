@@ -1,56 +1,6 @@
-"""
-For PETE, predict if text entails hypothesis, using TAG parses. 
-
-
-# example flags (only the first three matter for structural transformations): 
-
-flags_structure_and_our_heuristics = od([
-    # some entailment call flags
-    #structural transformations
-    ("add_structure_transform", True),
-    ("add_plus", False),
-    ("add_predicative", True),   # only works if add_structure_transform is true
-
-    #our heuristics
-    ("fuzz_wildcards_and_contractions",True), #only works if dont_skip_wildcards is True
-    ("lemmatize_verbs", False),
-
-    #cambridge heuristics
-    ("skip_unseen_words", False),
-    ("lemmatize_all", False),
-    ("dont_skip_wildcards", True),
-    ("forbid_vacuous", False),
-    ("only_deep_arg",0),
-
-    ("debug", 0)
-])
-
-
-
-
-# run the function
-entails(
-            t2props_dict, t2topsub_dict, sent_h, parse_h, sent_t, parse_t, 
-            stag_h=stag_h, stag_t=stag_t, pos_h=pos_h, pos_t=pos_t, 
-
-            add_predicative=flags['add_predicative'], only_deep_arg=flags['only_deep_arg'], add_plus=flags['add_plus'],
-            skip_unseen_words=flags['skip_unseen_words'], forbid_vacuous=flags['forbid_vacuous'],
-            dont_skip_wildcards=flags['dont_skip_wildcards'],add_structure_transform=flags['add_structure_transform'],
-            fuzz_wildcards_and_contractions=flags['fuzz_wildcards_and_contractions'],
-            return_breaking_triple=True, 
-            flags=flags)
-
-
-"""
-
-def entails(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],  only_deep_arg=False, add_plus=False, add_predicative = True,
+def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],  only_deep_arg=False, add_plus=False, add_predicative = True,
             skip_unseen_words=False, dont_skip_wildcards=False, forbid_vacuous=False, fuzz_wildcards_and_contractions=True, debug=False, debug_subset=False, return_breaking_triple=False, flags={}):
     
-#    if debug: 
-#        print("hypothesis: ", sent_h)
-#        print("text: ", sent_t)
-#        print()
-#
 
     # NOTE: use list() to make a copy, instead of modifying the original parse_t
     parse_t = list(parse_t)
@@ -69,22 +19,10 @@ def entails(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],  
         candidate = add_flipped_predaux(triple, stag_t, t2props_dict)
         if candidate:
             to_add.append(candidate)
-#                if  debug >= 3:
-#                    print("parse_t to add for predaux:")
-#                    print("orig: ", lexicalize([triple], sent_t, pos=pos_t))
-#                    print("added: ", lexicalize([candidate], sent_t, pos=pos_t))
-#                    print()
-#
         # flipped relative clause
         candidate = add_flipped_rel(triple, stag_t, t2props_dict, t2topsub_dict, add_plus=add_plus)
         if candidate:
             to_add.append(candidate)
-            if  debug >= 3:
-                print("parse_t to add for rel:")
-                print("orig: ", lexicalize([triple], sent_t, pos=pos_t))
-                print("candidate", lexicalize([candidate], sent_t, pos=pos_t))
-                print()
-            
         # flipped modifying auxiliary clause with relation 1
         candidate = add_flipped_modif(triple, stag_t, t2props_dict)
         if candidate:
@@ -97,10 +35,6 @@ def entails(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],  
    
     # update parse_t with results
     parse_t += to_add
-    if  debug >= 2:
-        print("parse_t after predaux, rel, modif:NP :")
-        print(lexicalize(parse_t, sent_t, pos=pos_t))
-        print()
 
     # extend parse_t for predicative cases
     if add_predicative:
@@ -155,7 +89,7 @@ def entails(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],  
 #            return(False)
 #
 #    return _subset_triples(lex_parse_h, lex_parse_t, fuzz_wildcards_and_contractions=fuzz_wildcards_and_contractions, debug=debug_subset, 
-                         return_breaking_triple=return_breaking_triple)
+                         #return_breaking_triple=return_breaking_triple)
 
 
 
@@ -174,9 +108,9 @@ def _subset_triples(h_set, t_set, fuzz_wildcards_and_contractions=True, debug=Fa
             (triple_h[0] in ignored_h_tokens)):
             pass
         # skip adjunctions for verb with lemma "be", e.g. case ('is', 'waiting', 'adj')
-        elif ((triple_h[2] == 'adj') and (lemmatize(triple_h[0], 'V') == 'be')):
+        elif ((triple_h[2] == 'ADJ') and (lemmatize(triple_h[0], 'V') == 'be')):
             pass
-        elif ((triple_h[2] == 'adj') and (lemmatize(triple_h[0], 'V') == 'have')):
+        elif ((triple_h[2] == 'ADJ') and (lemmatize(triple_h[0], 'V') == 'have')):
             pass
         # find a match for h_set in t_set
         elif not any([_match_triple(triple_h, triple_t, fuzz_wildcards_and_contractions) 
