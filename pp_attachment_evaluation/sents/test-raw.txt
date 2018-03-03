@@ -87,7 +87,7 @@ Many Japanese funds , which closed their books at the end of September , now hav
 A severe drop in Japanese stock prices or a steep fall in the dollar would exacerbate price declines in smaller markets such as Hong Kong , money managers say .
 Investors have already been treating the market with some caution .
 In late May and early June , when political turmoil overwhelmed China , the Hang Seng index plummeted 37 % to 2093 .
--RRB- Since then , international fund managers decreased their exposure to the market and only recently have begun to tiptoe back in .
+) Since then , international fund managers decreased their exposure to the market and only recently have begun to tiptoe back in .
 `` It 's not like the crash in October 1987 , when there was lots of optimism , '' said Phillip Niem , research director in Hong Kong for British-based Hoare Govette Asia Ltd .
 Later that day Black Monday unfolded in New York , and officials closed the Hong Kong exchange for four days , a move that shook investor confidence in the market .
 Later that day Black Monday unfolded in New York , and officials closed the Hong Kong exchange for four days , a move that shook investor confidence in the market .
@@ -189,7 +189,7 @@ Even so , banks such as First Chicago , which has a long history of ties to UAL 
 It was the job of A.D. Frazier , First Chicago 's commercial lending chief , to call the buy-out group and put the best possible face on the news .
 It was the job of A.D. Frazier , First Chicago 's commercial lending chief , to call the buy-out group and put the best possible face on the news .
 Both the banks ' decision to decline financing and the stock market 's reaction caught the buy-out group off guard .
-Gathered around a long table that filled the huge conference room were about 30 people , including representatives of Citicorp , Chase Manhattan , United Airlines , British Airways , Lazard Freres & Co. , Salomon Brothers Inc. , Skadden Arps -LRB- Mr. Wolf 's counsel -RRB- and Paul Weiss -LRB- lawyer for the pilots union -RRB- .
+Gathered around a long table that filled the huge conference room were about 30 people , including representatives of Citicorp , Chase Manhattan , United Airlines , British Airways , Lazard Freres & Co. , Salomon Brothers Inc. , Skadden Arps ( Mr. Wolf 's counsel ) and Paul Weiss ( lawyer for the pilots union ) .
 One person who was n't present : Mr. Wolf himself who , confident that the deal would go through , was returning from Europe , where he had pitched the proposal to several big European banks .
 Although they had provided the lion 's share of the financing on the Northwest Airlines buy-out just a few months before , Japanese banks had said no to UAL .
 Machinists union leader John Peterpaul also made the union 's views known in telephone conversations with representatives of Mitsubishi Bank , one of the Japanese banks that was considering participating in the financing .
@@ -205,9 +205,9 @@ Clearly , any new bid will have to include more profit for lenders and that prob
 Citicorp , the lead bank on the financing proposal , meanwhile , has a resounding flop on its hands .
 The two New York banks have already been paid combined fees of $ 8 million for the commitments .
 The two New York banks have already been paid combined fees of $ 8 million for the commitments .
--LRB- The $ 7.2 billion the banks said they needed includes some refinancing of existing debt , and is therefore greater than the $ 6.79 billion offered for UAL .
--RRB- Citibank 's confidence was bolstered as recently as 10 days ago when representatives of 120 banks that had expressed interest in the UAL transaction attended a meeting with Citibank representatives .
--RRB- Citibank 's confidence was bolstered as recently as 10 days ago when representatives of 120 banks that had expressed interest in the UAL transaction attended a meeting with Citibank representatives .
+( The $ 7.2 billion the banks said they needed includes some refinancing of existing debt , and is therefore greater than the $ 6.79 billion offered for UAL .
+) Citibank 's confidence was bolstered as recently as 10 days ago when representatives of 120 banks that had expressed interest in the UAL transaction attended a meeting with Citibank representatives .
+) Citibank 's confidence was bolstered as recently as 10 days ago when representatives of 120 banks that had expressed interest in the UAL transaction attended a meeting with Citibank representatives .
 `` There were a lot of indications both before and after that this was a deal people thought well of . ''
 The recent buy-out financing of NWA , Northwest Airlines ' parent , for instance , was a much more collaborative effort among several U.S. banks .
 It was a far safer deal for lenders , since NWA had a healthier cash flow and more collateral on hand .
@@ -294,8 +294,8 @@ For weeks , the market had been nervous about takeovers , after Campeau Corp. 's
 And 10 minutes after the UAL trading halt came news that the UAL group could n't get financing for its bid .
 Arbitragers could n't dump their UAL stock -- but they rid themselves of nearly every `` rumor '' stock they had .
 After the trading halt in the S&P 500 pit in Chicago , waves of selling continued to hit stocks themselves on the Big Board , and specialists continued to notch prices down .
--LRB- In a stock-index arbitrage sell program , traders buy or sell big baskets of stocks and offset the trade in futures to lock in a price difference .
--LRB- In a stock-index arbitrage sell program , traders buy or sell big baskets of stocks and offset the trade in futures to lock in a price difference .
+( In a stock-index arbitrage sell program , traders buy or sell big baskets of stocks and offset the trade in futures to lock in a price difference .
+( In a stock-index arbitrage sell program , traders buy or sell big baskets of stocks and offset the trade in futures to lock in a price difference .
 He camped out at a high-tech nerve center on the floor of the Big Board , where he could watch updates on prices and pending stock orders .
 '' The release cautioned that `` there are significant differences between the current environment and that of October 1987 '' and that there are still `` attractive investment opportunities '' in the stock market .
 '' The release cautioned that `` there are significant differences between the current environment and that of October 1987 '' and that there are still `` attractive investment opportunities '' in the stock market .
@@ -344,7 +344,7 @@ Last week , Boeing Chairman Frank Shrontz sent striking workers a letter , sayin
 -- United Auto Workers Local 1069 , which represents 3,000 workers at Boeing 's helicopter unit in Delaware County , Pa. , said it agreed to extend its contract on a day-by-day basis , with a 10-day notification to cancel , while it continues bargaining .
 C.S. Richardson , Atco 's senior vice president , finance , said its 50.1%-owned Canadian Utilities Ltd. unit is reviewing cogeneration projects in eastern Canada , and conventional electric power generating plants elsewhere , including Britain , where the British government plans to allow limited competition in electrical generation from private-sector suppliers as part of its privatization program .
 C.S. Richardson , Atco 's senior vice president , finance , said its 50.1%-owned Canadian Utilities Ltd. unit is reviewing cogeneration projects in eastern Canada , and conventional electric power generating plants elsewhere , including Britain , where the British government plans to allow limited competition in electrical generation from private-sector suppliers as part of its privatization program .
-Britain 's government plans to raise about # 20 billion -LRB- $ 31.05 billion -RRB- from the sale of most of its giant water and electric utilities , beginning next month .
+Britain 's government plans to raise about # 20 billion ( $ 31.05 billion ) from the sale of most of its giant water and electric utilities , beginning next month .
 Canadian Utilities had 1988 revenue of C$ 1.16 billion , mainly from its natural gas and electric utility businesses in Alberta , where the company serves about 800,000 customers .
 `` There seems to be a move around the world to deregulate the generation of electricity , '' Mr. Richardson said , and Canadian Utilities hopes to capitalize on it .
 `` There seems to be a move around the world to deregulate the generation of electricity , '' Mr. Richardson said , and Canadian Utilities hopes to capitalize on it .
@@ -501,7 +501,7 @@ Last summer , Mr. Bush moved the administration in the direction of gradual libe
 Last summer , Mr. Bush moved the administration in the direction of gradual liberalization when he told a North Atlantic Treaty Organization meeting that he would allow some exceptions to the Cocom embargo of strategic goods .
 But more recently , the Pentagon and the Commerce Department openly feuded over the extent to which Cocom should liberalize exports of personal computers to the bloc .
 Salomon Brothers International Ltd. , a British subsidiary of Salomon Inc. , announced it will issue warrants on shares of Hong Kong Telecommunications Ltd .
-Under the latest offer , HK$ 62.5 million -LRB- US$ 8 million -RRB- of three-year warrants will be issued in London , each giving buyers the right to buy one Hong Kong Telecommunications share at a price to be determined Friday .
+Under the latest offer , HK$ 62.5 million ( US$ 8 million ) of three-year warrants will be issued in London , each giving buyers the right to buy one Hong Kong Telecommunications share at a price to be determined Friday .
 The 50 million warrants will be priced at HK$ 1.25 each and are expected to carry a premium to the share price of about 26 % .
 While Hong Kong companies have in the past issued warrants on their own shares , Salomon 's warrants are the first here to be issued by a third party .
 The Hong Kong Telecommunications warrants should be attractive to buyers in Europe , the bankers added , because the group is one of a handful of blue-chip stocks on the Hong Kong market that has international appeal .
@@ -595,7 +595,7 @@ Jerry Shrieves , UAW local president , said the facility was asked to draw up pl
 Jerry Shrieves , UAW local president , said the facility was asked to draw up plans to continue working as a `` flex plant , '' which could build several different types of products on short notice to satisfy demand .
 Union officials have taken a beating politically as a result .
 Dissident UAW members have used the Fiero plant as a symbol of labor-management cooperation 's failure .
-Institut Merieux S.A. of France said the Canadian government raised an obstacle to its proposed acquisition of Connaught BioSciences Inc. for 942 million Canadian dollars -LRB- US$ 801.6 million -RRB- .
+Institut Merieux S.A. of France said the Canadian government raised an obstacle to its proposed acquisition of Connaught BioSciences Inc. for 942 million Canadian dollars ( US$ 801.6 million ) .
 Alan Nymark , executive vice president of Investment Canada , which oversees foreign takeovers , said it marked the first time in its four-year history that the agency has made an adverse net-benefit decision about the acquisition of a publicly traded company .
 He said it has reached the same conclusions about some attempts to buy closely held concerns , but eventually allowed those acquisitions to proceed .
 `` This is n't a change in government policy ; this provision has been used before , '' said Jodi Redmond , press secretary for Harvie Andre , Canada 's minister of industry , science and technology .
@@ -626,8 +626,8 @@ A spokesman added that sales in the current quarter will about equal the yearear
 Relational Technology reported net income of $ 1.5 million , or 12 cents a share , in the year-earlier period .
 Mr. Newton said he accepted the resignation of Thomas Wilson , vice president of corporate sales , and that his marketing responsibilities have been reassigned .
 In the year ended Aug. 31 , 1988 , MedChem earned $ 2.9 million , or 72 cents a share , on sales of $ 17.4 million .
-The Bronx has a wonderful botanical garden , a great zoo , its own charming Little Italy -LRB- on Arthur Avenue -RRB- and , of course , the Yankees .
-In a lovely , novelistic memoir , `` Sleeping Arrangements '' -LRB- Knopf , 195 pages , $ 18.95 -RRB- , she remembers an exotic playground , peopled mainly by Jewish eccentrics and the occasional Catholic -LRB- real oddballs like her sexpot friend , the hell-kitten Diana , age five -RRB- .
+The Bronx has a wonderful botanical garden , a great zoo , its own charming Little Italy ( on Arthur Avenue ) and , of course , the Yankees .
+In a lovely , novelistic memoir , `` Sleeping Arrangements '' ( Knopf , 195 pages , $ 18.95 ) , she remembers an exotic playground , peopled mainly by Jewish eccentrics and the occasional Catholic ( real oddballs like her sexpot friend , the hell-kitten Diana , age five ) .
 Ms. Cunningham , a novelist and playwright , has a vivid and dramatically outsized sense of recall .
 She transforms her `` Bronx of the emotions , a place where the flats of mediocrity are only relieved by steep descents into hysteria '' into the `` Babylonian Bronx , '' a world simmering with sex and death and intrigue .
 For Ms. Cunningham the architectural discombobulation matched the discrepancy she felt living in the AnaMor Towers as a little girl : `` ... outwardly ordinary , inwardly ornate , owing all inspiration to heathen cultures .
@@ -636,9 +636,9 @@ Rosie reinvented this man , who may or may not have known about his child , as a
 Rosie died young and Lily has remembered her as a romantic figure , who did n't interfere much with her child 's education on the streets .
 She analyzed families by their sleeping arrangements .
 Her friend Diana 's father was a professional thief ; they did n't seem to have any bedrooms at all .
-With loving detail she recalls her Uncle Gabe , an Orthodox Jew and song lyricist -LRB- who rhymed river with liver in a love song -RRB- ; and Uncle Len , a mysterious part-time investigator who looked like Lincoln and carried a change of clothing in a Manila envelope , like an `` undercover President on a good-will mission . ''
-With loving detail she recalls her Uncle Gabe , an Orthodox Jew and song lyricist -LRB- who rhymed river with liver in a love song -RRB- ; and Uncle Len , a mysterious part-time investigator who looked like Lincoln and carried a change of clothing in a Manila envelope , like an `` undercover President on a good-will mission . ''
-With loving detail she recalls her Uncle Gabe , an Orthodox Jew and song lyricist -LRB- who rhymed river with liver in a love song -RRB- ; and Uncle Len , a mysterious part-time investigator who looked like Lincoln and carried a change of clothing in a Manila envelope , like an `` undercover President on a good-will mission . ''
+With loving detail she recalls her Uncle Gabe , an Orthodox Jew and song lyricist ( who rhymed river with liver in a love song ) ; and Uncle Len , a mysterious part-time investigator who looked like Lincoln and carried a change of clothing in a Manila envelope , like an `` undercover President on a good-will mission . ''
+With loving detail she recalls her Uncle Gabe , an Orthodox Jew and song lyricist ( who rhymed river with liver in a love song ) ; and Uncle Len , a mysterious part-time investigator who looked like Lincoln and carried a change of clothing in a Manila envelope , like an `` undercover President on a good-will mission . ''
+With loving detail she recalls her Uncle Gabe , an Orthodox Jew and song lyricist ( who rhymed river with liver in a love song ) ; and Uncle Len , a mysterious part-time investigator who looked like Lincoln and carried a change of clothing in a Manila envelope , like an `` undercover President on a good-will mission . ''
 Lily 's grandmother , no cookie baker , excised the heads of disliked relatives from the family album , and lugged around her perennial work-in-progress , `` Philosophy for Women . ''
 Lily 's grandmother , no cookie baker , excised the heads of disliked relatives from the family album , and lugged around her perennial work-in-progress , `` Philosophy for Women . ''
 The book loses some momentum toward the end , when Lily becomes more preoccupied with dating boys and less with her delightfully weird family .
@@ -855,7 +855,7 @@ The thrift is also working to unload its junk-bond portfolio by continuing to se
 The thrift is also working to unload its junk-bond portfolio by continuing to sell off the bonds , and it plans to eventually place some of them in a separate affiliate , as required under the new thrift law .
 On a recent Saturday night , in the midst of West Germany 's most popular prime-time show , a contestant bet the host that she could name any of 100 different cheeses after just one nibble , while blindfolded .
 On a recent Saturday night , in the midst of West Germany 's most popular prime-time show , a contestant bet the host that she could name any of 100 different cheeses after just one nibble , while blindfolded .
-But perhaps even more remarkable , the three-hour-show , `` Wetten Dass '' -LRB- Make a Bet -RRB- , regularly wins the top slot in the country 's TV ratings , sometimes drawing as many as 50 % of West German households .
+But perhaps even more remarkable , the three-hour-show , `` Wetten Dass '' ( Make a Bet ) , regularly wins the top slot in the country 's TV ratings , sometimes drawing as many as 50 % of West German households .
 As the 1992 economic integration approaches , Europe 's cultural curators have taken to the ramparts against American `` cultural imperialism , '' threatening to impose quotas against such pop invaders as `` Dallas , '' `` Miami Vice '' and `` L.A. Law .
 One of France 's most popular Saturday night programs features semi-celebrities seeking out their grammar-school classmates for on-air reunions .
 Topping the cheese stunt , on another typical evening of fun on `` Wetten Dass , '' a contestant won a bet with the show 's host , Thomas Gottschalk , that he could identify 300 German dialects over the telephone .
@@ -872,7 +872,7 @@ Just last week , Greece authorized two commercial channels for the first time ; 
 The result is a new and huge appetite for programming .
 In a Madrid hotel room recently , a viewer caught the end of a badly acted series about a fishing boat on Australia 's Great Barrier Reef , only to be urged by the British announcer to `` stay tuned for the further adventures of Skippy the Kangaroo . ''
 British Aerospace PLC and France 's Thomson-CSF S.A. said they are nearing an agreement to merge their guided-missile divisions , greatly expanding collaboration between the two defense contractors .
-The 50-50 joint venture , which may be dubbed Eurodynamics , would have combined annual sales of at least # 1.4 billion -LRB- $ 2.17 billion -RRB- and would be among the world 's largest missile makers .
+The 50-50 joint venture , which may be dubbed Eurodynamics , would have combined annual sales of at least # 1.4 billion ( $ 2.17 billion ) and would be among the world 's largest missile makers .
 The venture would strengthen the rapidly growing ties between the two companies , and help make them a leading force in European defense contracting .
 The venture would strengthen the rapidly growing ties between the two companies , and help make them a leading force in European defense contracting .
 In recent months , a string of cross-border mergers and joint ventures have reshaped the once-balkanized world of European arms manufacture .
@@ -953,7 +953,7 @@ In the hands of a zealot like Lenny Bruce , this double-edged blade could cut bo
 But wielded by a pro like Jackie Mason , it is a constructive form of mischief .
 Because despite all the media prattle about comedy and politics not mixing , they are similar in one respect : Both can serve as mechanisms for easing tensions and facilitating the co-existence of groups in conflict .
 That 's why it 's dangerous to have well-intentioned thought police , on college campuses and elsewhere , taboo all critical mention of group differences .
-In `` Chicken Soup , '' Mr. Mason plays Jackie , a Jewish bachelor courting Maddie -LRB- Lynn Redgrave -RRB- , an Irish widow and mother of three , against the wishes of his mother -LRB- Rita Karin -RRB- and her brother Michael -LRB- Brandon Maggart -RRB- .
+In `` Chicken Soup , '' Mr. Mason plays Jackie , a Jewish bachelor courting Maddie ( Lynn Redgrave ) , an Irish widow and mother of three , against the wishes of his mother ( Rita Karin ) and her brother Michael ( Brandon Maggart ) .
 Back in the 1920s , the play and movie versions of `` Abie 's Irish Rose '' made the theme of courtship between the assimilated offspring of Jewish and Irish immigrants so popular that its author , Anne Nichols , lost a plagiarism suit on the grounds that the plot has entered the public domain .
 Back in the 1920s , the play and movie versions of `` Abie 's Irish Rose '' made the theme of courtship between the assimilated offspring of Jewish and Irish immigrants so popular that its author , Anne Nichols , lost a plagiarism suit on the grounds that the plot has entered the public domain .
 Part of the problem is the tendency of all sitcoms , ever since the didactic days of Norman Lear , to preach about social issues .
@@ -968,7 +968,7 @@ Treasury Secretary Nicholas Brady said in a statement Friday that the stock-mark
 James Robinson , 57 years old , was elected president and chief executive officer of this maker of magnetic recording heads for disk drives .
 Charles J. Lawson Jr. , 68 , who had been acting chief executive since June 14 , will continue as chairman .
 The Senate 's decision to approve a bare-bones deficit-reduction bill without a capital-gains tax cut still leaves open the possibility of enacting a gains tax reduction this year .
-`` We 're putting a deficit-reduction bill back in the category of being a deficit-reduction bill , '' said Senate Budget Committee Chairman James Sasser -LRB- D. , Tenn .
+`` We 're putting a deficit-reduction bill back in the category of being a deficit-reduction bill , '' said Senate Budget Committee Chairman James Sasser ( D. , Tenn .
 White House Budget Director Richard Darman told reporters yesterday that the administration would n't push to keep the capital-gains cut in the final version of the bill .
 `` We do n't need this as a way to get capital gains , '' he said .
 The Senate 's decision was a setback for President Bush and will make approval of a capital-gains tax cut less certain this year .
@@ -1093,7 +1093,7 @@ Then he jumped into the market : `` I spent $ 30 million in the last half-hour .
 `` There is no justification on the fundamental level for this crash . ''
 Most often , they do just that , because stocks have proved to be the best-performing long-term investment , attracting about $ 1 trillion from pension funds alone .
 The $ 56 billion California Public Employees Retirement System , for one , added $ 1 billion to its stock portfolio two years ago .
-`` Those that pulled out -LRB- of stocks -RRB- regretted it , '' he said , `` so I doubt you 'll see any significant changes '' in institutional portfolios as a result of Friday 's decline .
+`` Those that pulled out ( of stocks ) regretted it , '' he said , `` so I doubt you 'll see any significant changes '' in institutional portfolios as a result of Friday 's decline .
 `` You could go down 400 points and still have a good year in the market , '' said James D. Awad , president of New York-based BMI Capital Corp .
 Not really insurance , this tactic was designed to soften the blow of declining stock prices and generate an offsetting profit by selling waves of S&P futures contracts .
 Neil Weisman , whose New York-based Chilmark Capital Partners had converted 85 % of its $ 220 million investment pool to cash in recent months , said he was besieged by Wall Street firms Friday asking him to take stock off their hands .
@@ -1129,13 +1129,13 @@ But , barring further drops in the market this week , a similar outcome does n't
 Lawmakers and administration officials agree that Friday 's drop , by itself , is n't enough to force both sides back to the table to try to reach a deficit-reduction agreement that would be more serious and more far-reaching than last spring 's gimmick-ridden plan , which still is n't fully implemented .
 They learned they could survive it without much problem . ''
 In that case , there will be plenty of blame to go around .
-`` There is an underlying concern on the part of the American people -- and there should be - that the administration has not gone far enough in cutting this deficit and that Congress has been unwilling to cut what the administration asked us to cut , '' said Senate Finance Committee Chairman Lloyd Bentsen -LRB- D. , Texas -RRB- .
-`` There is no prospect of any so-called grand compromise or deal next year because the administration simply did n't live up to this year 's deal , '' Senate Majority Leader George Mitchell -LRB- D. , Maine -RRB- said yesterday on CBS News 's `` Face the Nation . ''
+`` There is an underlying concern on the part of the American people -- and there should be - that the administration has not gone far enough in cutting this deficit and that Congress has been unwilling to cut what the administration asked us to cut , '' said Senate Finance Committee Chairman Lloyd Bentsen ( D. , Texas ) .
+`` There is no prospect of any so-called grand compromise or deal next year because the administration simply did n't live up to this year 's deal , '' Senate Majority Leader George Mitchell ( D. , Maine ) said yesterday on CBS News 's `` Face the Nation . ''
 At the very moment that Senate Republicans were negotiating a deal to exclude capital gains from the deficit-reduction legislation , White House spokesman Marlin Fitzwater told reporters that it was the president 's policy to include it .
 When an agreement was reached to strip capital gains from the legislation , Oregon Sen. Bob Packwood , the ranking GOP member of the tax-writing Senate Finance Committee , hailed it .
 Senate Republicans expressed the hope that the House would follow the lead of the Senate , which on Friday agreed to drop a variety of spending measures and tax breaks that would have increased the fiscal 1990 deficit .
 Senate Republicans expressed the hope that the House would follow the lead of the Senate , which on Friday agreed to drop a variety of spending measures and tax breaks that would have increased the fiscal 1990 deficit .
-`` The market needs a strong signal that we 're serious about deficit reduction , and the best way to do that is for the House of Representatives to strip their bill '' of similar provisions , Sen. Warren Rudman -LRB- R. , N.H .
+`` The market needs a strong signal that we 're serious about deficit reduction , and the best way to do that is for the House of Representatives to strip their bill '' of similar provisions , Sen. Warren Rudman ( R. , N.H .
 The White House Office of Management and Budget , whose calculations determine whether the Gramm-Rudman targets are met , estimated that the House-passed deficit-reduction measure would cut the fiscal 1990 shortfall by $ 6.2 billion , almost half of the Congressional Budget Office 's estimate of $ 11.0 billion .
 Before the sun had set on Friday , Richard Rahn , the supply-side chief economist of the U.S. Chamber of Commerce , issued a statement attributing the drop in stock prices to the Senate decision to postpone action on capital gains .
 Before the sun had set on Friday , Richard Rahn , the supply-side chief economist of the U.S. Chamber of Commerce , issued a statement attributing the drop in stock prices to the Senate decision to postpone action on capital gains .
@@ -1296,9 +1296,9 @@ Boys on busy street corners peddle newspapers of every political stripe .
 Australian press magnate Rupert Murdoch has bought 50 % stakes in two popular and gossipy Hungarian newspapers , while Britain 's Robert Maxwell has let it be known here that he is thinking about similar moves .
 They are still an important source of news for 60 million listeners in 23 exotic tongues : from Bulgarian and Belorussian to Kazakh and Kirghiz .
 The establishment of its first bureau in Warsaw Pact territory shows the depth of some of the changes in Eastern Europe .
-It 's a far cry from the previous treatment of the network , which had to overcome jamming of its frequencies and intimidation of local correspondents -LRB- who filed reports to the network by phone , secret messengers or letters -RRB- .
-It 's a far cry from the previous treatment of the network , which had to overcome jamming of its frequencies and intimidation of local correspondents -LRB- who filed reports to the network by phone , secret messengers or letters -RRB- .
-It 's a far cry from the previous treatment of the network , which had to overcome jamming of its frequencies and intimidation of local correspondents -LRB- who filed reports to the network by phone , secret messengers or letters -RRB- .
+It 's a far cry from the previous treatment of the network , which had to overcome jamming of its frequencies and intimidation of local correspondents ( who filed reports to the network by phone , secret messengers or letters ) .
+It 's a far cry from the previous treatment of the network , which had to overcome jamming of its frequencies and intimidation of local correspondents ( who filed reports to the network by phone , secret messengers or letters ) .
+It 's a far cry from the previous treatment of the network , which had to overcome jamming of its frequencies and intimidation of local correspondents ( who filed reports to the network by phone , secret messengers or letters ) .
 Hungarian radio often saves its most politically outspoken broadcasts for around midnight .
 Television , which most of the time is considered rather tame , has entered the running with a new program , `` The End of the Day , '' which comes on after 11 p.m .
 It is a talk show with opposition leaders and political experts who discuss Hungary 's domestic problems as well as foreign affairs .
@@ -1316,9 +1316,9 @@ Those of us who resisted the idea then suspect today that an obligation of gover
 Why not keep and even expand the loans and grants , the advocates reasoned , but require some form of service from each recipient ?
 Why not keep and even expand the loans and grants , the advocates reasoned , but require some form of service from each recipient ?
 The Democratic Leadership Council , a centrist group sponsoring the plan , surely thought it might help the party to attract support , especially among college students and their parents .
-In this case , the new recipe for national service called for throwing many assorted legislative leftovers into one kettle : a demonstration project for educational aid -LRB- particularly satisfying to the DLC and Sen. Sam Nunn -RRB- , a similar demonstration program for youth conservation -LRB- a la Sen. Chris Dodd -RRB- , a competitive grants program to states to spark youth and senior citizen volunteer projects -LRB- a Kennedy specialty -RRB- , a community service work-study program for students -LRB- pleasing to the palate of Sen. Dale Bumpers , among others -RRB- , plus engorgement of the VISTA volunteer program and the Retired Senior Volunteer , Foster Grandparent , and Senior Companion programs .
+In this case , the new recipe for national service called for throwing many assorted legislative leftovers into one kettle : a demonstration project for educational aid ( particularly satisfying to the DLC and Sen. Sam Nunn ) , a similar demonstration program for youth conservation ( a la Sen. Chris Dodd ) , a competitive grants program to states to spark youth and senior citizen volunteer projects ( a Kennedy specialty ) , a community service work-study program for students ( pleasing to the palate of Sen. Dale Bumpers , among others ) , plus engorgement of the VISTA volunteer program and the Retired Senior Volunteer , Foster Grandparent , and Senior Companion programs .
 It is widely known that `` too many cooks spoil the broth , '' but that wisdom does not necessarily reflect the view of the cooks , especially if they are senators .
-According to the Gallup Poll , American adults contribute an average of two hours a week of service , while financial contributions to charity in the 1980s have risen 30 % -LRB- adjusted for inflation -RRB- .
+According to the Gallup Poll , American adults contribute an average of two hours a week of service , while financial contributions to charity in the 1980s have risen 30 % ( adjusted for inflation ) .
 '' Or we might provide a tax credit for working students .
 To the extent we lack manpower to staff menial jobs in hospitals , for example , we should raise pay , pursue labor-saving technology , or allow more legal immigration , rather than overpay high school graduates as short-term workers and cause resentment among permanent workers paid lesser amounts to do the same jobs .
 To the extent we lack manpower to staff menial jobs in hospitals , for example , we should raise pay , pursue labor-saving technology , or allow more legal immigration , rather than overpay high school graduates as short-term workers and cause resentment among permanent workers paid lesser amounts to do the same jobs .
@@ -1343,10 +1343,10 @@ For the nine months ended June 30 , CenTrust had a net loss of $ 21.3 million , 
 If the economy continues to expand by 0.8 % a quarter for the rest of the year , it would leave GDP growth for all of 1989 at 3 % , the institute said .
 If the economy continues to expand by 0.8 % a quarter for the rest of the year , it would leave GDP growth for all of 1989 at 3 % , the institute said .
 The Canadian government announced a new , 12-year Canada Savings Bond issue that will yield investors 10.5 % in the first year .
-The government has about 41.4 billion Canadian dollars -LRB- US$ 35.2 billion -RRB- of such bonds currently outstanding .
+The government has about 41.4 billion Canadian dollars ( US$ 35.2 billion ) of such bonds currently outstanding .
 Only Canadian residents are permitted to buy Canada Savings Bonds , which may be redeemed any time at face value .
 After a decade in which more than 50 localities established their own service or conservation corps and dozens of school systems made community service a prerequisite to high-school graduation , the focus has shifted to Washington .
--RRB- and Rep. Dave McCurdy -LRB- D. , Okla. -RRB- , would have restricted federal college subsidies to students who had served .
+) and Rep. Dave McCurdy ( D. , Okla. ) , would have restricted federal college subsidies to students who had served .
 People eager to have youth `` pay their dues to society '' favor service proposals -- preferably mandatory ones .
 To libertarians , mandatory service is an abomination and voluntary systems are illegitimate uses of tax money .
 Devotees of the market question the value of the work national service would perform : If the market wo n't pay for it , they argue , it ca n't be worth its cost .
@@ -1357,14 +1357,14 @@ Those are not trivial questions , and the label `` national service '' answers n
 Ignore `` national service '' in the abstract ; consider specific proposals .
 There is a rationale for such bills : Federal subsidies to college students amount to `` a GI Bill without the GI '' ; arguably those benefits should be earned , not given .
 But the earnings exceed by 20 % the average income of young high-school graduates with full-time jobs .
--LRB- Who will throw several hundred thousand refusers in jail each year ?
--RRB- But through tax policy and in other ways the federal government encourages many kinds of behavior .
+( Who will throw several hundred thousand refusers in jail each year ?
+) But through tax policy and in other ways the federal government encourages many kinds of behavior .
 It should also encourage service -- preferably by all classes and all ages .
 Its encouragement should strengthen and not undercut the strong tradition of volunteering in the U.S. , should build on the service programs already in existence , and should honor local convictions about which tasks most need doing .
 They involve stipends to participants .
-But they believe themselves to be serving , and they begin to respect themselves -LRB- and others -RRB- , to take control of their lives , to think of the future .
+But they believe themselves to be serving , and they begin to respect themselves ( and others ) , to take control of their lives , to think of the future .
 That is a service to the nation .
-He is a co-author of `` National Service : What Would It Mean ? '' -LRB- Lexington Books , 1986 -RRB- .
+He is a co-author of `` National Service : What Would It Mean ? '' ( Lexington Books , 1986 ) .
 Government officials here and in other countries laid plans through the weekend to head off a Monday market meltdown -- but went out of their way to keep their moves quiet .
 And at the Treasury , Secretary Nicholas Brady talked with friends and associates on Wall Street while Assistant Secretary David Mullins carefully analyzed data on the Friday market plunge .
 In addition , officials at the Fed and in the Bush administration decided that avoiding overt actions and statements over the weekend would give them more strength and flexibility should Friday 's market drop turn into this morning 's rout .
@@ -1387,9 +1387,9 @@ And we hope to take advantage of panics and buy stocks when they plunge . ''
 James Craig , portfolio manager for the Denver-based Janus Fund , which has one of the industry 's better track records , started his buying during Friday 's plunge .
 Mr. Front of Stein Roe suggests that any buying should `` concentrate in stocks that have lagged the market on the up side , or stocks that have been beaten down a lot more than the market in this correction .
 On Thursday , William Fleckenstein , a Seattle money manager , used futures contracts in his personal account to place a bet that the broad market averages would decline .
-David M. Jones , vice president at Aubrey G. Lanston & Co. , recommends Treasury securities -LRB- of up to five years ' maturity -RRB- .
+David M. Jones , vice president at Aubrey G. Lanston & Co. , recommends Treasury securities ( of up to five years ' maturity ) .
 He says the Oct. 6 employment report , showing slower economic growth and a severe weakening in the manufacturing sector , is a warning sign to investors .
-A put option gives its holder the right -LRB- but not the obligation -RRB- to sell a stock -LRB- or stock index -RRB- for a specified price -LRB- the strike price -RRB- until the option expires .
+A put option gives its holder the right ( but not the obligation ) to sell a stock ( or stock index ) for a specified price ( the strike price ) until the option expires .
 But she expects prices to rebound soon and is telling investors she expects the stock market wo n't decline more than 10 % to 15 % from recent highs .
 Paying , say , 10 % for insurance against losses takes a deep bite out of the return .
 Coldwell Banker Commercial Group said it sold $ 47 million of common stock to its employees at $ 10 a share , giving them a total stake of more than 40 % in the commercial real estate brokerage firm .
@@ -1436,8 +1436,8 @@ Fund official Simon Lyster said world trade in wildlife was estimated to total $
 A NATO project to build a frigate for the 1990s was torpedoed by the pull-out of three of its eight participating nations .
 Britain , France and Italy announced technical reasons for withdrawing , but some officials pointed to growing reluctance among the allies to commit themselves to big defense spending while East-West disarmament talks show signs of success .
 Britain , France and Italy announced technical reasons for withdrawing , but some officials pointed to growing reluctance among the allies to commit themselves to big defense spending while East-West disarmament talks show signs of success .
-Labor gets 25 pence -LRB- 39 cents -RRB- for every 100 -LRB- about $ 155 -RRB- that a user charges to the card .
-As with other plastic in Britain 's high-interest-rate environment , the Labor card , administered by Co-operative Bank , carries a stiff -LRB- in this case , 29.8 % -RRB- annual rate on the unpaid balance .
+Labor gets 25 pence ( 39 cents ) for every 100 ( about $ 155 ) that a user charges to the card .
+As with other plastic in Britain 's high-interest-rate environment , the Labor card , administered by Co-operative Bank , carries a stiff ( in this case , 29.8 % ) annual rate on the unpaid balance .
 In a sign of growing official tolerance for religion , Russian Orthodox priests were allowed to celebrate the 400th anniversary of the Moscow patriarchate in the Kremlin 's 15th-century Uspensky Cathedral , where czars were crowned ... .
 The statue is the brainchild of Sik Chi Wan , director of the Po Lin Monastery , who said : `` Hong Kong is such a prosperous place , we also need some kind of religious symbol . ''
 The statue is the brainchild of Sik Chi Wan , director of the Po Lin Monastery , who said : `` Hong Kong is such a prosperous place , we also need some kind of religious symbol . ''
@@ -1447,7 +1447,7 @@ Seeking to keep Justin 's `` My Own '' product line off the U.S. market , Sony l
 Seeking to keep Justin 's `` My Own '' product line off the U.S. market , Sony last May filed a suit in Manhattan federal court accusing the upstart of trademark infringement , unfair competition and other violations of business law .
 Since then , life has changed a lot for 61-year-old Leonard Kaye , Justin 's owner .
 `` It 's the most distracting thing in my life -- I ca n't even attend to my business .
-'' His company -LRB- annual sales : about $ 25 million -RRB- may suffer a costly blow -- losing an estimated 10 % of total sales -- if Sony -LRB- annual sales : about $ 16 billion -RRB- prevails .
+'' His company ( annual sales : about $ 25 million ) may suffer a costly blow -- losing an estimated 10 % of total sales -- if Sony ( annual sales : about $ 16 billion ) prevails .
 Justin 's plight shows what can happen when a tiny company suddenly faces the full legal might of a wrathful multinational .
 With considerable irony , the case also shows how completely Japan has turned the tables on U.S. business .
 Today , U.S. Judge John E. Sprizzo is expected to rule on Sony 's renewed request for a pre-trial order blocking sale of the disputed products , on which deliveries began in July .
@@ -1461,15 +1461,15 @@ Indeed , concerned that Sony sales personnel were threatening legal action or ot
 Allowing the defendant to take the Fifth in a civil matter is not based on a constitutional right to refuse to testify where one 's testimony harms him in the civil matter , but because the testimony in the civil matter could be unconstitutionally used against him in a subsequent criminal prosecution .
 Sony answered the empty threat with its real suit .
 Sony 's lawyer insists that the company 's tactics -- including the use of a private detective posing as a buyer -- are routine in such matters .
--LRB- Justin claims it began using the same colors on electronic goods for children long before Sony entered the children 's market .
+( Justin claims it began using the same colors on electronic goods for children long before Sony entered the children 's market .
 @ Charles H. Tenney II , chairman of Unitil Corp. , purchased 34,602 shares , or 4.9 % , of Unitil 's common , according to a filing with the Securities and Exchange Commission .
 As previously reported , Unitil , Exeter , N.H. , and Fitchburg Gas & Electric Co. , Fitchburg , Mass. , are targets of unsolicited tender offers from Boston-based Eastern Utilities Associates .
 Eastern Utilities has offered $ 40 a share for Unitil and $ 36 a share for Fitchburg Gas and has extended both offers to Dec. 4 .
 Dresdner Bank AG of West Germany has announced a friendly tender offer for control of Banque Internationale de Placements , a French bank whose main shareholder is France 's Societe Generale , the Societe de Bourses Francaises said .
-Dresdner is offering to acquire 32.99 % of BIP 's capital for 1,015 francs -LRB- $ 156.82 -RRB- a share .
-Dresdner is offering to acquire 32.99 % of BIP 's capital for 1,015 francs -LRB- $ 156.82 -RRB- a share .
-The terms of the offer put a value of 528 million francs -LRB- $ 81.6 million -RRB- on the 32.99 % shareholding .
-The terms of the offer put a value of 528 million francs -LRB- $ 81.6 million -RRB- on the 32.99 % shareholding .
+Dresdner is offering to acquire 32.99 % of BIP 's capital for 1,015 francs ( $ 156.82 ) a share .
+Dresdner is offering to acquire 32.99 % of BIP 's capital for 1,015 francs ( $ 156.82 ) a share .
+The terms of the offer put a value of 528 million francs ( $ 81.6 million ) on the 32.99 % shareholding .
+The terms of the offer put a value of 528 million francs ( $ 81.6 million ) on the 32.99 % shareholding .
 The Societe Generale banking group controls 18.2 % of the shareholding , while Societe Generale de Belgique S.A. owns 9.69 % and Financiere Tradition , a holding company , owns 5.1 % .
 Mexican investor Joel Rocha Garza said he sold a block of 600,000 shares of Smith Laboratories Inc. common stock to companies affiliated with him .
 Mexican investor Joel Rocha Garza said he sold a block of 600,000 shares of Smith Laboratories Inc. common stock to companies affiliated with him .
@@ -1602,7 +1602,7 @@ The parent companies forecast sales for the venture of around 750 million marks 
 The parent companies forecast sales for the venture of around 750 million marks for its first fiscal year , Matsushita said .
 Mr. Zuckerman said his magazine would maintain its editorial format , which is a mix of analysis and trend stories with service-oriented , how-to articles .
 Mr. Rosenblatt , a senior writer at Time magazine before joining U.S. News & World Report , said he had numerous job offers from other magazines while he was editor .
-Avions Marcel Dassault-Breguet Aviation S.A. said group profit before taxes and contributions to employee profit-sharing soared 97 % to 839 million francs -LRB- $ 129.6 million -RRB- in the first half of 1989 from 425 million francs a year earlier .
+Avions Marcel Dassault-Breguet Aviation S.A. said group profit before taxes and contributions to employee profit-sharing soared 97 % to 839 million francs ( $ 129.6 million ) in the first half of 1989 from 425 million francs a year earlier .
 Still , it said it expects sales for all of 1989 to be on the order of 20 billion francs , reflecting anticipated billings for two large contracts in the second half of the year .
 For all of 1988 , Dassault had group profit of 428 million francs on revenue of 18.819 billion francs .
 The group has n't yet released earnings figures for the first half of 1989 , nor has it made a detailed forecast of its full-year earnings .
@@ -1685,10 +1685,10 @@ The toy makers , and their foreign buyers , cite uncertainty about China 's econ
 `` Nobody wants to have all his eggs in one basket , '' says David Yeh , chairman and chief executive officer of International Matchbox Group Ltd .
 `` South China is the most competitive source of toys in the world , '' says Henry Hu , executive director of Wah Shing Toys Consolidated Ltd .
 Hong Kong trade figures illustrate the toy makers ' reliance on factories across the border .
-In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion -LRB- US$ 1.29 billion -RRB- .
-In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion -LRB- US$ 1.29 billion -RRB- .
+In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion ( US$ 1.29 billion ) .
+In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion ( US$ 1.29 billion ) .
 But re-exports , mainly from China , jumped 75 % , to HK$ 15.92 billion .
-In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion -LRB- US$ 1.29 billion -RRB- .
+In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion ( US$ 1.29 billion ) .
 Meanwhile , the retail sales report showed that car sales rose 0.8 % in September to $ 32.82 billion .
 The industry regards last year and this year as a period of recovery that will lead to improved results .
 Still , they long for a `` mega-hit '' toy to excite retail sales in the U.S. , Hong Kong 's biggest market for toys and games .
@@ -1760,7 +1760,7 @@ The slaughter in Colombia was very much on the minds of 450 editors and publishe
 On Tuesday the conference got word of another atrocity , the assassination in Medellin of two employees of El Espectador , Colombia 's second-largest newspaper .
 El Espectador has been a special target because of the extraordinary courage of its publisher and his staff .
 Mr. Corcoran most recently was head of administration and portfolio management at the Chemical Realty Group division of Chemical Bank .
-The company , which is preparing to sell 10 % of its shares on the French stock market , said profit could reach between 100 million francs -LRB- $ 15.4 million -RRB- and 110 million francs this year , representing increases of between 30 % and 44 % from the 1988 level of 76.5 million francs .
+The company , which is preparing to sell 10 % of its shares on the French stock market , said profit could reach between 100 million francs ( $ 15.4 million ) and 110 million francs this year , representing increases of between 30 % and 44 % from the 1988 level of 76.5 million francs .
 The company plans to raise 1.5 billion francs with its share offer , involving the sale of one million shares .
 Warner , which is in the process of being acquired by Time Warner Inc. , is attempting to `` sabotage '' Sony 's efforts as part of a `` plan and scheme to dominate and control the entertainment business , '' the countersuit from Sony and Guber Peters adds .
 Stressed-out consumers -- juggling jobs , families and leisure activities -- feel they have less time to shop .
@@ -1794,7 +1794,7 @@ In the 1988 third quarter , Owens-Corning had profit from continuing operations 
 In the 1988 third quarter , Owens-Corning had profit from continuing operations of $ 57 million .
 With the elections approaching , critics say the manipulation of such an influential medium poses a threat to India 's democratic traditions .
 But Kamal Kant Tewary , minister for information and broadcasting , says : `` We are the elected representatives of the people , and we will do whatever we think is fit and in the interests of the people . ''
-Many say Mr. Gandhi and Congress -LRB- I -RRB- , with seesawing popularity and an arms scandal that has tarnished the government , stand a chance of losing power .
+Many say Mr. Gandhi and Congress ( I ) , with seesawing popularity and an arms scandal that has tarnished the government , stand a chance of losing power .
 In the same month , a group of politicians circulated a photo of a top opposition leader , Ajit Singh , socializing with an alleged drug smuggler .
 Troubled British defense contractor Ferranti International Signal PLC replaced the head of its scandal-plagued U.S. division .
 Mr. Dodd , a 53-year-old Briton , is a Ferranti board member and managing director of Ferranti 's instrumentation division .
@@ -1831,8 +1831,8 @@ The reality to which Ms. Geva refers is the hoard of dance memorabilia currently
 For Ms. Geva , an actress and author who began her career as a dancer during the early days of the Soviet state under her original name of Gevergeyeva , it offers something more : a sense of completion , the lifting of a curtain on the past .
 For Ms. Geva , an actress and author who began her career as a dancer during the early days of the Soviet state under her original name of Gevergeyeva , it offers something more : a sense of completion , the lifting of a curtain on the past .
 In effect , he became the official curator of his former collection , which grew prodigiously and soon included several thousand costumes .
-For Americans , the most interesting of the 400 items on display in New York include designs by the German-born Andrei Roller -LRB- 1805-91 -RRB- for the Russian productions of important early 19th-century Paris ballets .
-No less illuminating are the designs from Petipa 's `` Sleeping Beauty '' -LRB- 1890 -RRB- , `` Nutcracker '' -LRB- 1892 -RRB- and `` Raymonda '' -LRB- 1897 -RRB- , which shed light on the role played by spectacle in the ballets of this great choreographer .
+For Americans , the most interesting of the 400 items on display in New York include designs by the German-born Andrei Roller ( 1805-91 ) for the Russian productions of important early 19th-century Paris ballets .
+No less illuminating are the designs from Petipa 's `` Sleeping Beauty '' ( 1890 ) , `` Nutcracker '' ( 1892 ) and `` Raymonda '' ( 1897 ) , which shed light on the role played by spectacle in the ballets of this great choreographer .
 There also is much to be learned from the early stage photographs of Petipa 's work , which , though posed , extend our knowledge of its theatrical ambiance .
 The mistress of Nicholas II until his engagement to Alexandra of Hesse-Darmstadt , she dominated the Imperial Ballet of St. Petersburg as much through her dancing as through her connections .
 George Balanchine , to whom Ms. Geva was married as a teenager in 1923 and who began his career as an artistic revolutionary , also gets short shrift .
@@ -1846,7 +1846,7 @@ Bull says it intends to retain existing management of the U.S. unit and keep the
 Bull says it intends to retain existing management of the U.S. unit and keep the Zenith label , while selling Zenith personal computers -- a product line in which Bull had been lagging -- as part of Bull data-processing systems .
 Warner , which is in the process of being acquired by Time Warner Inc. , is attempting to `` sabotage '' Sony 's efforts as part of a `` plan and scheme to dominate and control the entertainment business , '' the countersuit from Sony and Guber Peters adds .
 Merger or not , the Zenith acquisition is a key part of Mr. Lorentz 's plan to grow Bull -- the world 's 11th biggest computer company last year -- into a profitable member of the top five or six computer makers .
-Bull had a first-half net loss of 537 million francs -LRB- $ 82.7 million -RRB- on revenue of 14 billion francs -LRB- $ 2.16 billion -RRB- .
+Bull had a first-half net loss of 537 million francs ( $ 82.7 million ) on revenue of 14 billion francs ( $ 2.16 billion ) .
 Mr. Lorentz says his objective remains posting a small profit for this year , but he is n't certain the company will make it into the black .
 Mr. Lorentz says his objective remains posting a small profit for this year , but he is n't certain the company will make it into the black .
 Bull posted a profit in 1988 of 303 million francs on revenue of 31.55 billion francs .
@@ -1933,8 +1933,8 @@ In the third quarter , for instance , CenTrust added $ 22.5 million to its gener
 Meanwhile , the retail sales report showed that car sales rose 0.8 % in September to $ 32.82 billion .
 Meanwhile , the retail sales report showed that car sales rose 0.8 % in September to $ 32.82 billion .
 Meanwhile , the retail sales report showed that car sales rose 0.8 % in September to $ 32.82 billion .
-In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion -LRB- US$ 1.29 billion -RRB- .
-In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion -LRB- US$ 1.29 billion -RRB- .
+In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion ( US$ 1.29 billion ) .
+In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion ( US$ 1.29 billion ) .
 Although the legality of these sales is still an open question , the disclosure could n't be better timed to support the position of export-control hawks in the Pentagon and the intelligence community .
 Among other OTC issues , Intel , dropped 2 1\ to 33 7\ ; Laidlaw Transportation lost 1 1\ to 19 1\ ; the American depositary receipts of Jaguar were off 1\ to 10 1\ ; MCI Communications slipped 2 1\ to 43 1\ ; Apple Computer fell 3 to 45 3\ and Nike dropped 2 1\ to 66 3\ .
 Among other OTC issues , Intel , dropped 2 1\ to 33 7\ ; Laidlaw Transportation lost 1 1\ to 19 1\ ; the American depositary receipts of Jaguar were off 1\ to 10 1\ ; MCI Communications slipped 2 1\ to 43 1\ ; Apple Computer fell 3 to 45 3\ and Nike dropped 2 1\ to 66 3\ .
@@ -1944,7 +1944,7 @@ Ad linage at the Journal fell 6.1 % in the third quarter .
 A spokesman added that sales in the current quarter will about equal the yearearlier quarter 's figure , when Newport reported net income of $ 1.7 million , or 21 cents a share , on $ 14.1 million in sales .
 A spokesman added that sales in the current quarter will about equal the yearearlier quarter 's figure , when Newport reported net income of $ 1.7 million , or 21 cents a share , on $ 14.1 million in sales .
 Bull , the French-government-owned computer maker , earlier this month agreed to buy the computer business of Zenith Electronics Corp. for as much as $ 635 million , but denies this is a merger .
-In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion -LRB- US$ 1.29 billion -RRB- .
+In 1988 , exports of domestically produced toys and games fell 19 % from 1987 , to HK$ 10.05 billion ( US$ 1.29 billion ) .
 Under a reform arising from the 1987 crash , trading in the Merc 's stock-index futures will break for 10 minutes if the contract opens and stays five points from Friday 's close , a move equal to 40 points on the Dow Jones Industrial Average .
 For all of 1988 , Dassault had group profit of 428 million francs on revenue of 18.819 billion francs .
 For all of 1988 , Dassault had group profit of 428 million francs on revenue of 18.819 billion francs .
