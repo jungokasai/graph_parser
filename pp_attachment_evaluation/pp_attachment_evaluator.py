@@ -3,7 +3,8 @@
 test_sents_file = open("test_set.txt", "r")
 
 # A file of the supertags assigned to each word in each test sentence
-testTags = open("test_tags.txt", "r")
+#testTags = open("test_tags.txt", "r")
+testTags = open("predicted_stag/test.txt", "r")
 
 # Create a dictionary that, for each supertag in the MICA
 # database, returns the tree properties of that supertag
