@@ -14,7 +14,11 @@ def read_unbounded(construction, data_type):
             else:
                 flag += 1
             if flag >= 3:
-                dependencies_sent.append(tuple(words))
+                rel = words[0]
+                parent_id = int(words[1].split('_')[-1])+1 ## start from 1. Zero is ROOT.
+                child_id = int(words[2].split('_')[-1])+1
+                ## convert it to our notation
+                dependencies_sent.append((child_id, parent_id, rel))
         return dependencies
 
 def total(nested_list):
@@ -24,7 +28,11 @@ def total(nested_list):
     return total
 if __name__ == '__main__':
     constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
+    #constructions = ['sbj_extract_rel_clause']
     data_type = 'dev'
     for construction in constructions:
         dependencies = read_unbounded(construction, data_type)
-        print(total(dependencies))
+        print(dependencies[0])
+        #print(dependencies)
+        #print(total(dependencies))
+        #print(len(dependencies))

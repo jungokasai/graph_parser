@@ -11,6 +11,17 @@ def read_data(base_dir, data_type):
                 dependencies.append(dependencies_sent)
     return dependencies
 
+def read_stags(base_dir, data_type, feat = 'predicted_stag'):
+    ## create a list of lists
+    stags = []
+    with open(os.path.join(base_dir, feat, data_type+'.txt')) as f_stags:
+        for stags_sent in f_stags:
+            stags_sent = stags_sent.split()
+            stags.append(stags_sent)
+    return stags
+
 
 if __name__ == '__main__':
     read_data('obj_extract_rel_clause', 'dev')
+    stags = read_stags('obj_extract_rel_clause', 'dev')
+    print(stags[0])

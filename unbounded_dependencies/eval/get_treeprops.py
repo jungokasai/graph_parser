@@ -97,3 +97,4 @@ if __name__ == '__main__':
     import os
     treeprops_file = "d6.treeproperties"
     get_t2props_dict(treeprops_file)
+    get_t2topsub_dict(treeprops_file)
