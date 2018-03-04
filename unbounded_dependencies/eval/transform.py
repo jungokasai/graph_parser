@@ -35,8 +35,6 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
    
     # update parse_t with results
     parse_t += to_add
-    ## co-anchor
-    parse_t += add_coanchor(parse_t)
 
     # extend parse_t for predicative cases
     if add_predicative:
@@ -48,6 +46,8 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
 
         # extend parse_t for and_but cases
         parse_t += append_and_but(parse_t, stag_t, sent_t, t2props_dict)
+        ## co-anchor
+        parse_t += add_coanchor(parse_t)
     return parse_t
 #        if  debug >= 2:
 #            print("parse_t extended with and_but:")

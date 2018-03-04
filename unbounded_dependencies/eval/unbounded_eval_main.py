@@ -53,4 +53,3 @@ def evaluate(data_type):
     print('Accuracy: {}'.format(float(all_correct)/all_total))
 if __name__ == '__main__':
     evaluate('test')
-    evaluate('dev')
