@@ -11,6 +11,12 @@ We deleted that sentence for evaluation. There is also disagreement in punctuati
 
 ### TAG Parser Evaluation
 - In the TAG representations, all the other constructions but RNR can be resolved by the relative clause operation proposed in [Xu et al. 2017](http://www.aclweb.org/anthology/W/W17/W17-6214.pdf).
+- Prepositional objects have to been treated in a special way.
+    * If a word is assigned tCO (co-anchor), add the same edges as the head
+    * If a word is a preposition that modifies
 
 ### Stanford Dependency Evaluation
+- Direct
+- Indirect
+- Complex
 

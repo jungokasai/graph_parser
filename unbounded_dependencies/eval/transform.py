@@ -35,6 +35,8 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
    
     # update parse_t with results
     parse_t += to_add
+    ## co-anchor
+    parse_t += add_coanchor(parse_t)
 
     # extend parse_t for predicative cases
     if add_predicative:
@@ -168,6 +170,19 @@ def add_flipped_rel(triple, stag_t, t2props_dict, t2topsub_dict, add_plus=False)
         return((id2,id1,t2topsub_dict[stag]))
     else:
         return(None)
+
+def add_coanchor(parse_t):
+    new_edges = []
+    for dep in parse_t:
+        if dep[2] == 'CO':
+            coanchor_id = dep[0]
+            head_id = dep[1]
+            for dep in parse_t:
+                if (dep[0] == head_id):
+                    new_edges.append((coanchor_id, dep[1], dep[2]))
+                if (dep[1] == head_id):
+                    new_edges.append((dep[0], coanchor_id, dep[2]))
+    return new_edges
     
 def add_flipped_predaux(triple, stag_t, t2props_dict):
     id1, id2, dep = triple[0], triple[1], triple[2]

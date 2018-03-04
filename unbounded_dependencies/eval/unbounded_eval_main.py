@@ -27,6 +27,11 @@ def evaluate(data_type):
             predicted_stags_sent = predicted_stags[sent_idx]
             predicted_pos_sent = predicted_stags[sent_idx]
             transformed_sent = transform(t2props_dict, t2topsub_dict, sent, predicted_dependencies_sent, predicted_stags_sent)
+            print(sent_idx)
+            print(construction)
+            print(sent)
+            print(predicted_stags_sent)
+            assert(len(sent) == len(predicted_stags_sent))
             unbounded_dependencies_sent = unbounded_dependencies[sent_idx]
             for dep in unbounded_dependencies_sent:
                 total += 1
@@ -52,3 +57,4 @@ def evaluate(data_type):
     print('Accuracy: {}'.format(float(all_correct)/all_total))
 if __name__ == '__main__':
     evaluate('test')
+    evaluate('dev')
