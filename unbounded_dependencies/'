@@ -188,15 +188,14 @@ def add_coanchor(parse_t):
 def add_wh_adj(parse_t, pos_t):
     new_edges = []
     for i in xrange(len(pos_t)):
-        pos = pos_t[i]
-        if pos in ['WP', 'WRB']:
-            head_id = parse_t[i][0]
+        if dep[2] == 'ADJ':
+            coanchor_id = dep[0]
+            head_id = dep[1]
             for dep in parse_t:
-                if (dep[1] == head_id) and (dep[2] == 'ADJ'):
-                    adj_id = dep[0]
-                    for dep_ in parse_t:
-                        if (dep_[0] == head_id):
-                            new_edges.append((adj_id, dep_[1], dep_[2]))
+                if (dep[0] == head_id):
+                    new_edges.append((coanchor_id, dep[1], dep[2]))
+                if (dep[1] == head_id):
+                    new_edges.append((dep[0], coanchor_id, dep[2]))
     return new_edges
 
 def add_flipped_predaux(triple, stag_t, t2props_dict):

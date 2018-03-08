@@ -1,0 +1,894 @@
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	country	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t2168	VBZ	_	0	ROOT	_	_
+4	Berlin	_	t3	NNP	_	3	0	_	_
+5	in	_	t1135	RP	_	3	ADJ	_	_
+6	?	_	t26	.	_	3	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	6	1	_	_
+2	do	_	t259	VBP	_	6	ADJ	_	_
+3	the	_	t1	DT	_	4	ADJ	_	_
+4	initials	_	t3	NNS	_	6	0	_	_
+5	CPR	_	t3	NNP	_	6	0	_	_
+6	stand	_	t117	VB	_	0	ROOT	_	_
+7	for	_	t1221	IN	_	6	CO	_	_
+8	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	city	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	5	ADJ	_	_
+4	Purdue	_	t2	NNP	_	5	ADJ	_	_
+5	University	_	t668	NNP	_	0	ROOT	_	_
+6	in	_	t1221	IN	_	5	ADJ	_	_
+7	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	-unk-	_	_
+2	is	_	t259	VBZ	_	5	ADJ	_	_
+3	Betsy	_	t2	NNP	_	4	ADJ	_	_
+4	Ross	_	t3	NNP	_	5	-unk-	_	_
+5	famous	_	t1294	JJ	_	0	ROOT	_	_
+6	for	_	t2181	IN	_	5	ADJ	_	_
+7	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	3	0	_	_
+2	does	_	t259	VBZ	_	3	ADJ	_	_
+3	target	_	t335	VB	_	6	0	_	_
+4	heart	_	t2	NN	_	5	ADJ	_	_
+5	rate	_	t3	NN	_	6	-unk-	_	_
+6	mean	_	t388	VB	_	0	ROOT	_	_
+7	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 8 bgColor:blue
+1	What	_	t98	WP	_	8	1	_	_
+2	is	_	t259	VBZ	_	0	ROOT	_	_
+3	the	_	t1	DT	_	4	ADJ	_	_
+4	text	_	t3	NN	_	8	0	_	_
+5	of	_	t4	IN	_	4	ADJ	_	_
+6	an	_	t1	DT	_	7	ADJ	_	_
+7	opera	_	t3	NN	_	5	1	_	_
+8	called	_	t64	VBN	_	0	ROOT	_	_
+9	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	did	_	t259	VBD	_	5	ADJ	_	_
+3	Peter	_	t2	NNP	_	4	ADJ	_	_
+4	Minuit	_	t3	NNP	_	5	0	_	_
+5	buy	_	t703	VB	_	0	ROOT	_	_
+6	for	_	tCO	IN	_	5	CO	_	_
+7	the	_	t1	DT	_	8	ADJ	_	_
+8	equivalent	_	t3	NN	_	5	2	_	_
+9	of	_	t4	IN	_	8	ADJ	_	_
+10	$	_	t480	$	_	9	1	_	_
+11	24.00	_	t48	CD	_	10	ADJ	_	_
+12	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	does	_	t259	VBZ	_	5	ADJ	_	_
+3	a	_	t1	DT	_	4	ADJ	_	_
+4	defibrillator	_	t3	NN	_	5	0	_	_
+5	do	_	t214	VB	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	is	_	t259	VBZ	_	4	ADJ	_	_
+3	pastrami	_	t668	NN	_	0	ROOT	_	_
+4	made	_	t1280	VBN	_	0	ROOT	_	_
+5	of	_	tCO	IN	_	4	CO	_	_
+6	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 3 bgColor:blue
+# visual-style 6 bgColor:blue
+1	How	_	t675	WRB	_	6	1	_	_
+2	many	_	t137	JJ	_	1	ADJ	_	_
+3	battles	_	t48	NNS	_	1	ADJ	_	_
+4	did	_	t259	VBD	_	6	ADJ	_	_
+5	she	_	t29	PRP	_	6	0	_	_
+6	win	_	t214	VB	_	0	ROOT	_	_
+7	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 4 bgColor:blue
+# visual-style 7 bgColor:blue
+1	How	_	t100	WRB	_	7	1	_	_
+2	much	_	t426	JJ	_	1	ADJ	_	_
+3	vitamin	_	t48	NN	_	1	ADJ	_	_
+4	C	_	t48	NNP	_	1	ADJ	_	_
+5	should	_	t276	MD	_	7	ADJ	_	_
+6	you	_	t29	PRP	_	7	0	_	_
+7	take	_	t214	VB	_	0	ROOT	_	_
+8	in	_	tCO	RP	_	7	ADJ	_	_
+9	a	_	t1	DT	_	10	ADJ	_	_
+10	day	_	t3	NN	_	7	1	_	_
+11	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 8 bgColor:blue
+1	What	_	t98	WP	_	8	1	_	_
+2	did	_	t259	VBD	_	8	ADJ	_	_
+3	Edward	_	t2	NNP	_	4	ADJ	_	_
+4	Binney	_	t3	NNP	_	8	0	_	_
+5	and	_	t39	CC	_	4	ADJ	_	_
+6	Howard	_	t2	NNP	_	7	ADJ	_	_
+7	Smith	_	t3	NNP	_	5	1	_	_
+8	invent	_	t214	VB	_	0	ROOT	_	_
+9	in	_	t13	IN	_	8	ADJ	_	_
+10	1903	_	t3	CD	_	9	1	_	_
+11	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 3 bgColor:blue
+# visual-style 6 bgColor:blue
+1	How	_	t675	WRB	_	6	1	_	_
+2	many	_	t137	JJ	_	1	ADJ	_	_
+3	members	_	t48	NNS	_	1	ADJ	_	_
+4	does	_	t259	VBZ	_	6	ADJ	_	_
+5	it	_	t29	PRP	_	6	0	_	_
+6	have	_	t214	VBP	_	0	ROOT	_	_
+7	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	songs	_	t48	NNS	_	1	ADJ	_	_
+3	did	_	t259	VBD	_	5	ADJ	_	_
+4	he	_	t29	PRP	_	5	0	_	_
+5	sing	_	t214	VB	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	did	_	t259	VBD	_	4	ADJ	_	_
+3	she	_	t29	PRP	_	4	0	_	_
+4	die	_	t117	VB	_	0	ROOT	_	_
+5	of	_	tCO	IN	_	4	CO	_	_
+6	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	festivals	_	t48	NNS	_	1	ADJ	_	_
+3	does	_	t259	VBZ	_	5	ADJ	_	_
+4	it	_	t29	PRP	_	5	0	_	_
+5	have	_	t214	VB	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	6	1	_	_
+2	state	_	t48	NN	_	1	ADJ	_	_
+3	does	_	t259	VBZ	_	6	ADJ	_	_
+4	Martha	_	t2	NNP	_	5	ADJ	_	_
+5	Stewart	_	t3	NNP	_	6	0	_	_
+6	live	_	t117	VB	_	0	ROOT	_	_
+7	in	_	tCO	RP	_	6	CO	_	_
+8	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	country	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t259	VBZ	_	0	ROOT	_	_
+4	he	_	t29	PRP	_	5	0	_	_
+5	associated	_	t117	VBN	_	0	ROOT	_	_
+6	with	_	tCO	IN	_	5	CO	_	_
+7	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 8 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	countries	_	t48	NNS	_	1	ADJ	_	_
+3	has	_	t259	VBZ	_	6	ROOT	_	_
+4	the	_	t1	DT	_	5	ADJ	_	_
+5	IFC	_	t3	NNP	_	6	0	_	_
+6	financed	_	t601	VBD	_	0	ROOT	_	_
+7	projects	_	t3	NNS	_	6	1	_	_
+8	in	_	t1135	RP	_	6	ADJ	_	_
+9	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 4 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	did	_	t259	VBD	_	4	ADJ	_	_
+3	he	_	t29	PRP	_	4	0	_	_
+4	wear	_	t703	VB	_	0	ROOT	_	_
+5	as	_	tCO	IN	_	4	CO	_	_
+6	a	_	t1	DT	_	7	ADJ	_	_
+7	hat	_	t3	NN	_	4	2	_	_
+8	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	0	_	_
+2	did	_	t259	VBD	_	5	ADJ	_	_
+3	Sherlock	_	t2	NNP	_	4	ADJ	_	_
+4	Holmes	_	t3	NNP	_	5	0	_	_
+5	call	_	t784	VB	_	0	ROOT	_	_
+6	the	_	t1	DT	_	8	ADJ	_	_
+7	street	_	t2	NN	_	8	ADJ	_	_
+8	gang	_	t3	NN	_	5	1	_	_
+9	that	_	t100	WDT	_	10	0	_	_
+10	helped	_	t130	VBD	_	8	ADJ	_	_
+11	him	_	t29	PRP	_	12	0	_	_
+12	crack	_	t27	VB	_	10	1	_	_
+13	cases	_	t3	NNS	_	12	1	_	_
+14	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 4 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	do	_	t259	VBP	_	4	ADJ	_	_
+3	you	_	t29	PRP	_	4	0	_	_
+4	call	_	t784	VB	_	0	ROOT	_	_
+5	a	_	t1	DT	_	7	ADJ	_	_
+6	baby	_	t2	NN	_	7	ADJ	_	_
+7	sloth	_	t3	NN	_	4	1	_	_
+8	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	7	1	_	_
+2	is	_	t259	VBZ	_	0	ROOT	_	_
+3	a	_	t1	DT	_	4	ADJ	_	_
+4	group	_	t3	NN	_	7	0	_	_
+5	of	_	t4	IN	_	4	ADJ	_	_
+6	antelope	_	t3	NNS	_	5	1	_	_
+7	called	_	t214	VBN	_	0	ROOT	_	_
+8	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	is	_	t259	VBZ	_	4	ADJ	_	_
+3	rum	_	t3	NN	_	4	0	_	_
+4	made	_	t1280	VBN	_	0	ROOT	_	_
+5	out	_	t620	IN	_	4	ADJ	_	_
+6	of	_	tCO	IN	_	5	CO	_	_
+7	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 11 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	award	_	t48	NN	_	1	ADJ	_	_
+3	did	_	t259	VBD	_	0	ROOT	_	_
+4	Sterling	_	t2	NNP	_	5	ADJ	_	_
+5	North	_	t7	NNP	_	6	ADJ	_	_
+6	's	_	t8	POS	_	11	ADJ	_	_
+7	book	_	t2	NN	_	11	ADJ	_	_
+8	``	_	t121	``	_	9	ADJ	_	_
+9	Rascal	_	t2	NN	_	11	ADJ	_	_
+10	''	_	t122	''	_	9	ADJ	_	_
+11	win	_	t3	NN	_	3	1	_	_
+12	in	_	t13	IN	_	3	ADJ	_	_
+13	1963	_	t3	CD	_	12	1	_	_
+14	?	_	t26	.	_	3	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	city	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	5	ADJ	_	_
+4	Logan	_	t2	NNP	_	5	ADJ	_	_
+5	Airport	_	t668	NNP	_	0	ROOT	_	_
+6	in	_	t1221	IN	_	5	ADJ	_	_
+7	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 9 bgColor:blue
+1	What	_	t98	WP	_	8	1	_	_
+2	city	_	t48	NN	_	8	1	_	_
+3	in	_	t4	IN	_	1	ADJ	_	_
+4	Louisiana	_	t3	NNP	_	3	1	_	_
+5	was	_	t23	VBD	_	8	ADJ	_	_
+6	Britney	_	t2	NNP	_	7	ADJ	_	_
+7	Spears	_	t3	NNP	_	8	0	_	_
+8	born	_	t117	VBN	_	0	ROOT	_	_
+9	in	_	tCO	RP	_	8	ADJ	_	_
+10	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 8 bgColor:blue
+1	What	_	t98	WP	_	6	0	_	_
+2	city	_	t3	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	6	ADJ	_	_
+4	94.5	_	t2	CD	_	6	ADJ	_	_
+5	KDGE	_	t2	NNP	_	6	ADJ	_	_
+6	Radio	_	t668	NNP	_	0	ROOT	_	_
+7	located	_	t117	VBN	_	0	ROOT	_	_
+8	in	_	tCO	RP	_	7	CO	_	_
+9	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 9 bgColor:blue
+1	What	_	t98	WP	_	8	1	_	_
+2	city	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	8	ADJ	_	_
+4	the	_	t1	DT	_	6	ADJ	_	_
+5	Liberty	_	t2	NNP	_	6	ADJ	_	_
+6	Bell	_	t3	NNP	_	8	0	_	_
+7	currently	_	t24	RB	_	8	ADJ	_	_
+8	located	_	t117	VBN	_	0	ROOT	_	_
+9	in	_	tCO	IN	_	8	CO	_	_
+10	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	town	_	t48	NN	_	1	ADJ	_	_
+3	was	_	t259	VBD	_	5	ADJ	_	_
+4	he	_	t29	PRP	_	5	-unk-	_	_
+5	native	_	t2427	JJ	_	0	ROOT	_	_
+6	of	_	t1170	IN	_	5	ADJ	_	_
+7	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 4 bgColor:blue
+# visual-style 1 bgColor:blue
+1	What	_	t98	WP	_	4	0	_	_
+2	is	_	t2168	VBZ	_	0	ROOT	_	_
+3	typhoid	_	t2	NN	_	4	ADJ	_	_
+4	fever	_	t668	NN	_	2	0	_	_
+5	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 4 bgColor:blue
+# visual-style 8 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	fruit	_	t7	NN	_	3	ADJ	_	_
+3	's	_	t8	POS	_	4	ADJ	_	_
+4	stone	_	t3	NN	_	5	0	_	_
+5	does	_	t214	VBZ	_	7	ADJ	_	_
+6	Laetrile	_	t3	NNP	_	7	0	_	_
+7	come	_	t1280	VBN	_	0	ROOT	_	_
+8	from	_	tCO	IN	_	7	CO	_	_
+9	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	6	1	_	_
+2	does	_	t259	VBZ	_	6	ADJ	_	_
+3	the	_	t1	DT	_	6	ADJ	_	_
+4	acronym	_	t3	NN	_	6	ADJ	_	_
+5	CPR	_	t3	NNP	_	6	0	_	_
+6	mean	_	t214	VB	_	0	ROOT	_	_
+7	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	6	1	_	_
+2	does	_	t259	VBZ	_	6	ADJ	_	_
+3	the	_	t1	DT	_	5	ADJ	_	_
+4	abbreviation	_	t36	JJ	_	5	ADJ	_	_
+5	OAS	_	t3	NNP	_	6	0	_	_
+6	stand	_	t117	VB	_	0	ROOT	_	_
+7	for	_	t1221	IN	_	6	CO	_	_
+8	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	6	1	_	_
+2	state	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	6	ADJ	_	_
+4	Niagra	_	t2	NNP	_	5	ADJ	_	_
+5	Falls	_	t668	NNP	_	0	ROOT	_	_
+6	located	_	t117	VBN	_	0	ROOT	_	_
+7	in	_	tCO	IN	_	6	CO	_	_
+8	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	schools	_	t3	NNS	_	1	ADJ	_	_
+3	did	_	t259	VBD	_	5	ADJ	_	_
+4	he	_	t29	PRP	_	5	0	_	_
+5	attend	_	t214	VB	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	2	0	_	_
+2	do	_	t259	VBP	_	5	ADJ	_	_
+3	most	_	t36	JJS	_	4	ADJ	_	_
+4	tourists	_	t3	NNS	_	5	0	_	_
+5	visit	_	t81	VB	_	0	ROOT	_	_
+6	in	_	t13	IN	_	5	ADJ	_	_
+7	Reims	_	t3	NNP	_	6	1	_	_
+8	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	0	_	_
+2	is	_	t259	VBZ	_	0	ROOT	_	_
+3	the	_	t1	DT	_	5	ADJ	_	_
+4	big	_	t36	JJ	_	5	ADJ	_	_
+5	prize	_	t668	NN	_	0	ROOT	_	_
+6	called	_	t51	VBN	_	5	ADJ	_	_
+7	in	_	tCO	IN	_	6	CO	_	_
+8	Canadian	_	t36	JJ	_	9	ADJ	_	_
+9	football	_	t3	NN	_	6	2	_	_
+10	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 3 bgColor:blue
+# visual-style 6 bgColor:blue
+1	How	_	t100	WRB	_	6	1	_	_
+2	much	_	t128	JJ	_	1	ADJ	_	_
+3	fiber	_	t48	NN	_	1	ADJ	_	_
+4	should	_	t276	MD	_	6	ADJ	_	_
+5	you	_	t29	PRP	_	6	0	_	_
+6	have	_	t214	VB	_	0	ROOT	_	_
+7	per	_	t13	IN	_	6	ADJ	_	_
+8	day	_	t3	NN	_	7	1	_	_
+9	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 7 bgColor:blue
+1	Where	_	t154	WRB	_	7	-unk-	_	_
+2	is	_	t259	VBZ	_	0	ROOT	_	_
+3	the	_	t1	DT	_	6	ADJ	_	_
+4	tallest	_	t36	JJS	_	6	ADJ	_	_
+5	roller	_	t2	NN	_	6	ADJ	_	_
+6	coaster	_	t3	NN	_	7	0	_	_
+7	located	_	t50	VBN	_	0	ROOT	_	_
+8	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 3 bgColor:blue
+# visual-style 9 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	Cruise	_	t2	NNP	_	3	ADJ	_	_
+3	Line	_	t3	NNP	_	4	0	_	_
+4	does	_	t214	VBZ	_	8	-unk-	_	_
+5	Kathie	_	t2	NNP	_	7	ADJ	_	_
+6	Lee	_	t2	NNP	_	7	ADJ	_	_
+7	Gifford	_	t3	NNP	_	4	0	_	_
+8	advertise	_	t117	VB	_	0	ROOT	_	_
+9	for	_	t1221	IN	_	8	CO	_	_
+10	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	6	1	_	_
+2	is	_	t259	VBZ	_	6	ADJ	_	_
+3	a	_	t1	DT	_	5	ADJ	_	_
+4	baby	_	t2	NN	_	5	ADJ	_	_
+5	turkey	_	t3	NN	_	6	0	_	_
+6	called	_	t214	VBN	_	0	ROOT	_	_
+7	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	buildings	_	t48	NNS	_	1	ADJ	_	_
+3	has	_	t259	VBZ	_	5	ADJ	_	_
+4	he	_	t29	PRP	_	5	0	_	_
+5	designed	_	t214	VBN	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 4 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	did	_	t259	VBD	_	4	ADJ	_	_
+3	Caesar	_	t3	NNP	_	4	0	_	_
+4	say	_	t214	VB	_	0	ROOT	_	_
+5	before	_	t74	IN	_	7	-unk-	_	_
+6	he	_	t29	PRP	_	7	0	_	_
+7	died	_	t332	VBD	_	4	ADJ	_	_
+8	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	7	1	_	_
+2	is	_	t259	VBZ	_	7	ADJ	_	_
+3	Pittsburg	_	t7	NNP	_	4	ADJ	_	_
+4	's	_	t8	POS	_	6	ADJ	_	_
+5	baseball	_	t2	NN	_	6	ADJ	_	_
+6	team	_	t3	NN	_	7	0	_	_
+7	called	_	t214	VBN	_	0	ROOT	_	_
+8	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 9 bgColor:blue
+1	What	_	t98	WP	_	9	1	_	_
+2	instrument	_	t48	NN	_	1	ADJ	_	_
+3	did	_	t259	VBD	_	9	ADJ	_	_
+4	the	_	t1	DT	_	8	ADJ	_	_
+5	jazz	_	t2	NN	_	8	ADJ	_	_
+6	musician	_	t2	NN	_	8	ADJ	_	_
+7	Art	_	t2	NNP	_	8	ADJ	_	_
+8	Tatum	_	t3	NNP	_	9	0	_	_
+9	play	_	t214	VB	_	0	ROOT	_	_
+10	?	_	t26	.	_	9	ADJ	_	_
+
+# visual-style 3 bgColor:blue
+# visual-style 11 bgColor:blue
+1	What	_	t98	WP	_	8	0	_	_
+2	other	_	t426	JJ	_	1	ADJ	_	_
+3	name	_	t48	NN	_	1	ADJ	_	_
+4	were	_	t23	VBD	_	8	ADJ	_	_
+5	the	_	t1	DT	_	8	ADJ	_	_
+6	``	_	t121	``	_	7	ADJ	_	_
+7	Little	_	t36	JJ	_	8	ADJ	_	_
+8	Rascals	_	t668	NNPS	_	0	ROOT	_	_
+9	''	_	t122	''	_	8	ADJ	_	_
+10	known	_	t64	VBN	_	8	ADJ	_	_
+11	as	_	tCO	IN	_	10	CO	_	_
+12	?	_	t26	.	_	10	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	flower	_	t48	NN	_	1	ADJ	_	_
+3	did	_	t23	VBD	_	0	ROOT	_	_
+4	Vincent	_	t2	NNP	_	7	ADJ	_	_
+5	Van	_	t2	NNP	_	7	ADJ	_	_
+6	Gogh	_	t2	NNP	_	7	ADJ	_	_
+7	paint	_	t3	NN	_	3	0	_	_
+8	?	_	t26	.	_	3	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 9 bgColor:blue
+1	What	_	t98	WP	_	8	1	_	_
+2	branch	_	t48	NN	_	8	ADJ	_	_
+3	of	_	t4	IN	_	1	ADJ	_	_
+4	the	_	t1	DT	_	5	ADJ	_	_
+5	service	_	t3	NN	_	3	1	_	_
+6	did	_	t259	VBD	_	8	ADJ	_	_
+7	he	_	t29	PRP	_	8	0	_	_
+8	serve	_	t117	VB	_	0	ROOT	_	_
+9	in	_	tCO	RP	_	8	CO	_	_
+10	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	do	_	t259	VBP	_	5	ADJ	_	_
+3	river	_	t2	NN	_	4	ADJ	_	_
+4	otters	_	t3	NNS	_	5	0	_	_
+5	eat	_	t3335	VB	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 4 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	do	_	t259	VBP	_	4	ADJ	_	_
+3	penguins	_	t3	NNS	_	4	0	_	_
+4	eat	_	t3335	VB	_	0	ROOT	_	_
+5	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	does	_	t259	VBZ	_	4	ADJ	_	_
+3	AARP	_	t3	NNP	_	4	0	_	_
+4	stand	_	t117	VB	_	0	ROOT	_	_
+5	for	_	tCO	IN	_	4	CO	_	_
+6	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 4 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	do	_	t259	VBP	_	4	ADJ	_	_
+3	manatees	_	t3	NNS	_	4	0	_	_
+4	eat	_	t214	VB	_	0	ROOT	_	_
+5	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	Where	_	t154	WRB	_	6	-unk-	_	_
+2	was	_	t259	VBD	_	6	ADJ	_	_
+3	the	_	t1	DT	_	5	ADJ	_	_
+4	F	_	t2	NNP	_	5	ADJ	_	_
+5	Troop	_	t3	NNP	_	6	0	_	_
+6	stationed	_	t262	VBN	_	0	ROOT	_	_
+7	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	7	1	_	_
+2	is	_	t259	VBZ	_	0	ROOT	_	_
+3	a	_	t1	DT	_	4	ADJ	_	_
+4	group	_	t3	NN	_	7	0	_	_
+5	of	_	t4	IN	_	4	ADJ	_	_
+6	turkeys	_	t3	NNS	_	5	1	_	_
+7	called	_	t300	VBN	_	0	ROOT	_	_
+8	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	do	_	t259	VBP	_	5	ADJ	_	_
+3	the	_	t1	DT	_	4	ADJ	_	_
+4	French	_	t3	NNPS	_	5	0	_	_
+5	call	_	t784	VB	_	0	ROOT	_	_
+6	the	_	t1	DT	_	8	ADJ	_	_
+7	English	_	t2	NNP	_	8	ADJ	_	_
+8	Channel	_	t3	NNP	_	5	0	_	_
+9	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 4 bgColor:blue
+1	What	_	t98	WP	_	4	0	_	_
+2	does	_	t259	VBZ	_	4	ADJ	_	_
+3	caliente	_	t3	NN	_	4	0	_	_
+4	mean	_	t214	VB	_	0	ROOT	_	_
+5	-LRB-	_	t200	-LRB-	_	4	ADJ	_	_
+6	in	_	t252	IN	_	5	ADJ	_	_
+7	English	_	t3	NNP	_	6	1	_	_
+8	-RRB-	_	t19	-RRB-	_	5	ADJ	_	_
+9	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	does	_	t259	VBZ	_	5	ADJ	_	_
+3	your	_	t30	PRP$	_	4	ADJ	_	_
+4	spleen	_	t3	NN	_	5	0	_	_
+5	do	_	t214	VB	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	4	0	_	_
+2	does	_	t259	VBZ	_	4	ADJ	_	_
+3	R&B	_	t3	NN	_	4	0	_	_
+4	stand	_	t117	VB	_	0	ROOT	_	_
+5	for	_	t1221	IN	_	4	CO	_	_
+6	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	6	1	_	_
+2	college	_	t48	NN	_	1	ADJ	_	_
+3	did	_	t259	VBD	_	6	ADJ	_	_
+4	Magic	_	t2	NNP	_	5	ADJ	_	_
+5	Johnson	_	t3	NNP	_	6	0	_	_
+6	attend	_	t214	VB	_	0	ROOT	_	_
+7	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	is	_	t259	VBZ	_	5	ADJ	_	_
+3	D.B.	_	t2	NNP	_	4	ADJ	_	_
+4	Cooper	_	t3	NNP	_	5	0	_	_
+5	known	_	t117	VBN	_	0	ROOT	_	_
+6	for	_	tCO	IN	_	5	CO	_	_
+7	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	does	_	t259	VBZ	_	5	ADJ	_	_
+3	Knight	_	t2	NNP	_	4	ADJ	_	_
+4	Ridder	_	t3	NNP	_	5	0	_	_
+5	publish	_	t214	VB	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 3 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	Cuban	_	t36	JJ	_	1	ADJ	_	_
+3	dictator	_	t3	NN	_	4	0	_	_
+4	did	_	t259	VBD	_	8	ADJ	_	_
+5	Fidel	_	t2	NNP	_	6	ADJ	_	_
+6	Castro	_	t3	NNP	_	4	0	_	_
+7	force	_	t3	NN	_	8	0	_	_
+8	out	_	t799	IN	_	0	ROOT	_	_
+9	of	_	tCO	IN	_	8	CO	_	_
+10	power	_	t3	NN	_	8	1	_	_
+11	in	_	t13	IN	_	8	ADJ	_	_
+12	1958	_	t3	CD	_	11	1	_	_
+13	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 10 bgColor:blue
+1	What	_	t98	WP	_	10	1	_	_
+2	percent	_	t48	NN	_	1	ADJ	_	_
+3	of	_	t4	IN	_	1	ADJ	_	_
+4	the	_	t1	DT	_	5	ADJ	_	_
+5	nation	_	t7	NN	_	6	ADJ	_	_
+6	's	_	t8	POS	_	7	ADJ	_	_
+7	cheese	_	t3	NN	_	3	1	_	_
+8	does	_	t259	VBZ	_	10	1	_	_
+9	Wisconsin	_	t3	NNP	_	10	0	_	_
+10	produce	_	t214	VB	_	0	ROOT	_	_
+11	?	_	t26	.	_	10	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	are	_	t259	VBP	_	5	ADJ	_	_
+3	baby	_	t2	NN	_	4	ADJ	_	_
+4	frogs	_	t3	NNS	_	5	-unk-	_	_
+5	called	_	t300	VBN	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	4	0	_	_
+2	are	_	t259	VBP	_	4	ADJ	_	_
+3	the	_	t1	DT	_	4	ADJ	_	_
+4	headpieces	_	t668	NNS	_	5	0	_	_
+5	called	_	t215	VBN	_	0	ROOT	_	_
+6	that	_	t74	IN	_	10	-unk-	_	_
+7	the	_	t1	DT	_	9	ADJ	_	_
+8	Saudi	_	t36	JJ	_	9	ADJ	_	_
+9	Arabians	_	t3	NNPS	_	10	0	_	_
+10	wear	_	t220	VBP	_	5	1	_	_
+11	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	continent	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t259	VBZ	_	0	ROOT	_	_
+4	Egypt	_	t3	NNP	_	5	0	_	_
+5	on	_	t1135	IN	_	3	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	continent	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	0	ROOT	_	_
+4	Scotland	_	t668	NNP	_	0	ROOT	_	_
+5	in	_	t1221	IN	_	4	ADJ	_	_
+6	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	countries	_	t3	NNS	_	1	0	_	_
+3	have	_	t214	VBP	_	6	0	_	_
+4	Rhodes	_	t2	NNP	_	5	ADJ	_	_
+5	scholars	_	t3	NNS	_	6	0	_	_
+6	come	_	t117	VB	_	0	ROOT	_	_
+7	from	_	tCO	IN	_	6	CO	_	_
+8	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 8 bgColor:blue
+1	What	_	t98	WP	_	8	0	_	_
+2	does	_	t259	VBZ	_	8	ADJ	_	_
+3	``	_	t5	``	_	6	ADJ	_	_
+4	E	_	t2	NNP	_	6	ADJ	_	_
+5	Pluribus	_	t2	NNP	_	6	ADJ	_	_
+6	Unum	_	t3	NNP	_	8	0	_	_
+7	''	_	t6	''	_	6	ADJ	_	_
+8	mean	_	t214	VB	_	0	ROOT	_	_
+9	?	_	t26	.	_	8	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	sport	_	t48	NN	_	1	ADJ	_	_
+3	do	_	t335	VBP	_	7	0	_	_
+4	the	_	t1	DT	_	6	ADJ	_	_
+5	Cleaveland	_	t2	NNP	_	6	ADJ	_	_
+6	Cavaliers	_	t2	NNP	_	7	0	_	_
+7	play	_	t214	VB	_	0	ROOT	_	_
+8	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	3	1	_	_
+2	continent	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t2168	VBZ	_	0	ROOT	_	_
+4	India	_	t3	NNP	_	5	0	_	_
+5	on	_	t1135	IN	_	0	ROOT	_	_
+6	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 9 bgColor:blue
+1	What	_	t98	WP	_	5	0	_	_
+2	did	_	t259	VBD	_	5	ADJ	_	_
+3	Ozzy	_	t2	NNP	_	4	ADJ	_	_
+4	Osbourne	_	t3	NNP	_	5	0	_	_
+5	bite	_	t784	VB	_	0	ROOT	_	_
+6	the	_	t1	DT	_	7	ADJ	_	_
+7	head	_	t3	NN	_	5	1	_	_
+8	off	_	t1057	IN	_	5	ADJ	_	_
+9	of	_	tCO	IN	_	8	CO	_	_
+10	?	_	t26	.	_	5	ADJ	_	_
+
+# visual-style 1 bgColor:blue
+# visual-style 5 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	does	_	t259	VBZ	_	4	ADJ	_	_
+3	SIDS	_	t3	NNP	_	4	0	_	_
+4	stand	_	t117	VB	_	0	ROOT	_	_
+5	for	_	tCO	IN	_	4	CO	_	_
+6	?	_	t26	.	_	4	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	4	1	_	_
+2	color	_	t48	NN	_	1	ADJ	_	_
+3	does	_	t23	VBZ	_	6	ADJ	_	_
+4	litmus	_	t335	VB	_	6	0	_	_
+5	paper	_	t3	NN	_	6	0	_	_
+6	turn	_	t1432	NN	_	0	ROOT	_	_
+7	when	_	t154	WRB	_	9	-unk-	_	_
+8	it	_	t29	PRP	_	9	0	_	_
+9	comes	_	t578	VBZ	_	6	ADJ	_	_
+10	into	_	tCO	IN	_	9	CO	_	_
+11	contact	_	t3	NN	_	9	1	_	_
+12	with	_	t4	IN	_	11	ADJ	_	_
+13	a	_	t1	DT	_	15	ADJ	_	_
+14	strong	_	t36	JJ	_	15	ADJ	_	_
+15	acid	_	t3	NN	_	12	1	_	_
+16	?	_	t26	.	_	6	ADJ	_	_
+
+# visual-style 6 bgColor:blue
+# visual-style 10 bgColor:blue
+1	If	_	t74	IN	_	4	-unk-	_	_
+2	something	_	t3	NN	_	4	0	_	_
+3	has	_	t23	VBZ	_	4	ADJ	_	_
+4	petrified	_	t404	VBN	_	9	ADJ	_	_
+5	,	_	t20	,	_	9	ADJ	_	_
+6	what	_	t98	WP	_	9	1	_	_
+7	has	_	t259	VBZ	_	9	ADJ	_	_
+8	it	_	t29	PRP	_	9	0	_	_
+9	turned	_	t1108	VBD	_	0	ROOT	_	_
+10	into	_	tCO	RP	_	9	CO	_	_
+11	?	_	t26	.	_	9	ADJ	_	_
+
+# visual-style 3 bgColor:blue
+# visual-style 7 bgColor:blue
+1	How	_	t675	WRB	_	7	1	_	_
+2	many	_	t137	JJ	_	1	ADJ	_	_
+3	hearts	_	t48	NNS	_	1	ADJ	_	_
+4	does	_	t259	VBZ	_	7	ADJ	_	_
+5	an	_	t1	DT	_	6	ADJ	_	_
+6	octopus	_	t3	NN	_	4	0	_	_
+7	have	_	t214	VB	_	0	ROOT	_	_
+8	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 7 bgColor:blue
+1	What	_	t98	WP	_	4	0	_	_
+2	industry	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	4	ADJ	_	_
+4	Rohm	_	t668	NNP	_	0	ROOT	_	_
+5	and	_	t17	CC	_	4	ADJ	_	_
+6	Haas	_	t18	NNP	_	5	1	_	_
+7	in	_	t1221	IN	_	4	ADJ	_	_
+8	?	_	t26	.	_	7	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 10 bgColor:blue
+1	What	_	t98	WP	_	10	1	_	_
+2	amount	_	t48	NN	_	1	ADJ	_	_
+3	of	_	t4	IN	_	1	ADJ	_	_
+4	folic	_	t2	NN	_	5	ADJ	_	_
+5	acid	_	t3	NN	_	3	1	_	_
+6	should	_	t276	MD	_	10	ADJ	_	_
+7	an	_	t1	DT	_	9	ADJ	_	_
+8	expectant	_	t36	JJ	_	9	ADJ	_	_
+9	mother	_	t3	NN	_	10	0	_	_
+10	take	_	t214	VB	_	0	ROOT	_	_
+11	daily	_	t69	RB	_	10	ADJ	_	_
+12	?	_	t26	.	_	10	ADJ	_	_
+
+# visual-style 2 bgColor:blue
+# visual-style 6 bgColor:blue
+1	What	_	t98	WP	_	5	1	_	_
+2	city	_	t48	NN	_	1	ADJ	_	_
+3	is	_	t23	VBZ	_	0	ROOT	_	_
+4	Southwestern	_	t2	NNP	_	5	ADJ	_	_
+5	University	_	t668	NNP	_	0	ROOT	_	_
+6	in	_	t1221	IN	_	5	ADJ	_	_
+7	?	_	t26	.	_	5	ADJ	_	_
+
