@@ -1,5 +1,5 @@
-# visual-style 6 bgColor:blue
-# visual-style 8 bgColor:blue
+# visual-style 6 bgColor:red
+# visual-style 8 bgColor:red
 1	Indeed	_	t90	RB	_	17	ADJ	_	_
 2	,	_	t20	,	_	17	ADJ	_	_
 3	a	_	t1	DT	_	6	ADJ	_	_
@@ -32,10 +32,10 @@
 30	Flood	_	t3	NNP	_	28	1	_	_
 31	.	_	t26	.	_	17	ADJ	_	_
 
-# visual-style 5 bgColor:blue
-# visual-style 13 bgColor:blue
-# visual-style 11 bgColor:red
+# visual-style 5 bgColor:red
 # visual-style 13 bgColor:red
+# visual-style 11 bgColor:green
+# visual-style 13 bgColor:green
 1	It	_	t29	PRP	_	2	0	_	_
 2	consists	_	t57	VBZ	_	0	ROOT	_	_
 3	of	_	tCO	IN	_	2	CO	_	_
@@ -59,8 +59,8 @@
 21	surface	_	t3	NN	_	18	1	_	_
 22	.	_	t26	.	_	2	ADJ	_	_
 
-# visual-style 21 bgColor:blue
-# visual-style 26 bgColor:blue
+# visual-style 21 bgColor:red
+# visual-style 26 bgColor:red
 1	We	_	t29	PRP	_	3	0	_	_
 2	have	_	t23	VBP	_	3	ADJ	_	_
 3	learned	_	t57	VBN	_	0	ROOT	_	_
@@ -99,8 +99,8 @@
 36	traveled	_	t742	VBN	_	31	ADJ	_	_
 37	.	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 4 bgColor:blue
-# visual-style 11 bgColor:blue
+# visual-style 4 bgColor:red
+# visual-style 11 bgColor:red
 1	Occasionally	_	t90	RB	_	4	ADJ	_	_
 2	there	_	t327	EX	_	4	0	_	_
 3	are	_	t23	VBP	_	4	ADJ	_	_
@@ -120,8 +120,8 @@
 17	attitude	_	t3	NN	_	14	1	_	_
 18	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 19 bgColor:blue
-# visual-style 23 bgColor:blue
+# visual-style 19 bgColor:red
+# visual-style 23 bgColor:red
 1	Presumably	_	t90	RB	_	6	ADJ	_	_
 2	a	_	t1	DT	_	4	ADJ	_	_
 3	cocktail	_	t2	NN	_	4	ADJ	_	_
@@ -163,10 +163,10 @@
 39	endeavors	_	t3	NNS	_	36	1	_	_
 40	.	_	t26	.	_	6	ADJ	_	_
 
-# visual-style 29 bgColor:blue
-# visual-style 31 bgColor:blue
-# visual-style 34 bgColor:red
-# visual-style 38 bgColor:red
+# visual-style 29 bgColor:red
+# visual-style 31 bgColor:red
+# visual-style 34 bgColor:green
+# visual-style 38 bgColor:green
 1	The	_	t1	DT	_	2	ADJ	_	_
 2	commands	_	t3	NNS	_	4	1	_	_
 3	are	_	t23	VBP	_	4	ADJ	_	_
@@ -211,8 +211,8 @@
 42	ground	_	t3	NN	_	39	1	_	_
 43	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 18 bgColor:blue
-# visual-style 20 bgColor:blue
+# visual-style 18 bgColor:red
+# visual-style 20 bgColor:red
 1	Before	_	t74	IN	_	3	-unk-	_	_
 2	them	_	t29	PRP	_	3	0	_	_
 3	stalked	_	t423	VBD	_	16	ADJ	_	_
@@ -247,8 +247,8 @@
 32	persons	_	t3	NNS	_	30	1	_	_
 33	.	_	t26	.	_	16	ADJ	_	_
 
-# visual-style 28 bgColor:blue
-# visual-style 32 bgColor:blue
+# visual-style 28 bgColor:red
+# visual-style 32 bgColor:red
 1	Why	_	t154	WRB	_	9	-unk-	_	_
 2	,	_	t132	,	_	9	ADJ	_	_
 3	oh	_	t913	UH	_	2	ADJ	_	_
@@ -288,8 +288,8 @@
 37	?	_	t26	.	_	9	ADJ	_	_
 38	?	_	t26	.	_	9	ADJ	_	_
 
-# visual-style 11 bgColor:blue
-# visual-style 13 bgColor:blue
+# visual-style 11 bgColor:red
+# visual-style 13 bgColor:red
 1	And	_	t94	CC	_	8	ADJ	_	_
 2	John	_	t7	NNP	_	3	ADJ	_	_
 3	's	_	t8	POS	_	4	ADJ	_	_
@@ -313,8 +313,8 @@
 21	!	_	t26	.	_	8	ADJ	_	_
 22	!	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 33 bgColor:blue
-# visual-style 35 bgColor:blue
+# visual-style 33 bgColor:red
+# visual-style 35 bgColor:red
 1	But	_	t94	CC	_	5	ADJ	_	_
 2	Blanche	_	t3	NNP	_	5	0	_	_
 3	had	_	t23	VBD	_	5	ADJ	_	_
@@ -357,8 +357,8 @@
 40	matrimony	_	t3	NN	_	39	1	_	_
 41	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 28 bgColor:blue
-# visual-style 36 bgColor:blue
+# visual-style 28 bgColor:red
+# visual-style 36 bgColor:red
 1	Mike	_	t3	NNP	_	2	0	_	_
 2	stopped	_	t28	VBD	_	0	ROOT	_	_
 3	to	_	t31	TO	_	4	ADJ	_	_
@@ -413,10 +413,10 @@
 52	himself	_	t29	PRP	_	49	1	_	_
 53	.	_	t26	.	_	2	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 7 bgColor:blue
-# visual-style 78 bgColor:red
-# visual-style 82 bgColor:red
+# visual-style 2 bgColor:red
+# visual-style 7 bgColor:red
+# visual-style 78 bgColor:green
+# visual-style 82 bgColor:green
 1	The	_	t1	DT	_	4	ADJ	_	_
 2	word	_	t2	NN	_	4	ADJ	_	_
 3	``	_	t121	``	_	4	ADJ	_	_
@@ -514,8 +514,8 @@
 95	Digby	_	t3	NNP	_	94	1	_	_
 96	.	_	t26	.	_	17	ADJ	_	_
 
-# visual-style 13 bgColor:blue
-# visual-style 16 bgColor:blue
+# visual-style 13 bgColor:red
+# visual-style 16 bgColor:red
 1	On	_	t0	IN	_	5	ADJ	_	_
 2	Mars	_	t2	NNP	_	3	ADJ	_	_
 3	humans	_	t3	NNS	_	1	1	_	_
@@ -537,8 +537,8 @@
 19	ship	_	t3	NN	_	17	1	_	_
 20	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 7 bgColor:blue
-# visual-style 10 bgColor:blue
+# visual-style 7 bgColor:red
+# visual-style 10 bgColor:red
 1	He	_	t29	PRP	_	5	0	_	_
 2	certainly	_	t24	RB	_	5	ADJ	_	_
 3	did	_	t23	VBD	_	5	ADJ	_	_
@@ -553,8 +553,8 @@
 12	Ann	_	t3	NNP	_	11	1	_	_
 13	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 25 bgColor:blue
-# visual-style 29 bgColor:blue
+# visual-style 25 bgColor:red
+# visual-style 29 bgColor:red
 1	We	_	t29	PRP	_	3	0	_	_
 2	all	_	t552	DT	_	1	ADJ	_	_
 3	painted	_	t81	VBN	_	0	ROOT	_	_
@@ -591,10 +591,10 @@
 34	it	_	t29	PRP	_	33	1	_	_
 35	.	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 7 bgColor:blue
-# visual-style 9 bgColor:blue
 # visual-style 7 bgColor:red
-# visual-style 13 bgColor:red
+# visual-style 9 bgColor:red
+# visual-style 7 bgColor:green
+# visual-style 13 bgColor:green
 1	He	_	t29	PRP	_	4	0	_	_
 2	was	_	t23	VBD	_	4	ADJ	_	_
 3	an	_	t1	DT	_	4	ADJ	_	_
@@ -621,8 +621,8 @@
 24	did	_	t87	VBD	_	17	ADJ	_	_
 25	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 5 bgColor:blue
-# visual-style 9 bgColor:blue
+# visual-style 5 bgColor:red
+# visual-style 9 bgColor:red
 1	One	_	t3	CD	_	12	0	_	_
 2	of	_	t4	IN	_	1	ADJ	_	_
 3	the	_	t1	DT	_	5	ADJ	_	_
@@ -652,8 +652,8 @@
 27	questions	_	t3	NNS	_	16	1	_	_
 28	.	_	t26	.	_	12	ADJ	_	_
 
-# visual-style 7 bgColor:blue
-# visual-style 9 bgColor:blue
+# visual-style 7 bgColor:red
+# visual-style 9 bgColor:red
 1	They	_	t29	PRP	_	3	0	_	_
 2	will	_	t45	MD	_	3	ADJ	_	_
 3	remain	_	t81	VB	_	0	ROOT	_	_
@@ -668,8 +668,8 @@
 12	countries	_	t3	NNS	_	9	1	_	_
 13	.	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 11 bgColor:blue
-# visual-style 14 bgColor:blue
+# visual-style 11 bgColor:red
+# visual-style 14 bgColor:red
 1	Mr.	_	t2	NNP	_	2	ADJ	_	_
 2	Rapanelli	_	t3	NNP	_	5	0	_	_
 3	recently	_	t24	RB	_	5	ADJ	_	_
@@ -708,8 +708,8 @@
 36	solved	_	t1309	VBN	_	30	ADJ	_	_
 37	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 13 bgColor:blue
-# visual-style 19 bgColor:blue
+# visual-style 13 bgColor:red
+# visual-style 19 bgColor:red
 1	-LRB-	_	t268	-LRB-	_	12	ADJ	_	_
 2	During	_	t0	IN	_	12	ADJ	_	_
 3	its	_	t30	PRP$	_	5	ADJ	_	_
@@ -738,8 +738,8 @@
 26	.	_	t26	.	_	12	ADJ	_	_
 27	-RRB-	_	t269	-RRB-	_	12	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 4 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 4 bgColor:red
 1	THREE	_	t2	CD	_	2	ADJ	_	_
 2	COMPUTERS	_	t3	NNS	_	11	1	_	_
 3	THAT	_	t100	WDT	_	4	0	_	_
@@ -755,8 +755,8 @@
 13	1977	_	t3	CD	_	12	1	_	_
 14	.	_	t26	.	_	11	ADJ	_	_
 
-# visual-style 13 bgColor:blue
-# visual-style 15 bgColor:blue
+# visual-style 13 bgColor:red
+# visual-style 15 bgColor:red
 1	Alan	_	t2	NNP	_	3	ADJ	_	_
 2	F.	_	t2	NNP	_	3	ADJ	_	_
 3	Shugart	_	t3	NNP	_	11	0	_	_
@@ -779,8 +779,8 @@
 20	PCs	_	t3	NNS	_	19	1	_	_
 21	.	_	t26	.	_	11	ADJ	_	_
 
-# visual-style 15 bgColor:blue
-# visual-style 21 bgColor:blue
+# visual-style 15 bgColor:red
+# visual-style 21 bgColor:red
 1	The	_	t1	DT	_	3	ADJ	_	_
 2	White	_	t2	NNP	_	3	ADJ	_	_
 3	House	_	t3	NNP	_	4	0	_	_
@@ -820,8 +820,8 @@
 37	possessions	_	t3	NNS	_	34	1	_	_
 38	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 20 bgColor:blue
-# visual-style 24 bgColor:blue
+# visual-style 20 bgColor:red
+# visual-style 24 bgColor:red
 1	Sea	_	t2	NNP	_	3	ADJ	_	_
 2	Containers	_	t2	NNPS	_	3	ADJ	_	_
 3	Ltd.	_	t3	NNP	_	4	0	_	_
@@ -855,8 +855,8 @@
 31	Containers	_	t3	NNP	_	29	1	_	_
 32	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 22 bgColor:blue
-# visual-style 26 bgColor:blue
+# visual-style 22 bgColor:red
+# visual-style 26 bgColor:red
 1	Unlike	_	t0	IN	_	17	ADJ	_	_
 2	traditional	_	t36	JJ	_	5	ADJ	_	_
 3	open-end	_	t36	JJ	_	5	ADJ	_	_
@@ -886,10 +886,10 @@
 27	publicly	_	t69	RB	_	26	ADJ	_	_
 28	.	_	t26	.	_	17	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 4 bgColor:blue
-# visual-style 31 bgColor:red
-# visual-style 33 bgColor:red
+# visual-style 2 bgColor:red
+# visual-style 4 bgColor:red
+# visual-style 31 bgColor:green
+# visual-style 33 bgColor:green
 1	For	_	t0	IN	_	18	ADJ	_	_
 2	people	_	t3	NNS	_	1	1	_	_
 3	who	_	t98	WP	_	4	0	_	_
@@ -936,8 +936,8 @@
 44	quickly	_	t69	RB	_	43	ADJ	_	_
 45	.	_	t26	.	_	18	ADJ	_	_
 
-# visual-style 9 bgColor:blue
-# visual-style 27 bgColor:blue
+# visual-style 9 bgColor:red
+# visual-style 27 bgColor:red
 1	Giant	_	t2	NNP	_	2	ADJ	_	_
 2	Group	_	t3	NNP	_	4	1	_	_
 3	is	_	t23	VBZ	_	4	ADJ	_	_
@@ -989,8 +989,8 @@
 49	board	_	t3	NN	_	45	1	_	_
 50	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 27 bgColor:blue
-# visual-style 30 bgColor:blue
+# visual-style 27 bgColor:red
+# visual-style 30 bgColor:red
 1	Bordeaux	_	t7	NNP	_	2	ADJ	_	_
 2	's	_	t8	POS	_	4	ADJ	_	_
 3	first	_	t36	JJ	_	4	ADJ	_	_
@@ -1028,8 +1028,8 @@
 35	-RRB-	_	t19	-RRB-	_	16	ADJ	_	_
 36	.	_	t26	.	_	10	ADJ	_	_
 
-# visual-style 23 bgColor:blue
-# visual-style 27 bgColor:blue
+# visual-style 23 bgColor:red
+# visual-style 27 bgColor:red
 1	It	_	t29	PRP	_	3	1	_	_
 2	's	_	t23	VBZ	_	3	ADJ	_	_
 3	made	_	t50	VBN	_	0	ROOT	_	_
@@ -1065,8 +1065,8 @@
 33	1987	_	t3	CD	_	32	1	_	_
 34	.	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 11 bgColor:blue
-# visual-style 13 bgColor:blue
+# visual-style 11 bgColor:red
+# visual-style 13 bgColor:red
 1	Even	_	t225	RB	_	6	ADJ	_	_
 2	if	_	t74	IN	_	6	-unk-	_	_
 3	there	_	t327	EX	_	6	0	_	_
@@ -1090,8 +1090,8 @@
 21	move	_	t81	VB	_	0	ROOT	_	_
 22	.	_	t26	.	_	21	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 4 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 4 bgColor:red
 1	But	_	t94	CC	_	11	ADJ	_	_
 2	consumers	_	t3	NNS	_	11	0	_	_
 3	who	_	t98	WP	_	4	0	_	_
@@ -1112,8 +1112,8 @@
 18	ago	_	t69	RB	_	14	ADJ	_	_
 19	.	_	t26	.	_	11	ADJ	_	_
 
-# visual-style 7 bgColor:blue
-# visual-style 9 bgColor:blue
+# visual-style 7 bgColor:red
+# visual-style 9 bgColor:red
 1	A	_	t1	DT	_	3	ADJ	_	_
 2	soft	_	t36	JJ	_	3	ADJ	_	_
 3	landing	_	t3	NN	_	7	0	_	_
@@ -1131,8 +1131,8 @@
 15	recession	_	t3	NN	_	13	1	_	_
 16	.	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 24 bgColor:blue
-# visual-style 29 bgColor:blue
+# visual-style 24 bgColor:red
+# visual-style 29 bgColor:red
 1	Mr.	_	t2	NNP	_	2	ADJ	_	_
 2	Black	_	t3	NNP	_	3	0	_	_
 3	said	_	t28	VBD	_	0	ROOT	_	_
@@ -1168,10 +1168,10 @@
 33	.	_	t26	.	_	3	ADJ	_	_
 34	''	_	t91	''	_	33	ADJ	_	_
 
-# visual-style 10 bgColor:blue
-# visual-style 12 bgColor:blue
-# visual-style 29 bgColor:red
-# visual-style 31 bgColor:red
+# visual-style 10 bgColor:red
+# visual-style 12 bgColor:red
+# visual-style 29 bgColor:green
+# visual-style 31 bgColor:green
 1	Along	_	t0	IN	_	6	ADJ	_	_
 2	the	_	t1	DT	_	3	ADJ	_	_
 3	way	_	t3	NN	_	1	1	_	_
@@ -1211,10 +1211,10 @@
 37	sheepskin	_	t38	NN	_	23	ADJ	_	_
 38	.	_	t26	.	_	6	ADJ	_	_
 
-# visual-style 22 bgColor:blue
-# visual-style 24 bgColor:blue
 # visual-style 22 bgColor:red
-# visual-style 32 bgColor:red
+# visual-style 24 bgColor:red
+# visual-style 22 bgColor:green
+# visual-style 32 bgColor:green
 1	To	_	t31	TO	_	3	ADJ	_	_
 2	further	_	t24	RBR	_	3	ADJ	_	_
 3	load	_	t477	VB	_	9	ADJ	_	_
@@ -1255,8 +1255,8 @@
 38	building	_	t3	NN	_	33	1	_	_
 39	.	_	t26	.	_	9	ADJ	_	_
 
-# visual-style 30 bgColor:blue
-# visual-style 32 bgColor:blue
+# visual-style 30 bgColor:red
+# visual-style 32 bgColor:red
 1	Unless	_	t74	IN	_	4	-unk-	_	_
 2	it	_	t29	PRP	_	4	0	_	_
 3	can	_	t45	MD	_	4	ADJ	_	_

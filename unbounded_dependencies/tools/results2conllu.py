@@ -31,7 +31,7 @@ def output_conllu(filename, sents, pos, stags, arcs, rels, dependencies):
             arcs_sent = arcs[sent_idx]
             rels_sent = rels[sent_idx]
             deps_sent = dependencies[sent_idx]
-            colors = ['blue', 'red', 'green', 'orange']
+            colors = ['red', 'green', 'orange', 'blue']
             for dep, color in zip(deps_sent, colors):
                 fwrite.write('# visual-style {} bgColor:{}\n'.format(dep[0], color))
                 fwrite.write('# visual-style {} bgColor:{}\n'.format(dep[1], color))

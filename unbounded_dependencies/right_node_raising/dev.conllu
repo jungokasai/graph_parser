@@ -1,7 +1,7 @@
-# visual-style 18 bgColor:blue
-# visual-style 7 bgColor:blue
 # visual-style 18 bgColor:red
-# visual-style 13 bgColor:red
+# visual-style 7 bgColor:red
+# visual-style 18 bgColor:green
+# visual-style 13 bgColor:green
 1	``	_	t10	``	_	7	ADJ	_	_
 2	Lillian	_	t7	NNP	_	3	ADJ	_	_
 3	's	_	t8	POS	_	4	ADJ	_	_
@@ -37,10 +37,10 @@
 33	pounds	_	t3	NNS	_	30	1	_	_
 34	.	_	t26	.	_	26	ADJ	_	_
 
-# visual-style 18 bgColor:blue
-# visual-style 13 bgColor:blue
 # visual-style 18 bgColor:red
-# visual-style 17 bgColor:red
+# visual-style 13 bgColor:red
+# visual-style 18 bgColor:green
+# visual-style 17 bgColor:green
 1	Whereas	_	t74	IN	_	11	-unk-	_	_
 2	persons	_	t3	NNS	_	11	0	_	_
 3	of	_	t4	IN	_	2	ADJ	_	_
@@ -76,10 +76,10 @@
 33	relations	_	t3	NNS	_	31	1	_	_
 34	.	_	t26	.	_	11	ADJ	_	_
 
-# visual-style 26 bgColor:blue
-# visual-style 21 bgColor:blue
 # visual-style 26 bgColor:red
-# visual-style 24 bgColor:red
+# visual-style 21 bgColor:red
+# visual-style 26 bgColor:green
+# visual-style 24 bgColor:green
 1	He	_	t29	PRP	_	2	0	_	_
 2	gives	_	t83	VBZ	_	0	ROOT	_	_
 3	this	_	t113	DT	_	2	1	_	_
@@ -108,10 +108,10 @@
 26	communicator	_	t3	NN	_	24	1	_	_
 27	.	_	t26	.	_	2	ADJ	_	_
 
-# visual-style 10 bgColor:blue
-# visual-style 6 bgColor:blue
 # visual-style 10 bgColor:red
-# visual-style 9 bgColor:red
+# visual-style 6 bgColor:red
+# visual-style 10 bgColor:green
+# visual-style 9 bgColor:green
 1	The	_	t1	DT	_	2	ADJ	_	_
 2	men	_	t3	NNS	_	9	1	_	_
 3	were	_	t23	VBD	_	9	ADJ	_	_
@@ -127,10 +127,10 @@
 13	tacking	_	t3	NN	_	9	0	_	_
 14	.	_	t26	.	_	9	ADJ	_	_
 
-# visual-style 17 bgColor:blue
-# visual-style 10 bgColor:blue
 # visual-style 17 bgColor:red
-# visual-style 14 bgColor:red
+# visual-style 10 bgColor:red
+# visual-style 17 bgColor:green
+# visual-style 14 bgColor:green
 1	This	_	t1	DT	_	3	ADJ	_	_
 2	new	_	t36	JJ	_	3	ADJ	_	_
 3	force	_	t3	NN	_	9	0	_	_
@@ -160,10 +160,10 @@
 27	Washington	_	t3	NNP	_	25	0	_	_
 28	.	_	t26	.	_	9	ADJ	_	_
 
-# visual-style 32 bgColor:blue
-# visual-style 24 bgColor:blue
 # visual-style 32 bgColor:red
-# visual-style 30 bgColor:red
+# visual-style 24 bgColor:red
+# visual-style 32 bgColor:green
+# visual-style 30 bgColor:green
 1	Truman	_	t2	NNP	_	2	ADJ	_	_
 2	Capote	_	t3	NNP	_	5	0	_	_
 3	is	_	t23	VBZ	_	5	ADJ	_	_
@@ -198,10 +198,10 @@
 32	yesterday	_	t758	NN	_	27	ADJ	_	_
 33	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 12 bgColor:blue
-# visual-style 8 bgColor:blue
 # visual-style 12 bgColor:red
-# visual-style 10 bgColor:red
+# visual-style 8 bgColor:red
+# visual-style 12 bgColor:green
+# visual-style 10 bgColor:green
 1	In	_	t0	IN	_	7	ADJ	_	_
 2	1986-87	_	t3	CD	_	1	1	_	_
 3	and	_	t39	CC	_	2	ADJ	_	_
@@ -220,10 +220,10 @@
 16	law	_	t3	NN	_	13	1	_	_
 17	.	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 14 bgColor:blue
-# visual-style 11 bgColor:blue
 # visual-style 14 bgColor:red
-# visual-style 13 bgColor:red
+# visual-style 11 bgColor:red
+# visual-style 14 bgColor:green
+# visual-style 13 bgColor:green
 1	Mr.	_	t2	NNP	_	2	ADJ	_	_
 2	Bromwich	_	t3	NNP	_	8	0	_	_
 3	,	_	t21	,	_	2	ADJ	_	_
@@ -260,10 +260,10 @@
 34	Manhattan	_	t3	NNP	_	32	2	_	_
 35	.	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 11 bgColor:blue
-# visual-style 6 bgColor:blue
 # visual-style 11 bgColor:red
-# visual-style 10 bgColor:red
+# visual-style 6 bgColor:red
+# visual-style 11 bgColor:green
+# visual-style 10 bgColor:green
 1	William	_	t2	NNP	_	3	ADJ	_	_
 2	G.	_	t2	NNP	_	3	ADJ	_	_
 3	Kuhns	_	t3	NNP	_	18	1	_	_
@@ -300,10 +300,10 @@
 34	10	_	t3	CD	_	30	2	_	_
 35	.	_	t26	.	_	18	ADJ	_	_
 
-# visual-style 16 bgColor:blue
-# visual-style 12 bgColor:blue
 # visual-style 16 bgColor:red
-# visual-style 15 bgColor:red
+# visual-style 12 bgColor:red
+# visual-style 16 bgColor:green
+# visual-style 15 bgColor:green
 1	In	_	t0	IN	_	8	ADJ	_	_
 2	1989	_	t3	CD	_	1	1	_	_
 3	,	_	t20	,	_	8	ADJ	_	_
@@ -323,10 +323,10 @@
 17	respondents	_	t3	NNS	_	16	1	_	_
 18	.	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 18 bgColor:blue
-# visual-style 13 bgColor:blue
 # visual-style 18 bgColor:red
-# visual-style 17 bgColor:red
+# visual-style 13 bgColor:red
+# visual-style 18 bgColor:green
+# visual-style 17 bgColor:green
 1	For	_	t0	IN	_	10	ADJ	_	_
 2	the	_	t1	DT	_	4	ADJ	_	_
 3	third	_	t36	JJ	_	4	ADJ	_	_
@@ -362,10 +362,10 @@
 33	York	_	t38	NNP	_	30	ADJ	_	_
 34	.	_	t26	.	_	10	ADJ	_	_
 
-# visual-style 10 bgColor:blue
-# visual-style 4 bgColor:blue
 # visual-style 10 bgColor:red
-# visual-style 7 bgColor:red
+# visual-style 4 bgColor:red
+# visual-style 10 bgColor:green
+# visual-style 7 bgColor:green
 1	Its	_	t30	PRP$	_	2	ADJ	_	_
 2	encouragement	_	t3	NN	_	4	0	_	_
 3	should	_	t45	MD	_	4	ADJ	_	_
@@ -405,10 +405,10 @@
 37	doing	_	t191	VBG	_	36	1	_	_
 38	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 16 bgColor:blue
-# visual-style 9 bgColor:blue
 # visual-style 16 bgColor:red
-# visual-style 13 bgColor:red
+# visual-style 9 bgColor:red
+# visual-style 16 bgColor:green
+# visual-style 13 bgColor:green
 1	Generally	_	t90	RB	_	6	ADJ	_	_
 2	,	_	t20	,	_	6	ADJ	_	_
 3	it	_	t29	PRP	_	6	0	_	_
@@ -427,10 +427,10 @@
 16	market	_	t3	NN	_	13	1	_	_
 17	.	_	t26	.	_	6	ADJ	_	_
 
-# visual-style 17 bgColor:blue
-# visual-style 21 bgColor:blue
-# visual-style 20 bgColor:red
+# visual-style 17 bgColor:red
 # visual-style 21 bgColor:red
+# visual-style 20 bgColor:green
+# visual-style 21 bgColor:green
 1	In	_	t0	IN	_	11	ADJ	_	_
 2	the	_	t1	DT	_	4	ADJ	_	_
 3	pension	_	t2	NN	_	4	ADJ	_	_

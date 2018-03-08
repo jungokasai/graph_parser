@@ -1,5 +1,5 @@
-# visual-style 5 bgColor:blue
-# visual-style 13 bgColor:blue
+# visual-style 5 bgColor:red
+# visual-style 13 bgColor:red
 1	But	_	t94	CC	_	5	ADJ	_	_
 2	it	_	t29	PRP	_	5	0	_	_
 3	is	_	t23	VBZ	_	5	ADJ	_	_
@@ -24,8 +24,8 @@
 22	malaise	_	t3	NN	_	17	1	_	_
 23	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 11 bgColor:blue
-# visual-style 14 bgColor:blue
+# visual-style 11 bgColor:red
+# visual-style 14 bgColor:red
 1	Each	_	t113	DT	_	3	0	_	_
 2	must	_	t45	MD	_	3	ADJ	_	_
 3	match	_	t27	VB	_	0	ROOT	_	_
@@ -44,8 +44,8 @@
 16	him	_	t29	PRP	_	15	1	_	_
 17	.	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 17 bgColor:blue
-# visual-style 24 bgColor:blue
+# visual-style 17 bgColor:red
+# visual-style 24 bgColor:red
 1	However	_	t90	RB	_	14	ADJ	_	_
 2	,	_	t20	,	_	14	ADJ	_	_
 3	no	_	t1	DT	_	4	ADJ	_	_
@@ -72,10 +72,10 @@
 24	learn	_	t170	VB	_	17	ADJ	_	_
 25	.	_	t26	.	_	14	ADJ	_	_
 
-# visual-style 15 bgColor:blue
-# visual-style 23 bgColor:blue
-# visual-style 27 bgColor:red
-# visual-style 31 bgColor:red
+# visual-style 15 bgColor:red
+# visual-style 23 bgColor:red
+# visual-style 27 bgColor:green
+# visual-style 31 bgColor:green
 1	Morgan	_	t3	NNP	_	2	0	_	_
 2	returned	_	t81	VBD	_	0	ROOT	_	_
 3	to	_	t44	TO	_	2	ADJ	_	_
@@ -112,8 +112,8 @@
 34	stove	_	t3	NN	_	31	2	_	_
 35	.	_	t26	.	_	2	ADJ	_	_
 
-# visual-style 14 bgColor:blue
-# visual-style 26 bgColor:blue
+# visual-style 14 bgColor:red
+# visual-style 26 bgColor:red
 1	With	_	t0	IN	_	11	ADJ	_	_
 2	every	_	t1	DT	_	4	ADJ	_	_
 3	leaping	_	t11	VBG	_	4	ADJ	_	_
@@ -143,8 +143,8 @@
 27	again	_	t69	RB	_	26	ADJ	_	_
 28	.	_	t26	.	_	11	ADJ	_	_
 
-# visual-style 33 bgColor:blue
-# visual-style 37 bgColor:blue
+# visual-style 33 bgColor:red
+# visual-style 37 bgColor:red
 1	Even	_	t105	RB	_	3	ADJ	_	_
 2	the	_	t1	DT	_	3	ADJ	_	_
 3	knowledge	_	t3	NN	_	24	0	_	_
@@ -207,8 +207,8 @@
 60	mountains	_	t3	NNS	_	57	1	_	_
 61	.	_	t26	.	_	24	ADJ	_	_
 
-# visual-style 30 bgColor:blue
-# visual-style 41 bgColor:blue
+# visual-style 30 bgColor:red
+# visual-style 41 bgColor:red
 1	When	_	t154	WRB	_	4	-unk-	_	_
 2	a	_	t1	DT	_	3	ADJ	_	_
 3	fisherman	_	t3	NN	_	4	0	_	_
@@ -252,8 +252,8 @@
 41	for	_	tCO	IN	_	40	CO	_	_
 42	.	_	t26	.	_	24	ADJ	_	_
 
-# visual-style 9 bgColor:blue
-# visual-style 20 bgColor:blue
+# visual-style 9 bgColor:red
+# visual-style 20 bgColor:red
 1	Another	_	t1	DT	_	2	ADJ	_	_
 2	weakness	_	t3	NN	_	24	0	_	_
 3	--	_	t21	:	_	2	ADJ	_	_
@@ -287,8 +287,8 @@
 31	's	_	t678	POS	_	30	ADJ	_	_
 32	.	_	t26	.	_	24	ADJ	_	_
 
-# visual-style 37 bgColor:blue
-# visual-style 41 bgColor:blue
+# visual-style 37 bgColor:red
+# visual-style 41 bgColor:red
 1	In	_	t0	IN	_	32	ADJ	_	_
 2	her	_	t30	PRP$	_	3	ADJ	_	_
 3	mind	_	t7	NN	_	4	ADJ	_	_
@@ -352,8 +352,8 @@
 61	hills	_	t3	NNS	_	57	1	_	_
 62	.	_	t26	.	_	32	ADJ	_	_
 
-# visual-style 5 bgColor:blue
-# visual-style 11 bgColor:blue
+# visual-style 5 bgColor:red
+# visual-style 11 bgColor:red
 1	Those	_	t113	DT	_	5	0	_	_
 2	were	_	t23	VBD	_	5	ADJ	_	_
 3	especially	_	t24	RB	_	5	ADJ	_	_
@@ -368,10 +368,10 @@
 12	loudest	_	t69	JJS	_	10	ADJ	_	_
 13	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 10 bgColor:blue
-# visual-style 17 bgColor:blue
-# visual-style 12 bgColor:red
+# visual-style 10 bgColor:red
 # visual-style 17 bgColor:red
+# visual-style 12 bgColor:green
+# visual-style 17 bgColor:green
 1	``	_	t5	``	_	3	ADJ	_	_
 2	The	_	t1	DT	_	3	ADJ	_	_
 3	events	_	t3	NNS	_	8	0	_	_
@@ -397,8 +397,8 @@
 23	.	_	t26	.	_	8	ADJ	_	_
 24	''	_	t91	''	_	23	ADJ	_	_
 
-# visual-style 27 bgColor:blue
-# visual-style 32 bgColor:blue
+# visual-style 27 bgColor:red
+# visual-style 32 bgColor:red
 1	But	_	t94	CC	_	12	ADJ	_	_
 2	Rep.	_	t2	NNP	_	4	ADJ	_	_
 3	Marge	_	t2	NNP	_	4	ADJ	_	_
@@ -436,8 +436,8 @@
 35	years	_	t3	NNS	_	33	1	_	_
 36	.	_	t26	.	_	12	ADJ	_	_
 
-# visual-style 12 bgColor:blue
-# visual-style 19 bgColor:blue
+# visual-style 12 bgColor:red
+# visual-style 19 bgColor:red
 1	U.S.	_	t2	NNP	_	2	ADJ	_	_
 2	Banknote	_	t3	NNP	_	3	0	_	_
 3	said	_	t28	VBD	_	0	ROOT	_	_
@@ -480,8 +480,8 @@
 40	sale	_	t3	NN	_	38	1	_	_
 41	.	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 16 bgColor:blue
-# visual-style 24 bgColor:blue
+# visual-style 16 bgColor:red
+# visual-style 24 bgColor:red
 1	While	_	t74	IN	_	2	-unk-	_	_
 2	reaching	_	t458	VBG	_	12	ADJ	_	_
 3	blockbuster	_	t36	JJ	_	4	ADJ	_	_
@@ -519,8 +519,8 @@
 35	crash	_	t3	NN	_	31	1	_	_
 36	.	_	t26	.	_	12	ADJ	_	_
 
-# visual-style 19 bgColor:blue
-# visual-style 30 bgColor:blue
+# visual-style 19 bgColor:red
+# visual-style 30 bgColor:red
 1	There	_	t327	EX	_	3	0	_	_
 2	is	_	t23	VBZ	_	3	ADJ	_	_
 3	plenty	_	t167	NN	_	0	ROOT	_	_
@@ -554,10 +554,10 @@
 31	.	_	t26	.	_	3	ADJ	_	_
 32	''	_	t91	''	_	31	ADJ	_	_
 
-# visual-style 19 bgColor:blue
-# visual-style 32 bgColor:blue
-# visual-style 21 bgColor:red
+# visual-style 19 bgColor:red
 # visual-style 32 bgColor:red
+# visual-style 21 bgColor:green
+# visual-style 32 bgColor:green
 1	There	_	t327	EX	_	4	0	_	_
 2	were	_	t23	VBD	_	4	ADJ	_	_
 3	also	_	t24	RB	_	4	ADJ	_	_
@@ -601,8 +601,8 @@
 41	.	_	t26	.	_	4	ADJ	_	_
 42	''	_	t91	''	_	41	ADJ	_	_
 
-# visual-style 11 bgColor:blue
-# visual-style 20 bgColor:blue
+# visual-style 11 bgColor:red
+# visual-style 20 bgColor:red
 1	Labor	_	t3	NN	_	2	0	_	_
 2	gets	_	t27	VBZ	_	0	ROOT	_	_
 3	25	_	t2	CD	_	4	ADJ	_	_

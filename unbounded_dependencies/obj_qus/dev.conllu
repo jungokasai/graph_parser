@@ -1,5 +1,5 @@
-# visual-style 2 bgColor:blue
-# visual-style 7 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 7 bgColor:red
 1	What	_	t98	WP	_	7	0	_	_
 2	country	_	t48	NN	_	1	ADJ	_	_
 3	did	_	t259	VBD	_	0	ROOT	_	_
@@ -9,8 +9,8 @@
 7	rule	_	t712	NN	_	0	ROOT	_	_
 8	?	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 5 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 5 bgColor:red
 1	What	_	t98	WP	_	4	1	_	_
 2	does	_	t259	VBZ	_	4	ADJ	_	_
 3	CPR	_	t3	NNP	_	4	0	_	_
@@ -18,8 +18,8 @@
 5	for	_	tCO	IN	_	4	CO	_	_
 6	?	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 9 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 9 bgColor:red
 1	What	_	t98	WP	_	3	1	_	_
 2	city	_	t48	NN	_	1	ADJ	_	_
 3	does	_	t214	VBZ	_	8	ADJ	_	_
@@ -31,8 +31,8 @@
 9	in	_	tCO	RP	_	8	ADJ	_	_
 10	?	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 6 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	movies	_	t48	NNS	_	1	ADJ	_	_
 3	did	_	t259	VBD	_	5	ADJ	_	_
@@ -41,8 +41,8 @@
 6	in	_	tCO	RP	_	5	ADJ	_	_
 7	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 5 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 5 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	did	_	t259	VBD	_	5	ADJ	_	_
 3	Alfred	_	t2	NNP	_	4	ADJ	_	_
@@ -50,8 +50,8 @@
 5	invent	_	t214	VB	_	0	ROOT	_	_
 6	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 7 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 7 bgColor:red
 1	What	_	t98	WP	_	6	1	_	_
 2	cemetery	_	t48	NN	_	1	ADJ	_	_
 3	is	_	t259	VBZ	_	6	ADJ	_	_
@@ -61,8 +61,8 @@
 7	in	_	tCO	RP	_	6	CO	_	_
 8	?	_	t26	.	_	6	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 10 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 10 bgColor:red
 1	Which	_	t100	WDT	_	3	0	_	_
 2	planet	_	t48	NN	_	1	0	_	_
 3	did	_	t259	VBD	_	7	ADJ	_	_
@@ -76,8 +76,8 @@
 11	extensively	_	t69	RB	_	10	ADJ	_	_
 12	?	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 6 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	is	_	t259	VBZ	_	5	ADJ	_	_
 3	Jane	_	t2	NNP	_	4	ADJ	_	_
@@ -86,8 +86,8 @@
 6	for	_	tCO	IN	_	5	CO	_	_
 7	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 8 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 8 bgColor:red
 1	What	_	t98	WP	_	4	0	_	_
 2	are	_	t259	VBP	_	4	ADJ	_	_
 3	the	_	t1	DT	_	4	ADJ	_	_
@@ -98,8 +98,8 @@
 8	called	_	t50	VBN	_	6	1	_	_
 9	?	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 4 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 4 bgColor:red
 1	What	_	t98	WP	_	4	1	_	_
 2	do	_	t259	VBP	_	4	ADJ	_	_
 3	you	_	t29	PRP	_	4	0	_	_
@@ -110,8 +110,8 @@
 8	drawer	_	t3	NN	_	4	1	_	_
 9	?	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 8 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 8 bgColor:red
 1	What	_	t98	WP	_	7	1	_	_
 2	country	_	t48	NN	_	1	ADJ	_	_
 3	did	_	t259	VBD	_	7	ADJ	_	_
@@ -122,8 +122,8 @@
 8	from	_	tCO	IN	_	7	CO	_	_
 9	?	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 3 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 3 bgColor:red
+# visual-style 6 bgColor:red
 1	How	_	t675	WRB	_	6	1	_	_
 2	many	_	t137	JJ	_	1	ADJ	_	_
 3	siblings	_	t48	NNS	_	1	ADJ	_	_
@@ -132,8 +132,8 @@
 6	have	_	t214	VBP	_	0	ROOT	_	_
 7	?	_	t26	.	_	6	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 6 bgColor:red
 1	What	_	t98	WP	_	6	1	_	_
 2	effect	_	t48	NN	_	1	ADJ	_	_
 3	does	_	t259	VBZ	_	7	ADJ	_	_
@@ -144,8 +144,8 @@
 8	light	_	t3	NN	_	7	1	_	_
 9	?	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 3 bgColor:blue
-# visual-style 8 bgColor:blue
+# visual-style 3 bgColor:red
+# visual-style 8 bgColor:red
 1	How	_	t675	WRB	_	8	-unk-	_	_
 2	many	_	t137	JJ	_	1	ADJ	_	_
 3	chromosomes	_	t48	NNS	_	1	ADJ	_	_
@@ -156,8 +156,8 @@
 8	have	_	t214	VB	_	0	ROOT	_	_
 9	?	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 6 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	countries	_	t48	NNS	_	1	ADJ	_	_
 3	does	_	t259	VBZ	_	5	ADJ	_	_
@@ -166,8 +166,8 @@
 6	in	_	t69	IN	_	5	ADJ	_	_
 7	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 8 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 8 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	kind	_	t48	NN	_	1	ADJ	_	_
 3	of	_	t4	IN	_	1	ADJ	_	_
@@ -178,8 +178,8 @@
 8	play	_	t3	NN	_	5	0	_	_
 9	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 9 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 9 bgColor:red
 1	What	_	t98	WP	_	9	1	_	_
 2	was	_	t259	VBD	_	9	ADJ	_	_
 3	President	_	t2	NNP	_	5	ADJ	_	_
@@ -191,8 +191,8 @@
 9	called	_	t214	VBN	_	0	ROOT	_	_
 10	?	_	t26	.	_	9	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 5 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 5 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	did	_	t259	VBD	_	5	ADJ	_	_
 3	Charles	_	t2	NNP	_	4	ADJ	_	_
@@ -200,8 +200,8 @@
 5	invent	_	t214	VB	_	0	ROOT	_	_
 6	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 6 bgColor:red
 1	What	_	t98	WP	_	3	0	_	_
 2	position	_	t48	NN	_	1	ADJ	_	_
 3	did	_	t259	VBD	_	0	ROOT	_	_
@@ -213,8 +213,8 @@
 9	baseball	_	t3	NN	_	7	1	_	_
 10	?	_	t26	.	_	3	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 6 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	is	_	t259	VBZ	_	5	ADJ	_	_
 3	the	_	t1	DT	_	4	ADJ	_	_
@@ -223,8 +223,8 @@
 6	for	_	tCO	IN	_	5	ADJ	_	_
 7	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 7 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 7 bgColor:red
 1	What	_	t98	WP	_	7	1	_	_
 2	type	_	t48	NN	_	1	ADJ	_	_
 3	of	_	t4	IN	_	1	ADJ	_	_
@@ -234,8 +234,8 @@
 7	damage	_	t214	VB	_	0	ROOT	_	_
 8	?	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 6 bgColor:red
 1	What	_	t98	WP	_	5	1	_	_
 2	countries	_	t48	NNS	_	1	ADJ	_	_
 3	have	_	t259	VBP	_	5	ADJ	_	_
@@ -244,8 +244,8 @@
 6	in	_	tCO	RP	_	5	CO	_	_
 7	?	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 8 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 8 bgColor:red
 1	What	_	t98	WP	_	7	1	_	_
 2	city	_	t48	NN	_	7	0	_	_
 3	in	_	t4	IN	_	2	ADJ	_	_
@@ -256,8 +256,8 @@
 8	in	_	t1221	RP	_	7	ADJ	_	_
 9	?	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 1 bgColor:blue
-# visual-style 8 bgColor:blue
+# visual-style 1 bgColor:red
+# visual-style 8 bgColor:red
 1	What	_	t98	WP	_	8	1	_	_
 2	is	_	t259	VBZ	_	8	ADJ	_	_
 3	the	_	t1	DT	_	7	ADJ	_	_
@@ -268,8 +268,8 @@
 8	called	_	t214	VBN	_	0	ROOT	_	_
 9	?	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 9 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 9 bgColor:red
 1	What	_	t98	WP	_	8	0	_	_
 2	continent	_	t48	NN	_	1	ADJ	_	_
 3	is	_	t23	VBZ	_	8	ADJ	_	_

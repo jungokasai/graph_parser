@@ -1,5 +1,5 @@
-# visual-style 50 bgColor:blue
-# visual-style 56 bgColor:blue
+# visual-style 50 bgColor:red
+# visual-style 56 bgColor:red
 1	Thus	_	t90	RB	_	37	ADJ	_	_
 2	,	_	t20	,	_	37	ADJ	_	_
 3	when	_	t154	WRB	_	26	-unk-	_	_
@@ -62,8 +62,8 @@
 60	girl	_	t3	NN	_	56	2	_	_
 61	.	_	t26	.	_	37	ADJ	_	_
 
-# visual-style 10 bgColor:blue
-# visual-style 16 bgColor:blue
+# visual-style 10 bgColor:red
+# visual-style 16 bgColor:red
 1	Poor	_	t36	JJ	_	2	ADJ	_	_
 2	winds	_	t3	NNS	_	5	0	_	_
 3	and	_	t17	CC	_	2	ADJ	_	_
@@ -83,8 +83,8 @@
 17	''	_	t6	''	_	16	ADJ	_	_
 18	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 6 bgColor:blue
-# visual-style 12 bgColor:blue
+# visual-style 6 bgColor:red
+# visual-style 12 bgColor:red
 1	In	_	t704	IN	_	18	ADJ	_	_
 2	assigning	_	t1788	VBG	_	1	1	_	_
 3	to	_	tCO	TO	_	2	CO	_	_
@@ -124,8 +124,8 @@
 37	follow	_	t440	VB	_	30	ADJ	_	_
 38	.	_	t26	.	_	18	ADJ	_	_
 
-# visual-style 12 bgColor:blue
-# visual-style 16 bgColor:blue
+# visual-style 12 bgColor:red
+# visual-style 16 bgColor:red
 1	However	_	t90	RB	_	7	ADJ	_	_
 2	,	_	t20	,	_	7	ADJ	_	_
 3	there	_	t327	EX	_	7	0	_	_
@@ -146,8 +146,8 @@
 18	execute	_	t1180	VB	_	12	ADJ	_	_
 19	.	_	t26	.	_	7	ADJ	_	_
 
-# visual-style 19 bgColor:blue
-# visual-style 27 bgColor:blue
+# visual-style 19 bgColor:red
+# visual-style 27 bgColor:red
 1	In	_	t0	IN	_	11	ADJ	_	_
 2	his	_	t30	PRP$	_	3	ADJ	_	_
 3	Message	_	t3	NN	_	1	1	_	_
@@ -195,8 +195,8 @@
 45	''	_	t1091	''	_	40	ADJ	_	_
 46	.	_	t26	.	_	11	ADJ	_	_
 
-# visual-style 20 bgColor:blue
-# visual-style 23 bgColor:blue
+# visual-style 20 bgColor:red
+# visual-style 23 bgColor:red
 1	He	_	t29	PRP	_	4	0	_	_
 2	had	_	t23	VBD	_	4	ADJ	_	_
 3	been	_	t23	VBN	_	4	ADJ	_	_
@@ -225,8 +225,8 @@
 26	him	_	t29	PRP	_	25	1	_	_
 27	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 15 bgColor:blue
-# visual-style 20 bgColor:blue
+# visual-style 15 bgColor:red
+# visual-style 20 bgColor:red
 1	Beyond	_	t33	IN	_	5	-unk-	_	_
 2	the	_	t1	DT	_	4	ADJ	_	_
 3	stockade	_	t2	NN	_	4	ADJ	_	_
@@ -249,8 +249,8 @@
 20	Apaches	_	t221	NNPS	_	13	1	_	_
 21	.	_	t26	.	_	5	ADJ	_	_
 
-# visual-style 2 bgColor:blue
-# visual-style 6 bgColor:blue
+# visual-style 2 bgColor:red
+# visual-style 6 bgColor:red
 1	The	_	t1	DT	_	2	ADJ	_	_
 2	film	_	t3	NN	_	4	1	_	_
 3	was	_	t23	VBD	_	4	ADJ	_	_
@@ -270,8 +270,8 @@
 17	deserved	_	t214	VBD	_	13	1	_	_
 18	.	_	t26	.	_	4	ADJ	_	_
 
-# visual-style 21 bgColor:blue
-# visual-style 31 bgColor:blue
+# visual-style 21 bgColor:red
+# visual-style 31 bgColor:red
 1	The	_	t1	DT	_	2	ADJ	_	_
 2	bulk	_	t3	NN	_	12	0	_	_
 3	of	_	t4	IN	_	2	ADJ	_	_
@@ -307,8 +307,8 @@
 33	earnings	_	t3	NNS	_	32	1	_	_
 34	.	_	t26	.	_	12	ADJ	_	_
 
-# visual-style 27 bgColor:blue
-# visual-style 34 bgColor:blue
+# visual-style 27 bgColor:red
+# visual-style 34 bgColor:red
 1	But	_	t94	CC	_	8	ADJ	_	_
 2	the	_	t1	DT	_	5	ADJ	_	_
 3	Blue	_	t2	NNP	_	5	ADJ	_	_
@@ -350,8 +350,8 @@
 39	direction	_	t3	NN	_	35	1	_	_
 40	.	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 15 bgColor:blue
-# visual-style 26 bgColor:blue
+# visual-style 15 bgColor:red
+# visual-style 26 bgColor:red
 1	Included	_	t640	VBN	_	10	1	_	_
 2	in	_	tCO	IN	_	1	CO	_	_
 3	the	_	t1	DT	_	4	ADJ	_	_
@@ -391,8 +391,8 @@
 37	.	_	t26	.	_	10	ADJ	_	_
 38	''	_	t91	''	_	37	ADJ	_	_
 
-# visual-style 19 bgColor:blue
-# visual-style 25 bgColor:blue
+# visual-style 19 bgColor:red
+# visual-style 25 bgColor:red
 1	Many	_	t36	JJ	_	3	ADJ	_	_
 2	major	_	t36	JJ	_	3	ADJ	_	_
 3	institutions	_	t3	NNS	_	8	0	_	_
@@ -422,8 +422,8 @@
 27	Friday	_	t3	NNP	_	26	1	_	_
 28	.	_	t26	.	_	8	ADJ	_	_
 
-# visual-style 14 bgColor:blue
-# visual-style 17 bgColor:blue
+# visual-style 14 bgColor:red
+# visual-style 17 bgColor:red
 1	Ministry	_	t2	NN	_	2	ADJ	_	_
 2	employees	_	t3	NNS	_	3	0	_	_
 3	complain	_	t28	VBP	_	0	ROOT	_	_
