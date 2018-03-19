@@ -15,3 +15,4 @@ sample_data/Graph_Parsers/*
 sample_data/Parsing_Model/*
 sample_data/checkpoint.txt
 word_embeddings/*
+pretrained/Pretrained_Parser/*
