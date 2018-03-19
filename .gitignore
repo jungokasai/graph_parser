@@ -16,3 +16,4 @@ sample_data/Parsing_Model/*
 sample_data/checkpoint.txt
 word_embeddings/*
 pretrained/Pretrained_Parser/*
+demo/Pretrained_Parser/*

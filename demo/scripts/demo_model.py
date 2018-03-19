@@ -15,8 +15,40 @@ def demo_model(opts, test_opts):
             session.run(tf.global_variables_initializer())
             saver.restore(session, test_opts.modelname)
             scores = model.run_epoch(session, True)
+def read_sents(sents_file):
+    sents = []
+    with open(sents_file) as fhand:
+        for line in fhand:
+            sent = line.split()
+            sents.append(sent)
+    return sents
+
 def output_conllu(test_opts):
-    pass
+    sents = read_sents(os.path.join(test_opts.base_dir, 'sents', 'test.txt'))
+    stags = read_sents(os.path.join(test_opts.base_dir, 'predicted_stag', 'test.txt'))
+    pos = read_sents(os.path.join(test_opts.base_dir, 'predicted_pos', 'test.txt'))
+    arcs = read_sents(os.path.join(test_opts.base_dir, 'predicted_arcs', 'test.txt'))
+    rels = read_sents(os.path.join(test_opts.base_dir, 'predicted_rels', 'test.txt'))
+    with open(os.path.join(test_opts.base_dir, 'predicted_conllu', 'test.conllu'), 'wt') as fout:
+        for sent_idx in xrange(len(sents)):
+            sent = sents[sent_idx]
+            stags_sent = stags[sent_idx]
+            pos_sent = pos[sent_idx]
+            arcs_sent = arcs[sent_idx]
+            rels_sent = rels[sent_idx]
+            for word_idx in xrange(len(sent)):
+                line = [str(word_idx+1)]
+                line.append(sent[word_idx])
+                line.append('_')
+                line.append(stags_sent[word_idx])
+                line.append(pos_sent[word_idx])
+                line.append('_')
+                line.append(arcs_sent[word_idx])
+                line.append(rels_sent[word_idx])
+                line.append('_')
+                fout.write('\t'.join(line))
+                fout.write('\n')
+            fout.write('\n')
 def output_sents(sents, test_opts):
     sents = sent_tokenize(sents)
     sents = map(word_tokenize, sents)
@@ -31,5 +63,5 @@ if __name__ == '__main__':
     with open('demo/configs/config_demo_test.pkl') as fin:
         test_opts = pickle.load(fin)
     output_sents(sents, test_opts)
-#    demo_model(opts, test_opts)
+    demo_model(opts, test_opts)
     output_conllu(test_opts)

@@ -1,0 +1,14 @@
+1	TAG	_	t3	NN	_	5	0	_
+2	is	_	t23	VBZ	_	5	ADJ	_
+3	the	_	t1	DT	_	5	ADJ	_
+4	best	_	t36	JJS	_	5	ADJ	_
+5	formalism	_	t167	NN	_	0	ROOT	_
+6	.	_	t26	.	_	5	ADJ	_
+
+1	We	_	t29	PRP	_	4	0	_
+2	should	_	t45	MD	_	4	ADJ	_
+3	all	_	t562	DT	_	4	ADJ	_
+4	learn	_	t27	VB	_	0	ROOT	_
+5	it	_	t29	PRP	_	4	1	_
+6	.	_	t26	.	_	4	ADJ	_
+
