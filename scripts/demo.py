@@ -11,7 +11,7 @@ parser = ArgumentParser()
 parser.add_argument('config_file', metavar='N', help='an integer for the accumulator')
 parser.add_argument('model_name', metavar='N', help='an integer for the accumulator')
 parser.add_argument("--no_gold",  help="compute tag accuracy", action="store_true", default=True) ## for demo
-parser.add_argument("--pretrained",  help="pretrained", action="store_true", default=False) ## for demo
+parser.add_argument("--pretrained",  help="pretrained", action="store_true", default=True) ## for demo
 parser.add_argument("--save_probs",  help="save tag probabilities", action="store_true", default=False)
 parser.add_argument("--get_weight",  help="get stag weight", action="store_true", default=False)
 opts = parser.parse_args()

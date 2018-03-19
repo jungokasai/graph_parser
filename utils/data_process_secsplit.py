@@ -24,6 +24,7 @@ class Dataset(object):
             path_to_arc_test = opts.arc_test
             path_to_rel_test = opts.rel_test
             path_to_punc_test = opts.punc_test
+            pretrained = False
         else:
             path_to_text_test = test_opts.text_test
             path_to_tag_test = test_opts.tag_test
@@ -31,17 +32,25 @@ class Dataset(object):
             path_to_arc_test = test_opts.arc_test
             path_to_rel_test = test_opts.rel_test
             path_to_punc_test = test_opts.punc_test
+            pretrained = test_opts.pretrained
 
         self.inputs_train = {}
         self.inputs_test = {}
 
         ## indexing sents files
-        f_train = open(path_to_text)
-        texts = f_train.readlines()
-        self.nb_train_samples = len(texts)
-        f_train.close()
-        tokenizer = Tokenizer(lower=True)
-        tokenizer.fit_on_texts(texts)
+        if pretrained:
+            tokenizer_dir = os.path.join(test_opts.base_dir, 'tokenizers')
+            with open(os.path.join(tokenizer_dir, 'word_tokenizer.pkl')) as fin:
+                tokenizer = pickle.load(fin)
+            texts = []
+            self.nb_train_samples = 0
+        else:
+            f_train = open(path_to_text)
+            texts = f_train.readlines()
+            self.nb_train_samples = len(texts)
+            f_train.close()
+            tokenizer = Tokenizer(lower=True)
+            tokenizer.fit_on_texts(texts)
         #print(tokenizer.word_index['-unseen-'])
         self.word_index = tokenizer.word_index
         self.nb_words = len(self.word_index)
@@ -87,12 +96,17 @@ class Dataset(object):
         ## indexing sents files ends
         ## indexing char files
         if opts.chars_dim > 0:
-            f_train = io.open(path_to_text, encoding='utf-8')
-            texts = f_train.readlines()
-            f_train.close()
-            tokenizer = Tokenizer(lower=False,char_encoding=True, root=False) 
-            ## char embedding for <-root-> does not make sense
-            tokenizer.fit_on_texts(texts) ## char embedding for <-root-> does not make sense
+            if pretrained:
+                with open(os.path.join(tokenizer_dir, 'char_tokenizer.pkl')) as fin:
+                    tokenizer = pickle.load(fin)
+                texts = []
+            else:
+                f_train = io.open(path_to_text, encoding='utf-8')
+                texts = f_train.readlines()
+                f_train.close()
+                tokenizer = Tokenizer(lower=False,char_encoding=True, root=False) 
+                ## char embedding for <-root-> does not make sense
+                tokenizer.fit_on_texts(texts) ## char embedding for <-root-> does not make sense
             self.char_index = tokenizer.word_index
             self.nb_chars = len(self.char_index)
             self.idx_to_char = invert_dict(self.char_index)
@@ -108,11 +122,16 @@ class Dataset(object):
 
         ## indexing jackknife files
         if (opts.jk_dim > 0) or (opts.model in ['Parsing_Model_Joint_Both']):
-            f_train = open(path_to_jk)
-            texts = f_train.readlines()
-            f_train.close()
-            tokenizer = Tokenizer(lower=False) 
-            tokenizer.fit_on_texts(texts, zero_padding=False)
+            if pretrained:
+                with open(os.path.join(tokenizer_dir, 'pos_tokenizer.pkl')) as fin:
+                    tokenizer = pickle.load(fin)
+                texts = []
+            else:
+                f_train = open(path_to_jk)
+                texts = f_train.readlines()
+                f_train.close()
+                tokenizer = Tokenizer(lower=False) 
+                tokenizer.fit_on_texts(texts, zero_padding=False)
             self.jk_index = tokenizer.word_index
             self.nb_jk = len(self.jk_index)
             self.idx_to_jk = invert_dict(self.jk_index)
@@ -127,11 +146,16 @@ class Dataset(object):
             ## indexing jackknife files ends
         ## indexing stag files
         if (opts.stag_dim > 0) or (opts.model in ['Parsing_Model_Joint', 'Parsing_Model_Shuffle', 'Parsing_Model_Joint_Both']):
-            f_train = open(path_to_tag)
-            texts = f_train.readlines()
-            f_train.close()
-            tokenizer = Tokenizer(lower=False) ## for tCO
-            tokenizer.fit_on_texts(texts, zero_padding=False)
+            if pretrained:
+                with open(os.path.join(tokenizer_dir, 'stag_tokenizer.pkl')) as fin:
+                    tokenizer = pickle.load(fin)
+                texts = []
+            else:
+                f_train = open(path_to_tag)
+                texts = f_train.readlines()
+                f_train.close()
+                tokenizer = Tokenizer(lower=False) ## for tCO
+                tokenizer.fit_on_texts(texts, zero_padding=False)
             ## if zero_padding is True, index 0 is reserved, never assigned to an existing word
             self.tag_index = tokenizer.word_index
             self.nb_stags = len(self.tag_index)
@@ -148,11 +172,16 @@ class Dataset(object):
             ## indexing stag files ends
 
         ## indexing rel files
-        f_train = open(path_to_rel)
-        texts = f_train.readlines()
-        f_train.close()
-        tokenizer = Tokenizer(lower=False)
-        tokenizer.fit_on_texts(texts, zero_padding=False)
+        if pretrained:
+            with open(os.path.join(tokenizer_dir, 'rel_tokenizer.pkl')) as fin:
+                tokenizer = pickle.load(fin)
+            texts = []
+        else:
+            f_train = open(path_to_rel)
+            texts = f_train.readlines()
+            f_train.close()
+            tokenizer = Tokenizer(lower=False)
+            tokenizer.fit_on_texts(texts, zero_padding=False)
         self.rel_index = tokenizer.word_index
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)
@@ -169,9 +198,12 @@ class Dataset(object):
 
         ## indexing arc files
         ## Notice arc sequences are already integers
-        f_train = open(path_to_arc)
-        arc_sequences = f_train.readlines()
-        f_train.close()
+        if pretrained:
+            arc_sequences = []
+        else:
+            f_train = open(path_to_arc)
+            arc_sequences = f_train.readlines()
+            f_train.close()
         f_test = open(path_to_arc_test)
         arc_sequences = arcs2seq(arc_sequences + f_test.readlines())
         f_test.close()
@@ -189,13 +221,16 @@ class Dataset(object):
             self.punc = np.hstack(self.punc)#.astype(bool)
 
         ## padding the train inputs and test inputs
-        self.inputs_train = {key: pad_sequences(x, key) for key, x in self.inputs_train.items()}
-        self.inputs_train['arcs'] = np.hstack([np.zeros([self.inputs_train['arcs'].shape[0], 1]).astype(int), self.inputs_train['arcs']])
-        ## dummy parents for the roots
-        random.seed(0)
-        perm = np.arange(self.nb_train_samples)
-        random.shuffle(perm)
-        self.inputs_train = {key: x[perm] for key, x in self.inputs_train.items()}
+        if pretrained:
+            self.inputs_train = {}
+        else:
+            self.inputs_train = {key: pad_sequences(x, key) for key, x in self.inputs_train.items()}
+            self.inputs_train['arcs'] = np.hstack([np.zeros([self.inputs_train['arcs'].shape[0], 1]).astype(int), self.inputs_train['arcs']])
+            ## dummy parents for the roots
+            random.seed(0)
+            perm = np.arange(self.nb_train_samples)
+            random.shuffle(perm)
+            self.inputs_train = {key: x[perm] for key, x in self.inputs_train.items()}
 
         self.inputs_test = {key: pad_sequences(x, key) for key, x in self.inputs_test.items()}
         ## dummy parents for the roots

@@ -76,6 +76,7 @@ test_parser.add_argument("--rel_test", dest="rel_test", help="tag data for testi
 
 ### Model Information
 test_parser.add_argument("--model", dest="modelname", help="model name")
+test_parser.add_argument("--pretrained",  help="Use pretrained without training data. Load pickled dictionaries.", action="store_true", default=False)
 ### Output Options
 test_parser.add_argument("--get_accuracy",  help="compute tag accuracy", action="store_true", default=False)
 test_parser.add_argument("--save_tags", dest="save_tags", help="save 1-best tags")
