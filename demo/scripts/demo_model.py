@@ -24,11 +24,11 @@ def read_sents(sents_file):
     return sents
 
 def output_conllu(test_opts):
-    sents = read_sents(os.path.join(test_opts.base_dir, 'sents', 'test.txt'))
-    stags = read_sents(os.path.join(test_opts.base_dir, 'predicted_stag', 'test.txt'))
-    pos = read_sents(os.path.join(test_opts.base_dir, 'predicted_pos', 'test.txt'))
-    arcs = read_sents(os.path.join(test_opts.base_dir, 'predicted_arcs', 'test.txt'))
-    rels = read_sents(os.path.join(test_opts.base_dir, 'predicted_rels', 'test.txt'))
+    sents = read_sents(test_opts.text_test)
+    stags = read_sents(test_opts.predicted_stags_file)
+    pos = read_sents(test_opts.predicted_pos_file)
+    arcs = read_sents(test_opts.predicted_arcs_file)
+    rels = read_sents(test_opts.predicted_rels_file)
     with open(os.path.join(test_opts.base_dir, 'predicted_conllu', 'test.conllu'), 'wt') as fout:
         for sent_idx in xrange(len(sents)):
             sent = sents[sent_idx]
