@@ -63,8 +63,17 @@ After running this command, you should be getting the following files and direct
 
 
 ## <a name="pretrained"></a>Run a pre-trained TAG Parser
+We provide a pre-trained TAG parser.
+To run the pre-trained parser on your data, first [download the model](https://drive.google.com/drive/folders/1CzL7i0jnGT9BhQkM8vmiR-JbRohjIBZI?usp=sharing) and place the ``Pretrained_Parser`` directory in the ``pretrained`` directory. The ``pretrained`` directory already contains sample data (one sentence per line):
 
-To Be Added.
+* ``sents/test.txt`` 
+
+You can replace these files by your own data.
+Then, run the following command:
+```bash
+python scripts/demo.py pretrained/config_pretrained.json pretrained/Pretrained_Parser/best_model
+```
+
 
 ## Notes
 
