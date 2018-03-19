@@ -9,7 +9,8 @@
 * [Train a Supertagger](#train)
 * [Structure of the Code](#structure)
 * [Jackknife POS Tagging](#jackknife)
-* [Run a pre-trained TAG Supertagger](#pretrained)
+* [Run a pre-trained TAG Parser](#pretrained)
+* [Run demo](#demo)
 * [Notes](#notes)
 
 <!--* [Notes](#notes) -->
@@ -71,9 +72,14 @@ To run the pre-trained parser on your data, first [download the model](https://d
 You can replace these files by your own data.
 Then, run the following command:
 ```bash
-python scripts/demo.py pretrained/config_pretrained.json pretrained/Pretrained_Parser/best_model
+python scripts/run_pretrained.py pretrained/config_pretrained.json pretrained/Pretrained_Parser/best_model
 ```
 
+## <a name="demo"></a>Run a demo TAG Parser
+To run the demo parser on your data, first [download the model](https://drive.google.com/drive/folders/1HRTQp1pBWBShE7eIVENLL6__ELi-snzO) and place the ``Pretrained_Parser`` directory in the ``demo`` directory. Then, run
+```bash
+python demo/scripts/demo_model.py
+```
 
 ## Notes
 
