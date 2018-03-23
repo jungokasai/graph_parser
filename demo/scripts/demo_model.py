@@ -1,8 +1,6 @@
 from __future__ import print_function
 import tensorflow as tf
 import sys, os, pickle
-sys.path.insert(0, os.path.abspath('.'))
-import utils
 from nltk.tokenize import sent_tokenize, word_tokenize
         
 def demo_model(opts, test_opts):
@@ -57,11 +55,16 @@ def output_sents(sents, test_opts):
             fout.write(' '.join(sent))
             fout.write('\n')
 if __name__ == '__main__':
-    sents = 'TAG is the best formalism. We should all learn it.'
-    with open('demo/configs/config_demo.pkl') as fin:
-        opts = pickle.load(fin)
-    with open('demo/configs/config_demo_test.pkl') as fin:
+    #sents = 'TAG is the best formalism. We should all learn it.'
+    sents = 'This is a parser. But can it parse this sentence? We willlll see.'
+    path_to_parser_dir = '/data/lily/jk964/active_projects/ud/graph_parser'
+    with open(os.path.join(path_to_parser_dir, 'demo/configs/config_demo_test.pkl')) as fin:
         test_opts = pickle.load(fin)
+    with open(os.path.join(path_to_parser_dir, 'demo/configs/config_demo.pkl')) as fin:
+        opts = pickle.load(fin)
+        opts.word_embeddings_file = os.path.join(path_to_parser_dir, opts.word_embeddings_file)
+    sys.path.insert(0, os.path.abspath(path_to_parser_dir))
+    import utils
     output_sents(sents, test_opts)
     demo_model(opts, test_opts)
     output_conllu(test_opts)
