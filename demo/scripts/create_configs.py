@@ -12,11 +12,11 @@ opts = parser.parse_args()
 def read_config(config_file):
     with open(config_file) as fhand:
         config_dict = json.load(fhand)
-    return config_dict
+    return config_dict, os.path.dirname(os.path.abspath(config_file))
 
-def test_parser(config, best_model, data_types):
+def test_parser(config, best_model, data_types, base_dir):
     ## Setting up
-    base_dir = config['data']['base_dir'] 
+    #base_dir = config['data']['base_dir'] 
     base_command = 'python demo/scripts/graph_parser_main.py test --base_dir {}'.format(base_dir)
     base_command += ' --pretrained'
     model_type = config['parser']['model_options']['model']
@@ -60,7 +60,7 @@ def test_parser(config, best_model, data_types):
 
 if __name__ == '__main__':
     config_file = opts.config_file
-    config_file = read_config(config_file)
+    config_file, base_dir = read_config(config_file)
     best_model = 'Pretrained_Parser/best_model'
     data_types = ['test']
-    test_parser(config_file, best_model, data_types)
+    test_parser(config_file, best_model, data_types, base_dir)
