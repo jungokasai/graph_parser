@@ -1,3 +1,4 @@
+#from mst import mst
 from mst import mst
 import numpy as np
 
