@@ -22,14 +22,14 @@ def mst(scores):
     if len(roots) < 1:
         root_scores = scores[tokens, 0]
         head_scores = scores[tokens, heads[tokens]]
-        new_root = tokens[np.argmax(root_scores / head_scores)]
+        new_root = tokens[np.argmax(root_scores - head_scores)]
         heads[new_root] = 0
     elif len(roots) > 1:
         root_scores = scores[roots, 0]
         scores[roots, 0] = 0
         new_heads = np.argmax(scores[roots][:, tokens], axis=1) + 1
         new_root = roots[np.argmin(
-            scores[roots, new_heads] / root_scores)]
+            scores[roots, new_heads] - root_scores)]
         heads[roots] = new_heads
         heads[new_root] = 0
 
@@ -51,9 +51,9 @@ def mst(scores):
         old_scores = scores[cycle, old_heads]
         non_heads = np.array(list(dependents))
         scores[np.repeat(cycle, len(non_heads)),
-               np.repeat([non_heads], len(cycle), axis=0).flatten()] = 0
+               np.repeat([non_heads], len(cycle), axis=0).flatten()] = -MAX
         new_heads = np.argmax(scores[cycle][:, tokens], axis=1) + 1
-        new_scores = scores[cycle, new_heads] / old_scores
+        new_scores = scores[cycle, new_heads] - old_scores
         change = np.argmax(new_scores)
         changed_cycle = cycle[change]
         old_head = old_heads[change]
