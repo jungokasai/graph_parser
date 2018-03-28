@@ -1,5 +1,5 @@
 #from mst import mst
-from mst import mst
+from stanford_heuristics import mst
 import numpy as np
 
 def predict_arcs_rels(arc_outputs, rel_scores, non_padding):

@@ -1,116 +1,189 @@
 import numpy as np
-from collections import defaultdict
-
-
 def mst(scores):
     """
-    Chu-Liu-Edmonds' algorithm for finding minimum spanning arborescence in graphs.
-    Calculates the arborescence with node 0 as root.
-    Source: https://github.com/chantera/biaffineparser/blob/master/utils.py
-
-    :param scores: `scores[i][j]` is the weight of edge from node `i` to node `j`
-    :returns an array containing the head node (node with edge pointing to current node) for each node,
-             with head[0] fixed as 0
+    Parse using Chu-Liu-Edmonds algorithm.
     """
-    length = scores.shape[0]
-    MAX = 10000.0
-    scores = (1.0-np.eye(length))*scores - np.eye(length)*MAX
-    heads = np.argmax(scores, axis=1)
-    heads[0] = 0
-    tokens = np.arange(1, length)
-    roots = np.where(heads[tokens] == 0)[0] + 1
-    if len(roots) < 1:
-        root_scores = scores[tokens, 0]
-        head_scores = scores[tokens, heads[tokens]]
-        new_root = tokens[np.argmax(root_scores - head_scores)]
-        heads[new_root] = 0
-    elif len(roots) > 1:
-        root_scores = scores[roots, 0]
-        scores[roots, 0] = 0
-        new_heads = np.argmax(scores[roots][:, tokens], axis=1) + 1
-        new_root = roots[np.argmin(
-            scores[roots, new_heads] - root_scores)]
-        heads[roots] = new_heads
-        heads[new_root] = 0
+    nr, nc = np.shape(scores)
+    if nr != nc:
+	raise ValueError("scores must be a squared matrix with nw+1 rows")
+	return []
 
-    edges = defaultdict(set)
-    vertices = set((0,))
-    for dep, head in enumerate(heads[tokens]):
-        vertices.add(dep + 1)
-        edges[head].add(dep + 1)
-    for cycle in _find_cycle(vertices, edges):
-        dependents = set()
-        to_visit = set(cycle)
-        while len(to_visit) > 0:
-            node = to_visit.pop()
-            if node not in dependents:
-                dependents.add(node)
-                to_visit.update(edges[node])
-        cycle = np.array(list(cycle))
-        old_heads = heads[cycle]
-        old_scores = scores[cycle, old_heads]
-        non_heads = np.array(list(dependents))
-        scores[np.repeat(cycle, len(non_heads)),
-               np.repeat([non_heads], len(cycle), axis=0).flatten()] = -MAX
-        new_heads = np.argmax(scores[cycle][:, tokens], axis=1) + 1
-        new_scores = scores[cycle, new_heads] - old_scores
-        change = np.argmax(new_scores)
-        changed_cycle = cycle[change]
-        old_head = old_heads[change]
-        new_head = new_heads[change]
-        heads[changed_cycle] = new_head
-        edges[new_head].add(changed_cycle)
-        edges[old_head].remove(changed_cycle)
+    nw = nr - 1
+    scores = scores.T
+
+    curr_nodes = np.ones(nw+1, int)
+    reps = []
+    old_I = -np.ones((nw+1, nw+1), int)
+    old_O = -np.ones((nw+1, nw+1), int)
+    for i in range(0, nw+1):
+	reps.append({i: 0})
+	for j in range(0, nw+1):
+	    old_I[i, j] = i
+	    old_O[i, j] = j
+	    if i == j or j == 0:
+		continue
+
+    scores_copy = scores.copy()
+    final_edges = chu_liu_edmonds(scores_copy, curr_nodes, old_I, old_O, {}, reps)
+    heads = np.zeros(nw+1, int)
+    heads[0] = 0
+    for key in list(final_edges.keys()):
+	ch = key
+	pr = final_edges[key]
+	heads[ch] = pr
 
     return heads
 
-
-def _find_cycle(vertices, edges):
+def chu_liu_edmonds(scores, curr_nodes, old_I, old_O, final_edges, reps):
     """
-    https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm  # NOQA
-    https://github.com/tdozat/Parser/blob/0739216129cd39d69997d28cbc4133b360ea3934/lib/etc/tarjan.py  # NOQA
+    Chu-Liu-Edmonds algorithm
     """
-    _index = [0]
-    _stack = []
-    _indices = {}
-    _lowlinks = {}
-    _onstack = defaultdict(lambda: False)
-    _SCCs = []
 
-    def _strongconnect(v):
-        _indices[v] = _index[0]
-        _lowlinks[v] = _index[0]
-        _index[0] += 1
-        _stack.append(v)
-        _onstack[v] = True
+    # need to construct for each node list of nodes they represent (here only!)
+    nw = np.size(curr_nodes) - 1
 
-        for w in edges[v]:
-            if w not in _indices:
-                _strongconnect(w)
-                _lowlinks[v] = min(_lowlinks[v], _lowlinks[w])
-            elif _onstack[w]:
-                _lowlinks[v] = min(_lowlinks[v], _indices[w])
+    # create best graph
+    par = -np.ones(nw+1, int)
+    for m in range(1, nw+1):
+	# only interested in current nodes
+	if 0 == curr_nodes[m]:
+	    continue
+	max_score = scores[0, m]
+	par[m] = 0
+	for h in range(nw+1):
+	    if m == h:
+		continue
+	    if 0 == curr_nodes[h]:
+		continue
+	    if scores[h, m] > max_score:
+		max_score = scores[h, m]
+		par[m] = h
 
-        if _lowlinks[v] == _indices[v]:
-            SCC = set()
-            while True:
-                w = _stack.pop()
-                _onstack[w] = False
-                SCC.add(w)
-                if not (w != v):
-                    break
-            _SCCs.append(SCC)
 
-    for v in vertices:
-        if v not in _indices:
-            _strongconnect(v)
+    # find a cycle
+    cycles = []
+    added = np.zeros(nw+1, int)
+    for m in range(0, nw+1):
+	if np.size(cycles) > 0:
+	    break
+	if added[m] or 0 == curr_nodes[m]:
+	    continue
+	added[m] = 1
+	cycle = {m: 0}
+	l = m
+	while True:
+	    if par[l] == -1:
+		added[l] = 1
+		break
+	    if par[l] in cycle:
+		cycle = {}
+		lorg = par[l]
+		cycle[lorg] = par[lorg]
+		added[lorg] = 1
+		l1 = par[lorg]
+		while l1 != lorg:
+		    cycle[l1] = par[l1]
+		    added[l1] = True
+		    l1 = par[l1]
+		cycles.append(cycle)
+		break
+	    cycle[l] = 0
+	    l = par[l]
+	    if added[l] and (l not in cycle):
+		break
+	    added[l] = 1
 
-    return [SCC for SCC in _SCCs if len(SCC) > 1]
+    # get all edges and return them
+    if np.size(cycles) == 0:
+	for m in range(0, nw+1):
+	    if 0 == curr_nodes[m]:
+		continue
+	    if par[m] != -1:
+		pr = old_I[par[m], m]
+		ch = old_O[par[m], m]
+		final_edges[ch] = pr
+	    else:
+		final_edges[0] = -1
+	return final_edges
 
-if __name__ == '__main__':
-    import pickle
-    with open('debugging/4_scores.pkl') as fin:
-        scores_sent = pickle.load(fin)
-    heads = mst(scores_sent)
-    for t, s in enumerate(heads[1:]):
-        print('{}->{}'.format(s,t+1))
+    max_cyc = 0
+    wh_cyc = 0
+    for cycle in cycles:
+	if np.size(list(cycle.keys())) > max_cyc:
+	    max_cyc = np.size(list(cycle.keys()))
+	    wh_cyc = cycle
+
+    cycle = wh_cyc
+    cyc_nodes = sorted(list(cycle.keys()))
+    rep = cyc_nodes[0]
+
+
+    cyc_weight = 0.0
+    for node in cyc_nodes:
+	cyc_weight += scores[par[node], node]
+
+    for i in range(0, nw+1):
+	if 0 == curr_nodes[i] or (i in cycle):
+	    continue
+
+	max1 = -np.inf
+	wh1 = -1
+	max2 = -np.inf
+	wh2 = -1
+
+	for j1 in cyc_nodes:
+	    if scores[j1, i] > max1:
+		max1 = scores[j1, i]
+		wh1 = j1
+
+	    # cycle weight + new edge - removal of old
+	    scr = cyc_weight + scores[i, j1] - scores[par[j1], j1]
+	    if scr > max2:
+		max2 = scr
+		wh2 = j1
+
+	scores[rep, i] = max1
+	old_I[rep, i] = old_I[wh1, i]
+	old_O[rep, i] = old_O[wh1, i]
+	scores[i, rep] = max2
+	old_O[i, rep] = old_O[i, wh2]
+	old_I[i, rep] = old_I[i, wh2]
+
+    rep_cons = []
+    for i in range(0, np.size(cyc_nodes)):
+	rep_con = {}
+	keys = sorted(reps[int(cyc_nodes[i])].keys())
+	for key in keys:
+	    rep_con[key] = 0
+	rep_cons.append(rep_con)
+
+    # don't consider not representative nodes
+    # these nodes have been folded
+    for node in cyc_nodes[1:]:
+	curr_nodes[node] = 0
+	for key in reps[int(node)]:
+	    reps[int(rep)][key] = 0
+
+    chu_liu_edmonds(scores, curr_nodes, old_I, old_O, final_edges, reps)
+
+    # check each node in cycle, if one of its representatives
+    # is a key in the final_edges, it is the one.
+    wh = -1
+    found = False
+    for i in range(0, np.size(rep_cons)):
+	if found:
+	    break
+	for key in rep_cons[i]:
+	    if found:
+		break
+	    if key in final_edges:
+		wh = cyc_nodes[i]
+		found = True
+    l = par[wh]
+    while l != wh:
+	ch = old_O[par[l]][l]
+	pr = old_I[par[l]][l]
+	final_edges[ch] = pr
+	l = par[l]
+
+    return final_edges
