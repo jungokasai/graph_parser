@@ -37,10 +37,22 @@ def evaluate(data_type):
             for dep in unbounded_dependencies_sent:
                 total += 1
                 all_total += 1
-                if 'subj' in dep[2]:
+                if 'nsubj' == dep[2]:
                     new_dep = (dep[0], dep[1], '0')
-                if 'obj' in dep[2]:
+                elif 'dobj' == dep[2]:
                     new_dep = tuple([dep[0], dep[1], '1'])
+                elif 'pobj' == dep[2]:
+                    new_dep = tuple([dep[0], dep[1], '1'])
+                elif 'nsubjpass' in dep[2]:
+                    new_dep = (dep[0], dep[1], '1')
+                elif 'advmod' in dep[2]:
+                    new_dep = (dep[0], dep[1], '-unk-')
+                elif 'prep' in dep[2]:
+                    new_dep = (dep[0], dep[1], 'ADJ')
+                elif '' in dep[2]:
+                    new_dep = (dep[0], dep[1], 'ADJ')
+                else:
+                    print(dep[2])
                 if new_dep in transformed_sent:
                     correct += 1
                     all_correct += 1
