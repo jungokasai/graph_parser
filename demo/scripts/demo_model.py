@@ -15,6 +15,7 @@ def demo_model(opts, test_opts):
             session.run(tf.global_variables_initializer())
             saver.restore(session, test_opts.modelname)
             scores = model.run_epoch(session, True)
+
 def read_sents(sents_file):
     sents = []
     with open(sents_file) as fhand:
@@ -49,6 +50,7 @@ def output_conllu(test_opts):
                 fout.write('\t'.join(line))
                 fout.write('\n')
             fout.write('\n')
+
 def output_sents(sents, test_opts):
     sents = sent_tokenize(sents)
     sents = map(word_tokenize, sents)
@@ -56,6 +58,7 @@ def output_sents(sents, test_opts):
         for sent in sents:
             fout.write(' '.join(sent))
             fout.write('\n')
+
 if __name__ == '__main__':
     sents = 'TAG is the best formalism. We should all learn it.'
     with open('demo/configs/config_demo.pkl') as fin:
