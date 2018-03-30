@@ -332,10 +332,8 @@ class Parsing_Model_Joint_Both(object):
         probs = []
         while test_incomplete:
             loss, predictions_batch, UAS, probs_batch = self.run_batch(session, True)
-                
             for name, pred in predictions_batch.items():
                 predictions[name].append(pred)
-            #print('Testmode {}/{}, loss {}, accuracy {}'.format(self.loader._index_in_test, self.loader.nb_validation_samples, loss, accuracy), end = '\r')
             probs.append(probs_batch)
             print('Test mode {}/{}, Raw UAS {:.4f}'.format(self.loader._index_in_test, self.loader.nb_validation_samples, UAS), end='\r') #, end = '\r')
             test_incomplete = next_test_batch(self.batch_size)
