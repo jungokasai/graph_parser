@@ -1,6 +1,6 @@
 import numpy as np
-from preprocessing import Tokenizer, pad_sequences, arcs2seq
-from mica.nbest import output_mica_nbest
+from utils.data_loader.preprocessing import Tokenizer, pad_sequences, arcs2seq
+from utils.mica.nbest import output_mica_nbest
 import os 
 import sys
 import pickle

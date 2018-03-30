@@ -1,144 +1,23 @@
 from __future__ import print_function
-#import matplotlib
-from data_process_secsplit import Dataset
-from lstm_hw import get_lstm_weights, lstm
-from char_encoding import get_char_weights, encode_char
-from mlp import get_mlp_weights, mlp
-from arc import get_arc_weights, arc_equation
-from rel import get_rel_weights, rel_equation
-from joint import get_joint_weights, joint_equation
-from predict import predict_arcs_rels
-#matplotlib.use('Agg')
-#import matplotlib.pyplot as plt
+import os, sys
+sys.path.append(os.getcwd())
+from utils.models.basic_model import Basic_Model
+from utils.decoders.predict import predict_arcs_rels
+from utils.data_loader.data_process_secsplit import Dataset
+from utils.equations.mlp import get_mlp_weights, mlp 
+from utils.equations.arc import get_arc_weights, arc_equation
+from utils.equations.rel import get_rel_weights, rel_equation
+from utils.equations.joint import get_joint_weights, joint_equation
 import numpy as np
 import time
 import pickle
 import tensorflow as tf
 from tensorflow.contrib.seq2seq import sequence_loss
-import os
-import sys
 
 
-class Parsing_Model_Joint_Both(object):
-    def add_placeholders(self):
-        self.inputs_placeholder_dict = {}
-        for feature in self.features:
-            if feature == 'chars':
-                self.inputs_placeholder_dict[feature] = tf.placeholder(tf.int32, shape = [None, None, None])
-            else:
-                self.inputs_placeholder_dict[feature] = tf.placeholder(tf.int32, shape = [None, None])
-
-        self.keep_prob = tf.placeholder(tf.float32)
-        self.input_keep_prob = tf.placeholder(tf.float32)
-        self.hidden_prob = tf.placeholder(tf.float32)
-        self.mlp_prob = tf.placeholder(tf.float32)  
-
-    def add_word_embedding(self): 
-        with tf.device('/cpu:0'):
-            with tf.variable_scope('word_embedding') as scope:
-                embedding = tf.get_variable('word_embedding_mat', self.loader.word_embeddings.shape, initializer=tf.constant_initializer(self.loader.word_embeddings))
-
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['words']) ## [batch_size, seq_len, embedding_dim]
-            inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
-        return inputs 
-
-    def add_jackknife_embedding(self):
-        with tf.device('/cpu:0'):
-            with tf.variable_scope('jk_embedding') as scope:
-                embedding = tf.get_variable('jk_embedding_mat', [self.loader.nb_jk+1, self.opts.jk_dim]) # +1 for padding
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['jk']) ## [batch_size, seq_len, embedding_dim]
-            inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
-        return inputs 
-
-    def add_stag_embedding(self):
-        with tf.device('/cpu:0'):
-            with tf.variable_scope('stag_embedding') as scope:
-                embedding = tf.get_variable('stag_embedding_mat', [self.loader.nb_stags, self.opts.stag_dim]) # +1 for padding
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['stags']) ## [batch_size, seq_len, embedding_dim]
-            inputs = tf.transpose(inputs, perm=[1, 0, 2]) # [seq_length, batch_size, embedding_dim]
-            #tf.add_to_collection('stag_embedding', embedding)
-        return inputs 
-
-    def add_char_embedding(self):
-        with tf.device('/cpu:0'):
-            with tf.variable_scope('char_embedding') as scope:
-                embedding = tf.get_variable('char_embedding_mat', [self.loader.nb_chars+1, self.opts.chars_dim]) # +1 for padding
-
-            inputs = tf.nn.embedding_lookup(embedding, self.inputs_placeholder_dict['chars']) ## [batch_size, seq_len-1, word_len, embedding_dim] 
-            ## -1 because we don't have ROOT
-            inputs = tf.transpose(inputs, perm=[1, 0, 2, 3])
-            ## [seq_len-1, batch_size, word_len, embedding_dim]
-            inputs = self.add_dropout(inputs, self.input_keep_prob)
-            weights = get_char_weights(self.opts, 'char_encoding')
-            inputs = encode_char(inputs, weights) ## [seq_len-1, batch_size, nb_filters]
-            shape = tf.shape(inputs)
-            ## add 0 vectors for <-root->
-            inputs = tf.concat([tf.zeros([1, shape[1], shape[2]]), inputs], 0)
-        return inputs 
-
-
-    def add_lstm(self, inputs, i, name, backward=False):
-        prev_init = tf.zeros([2, tf.shape(inputs)[1], self.opts.units])  # [2, batch_size, num_units]
-        #prev_init = tf.zeros([2, 100, self.opts.units])  # [2, batch_size, num_units]
-        if i == 0:
-            inputs_dim = self.inputs_dim
-        else:
-            inputs_dim = self.opts.units*2 ## concat after each layer
-        weights = get_lstm_weights('{}_LSTM_layer{}'.format(name, i), inputs_dim, self.opts.units, tf.shape(inputs)[1], self.hidden_prob)
-        if backward:
-            ## backward: reset states after zero paddings
-            non_paddings = tf.transpose(self.weight, [1, 0]) ## [batch_size, seq_len] => [seq_len, batch_size]
-            non_paddings = tf.reverse(non_paddings, [0])
-            cell_hidden = tf.scan(lambda prev, x: lstm(prev, x, weights, backward=backward), [inputs, non_paddings], prev_init)
-        else:
-            cell_hidden = tf.scan(lambda prev, x: lstm(prev, x, weights), inputs, prev_init)
-         #cell_hidden [seq_len, 2, batch_size, units]
-        h = tf.unstack(cell_hidden, 2, axis=1)[1] #[seq_len, batch_size, units]
-        return h
-
-
-    def add_dropout(self, inputs, keep_prob):
-        ## inputs [seq_len, batch_size, inputs_dims/units]
-        dummy_dp = tf.ones(tf.shape(inputs)[1:])
-        dummy_dp = tf.nn.dropout(dummy_dp, keep_prob)
-        return tf.map_fn(lambda x: dummy_dp*x, inputs)
-
-    def add_projection(self, inputs): 
-        with tf.variable_scope('Projection') as scope:
-            proj_U = tf.get_variable('weight', [self.outputs_dim, self.loader.nb_tags]) 
-            proj_b = tf.get_variable('bias', [self.loader.nb_tags])
-            outputs = tf.matmul(inputs, proj_U)+proj_b 
-            return outputs
-
-    def add_loss_op(self, output, gold):
-        cross_entropy = sequence_loss(output, gold, self.weight)
-        loss = tf.reduce_sum(cross_entropy)
-        return loss
-
-    def add_accuracy(self, output, gold):
-        predictions = tf.cast(tf.argmax(output, 2), tf.int32) ## [batch_size, seq_len]
-        correct_predictions = self.weight*tf.cast(tf.equal(predictions, gold), tf.float32)
-        accuracy = tf.reduce_sum(tf.cast(correct_predictions, tf.float32))/tf.reduce_sum(tf.cast(self.weight, tf.float32))
-        return predictions, accuracy
-
-    def add_probs(self, output):
-        self.probs = tf.nn.softmax(output)
-
-    def add_train_op(self, loss):
-        optimizer = tf.train.AdamOptimizer()
-        train_op = optimizer.minimize(loss)
-        return train_op
-
-    def get_features(self):
-        self.features = ['words', 'arcs', 'rels']
-        self.features.append('jk')
-        self.features.append('stags')
-        if self.opts.chars_dim > 0:
-            self.features.append('chars')
+class Parsing_Model_Joint_Both(Basic_Model):
 
     def add_biaffine(self, inputs):
-        ## inputs [seq_len, batch_size, units]
-        ## first define four different MLPs
         arc_roles = ['arc-dep', 'arc-head']
         rel_roles = ['rel-dep', 'rel-head']
         joint_roles = ['jk', 'stag']
@@ -215,9 +94,9 @@ class Parsing_Model_Joint_Both(object):
         ### because the backward path starts with zero pads.
         self.weight = tf.cast(tf.not_equal(self.inputs_placeholder_dict['words'], tf.zeros(inputs_shape, tf.int32)), tf.float32) ## [batch_size, seq_len]
         for i in xrange(self.opts.num_layers):
-            forward_outputs_tensor = self.add_dropout(self.add_lstm(inputs_tensor, i, 'Forward'), self.keep_prob) ## [seq_len, batch_size, units]
+            forward_outputs_tensor = self.add_dropout(self.add_lstm_hw(inputs_tensor, i, 'Forward'), self.keep_prob) ## [seq_len, batch_size, units]
             if self.opts.bi:
-                backward_outputs_tensor = self.add_dropout(self.add_lstm(tf.reverse(inputs_tensor, [0]), i, 'Backward', True), self.keep_prob) ## [seq_len, batch_size, units]
+                backward_outputs_tensor = self.add_dropout(self.add_lstm_hw(tf.reverse(inputs_tensor, [0]), i, 'Backward', True), self.keep_prob) ## [seq_len, batch_size, units]
                 inputs_tensor = tf.concat([forward_outputs_tensor, tf.reverse(backward_outputs_tensor, [0])], 2)
             else:
                 inputs_tensor = forward_outputs_tensor

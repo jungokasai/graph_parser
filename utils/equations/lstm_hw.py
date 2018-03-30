@@ -1,6 +1,6 @@
 import tensorflow as tf 
 
-def get_lstm_weights(name, inputs_dim, units, batch_size, hidden_prob, beam_size=0, reuse=False):
+def get_lstm_hw_weights(name, inputs_dim, units, batch_size, hidden_prob, beam_size=0, reuse=False):
     weights = {}
     with tf.variable_scope(name) as scope:
         if reuse:
@@ -38,7 +38,7 @@ def get_decoder_weights(weights, name, inputs_dim, units, reuse=False):
     weights['theta_x_g'] = tf.get_variable('theta_x_g_decoder', [inputs_dim, units])
     return weights
 
-def lstm(prev, x, weights, post_first=False, backward=False): # prev = c+h
+def lstm_hw(prev, x, weights, post_first=False, backward=False): # prev = c+h
     prev_c, prev_h = tf.unstack(prev, 2, 0) # [batch_size, units]
     if post_first:
         dropout = weights['dropout_post_first']
