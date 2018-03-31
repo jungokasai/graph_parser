@@ -1,3 +1,0 @@
-This is a parser .
-But can it parse this sentence ?
-We willlll see .
