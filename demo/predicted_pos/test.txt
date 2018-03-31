@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-PRP VBP TO VB .
-=======
-DT VBZ DT NN .
-CC MD PRP VB DT NN .
-PRP VBP VBP .
->>>>>>> 94941f1b9c0cfb1410b59510c35d80f4984466ef

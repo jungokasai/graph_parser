@@ -51,6 +51,8 @@ class Dataset(object):
             f_train.close()
             tokenizer = Tokenizer(lower=True)
             tokenizer.fit_on_texts(texts)
+            #with open('word_tokenizer.pkl', 'wt') as fin:
+            #    pickle.dump(tokenizer, fin)
         #print(tokenizer.word_index['-unseen-'])
         self.word_index = tokenizer.word_index
         self.nb_words = len(self.word_index)
@@ -107,6 +109,8 @@ class Dataset(object):
                 tokenizer = Tokenizer(lower=False,char_encoding=True, root=False) 
                 ## char embedding for <-root-> does not make sense
                 tokenizer.fit_on_texts(texts) ## char embedding for <-root-> does not make sense
+                #with open('char_tokenizer.pkl', 'wt') as fin:
+                #    pickle.dump(tokenizer, fin)
             self.char_index = tokenizer.word_index
             self.nb_chars = len(self.char_index)
             self.idx_to_char = invert_dict(self.char_index)
@@ -132,6 +136,8 @@ class Dataset(object):
                 f_train.close()
                 tokenizer = Tokenizer(lower=False) 
                 tokenizer.fit_on_texts(texts, zero_padding=False)
+                #with open('pos_tokenizer.pkl', 'wt') as fin:
+                #    pickle.dump(tokenizer, fin)
             self.jk_index = tokenizer.word_index
             self.nb_jk = len(self.jk_index)
             self.idx_to_jk = invert_dict(self.jk_index)
@@ -156,6 +162,8 @@ class Dataset(object):
                 f_train.close()
                 tokenizer = Tokenizer(lower=False) ## for tCO
                 tokenizer.fit_on_texts(texts, zero_padding=False)
+                #with open('stag_tokenizer.pkl', 'wt') as fin:
+                #    pickle.dump(tokenizer, fin)
             ## if zero_padding is True, index 0 is reserved, never assigned to an existing word
             self.tag_index = tokenizer.word_index
             self.nb_stags = len(self.tag_index)
@@ -182,6 +190,8 @@ class Dataset(object):
             f_train.close()
             tokenizer = Tokenizer(lower=False)
             tokenizer.fit_on_texts(texts, zero_padding=False)
+            #with open('rel_tokenizer.pkl', 'wt') as fin:
+            #    pickle.dump(tokenizer, fin)
         self.rel_index = tokenizer.word_index
         self.nb_rels = len(self.rel_index)
         self.idx_to_rel = invert_dict(self.rel_index)
