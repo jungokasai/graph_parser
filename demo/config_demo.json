@@ -1,10 +1,6 @@
 {
 "data":{
-        "base_dir": "demo/",
-        "split": {
-                  "train": "conllu/train.conllu0_pos_stag", 
-                  "test": "conllu/test.conllu0_pos_stag"
-                 }
+        "base_dir": ""
        },
 "parser":{
           "input": {
