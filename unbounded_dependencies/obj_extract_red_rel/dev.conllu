@@ -52,9 +52,9 @@
 50	he	_	t29	PRP	_	51	0	_	_
 51	had	_	t119	VBD	_	53	-unk-	_	_
 52	to	_	t31	TO	_	53	ADJ	_	_
-53	speak	_	t385	VB	_	51	1	_	_
+53	speak	_	t385	VB	_	49	ADJ	_	_
 54	for	_	tCO	IN	_	53	CO	_	_
-55	and	_	t77	CC	_	49	ADJ	_	_
+55	and	_	t77	CC	_	51	ADJ	_	_
 56	that	_	t74	IN	_	61	-unk-	_	_
 57	he	_	t29	PRP	_	61	0	_	_
 58	was	_	t23	VBD	_	61	ADJ	_	_
@@ -575,7 +575,7 @@
 21	Fujitsu	_	t3	NNP	_	24	0	_	_
 22	and	_	t17	CC	_	21	ADJ	_	_
 23	NEC	_	t18	NNP	_	22	1	_	_
-24	make	_	t513	VBP	_	0	ROOT	_	_
+24	make	_	t513	VBP	_	19	ADJ	_	_
 25	.	_	t26	.	_	8	ADJ	_	_
 
 # visual-style 22 bgColor:red
