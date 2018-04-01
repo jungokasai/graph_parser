@@ -7,10 +7,11 @@
 
 Then , my mother blushed at this small lie ; ; for she knew and we knew that it was cowardice that had made one more radish that night just too impossible a strain .
 
-We deleted that sentence for evaluation. There is also disagreement in punctuation between the raw files and the annotated files (-LRB- etc.). Therefore, we created a new sentence file for each construction type.--!>
+We deleted that sentence for evaluation. There is also disagreement in punctuation between the raw files and the annotated files (-LRB- etc.). Therefore, we created a new sentence file for each construction type.-->
 
 ### TAG Parser Evaluation
-<!--- - In the TAG representations, all the other constructions but RNR can be resolved by the relative clause operation proposed in [Xu et al. 2017](http://www.aclweb.org/anthology/W/W17/W17-6214.pdf).---!>
+<!--- - In the TAG representations, all the other constructions but RNR can be resolved by the relative clause operation proposed in [Xu et al. 2017](http://www.aclweb.org/anthology/W/W17/W17-6214.pdf).-->
+
 **Transformation procedures**
 1. Relative Clause. See [Xu et al. 2017](http://www.aclweb.org/anthology/W/W17/W17-6214.pdf).
 2. Coordination. See [Xu et al. 2017](http://www.aclweb.org/anthology/W/W17/W17-6214.pdf).
