@@ -1872,7 +1872,7 @@
 6	craze	_	t167	NN	_	0	ROOT	_	_
 7	sweeping	_	t141	VBG	_	6	ADJ	_	_
 8	Wall	_	t2	NNP	_	9	ADJ	_	_
-9	Street	_	t38	NNP	_	0	ROOT	_	_
+9	Street	_	t38	NNP	_	6	ADJ	_	_
 10	:	_	t21	:	_	9	ADJ	_	_
 11	a	_	t1	DT	_	12	ADJ	_	_
 12	rash	_	t38	NN	_	9	ADJ	_	_
@@ -2590,9 +2590,9 @@
 39	thinking	_	t214	VBG	_	33	2	_	_
 40	and	_	t96	CC	_	39	ADJ	_	_
 41	feeling	_	t23	VBG	_	44	ADJ	_	_
-42	far	_	t71	RB	_	40	ADJ	_	_
+42	far	_	t71	RB	_	45	ADJ	_	_
 43	more	_	t71	RBR	_	44	ADJ	_	_
-44	precisely	_	t217	RB	_	45	ADJ	_	_
+44	precisely	_	t217	RB	_	40	ADJ	_	_
 45	than	_	t446	IN	_	44	ADJ	_	_
 46	intertitles	_	t142	NNS	_	50	ADJ	_	_
 47	,	_	t173	,	_	50	ADJ	_	_
@@ -2614,14 +2614,14 @@
 5	harsh	_	t36	JJ	_	8	ADJ	_	_
 6	,	_	t224	,	_	5	ADJ	_	_
 7	brilliant	_	t179	JJ	_	6	1	_	_
-8	picture	_	t3	NN	_	29	0	_	_
+8	picture	_	t3	NN	_	3	0	_	_
 9	--	_	t251	:	_	8	ADJ	_	_
 10	one	_	t16	NN	_	9	ADJ	_	_
 11	that	_	t100	WDT	_	13	0	_	_
 12	's	_	t23	VBZ	_	13	ADJ	_	_
 13	captivating	_	t109	VBG	_	10	ADJ	_	_
 14	--	_	t14	:	_	9	ADJ	_	_
-15	about	_	t4	IN	_	3	ADJ	_	_
+15	about	_	t4	IN	_	8	ADJ	_	_
 16	a	_	t1	DT	_	17	ADJ	_	_
 17	character	_	t3	NN	_	15	1	_	_
 18	who	_	t98	WP	_	29	0	_	_

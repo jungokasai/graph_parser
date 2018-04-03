@@ -445,11 +445,11 @@
 11	the	_	t1	DT	_	13	ADJ	_	_
 12	stretching	_	t11	VBG	_	13	ADJ	_	_
 13	hutment	_	t2	NN	_	18	ADJ	_	_
-14	,	_	t173	,	_	13	ADJ	_	_
+14	,	_	t173	,	_	18	ADJ	_	_
 15	low	_	t36	JJ	_	18	ADJ	_	_
 16	diminutive	_	t36	JJ	_	18	ADJ	_	_
 17	log	_	t2	NN	_	18	ADJ	_	_
-18	cabins	_	t3	NNS	_	14	1	_	_
+18	cabins	_	t3	NNS	_	10	1	_	_
 19	,	_	t21	,	_	18	ADJ	_	_
 20	chinked	_	t51	VBN	_	18	ADJ	_	_
 21	with	_	tCO	IN	_	20	CO	_	_
@@ -522,7 +522,7 @@
 24	slack	_	t179	JJ	_	23	1	_	_
 25	,	_	t1141	,	_	22	ADJ	_	_
 26	bestubbled	_	t53	VBN	_	25	1	_	_
-27	jaw	_	t3	NN	_	28	1	_	_
+27	jaw	_	t3	NN	_	20	1	_	_
 28	open	_	t239	JJ	_	27	ADJ	_	_
 29	and	_	t274	CC	_	28	ADJ	_	_
 30	close	_	t212	JJ	_	29	1	_	_
@@ -1431,7 +1431,7 @@
 2	,	_	t20	,	_	4	ADJ	_	_
 3	she	_	t29	PRP	_	5	0	_	_
 4	was	_	t81	VBD	_	0	ROOT	_	_
-5	back	_	t500	RB	_	0	ROOT	_	_
+5	back	_	t500	RB	_	4	ADJ	_	_
 6	on	_	t13	IN	_	5	ADJ	_	_
 7	her	_	t30	PRP$	_	8	ADJ	_	_
 8	feet	_	t3	NNS	_	6	1	_	_

@@ -377,8 +377,8 @@
 23	to	_	t31	TO	_	26	ADJ	_	_
 24	be	_	t23	VB	_	26	ADJ	_	_
 25	fully	_	t24	RB	_	26	ADJ	_	_
-26	repaid	_	t324	VBN	_	22	ADJ	_	_
-27	,	_	t163	,	_	15	ADJ	_	_
+26	repaid	_	t324	VBN	_	15	ADJ	_	_
+27	,	_	t163	,	_	26	ADJ	_	_
 28	with	_	t13	IN	_	26	ADJ	_	_
 29	no	_	t1	DT	_	30	ADJ	_	_
 30	loss	_	t3	NN	_	28	1	_	_

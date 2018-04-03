@@ -117,7 +117,7 @@
 3	were	_	t23	VBD	_	9	ADJ	_	_
 4	at	_	t134	IN	_	9	ADJ	_	_
 5	first	_	t24	RB	_	4	ADJ	_	_
-6	puzzled	_	t50	VBN	_	0	ROOT	_	_
+6	puzzled	_	t50	VBN	_	9	ADJ	_	_
 7	,	_	t163	,	_	6	ADJ	_	_
 8	then	_	t24	RB	_	9	ADJ	_	_
 9	angered	_	t547	VBN	_	0	ROOT	_	_
@@ -189,8 +189,8 @@
 23	unreal	_	t212	JJ	_	21	ADJ	_	_
 24	as	_	t2181	IN	_	27	ADJ	_	_
 25	--	_	t14	:	_	24	ADJ	_	_
-26	or	_	t274	CC	_	24	ADJ	_	_
-27	even	_	t103	RB	_	28	ADJ	_	_
+26	or	_	t274	CC	_	27	ADJ	_	_
+27	even	_	t103	RB	_	21	ADJ	_	_
 28	more	_	t212	RBR	_	27	ADJ	_	_
 29	unreal	_	t137	JJ	_	27	ADJ	_	_
 30	than	_	t1170	IN	_	27	ADJ	_	_

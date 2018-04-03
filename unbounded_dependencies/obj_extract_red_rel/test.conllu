@@ -155,9 +155,9 @@
 # visual-style 34 bgColor:green
 1	The	_	t1	DT	_	2	ADJ	_	_
 2	truth	_	t3	NN	_	5	0	_	_
-3	is	_	t23	VBZ	_	0	ADJ	_	_
+3	is	_	t23	VBZ	_	5	ADJ	_	_
 4	,	_	t84	,	_	5	ADJ	_	_
-5	however	_	t24	RB	_	4	ADJ	_	_
+5	however	_	t24	RB	_	0	ADJ	_	_
 6	,	_	t84	,	_	5	ADJ	_	_
 7	that	_	t74	IN	_	26	-unk-	_	_
 8	when	_	t154	WRB	_	12	-unk-	_	_
@@ -419,12 +419,12 @@
 9	these	_	t1	DT	_	10	ADJ	_	_
 10	men	_	t3	NNS	_	8	1	_	_
 11	:	_	t193	:	_	4	ADJ	_	_
-12	The	_	t1419	DT	_	15	ADJ	_	_
+12	The	_	t1419	DT	_	17	ADJ	_	_
 13	more	_	t71	RBR	_	15	ADJ	_	_
 14	highly	_	t103	RB	_	15	ADJ	_	_
 15	placed	_	t1421	VBN	_	22	ADJ	_	_
 16	they	_	t29	PRP	_	25	0	_	_
-17	are	_	t133	VBP	_	18	ADJ	_	_
+17	are	_	t133	VBP	_	11	1	_	_
 18	--	_	t397	:	_	17	ADJ	_	_
 19	that	_	t113	DT	_	25	0	_	_
 20	is	_	t133	VBZ	_	18	ADJ	_	_

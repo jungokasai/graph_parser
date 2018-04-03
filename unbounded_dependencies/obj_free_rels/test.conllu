@@ -145,7 +145,7 @@
 5	have	_	t214	VBP	_	9	ADJ	_	_
 6	,	_	t20	,	_	9	ADJ	_	_
 7	that	_	t113	DT	_	9	0	_	_
-8	's	_	t23	VBZ	_	0	ROOT	_	_
+8	's	_	t23	VBZ	_	9	ROOT	_	_
 9	it	_	t4122	PRP	_	0	ROOT	_	_
 10	!	_	t26	.	_	9	ADJ	_	_
 11	!	_	t26	.	_	9	ADJ	_	_
@@ -474,11 +474,11 @@
 25	would	_	t45	MD	_	26	ADJ	_	_
 26	term	_	t119	VB	_	28	-unk-	_	_
 27	``	_	t5	``	_	28	ADJ	_	_
-28	pseudo-capitalism	_	t712	NNS	_	22	1	_	_
+28	pseudo-capitalism	_	t712	NNS	_	32	1	_	_
 29	''	_	t1091	''	_	28	ADJ	_	_
 30	and	_	t202	CC	_	32	ADJ	_	_
 31	so	_	t24	RB	_	32	ADJ	_	_
-32	took	_	t1015	VBD	_	30	1	_	_
+32	took	_	t1015	VBD	_	22	1	_	_
 33	a	_	t1	DT	_	35	ADJ	_	_
 34	major	_	t36	JJ	_	35	ADJ	_	_
 35	step	_	t3	NN	_	32	1	_	_
@@ -1216,9 +1216,9 @@
 39	thinking	_	t214	VBG	_	33	2	_	_
 40	and	_	t96	CC	_	39	ADJ	_	_
 41	feeling	_	t23	VBG	_	44	ADJ	_	_
-42	far	_	t71	RB	_	40	ADJ	_	_
+42	far	_	t71	RB	_	45	ADJ	_	_
 43	more	_	t71	RBR	_	44	ADJ	_	_
-44	precisely	_	t217	RB	_	45	ADJ	_	_
+44	precisely	_	t217	RB	_	40	ADJ	_	_
 45	than	_	t446	IN	_	44	ADJ	_	_
 46	intertitles	_	t142	NNS	_	50	ADJ	_	_
 47	,	_	t173	,	_	50	ADJ	_	_
@@ -1350,7 +1350,7 @@
 2	they	_	t29	PRP	_	3	0	_	_
 3	disagree	_	t262	VBP	_	5	ADJ	_	_
 4	is	_	t23	VBZ	_	0	ROOT	_	_
-5	on	_	t13	IN	_	0	ROOT	_	_
+5	on	_	t13	IN	_	4	ROOT	_	_
 6	the	_	t1	DT	_	7	ADJ	_	_
 7	subject	_	t3	NN	_	5	1	_	_
 8	of	_	t4	IN	_	7	ADJ	_	_

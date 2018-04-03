@@ -425,7 +425,7 @@
 10	,	_	t20	,	_	13	ADJ	_	_
 11	he	_	t29	PRP	_	13	0	_	_
 12	'd	_	t45	MD	_	13	ADJ	_	_
-13	had	_	t27	VBD	_	0	ROOT	_	_
+13	had	_	t27	VBD	_	6	1	_	_
 14	no	_	t1	DT	_	15	ADJ	_	_
 15	idea	_	t3	NN	_	13	1	_	_
 16	the	_	t1	DT	_	17	ADJ	_	_

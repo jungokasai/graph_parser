@@ -715,7 +715,7 @@
 35	surrender	_	t109	VB	_	31	ADJ	_	_
 36	in	_	t13	IN	_	35	ADJ	_	_
 37	spirit	_	t3	NN	_	36	1	_	_
-38	drew	_	t83	VBD	_	0	1	_	_
+38	drew	_	t83	VBD	_	9	1	_	_
 39	comfort	_	t3	NN	_	38	1	_	_
 40	from	_	tCO	IN	_	38	CO	_	_
 41	the	_	t1	DT	_	42	ADJ	_	_
@@ -1095,7 +1095,7 @@
 5	paterollers	_	t3	NNS	_	9	0	_	_
 6	wo	_	t45	MD	_	9	ADJ	_	_
 7	n't	_	t49	RB	_	9	ADJ	_	_
-8	be	_	t81	VB	_	0	ROOT	_	_
+8	be	_	t81	VB	_	9	ADJ	_	_
 9	of	_	t337	IN	_	0	ROOT	_	_
 10	any	_	t1	DT	_	11	ADJ	_	_
 11	help	_	t3	NN	_	9	1	_	_
@@ -1195,7 +1195,7 @@
 1	Next	_	t125	JJ	_	4	ADJ	_	_
 2	to	_	t198	TO	_	1	ADJ	_	_
 3	him	_	t29	PRP	_	2	1	_	_
-4	was	_	t1044	VBD	_	0	ROOT	_	_
+4	was	_	t1044	VBD	_	12	ADJ	_	_
 5	a	_	t1	DT	_	7	ADJ	_	_
 6	young	_	t36	JJ	_	7	ADJ	_	_
 7	boy	_	t3	NN	_	4	0	_	_
@@ -1495,9 +1495,9 @@
 32	men	_	t3	NNS	_	35	0	_	_
 33	once	_	t24	RB	_	35	ADJ	_	_
 34	had	_	t23	VBD	_	35	ADJ	_	_
-35	called	_	t119	VBN	_	37	-unk-	_	_
+35	called	_	t119	VBN	_	29	-unk-	_	_
 36	the	_	t1	DT	_	37	ADJ	_	_
-37	Dogs	_	t3	NNPS	_	29	1	_	_
+37	Dogs	_	t3	NNPS	_	35	1	_	_
 38	of	_	t4	IN	_	37	ADJ	_	_
 39	Hell	_	t3	NNP	_	38	1	_	_
 40	.	_	t26	.	_	3	ADJ	_	_
@@ -1876,9 +1876,9 @@
 1	In	_	t0	IN	_	23	ADJ	_	_
 2	Robert	_	t2	NNP	_	3	ADJ	_	_
 3	Whiting	_	t7	NNP	_	4	ADJ	_	_
-4	's	_	t8	POS	_	0	ADJ	_	_
+4	's	_	t8	POS	_	6	ADJ	_	_
 5	``	_	t10	``	_	8	ADJ	_	_
-6	You	_	t29	PRP	_	0	0	_	_
+6	You	_	t29	PRP	_	8	0	_	_
 7	Gotta	_	t351	VBP	_	8	ADJ	_	_
 8	Have	_	t27	VB	_	23	ADJ	_	_
 9	Wa	_	t3	NNP	_	8	1	_	_
@@ -2152,9 +2152,9 @@
 19	take	_	t431	VB	_	13	ADJ	_	_
 20	away	_	tCO	RP	_	19	CO	_	_
 21	certain	_	t36	JJ	_	24	ADJ	_	_
-22	advantages	_	t3	NNS	_	19	1	_	_
+22	advantages	_	t3	NNS	_	24	ADJ	_	_
 23	program	_	t2	NN	_	24	ADJ	_	_
-24	traders	_	t3	NNS	_	26	0	_	_
+24	traders	_	t3	NNS	_	19	0	_	_
 25	currently	_	t24	RB	_	26	ADJ	_	_
 26	enjoy	_	t87	VBP	_	24	ADJ	_	_
 27	in	_	t13	IN	_	26	ADJ	_	_
