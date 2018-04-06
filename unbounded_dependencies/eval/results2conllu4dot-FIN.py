@@ -53,7 +53,7 @@ def output_conllu(filename, sents, pos, stags, arcs, rels, dependencies, new_edg
             arcs_sent = arcs[sent_idx]
             rels_sent = rels[sent_idx]
             token_idx = int(dep[1])
-            output_list = [str(token_idx), sent[token_idx-1], '_', stags_sent[token_idx-1], pos_sent[token_idx-1], '_', str(dep[0]), dep[2], '_', '_']
+            output_list = [str(token_idx), sent[token_idx-1]+'_'+stags_sent[token_idx-1], '_', stags_sent[token_idx-1], pos_sent[token_idx-1], '_', str(dep[0]), dep[2], '_', '_']
             conllu += '\t'.join(output_list)
             conllu += '\n'
             for token_idx in xrange(len(sent)):
