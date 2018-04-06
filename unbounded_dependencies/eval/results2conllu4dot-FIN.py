@@ -59,14 +59,14 @@ def output_conllu(filename, sents, pos, stags, arcs, rels, dependencies, new_edg
             for token_idx in xrange(len(sent)):
                 if token_idx >= start and token_idx <= end:
                     #if  arcs_sent[token_idx] >= start and arcs_sent[token_idx] <= end:
-                    output_list = [str(token_idx+1), sent[token_idx], '_', stags_sent[token_idx], pos_sent[token_idx], '_', str(arcs_sent[token_idx]), rels_sent[token_idx], '_', '_']
+                    output_list = [str(token_idx+1), sent[token_idx]+'_'+stags_sent[token_idx], '_', stags_sent[token_idx], pos_sent[token_idx], '_', str(arcs_sent[token_idx]), rels_sent[token_idx], '_', '_']
                     conllu += '\t'.join(output_list)
                     conllu += '\n'
             for new_idx, dep in enumerate(new_edges[sent_idx]):
                 if dep[0] >= start and dep[0] <= end:
                     #if  dep[1] >= start and dep[1] <= end:
                         token_idx = int(dep[0])
-                        output_list = [str(token_idx), sent[token_idx-1], '_', stags_sent[token_idx-1], pos_sent[token_idx-1], '_', str(dep[1]), dep[2], '_', '_']
+                        output_list = [str(token_idx), sent[token_idx-1]+'_'+stags_sent[token_idx-1], '_', stags_sent[token_idx-1], pos_sent[token_idx-1], '_', str(dep[1]), dep[2], '_', '_']
                         conllu += '\t'.join(output_list)
                         conllu += '\n'
             graph = DependencyGraph(conllu)
