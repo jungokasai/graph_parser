@@ -1,0 +1,22 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 16 [label="ADJ"]
+None [label="None (None)"]
+None -> 15 [label="ADJ"]
+None [label="None (None)"]
+None -> 11 [label="1"]
+0 [label="0 (None)"]
+11 [label="11 (documents)"]
+15 -> 11 [label="dobj", color="red"]
+12 [label="12 (both)"]
+13 [label="13 (sides)"]
+13 -> 12 [label="ADJ"]
+14 [label="14 (can)"]
+15 [label="15 (trust)"]
+15 -> 13 [label="0"]
+15 -> 14 [label="ADJ"]
+16 [label="16 (.)"]
+}

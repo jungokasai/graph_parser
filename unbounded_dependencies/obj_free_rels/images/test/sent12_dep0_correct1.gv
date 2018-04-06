@@ -1,0 +1,22 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 13 [label="ADJ"]
+None -> 14 [label="ADJ"]
+0 [label="0 (None)"]
+8 [label="8 (of)"]
+8 -> 12 [label="-unk-"]
+9 [label="9 (what)"]
+12 -> 9 [label="dobj", color="red"]
+10 [label="10 (I)"]
+11 [label="11 (would)"]
+12 [label="12 (call)"]
+12 -> 9 [label="1"]
+12 -> 8 [label="1", color="blue"]
+12 -> 10 [label="0"]
+12 -> 11 [label="ADJ"]
+13 [label="13 (the)"]
+14 [label="14 (unconscious)"]
+}

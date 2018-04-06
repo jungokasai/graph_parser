@@ -1,0 +1,21 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 25 [label="ADJ"]
+None -> 26 [label="ADJ"]
+None -> 28 [label="ADJ"]
+None [label="None (None)"]
+None -> 30 [label="ADJ"]
+0 [label="0 (None)"]
+25 [label="25 (able)"]
+26 [label="26 (--)"]
+27 [label="27 (to)"]
+28 [label="28 (determine)"]
+25 -> 28 [label="xcomp", color="red"]
+28 -> 27 [label="ADJ"]
+28 -> 29 [label="ADJ"]
+29 [label="29 (:)"]
+30 [label="30 (The)"]
+}

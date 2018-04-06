@@ -1,0 +1,17 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 9 [label="1"]
+0 [label="0 (None)"]
+6 [label="6 (what)"]
+6 -> 7 [label="0", color="blue"]
+7 [label="7 (those)"]
+6 -> 7 [label="nsubj", color="red"]
+8 [label="8 (might)"]
+9 [label="9 (be)"]
+9 -> 6 [label="1"]
+9 -> 7 [label="0"]
+9 -> 8 [label="ADJ"]
+}

@@ -1,0 +1,20 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 8 [label="1"]
+0 [label="0 (None)"]
+5 [label="5 (what)"]
+8 -> 5 [label="dobj", color="red"]
+6 [label="6 (advertisers)"]
+7 [label="7 (are)"]
+8 [label="8 (paying)"]
+8 -> 5 [label="1"]
+8 -> 6 [label="0"]
+8 -> 7 [label="ADJ"]
+8 -> 9 [label="ADJ"]
+9 [label="9 (per)"]
+9 -> 10 [label="1"]
+10 [label="10 (page)"]
+}

@@ -1,0 +1,23 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 9 [label="ADJ"]
+None [label="None (None)"]
+None -> 8 [label="1"]
+None [label="None (None)"]
+None -> 8 [label="0"]
+None [label="None (None)"]
+None -> 8 [label="0"]
+None [label="None (None)"]
+None -> 10 [label="ADJ"]
+None -> 11 [label="ADJ"]
+0 [label="0 (None)"]
+8 [label="8 (officer)"]
+9 [label="9 (of)"]
+9 -> 8 [label="0", color="blue"]
+8 -> 9 [label="prep", color="red"]
+10 [label="10 (New)"]
+11 [label="11 (England)"]
+}

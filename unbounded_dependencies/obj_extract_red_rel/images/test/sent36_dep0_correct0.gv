@@ -1,0 +1,21 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+0 [label="0 (None)"]
+0 -> 4 [label="ROOT"]
+4 [label="4 (all)"]
+4 -> 7 [label="ADJ"]
+4 -> 10 [label="ADJ"]
+8 -> 4 [label="dobj", color="red"]
+5 [label="5 (I)"]
+6 [label="6 ('m)"]
+7 [label="7 (sure)"]
+7 -> 5 [label="0"]
+7 -> 6 [label="ADJ"]
+7 -> 8 [label="ADJ"]
+8 [label="8 (of)"]
+8 -> 9 [label="ADJ"]
+9 [label="9 ('')"]
+10 [label="10 (.)"]
+}

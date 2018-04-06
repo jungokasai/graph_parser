@@ -1,0 +1,21 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 37 [label="ADJ"]
+None [label="None (None)"]
+None -> 36 [label="ADJ"]
+None [label="None (None)"]
+None -> 40 [label="ADJ"]
+None [label="None (None)"]
+None -> 39 [label="ADJ"]
+0 [label="0 (None)"]
+36 [label="36 (impossible)"]
+37 [label="37 (,)"]
+38 [label="38 (to)"]
+39 [label="39 (control)"]
+36 -> 39 [label="xcomp", color="red"]
+39 -> 38 [label="ADJ"]
+40 [label="40 (.)"]
+}

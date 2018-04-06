@@ -1,0 +1,18 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 6 [label="1"]
+0 [label="0 (None)"]
+6 [label="6 (expand)"]
+6 -> 8 [label="1"]
+7 [label="7 (the)"]
+8 [label="8 (loans)"]
+8 -> 7 [label="ADJ"]
+8 -> 9 [label="ADJ"]
+6 -> 8 [label="dobj", color="red"]
+9 [label="9 (and)"]
+9 -> 10 [label="1"]
+10 [label="10 (grants)"]
+}

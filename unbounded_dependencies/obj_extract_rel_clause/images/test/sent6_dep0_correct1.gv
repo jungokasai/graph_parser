@@ -1,0 +1,22 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 5 [label="0"]
+0 [label="0 (None)"]
+0 -> 5 [label="ROOT"]
+5 [label="5 (Revolution)"]
+5 -> 8 [label="ADJ"]
+8 -> 5 [label="dobj", color="red"]
+6 [label="6 (which)"]
+7 [label="7 (we)"]
+8 [label="8 (praised)"]
+8 -> 6 [label="1"]
+8 -> 5 [label="1", color="blue"]
+8 -> 7 [label="0"]
+8 -> 9 [label="ADJ"]
+9 [label="9 (and)"]
+9 -> 10 [label="1"]
+10 [label="10 (mourned)"]
+}

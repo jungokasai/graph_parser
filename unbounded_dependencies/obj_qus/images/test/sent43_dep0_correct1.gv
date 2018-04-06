@@ -1,0 +1,20 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 5 [label="-unk-"]
+None -> 6 [label="0"]
+0 [label="0 (None)"]
+0 -> 4 [label="ROOT"]
+1 [label="1 (What)"]
+4 -> 1 [label="dobj", color="red"]
+2 [label="2 (did)"]
+3 [label="3 (Caesar)"]
+4 [label="4 (say)"]
+4 -> 1 [label="1"]
+4 -> 3 [label="0"]
+4 -> 2 [label="ADJ"]
+5 [label="5 (before)"]
+6 [label="6 (he)"]
+}

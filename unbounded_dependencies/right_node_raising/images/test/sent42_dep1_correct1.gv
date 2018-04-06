@@ -1,0 +1,18 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 26 [label="ADJ"]
+None -> 27 [label="ADJ"]
+None [label="None (None)"]
+None -> 25 [label="1"]
+0 [label="0 (None)"]
+24 [label="24 (technical)"]
+24 -> 25 [label="0", color="blue"]
+25 -> 24 [label="amod", color="red"]
+25 [label="25 (sense)"]
+25 -> 24 [label="ADJ"]
+26 [label="26 (,)"]
+27 [label="27 (and)"]
+}

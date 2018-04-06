@@ -1,0 +1,22 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 14 [label="ADJ"]
+None [label="None (None)"]
+None -> 19 [label="ADJ"]
+0 [label="0 (None)"]
+14 [label="14 (excuse)"]
+14 -> 17 [label="ADJ"]
+14 -> 18 [label="ADJ"]
+17 -> 14 [label="dobj", color="red"]
+15 [label="15 (I)"]
+16 [label="16 (often)"]
+17 [label="17 (used)"]
+17 -> 14 [label="1", color="blue"]
+17 -> 15 [label="0"]
+17 -> 16 [label="ADJ"]
+18 [label="18 (,)"]
+19 [label="19 (even)"]
+}

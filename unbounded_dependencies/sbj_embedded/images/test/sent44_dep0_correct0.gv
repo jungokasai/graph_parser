@@ -1,0 +1,23 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 17 [label="ADJ"]
+None [label="None (None)"]
+None -> 14 [label="1"]
+None [label="None (None)"]
+None -> 19 [label="ADJ"]
+0 [label="0 (None)"]
+14 [label="14 (garments)"]
+14 -> 16 [label="ADJ"]
+17 -> 14 [label="nsubjpass", color="red"]
+15 [label="15 (he)"]
+16 [label="16 (left)"]
+16 -> 14 [label="1", color="blue"]
+16 -> 15 [label="0"]
+17 [label="17 (littered)"]
+17 -> 18 [label="ADJ"]
+18 [label="18 (across)"]
+19 [label="19 (the)"]
+}

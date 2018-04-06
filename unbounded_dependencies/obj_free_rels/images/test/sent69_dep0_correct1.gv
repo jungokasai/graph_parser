@@ -1,0 +1,17 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 34 [label="ADJ"]
+None [label="None (None)"]
+None -> 33 [label="1"]
+0 [label="0 (None)"]
+31 [label="31 (where)"]
+33 -> 31 [label="advmod", color="red"]
+32 [label="32 (they)"]
+33 [label="33 (work)"]
+33 -> 31 [label="-unk-"]
+33 -> 32 [label="0"]
+34 [label="34 (.)"]
+}

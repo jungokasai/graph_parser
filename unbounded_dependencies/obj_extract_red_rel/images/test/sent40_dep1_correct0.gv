@@ -1,0 +1,18 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 15 [label="1"]
+0 [label="0 (None)"]
+15 [label="15 (ambition)"]
+15 -> 17 [label="ADJ"]
+17 -> 15 [label="dobj", color="red"]
+16 [label="16 (it)"]
+17 [label="17 (awoke)"]
+17 -> 16 [label="0"]
+17 -> 18 [label="ADJ"]
+18 [label="18 (in)"]
+18 -> 19 [label="1"]
+19 [label="19 (me)"]
+}

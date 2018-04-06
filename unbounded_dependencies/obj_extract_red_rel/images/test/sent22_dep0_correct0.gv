@@ -1,0 +1,21 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 7 [label="1"]
+0 [label="0 (None)"]
+7 [label="7 (fellows)"]
+7 -> 9 [label="ADJ"]
+10 -> 7 [label="dobj", color="red"]
+8 [label="8 (he)"]
+9 [label="9 (works)"]
+9 -> 7 [label="1", color="blue"]
+9 -> 8 [label="0"]
+9 -> 10 [label="ADJ"]
+10 [label="10 (with)"]
+10 -> 11 [label="ADJ"]
+11 [label="11 (,)"]
+11 -> 12 [label="ADJ"]
+12 [label="12 (friends)"]
+}

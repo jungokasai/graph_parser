@@ -1,0 +1,18 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 26 [label="ADJ"]
+None -> 28 [label="ADJ"]
+0 [label="0 (None)"]
+24 [label="24 (brokers)"]
+26 -> 24 [label="nsubj", color="red"]
+25 [label="25 (find)"]
+25 -> 24 [label="0"]
+26 [label="26 (easy)"]
+27 [label="27 (to)"]
+28 [label="28 (sell)"]
+28 -> 25 [label="-unk-"]
+28 -> 27 [label="ADJ"]
+}

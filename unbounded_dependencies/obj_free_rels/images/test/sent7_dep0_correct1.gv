@@ -1,0 +1,19 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 42 [label="ADJ"]
+None [label="None (None)"]
+None -> 41 [label="1"]
+0 [label="0 (None)"]
+38 [label="38 (what)"]
+41 -> 38 [label="dobj", color="red"]
+39 [label="39 (they)"]
+40 [label="40 (could)"]
+41 [label="41 (teach)"]
+41 -> 38 [label="1"]
+41 -> 39 [label="0"]
+41 -> 40 [label="ADJ"]
+42 [label="42 (.)"]
+}

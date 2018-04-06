@@ -1,0 +1,23 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 3 [label="0"]
+None [label="None (None)"]
+None -> 7 [label="ADJ"]
+None [label="None (None)"]
+None -> 3 [label="ADJ"]
+None [label="None (None)"]
+None -> 6 [label="ADJ"]
+0 [label="0 (None)"]
+3 [label="3 (accounts)"]
+3 -> 5 [label="ADJ"]
+5 -> 3 [label="dobj", color="red"]
+4 [label="4 (customers)"]
+5 [label="5 (have)"]
+5 -> 3 [label="1", color="blue"]
+5 -> 4 [label="0"]
+6 [label="6 (,)"]
+7 [label="7 (Mr.)"]
+}

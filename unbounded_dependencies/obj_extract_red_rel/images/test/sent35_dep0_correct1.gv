@@ -1,0 +1,22 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 9 [label="0"]
+0 [label="0 (None)"]
+0 -> 9 [label="ROOT"]
+9 [label="9 (food)"]
+9 -> 12 [label="ADJ"]
+9 -> 13 [label="ADJ"]
+9 -> 14 [label="ADJ"]
+12 -> 9 [label="dobj", color="red"]
+10 [label="10 (I)"]
+11 [label="11 (ever)"]
+12 [label="12 (saw)"]
+12 -> 9 [label="1", color="blue"]
+12 -> 10 [label="0"]
+12 -> 11 [label="ADJ"]
+13 [label="13 ('')"]
+14 [label="14 (.)"]
+}

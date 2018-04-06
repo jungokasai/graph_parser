@@ -1,0 +1,22 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 17 [label="0"]
+None -> 18 [label="ADJ"]
+None -> 19 [label="ADJ"]
+None [label="None (None)"]
+None -> 17 [label="0"]
+0 [label="0 (None)"]
+14 [label="14 (what)"]
+17 -> 14 [label="dobj", color="red"]
+15 [label="15 (he)"]
+16 [label="16 (was)"]
+17 [label="17 (doing)"]
+17 -> 14 [label="1"]
+17 -> 15 [label="0"]
+17 -> 16 [label="ADJ"]
+18 [label="18 (was)"]
+19 [label="19 (the)"]
+}

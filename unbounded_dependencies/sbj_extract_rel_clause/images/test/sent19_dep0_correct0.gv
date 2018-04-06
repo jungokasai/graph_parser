@@ -1,0 +1,19 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 12 [label="ADJ"]
+0 [label="0 (None)"]
+12 [label="12 (those)"]
+12 -> 15 [label="ADJ"]
+14 -> 12 [label="nsubj", color="red"]
+13 [label="13 (who)"]
+14 [label="14 (stayed)"]
+15 [label="15 (alive)"]
+15 -> 13 [label="0"]
+15 -> 12 [label="0", color="blue"]
+15 -> 14 [label="ADJ"]
+15 -> 16 [label="ADJ"]
+16 [label="16 (through)"]
+}

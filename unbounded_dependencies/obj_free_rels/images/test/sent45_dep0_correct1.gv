@@ -1,0 +1,23 @@
+digraph G{
+edge [dir=forward]
+node [shape=plaintext]
+
+None [label="None (None)"]
+None -> 11 [label="ADJ"]
+0 [label="0 (None)"]
+0 -> 6 [label="ROOT", color="blue"]
+6 [label="6 (at)"]
+6 -> 9 [label="1"]
+6 -> 10 [label="1", color="blue"]
+7 [label="7 (what)"]
+9 -> 7 [label="dobj", color="red"]
+8 [label="8 (we)"]
+9 [label="9 (do)"]
+9 -> 7 [label="1"]
+9 -> 8 [label="0"]
+9 -> 10 [label="CO"]
+10 [label="10 (for)"]
+10 -> 7 [label="1", color="blue"]
+10 -> 8 [label="0", color="blue"]
+11 [label="11 (damn)"]
+}
