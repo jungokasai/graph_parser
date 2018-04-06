@@ -19,6 +19,9 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
         candidate = add_flipped_predaux(triple, stag_t, t2props_dict)
         if candidate:
             to_add.append(candidate)
+            #if len(sent_t)<=20 and len(sent_t)>15:
+            #    print(sent_t)
+            #    print(candidate)
         # flipped relative clause
         candidate = add_flipped_rel(triple, stag_t, t2props_dict, t2topsub_dict, add_plus=add_plus)
         if candidate:
@@ -38,17 +41,19 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
 
     # extend parse_t for predicative cases
     if add_predicative:
-        parse_t += append_predicative(parse_t, stag_t, sent_t, t2props_dict)
+        to_add = append_predicative(parse_t, stag_t, sent_t, t2props_dict)
+        parse_t += to_add 
         if  debug >= 2:
             print("parse_t extended with predicative:")
             print(lexicalize(parse_t, sent_t, pos=pos_t))
             print()
 
-        # extend parse_t for and_but cases
-        parse_t += append_and_but(parse_t, stag_t, sent_t, t2props_dict)
-        ## co-anchor
-        parse_t += add_coanchor(parse_t)
-        parse_t += add_wh_adj(parse_t, pos_t)
+    # extend parse_t for and_but cases
+    parse_t += append_and_but(parse_t, stag_t, sent_t, t2props_dict)
+    ## co-anchor
+    parse_t += add_coanchor(parse_t, stag_t)
+    parse_t += add_wh_adj(parse_t, pos_t)
+    parse_t += add_copula(sent_t, parse_t, pos_t)
     return parse_t
 #        if  debug >= 2:
 #            print("parse_t extended with and_but:")
@@ -172,10 +177,10 @@ def add_flipped_rel(triple, stag_t, t2props_dict, t2topsub_dict, add_plus=False)
     else:
         return(None)
 
-def add_coanchor(parse_t):
+def add_coanchor(parse_t, sent_t):
     new_edges = []
-    for dep in parse_t:
-        if dep[2] == 'CO':
+    for dep, stag in zip(parse_t, sent_t):
+        if stag == 'tCO':
             coanchor_id = dep[0]
             head_id = dep[1]
             for dep in parse_t:
@@ -198,6 +203,30 @@ def add_wh_adj(parse_t, pos_t):
                         if (dep_[0] == head_id):
                             new_edges.append((adj_id, dep_[1], dep_[2]))
     return new_edges
+
+def add_copula(sent_t, parse_t, pos_t):
+    dep_nums = {'0', '1', '2', '3'}
+    new_edges = []
+    for word_idx, word, pos in zip(xrange(1, len(sent_t)+1), sent_t, pos_t):
+        lemma = lemmatize(word, pos)
+        if str(lemma) == 'be': ## copula
+            copula_idx = word_idx
+            par_child_dict =  _triples2par_child_dict(parse_t, sent_t)
+            par_exists = False
+            child_exists = False
+            for child, rel in par_child_dict[copula_idx]['children_with_dep']:
+                if rel == '0':
+                    new_child = child
+                    child_exists = True
+                if rel == '1':
+                    new_par = child
+                    par_exists = True
+            if par_exists and child_exists:
+                new_edges.append((new_child, new_par, '0'))
+                if ('American' in sent_t) and ('conservatism' in sent_t):
+                    print(new_edges)
+    return new_edges
+                    
 
 def add_flipped_predaux(triple, stag_t, t2props_dict):
     id1, id2, dep = triple[0], triple[1], triple[2]
@@ -401,7 +430,7 @@ def append_and_but(parse_t, stag_t, sent_t, t2props_dict):
     # for each and_but_tree find 1_child_of_and_but. Find parent_of_and_but. For all relations
     # of parent_of_and_but (or just for 0-relation), add the triple
     # (depnum_child_of_and_butparent, 1_child_of_and_but, depnum)
-    and_but_ids = [i for i, w in enumerate(sent_t) if w in ['and', 'but']]
+    and_but_ids = [i for i, w in enumerate(sent_t) if w in ['and', 'but', 'or', ',']]
 
     if and_but_ids:
 

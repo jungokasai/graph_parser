@@ -1,3 +1,4 @@
+import os
 from read_data import read_data, read_stags
 from read_unbounded import read_unbounded
 from transform import transform
@@ -15,6 +16,9 @@ def evaluate(data_type):
     total_scores = 0
     for construction in constructions:
         ## get predicted_dependencies and apply transformations
+        result_dir = os.path.join(construction, 'results', 'test')
+        if not os.path.isdir(result_dir):
+            os.makedirs(result_dir)
         predicted_dependencies = read_data(construction, data_type)
         unbounded_dependencies = read_unbounded(construction, data_type)
         sents = read_stags(construction, data_type, 'sents')
@@ -23,39 +27,47 @@ def evaluate(data_type):
         #assert(len(predicted_dependencies) == len(unbounded_dependencies))
         total = 0
         correct = 0
-        for sent_idx in xrange(len(unbounded_dependencies)):
-            sent = sents[sent_idx]
-            ## TAG analysis
-            predicted_dependencies_sent = predicted_dependencies[sent_idx]
-            predicted_stags_sent = predicted_stags[sent_idx]
-            predicted_pos_sent = predicted_pos[sent_idx]
-            transformed_sent = transform(t2props_dict, t2topsub_dict, sent, predicted_dependencies_sent, predicted_stags_sent, predicted_pos_sent)
-            #transformed_sent = predicted_dependencies_sent
-            #print(transformed_sent)
-            assert(len(sent) == len(predicted_stags_sent))
-            unbounded_dependencies_sent = unbounded_dependencies[sent_idx]
-            for dep in unbounded_dependencies_sent:
-                total += 1
-                all_total += 1
-                if 'nsubj' == dep[2]:
-                    new_dep = (dep[0], dep[1], '0')
-                elif 'dobj' == dep[2]:
-                    new_dep = tuple([dep[0], dep[1], '1'])
-                elif 'pobj' == dep[2]:
-                    new_dep = tuple([dep[0], dep[1], '1'])
-                elif 'nsubjpass' in dep[2]:
-                    new_dep = (dep[0], dep[1], '1')
-                elif 'advmod' in dep[2]:
-                    new_dep = (dep[0], dep[1], '-unk-')
-                elif 'prep' in dep[2]:
-                    new_dep = (dep[0], dep[1], 'ADJ')
-                elif '' in dep[2]:
-                    new_dep = (dep[0], dep[1], 'ADJ')
-                else:
-                    print(dep[2])
-                if new_dep in transformed_sent:
-                    correct += 1
-                    all_correct += 1
+        with open(os.path.join(result_dir, 'results.txt'), 'wt') as fout:
+            for sent_idx in xrange(len(unbounded_dependencies)):
+                sent = sents[sent_idx]
+                ## TAG analysis
+                predicted_dependencies_sent = predicted_dependencies[sent_idx]
+                predicted_stags_sent = predicted_stags[sent_idx]
+                predicted_pos_sent = predicted_pos[sent_idx]
+                transformed_sent = transform(t2props_dict, t2topsub_dict, sent, predicted_dependencies_sent, predicted_stags_sent, predicted_pos_sent)
+                #transformed_sent = predicted_dependencies_sent
+                #print(transformed_sent)
+                assert(len(sent) == len(predicted_stags_sent))
+                unbounded_dependencies_sent = unbounded_dependencies[sent_idx]
+                for dep_idx, dep in enumerate(unbounded_dependencies_sent):
+                    total += 1
+                    all_total += 1
+                    if 'nsubj' == dep[2]:
+                        new_dep = (dep[0], dep[1], '0')
+                    elif 'dobj' == dep[2]:
+                        new_dep = tuple([dep[0], dep[1], '1'])
+                    elif 'pobj' == dep[2]:
+                        new_dep = tuple([dep[0], dep[1], '1'])
+                    elif 'nsubjpass' in dep[2]:
+                        new_dep = (dep[0], dep[1], '1')
+                    elif 'advmod' in dep[2]:
+                        new_dep = (dep[0], dep[1], '-unk-')
+                    elif 'prep' in dep[2]:
+                        new_dep = (dep[0], dep[1], 'ADJ')
+                    elif 'infmod' in dep[2]:
+                        new_dep = (dep[0], dep[1], 'ADJ')
+                    elif 'obj2' in dep[2]:
+                        new_dep = (dep[0], dep[1], '1')
+                    else:
+                        new_dep = (dep[0], dep[1], 'ADJ')
+                    if new_dep in transformed_sent:
+                        correct += 1
+                        all_correct += 1
+                        success = 1
+                    else:
+                        success = 0
+                    fout.write(' '.join([str(sent_idx), str(dep_idx), str(success)]))
+                    fout.write('\n')
         print('Construction: {}'.format(construction))
         print('# total: {}'.format(total))
         print('# correct: {}'.format(correct))
