@@ -18,7 +18,7 @@
 ## Requirements
 
 TensorFlow needs to be installed before running the training script.
-TensorFlow 1.0.0 or higher is supported. 
+TensorFlow 1.0.0 or higher is supported. (TensorFlow 1.3.0 and 1.7.0 are tested)
 
 ## GloVe
 
