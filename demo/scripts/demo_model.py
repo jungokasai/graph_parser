@@ -29,6 +29,7 @@ def demo_model():
             results = model.run_on_sents(session, sents)
             conllu = get_conllu(results, sents)
             print(conllu)
+
 def get_conllu(results, sents):
     start_idx = 0
     conllu = ''

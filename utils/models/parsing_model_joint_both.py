@@ -202,3 +202,24 @@ class Parsing_Model_Joint_Both(Basic_Model):
             #scores['UAS'] = np.mean(predictions['arcs'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             #scores['UAS_greedy'] = np.mean(predictions['arcs_greedy'][self.loader.punc] == self.loader.gold_arcs[self.loader.punc])
             return scores
+
+    def predict(self, session):
+        next_test_batch = self.loader.next_test_batch
+        test_incomplete = next_test_batch(self.batch_size)
+        output_types = ['arcs', 'rels', 'arcs_greedy', 'rels_greedy', 'stags', 'jk']
+        predictions = {output_type: [] for output_type in output_types}
+        probs = []
+        while test_incomplete:
+            loss, predictions_batch, UAS, probs_batch = self.run_batch(session, True)
+            for name, pred in predictions_batch.items():
+                predictions[name].append(pred)
+            probs.append(probs_batch)
+            print('Test mode {}/{}, Raw UAS {:.4f}'.format(self.loader._index_in_test, self.loader.nb_validation_samples, UAS), end='\r') #, end = '\r')
+            test_incomplete = next_test_batch(self.batch_size)
+        for name, pred in predictions.items():
+            predictions[name] = np.hstack(pred)
+        return (
+            [self.loader.idx_to_tag[x] for x in predictions["stags"]],
+            list(predictions["arcs"]),
+            [self.loader.idx_to_rel[x] for x in predictions["rels"]],
+        )
