@@ -13,6 +13,8 @@ def convert(dot_file):
     subprocess.check_call(command, shell=True)
     command = 'convert {} {}'.format(new_file, final_file)
     subprocess.check_call(command, shell=True)
+    command = 'convert -flatten {} {}'.format(final_file, final_file)
+    subprocess.check_call(command, shell=True)
 if __name__ == '__main__':
     constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
     for construction in constructions:
