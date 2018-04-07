@@ -5,7 +5,7 @@ from transform import transform
 from get_treeprops import get_t2props_dict, get_t2topsub_dict
 
 def evaluate(data_type):
-    tree_prop_file = 'd6.treeproperties'
+    tree_prop_file = 'd6.treeproperties_original'
     t2props_dict = get_t2props_dict(tree_prop_file)
     t2topsub_dict = get_t2topsub_dict(tree_prop_file)
     constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
