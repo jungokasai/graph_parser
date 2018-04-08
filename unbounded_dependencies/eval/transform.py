@@ -54,6 +54,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
     parse_t += add_coanchor(parse_t, stag_t)
     parse_t += add_wh_adj(parse_t, pos_t)
     parse_t += add_copula(sent_t, parse_t, pos_t)
+    parse_t += add_nonbe(sent_t, parse_t, pos_t)
     return parse_t
 #        if  debug >= 2:
 #            print("parse_t extended with and_but:")
@@ -209,7 +210,7 @@ def add_copula(sent_t, parse_t, pos_t):
     new_edges = []
     for word_idx, word, pos in zip(xrange(1, len(sent_t)+1), sent_t, pos_t):
         lemma = lemmatize(word, pos)
-        if str(lemma) == 'be': ## copula
+        if str(lemma) in ['be', 'stay', 'become', 'seem', 'turn']: ## copula
             copula_idx = word_idx
             par_child_dict =  _triples2par_child_dict(parse_t, sent_t)
             par_exists = False
@@ -227,6 +228,19 @@ def add_copula(sent_t, parse_t, pos_t):
                     print(new_edges)
     return new_edges
                     
+def add_nonbe(sent_t, parse_t, pos_t):
+    new_edges = []
+    for word, dep, pos in zip(sent_t, parse_t, pos_t):
+        lemma = lemmatize(word, pos)
+        if lemma in ['stay', 'become', 'seem', 'turn']: ## copula in TAG but not in unbounded dependency
+            copula_id = dep[0]
+            head_id = dep[1]
+            for dep in parse_t:
+                if (dep[0] == head_id):
+                    new_edges.append((copula_id, dep[1], dep[2]))
+                if (dep[1] == head_id):
+                    new_edges.append((dep[0], copula_id, dep[2]))
+    return new_edges
 
 def add_flipped_predaux(triple, stag_t, t2props_dict):
     id1, id2, dep = triple[0], triple[1], triple[2]
@@ -414,8 +428,8 @@ def append_and_but(parse_t, stag_t, sent_t, t2props_dict):
     modals = ['could', 'should', 'would']
     negations = ["not", "n't"]
 
-    share_partner_parent_modif = ['S', 'NP', 'VP']
-    share_partner_arg_modif = ['VP'] 
+    share_partner_parent_modif = ['S', 'NP', 'VP', 'N', 'V']
+    share_partner_arg_modif = ['VP', 'V'] 
 
     if type(sent_t) == str:
         sent_t = sent_t.split()
@@ -471,7 +485,7 @@ def _get_partner_parent_rel( sent_t, and_word_id, par_child_dict ):
         child_1_id = [c_id for c_id, dep in par_child_dict[and_word_id]['children_with_dep']
                       if dep == '1'][0]
     except:
-        # misparsed sentence, where 'and' has no parent
+        # misparsed sentence, where 'and' has no child
         return([])
 
 
@@ -676,3 +690,5 @@ def _triples2par_child_dict(parse_t, sent_t):
         par_child_dict[id2]['children_with_dep'].append( (id1, dep) )
 
     return(par_child_dict)
+if __name__ == '__main__':
+    print(lemmatize('stayed', 'V'))

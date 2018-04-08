@@ -5,10 +5,11 @@ from transform import transform
 from get_treeprops import get_t2props_dict, get_t2topsub_dict
 
 def evaluate(data_type):
-    tree_prop_file = 'd6.treeproperties_original'
+    tree_prop_file = 'd6.treeproperties'
     t2props_dict = get_t2props_dict(tree_prop_file)
     t2topsub_dict = get_t2topsub_dict(tree_prop_file)
     constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
+    #constructions = ['sbj_extract_rel_clause']
     #constructions = ['obj_qus']
     all_total = 0
     all_correct = 0
@@ -29,6 +30,7 @@ def evaluate(data_type):
         correct = 0
         with open(os.path.join(result_dir, 'results.txt'), 'wt') as fout:
             for sent_idx in xrange(len(unbounded_dependencies)):
+            #for sent_idx in [73]:
                 sent = sents[sent_idx]
                 ## TAG analysis
                 predicted_dependencies_sent = predicted_dependencies[sent_idx]
