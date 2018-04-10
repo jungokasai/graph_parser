@@ -40,7 +40,7 @@ def output_conllu(filename, sents, pos, stags, arcs, rels, dependencies, new_edg
     tree_prop_file = 'd6.treeproperties'
     t2props_dict = get_t2props_dict(tree_prop_file)
     t2topsub_dict = get_t2topsub_dict(tree_prop_file)
-    for sent_idx in xrange(len(sents)):
+    for sent_idx in range(len(sents)):
         deps_sent = dependencies[sent_idx]
         for dep_idx, dep in enumerate(deps_sent):
             unbounded_dep = dep
@@ -56,7 +56,7 @@ def output_conllu(filename, sents, pos, stags, arcs, rels, dependencies, new_edg
             output_list = [str(token_idx), sent[token_idx-1]+'_'+stags_sent[token_idx-1], '_', stags_sent[token_idx-1], pos_sent[token_idx-1], '_', str(dep[0]), dep[2], '_', '_']
             conllu += '\t'.join(output_list)
             conllu += '\n'
-            for token_idx in xrange(len(sent)):
+            for token_idx in range(len(sent)):
                 if token_idx >= start and token_idx <= end:
                     #if  arcs_sent[token_idx] >= start and arcs_sent[token_idx] <= end:
                     output_list = [str(token_idx+1), sent[token_idx]+'_'+stags_sent[token_idx], '_', stags_sent[token_idx], pos_sent[token_idx], '_', str(arcs_sent[token_idx]), rels_sent[token_idx], '_', '_']
@@ -122,7 +122,7 @@ def get_new_edges(data_type, construction):
     predicted_stags = read_stags(construction, data_type)
     predicted_pos = read_stags(construction, data_type, 'predicted_pos')
     new_edges =[]
-    for sent_idx in xrange(len(unbounded_dependencies)):
+    for sent_idx in range(len(unbounded_dependencies)):
     #for sent_idx in [0]:
         sent = sents[sent_idx]
         ## TAG analysis

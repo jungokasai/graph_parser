@@ -23,7 +23,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
             #    print(sent_t)
             #    print(candidate)
         # flipped relative clause
-        candidate = add_flipped_rel(triple, stag_t, t2props_dict, t2topsub_dict, add_plus=add_plus)
+        candidate = add_flipped_rel(triple, parse_t, stag_t, t2props_dict, t2topsub_dict, add_plus=add_plus)
         if candidate:
             to_add.append(candidate)
         # flipped modifying auxiliary clause with relation 1
@@ -35,8 +35,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
                 print("orig: ", lexicalize([triple], sent_t, pos=pos_t))
                 print("candidate", lexicalize([candidate], sent_t, pos=pos_t))
                 print()
-   
-    # update parse_t with results
+   # update parse_t with results
     parse_t += to_add
 
     # extend parse_t for predicative cases
@@ -49,7 +48,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
             print()
 
     # extend parse_t for and_but cases
-    parse_t += append_and_but(parse_t, stag_t, sent_t, t2props_dict)
+    parse_t += append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict)
     ## co-anchor
     parse_t += add_coanchor(parse_t, stag_t)
     parse_t += add_wh_adj(parse_t, pos_t)
@@ -162,7 +161,7 @@ def _match_triple(triple_h, triple_t, fuzz_wildcards_and_contractions):
 """ deal with predicative auxiliary cases, modifier auxiliary cases, and relative clause cases"""
 
 # if word has property rel, add a connection to parent with rel: relationship. 
-def add_flipped_rel(triple, stag_t, t2props_dict, t2topsub_dict, add_plus=False):
+def add_flipped_rel(triple, parse_t, stag_t, t2props_dict, t2topsub_dict, add_plus=False):
     id1, id2, dep = triple[0], triple[1], triple[2]
     
     # try for id1
@@ -171,6 +170,11 @@ def add_flipped_rel(triple, stag_t, t2props_dict, t2topsub_dict, add_plus=False)
         return(None)
     
     relation = t2props_dict[stag]['rel']
+    if _get_stag(id2, stag_t) == 9:## LRB
+        ## get parent of id2
+        for child_id, par_id, dep_new in parse_t:
+            if child_id == id2 and dep_new == 'ADJ':
+                return((par_id,id1,relation))
     if relation in ['0','1','2']:
         return((id2,id1,relation))
     elif ((relation == '+') and add_plus and (stag in t2topsub_dict.keys())):
@@ -193,7 +197,7 @@ def add_coanchor(parse_t, sent_t):
     
 def add_wh_adj(parse_t, pos_t):
     new_edges = []
-    for i in xrange(len(pos_t)):
+    for i in range(len(pos_t)):
         pos = pos_t[i]
         if pos in ['WP', 'WRB']:
             head_id = parse_t[i][0]
@@ -208,7 +212,7 @@ def add_wh_adj(parse_t, pos_t):
 def add_copula(sent_t, parse_t, pos_t):
     dep_nums = {'0', '1', '2', '3'}
     new_edges = []
-    for word_idx, word, pos in zip(xrange(1, len(sent_t)+1), sent_t, pos_t):
+    for word_idx, word, pos in zip(range(1, len(sent_t)+1), sent_t, pos_t):
         lemma = lemmatize(word, pos)
         if str(lemma) in ['be', 'stay', 'become', 'seem', 'turn']: ## copula
             copula_idx = word_idx
@@ -422,14 +426,14 @@ def append_predicative(parse_t, stag_t, sent_t, t2props_dict):
 #                    to_add.append((id1, id2_zero_child, dep))
                 
                 
-def append_and_but(parse_t, stag_t, sent_t, t2props_dict):   
+def append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict):   
     to_add = []
 
     modals = ['could', 'should', 'would']
     negations = ["not", "n't"]
 
     share_partner_parent_modif = ['S', 'NP', 'VP', 'N', 'V']
-    share_partner_arg_modif = ['VP', 'V'] 
+    share_partner_arg_modif = ['VP', 'V', 'S'] 
 
     if type(sent_t) == str:
         sent_t = sent_t.split()
@@ -441,6 +445,10 @@ def append_and_but(parse_t, stag_t, sent_t, t2props_dict):
     if stag_t[0] != 'root':
         stag_t = ['root'] + stag_t
 
+    if type(pos_t) == str:
+        pos_t = pos_t.split()
+    if pos_t[0] != 'root':
+        pos_t = ['root'] + pos_t
     # for each and_but_tree find 1_child_of_and_but. Find parent_of_and_but. For all relations
     # of parent_of_and_but (or just for 0-relation), add the triple
     # (depnum_child_of_and_butparent, 1_child_of_and_but, depnum)
@@ -454,7 +462,6 @@ def append_and_but(parse_t, stag_t, sent_t, t2props_dict):
         # for each 'and' and 'but'
         for and_but_id in and_but_ids:
             stag_tree = stag_t[and_but_id]
-
             stag = int(stag_tree[1:])
             modif = t2props_dict[stag]['modif']
 
@@ -462,7 +469,13 @@ def append_and_but(parse_t, stag_t, sent_t, t2props_dict):
                 to_add += _get_partner_parent_rel( sent_t, and_but_id, par_child_dict)
 
             if modif in share_partner_arg_modif:
-                to_add += _get_partner_arg_rels( sent_t, and_but_id, par_child_dict, modals, negations )
+                rel_case = False
+                if modif == 'S':
+                    for parent_idx, dep in par_child_dict[and_but_id]['parents_with_dep']:
+                        stag_tree = stag_t[parent_idx]
+                        if t2props_dict[int(stag_tree[1:])]['rel'] in ['0', '1', '2', '3']:
+                            rel_case = True
+                to_add += _get_partner_arg_rels( sent_t, pos_t, and_but_id, par_child_dict, modals, negations, rel_case )
 
     return(to_add)
 
@@ -505,7 +518,7 @@ def _get_partner_parent_rel( sent_t, and_word_id, par_child_dict ):
     return(to_add)
 
 
-def _get_partner_arg_rels( sent_t, and_word_id, par_child_dict, modals, negations ):
+def _get_partner_arg_rels( sent_t, pos_t, and_word_id, par_child_dict, modals, negations, rel_case ):
 
     to_add = []
 
@@ -540,7 +553,12 @@ def _get_partner_arg_rels( sent_t, and_word_id, par_child_dict, modals, negation
 
             # add if dependency is a numbered dependency
             if partner_child_dep in ['0', '1', '2', '3']:
-                to_add.append( (partner_child_id, child_1_id, partner_child_dep) )
+                new_dep = partner_child_dep
+                if rel_case:
+                    for child_idx, child_dep in par_child_dict[child_1_id]['children_with_dep']:
+                        if pos_t[child_idx] in ['WDT', 'WP']:
+                            new_dep = child_dep
+                to_add.append( (partner_child_id, child_1_id, new_dep) )
 
             # add if word is modal or negation and child_1 has none of those
             elif (add_modals_negations and
@@ -554,6 +572,31 @@ def _get_partner_arg_rels( sent_t, and_word_id, par_child_dict, modals, negation
     return(to_add)
 
 
+def _get_relative_case( sent_t, and_word_id, par_child_dict ):
+    to_add = []
+    dep_nums = {'0', '1', '2'}
+
+    try:
+        child_1_id = [c_id for c_id, dep in par_child_dict[and_word_id]['children_with_dep']
+                      if dep == '1'][0]
+    except:
+        # misparsed sentence, where 'and' has no child
+        return([])
+
+
+    # in iterations, may have multiple parents
+    # get 'and' parent, e.g. 'screamed'
+    for par_id, dep in par_child_dict[and_word_id]['parents_with_dep']:
+        
+        for partner_par_id, partner_dep in par_child_dict[par_id]['parents_with_dep']:
+       
+            # if screamed-think dependency is in dep_nums, add that dependency
+            # between 'ran' and 'think'
+            if partner_dep in dep_nums:
+
+                to_add.append( (child_1_id, partner_par_id, partner_dep) )
+
+    return(to_add)
 
 
 def _get_stag(tok_id, stag):
@@ -692,3 +735,5 @@ def _triples2par_child_dict(parse_t, sent_t):
     return(par_child_dict)
 if __name__ == '__main__':
     print(lemmatize('stayed', 'V'))
+    print(lemmatize('which', 'V'))
+    print(lemmatize('what', 'V'))

@@ -4,12 +4,14 @@ from read_unbounded import read_unbounded
 from transform import transform
 from get_treeprops import get_t2props_dict, get_t2topsub_dict
 
-def evaluate(data_type):
+def evaluate(data_type, debug=False):
     tree_prop_file = 'd6.treeproperties'
     t2props_dict = get_t2props_dict(tree_prop_file)
     t2topsub_dict = get_t2topsub_dict(tree_prop_file)
-    constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
-    #constructions = ['sbj_extract_rel_clause']
+    if debug:
+        constructions = ['sbj_embedded']
+    else:
+        constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
     #constructions = ['obj_qus']
     all_total = 0
     all_correct = 0
@@ -28,8 +30,12 @@ def evaluate(data_type):
         #assert(len(predicted_dependencies) == len(unbounded_dependencies))
         total = 0
         correct = 0
+        if debug:
+            sent_idxes = [22]
+        else:
+            sent_idxes = range(len(unbounded_dependencies))
         with open(os.path.join(result_dir, 'results.txt'), 'wt') as fout:
-            for sent_idx in xrange(len(unbounded_dependencies)):
+            for sent_idx in sent_idxes:
             #for sent_idx in [73]:
                 sent = sents[sent_idx]
                 ## TAG analysis
@@ -86,4 +92,4 @@ def evaluate(data_type):
     print('Macro Accuracy: {}'.format(float(all_correct)/all_total))
     print('Overall Accuracy: {}'.format(float(total_scores)/nb_constructions))
 if __name__ == '__main__':
-    evaluate('test')
+    evaluate('test', False)
