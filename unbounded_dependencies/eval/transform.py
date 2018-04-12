@@ -236,7 +236,7 @@ def add_nonbe(sent_t, parse_t, pos_t):
     new_edges = []
     for word, dep, pos in zip(sent_t, parse_t, pos_t):
         lemma = lemmatize(word, pos)
-        if lemma in ['stay', 'become', 'seem', 'turn']: ## copula in TAG but not in unbounded dependency
+        if lemma in ['stay', 'become', 'seem', 'remain']: ## copula in TAG but not in unbounded dependency
             copula_id = dep[0]
             head_id = dep[1]
             for dep in parse_t:

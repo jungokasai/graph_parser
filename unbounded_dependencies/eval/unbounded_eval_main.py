@@ -9,7 +9,8 @@ def evaluate(data_type, debug=False):
     t2props_dict = get_t2props_dict(tree_prop_file)
     t2topsub_dict = get_t2topsub_dict(tree_prop_file)
     if debug:
-        constructions = ['sbj_embedded']
+        #constructions = ['sbj_embedded']
+        constructions = ['obj_qus']
     else:
         constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
     #constructions = ['obj_qus']
@@ -31,7 +32,7 @@ def evaluate(data_type, debug=False):
         total = 0
         correct = 0
         if debug:
-            sent_idxes = [22]
+            sent_idxes = [39]
         else:
             sent_idxes = range(len(unbounded_dependencies))
         with open(os.path.join(result_dir, 'results.txt'), 'wt') as fout:
@@ -52,8 +53,14 @@ def evaluate(data_type, debug=False):
                     all_total += 1
                     if 'nsubj' == dep[2]:
                         new_dep = (dep[0], dep[1], '0')
+                        if construction == 'sbj_embedded':
+                            if (sent_idx, dep_idx) in [(77, 0), (42, 0)]:
+                                new_dep = tuple([dep[0], dep[1], '1']) ## causative-inchoative
                     elif 'dobj' == dep[2]:
                         new_dep = tuple([dep[0], dep[1], '1'])
+                        if construction == 'obj_qus':
+                            if sent[0].lower() in ['where']:
+                                new_dep = tuple([dep[0], dep[1], '-unk-'])
                     elif 'pobj' == dep[2]:
                         new_dep = tuple([dep[0], dep[1], '1'])
                     elif 'nsubjpass' in dep[2]:
