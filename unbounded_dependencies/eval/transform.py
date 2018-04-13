@@ -225,7 +225,7 @@ def add_wh_adj(parse_t, pos_t):
     new_edges = []
     for i in range(len(pos_t)):
         pos = pos_t[i]
-        if pos in ['WP', 'WRB']:
+        if pos in ['WP', 'WRB', 'WDT']:
             head_id = parse_t[i][0]
             for dep in parse_t:
                 if (dep[1] == head_id) and (dep[2] == 'ADJ'):
