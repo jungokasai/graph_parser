@@ -54,6 +54,8 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
     parse_t += add_wh_adj(parse_t, pos_t)
     parse_t += add_copula(sent_t, parse_t, pos_t)
     parse_t += add_nonbe(sent_t, parse_t, pos_t)
+    parse_t += add_lot_none(parse_t, sent_t, pos_t)
+    parse_t += add_the_more(parse_t, stag_t)
     return parse_t
 #        if  debug >= 2:
 #            print("parse_t extended with and_but:")
@@ -195,6 +197,30 @@ def add_coanchor(parse_t, sent_t):
                     new_edges.append((dep[0], coanchor_id, dep[2]))
     return new_edges
     
+def add_lot_none(parse_t, sent_t, pos_t):
+    new_edges = []
+    par_child_dict =  _triples2par_child_dict(parse_t, sent_t)
+    for word_idx, dep, word, pos in zip(range(len(parse_t)), parse_t, sent_t, pos_t):
+        if lemmatize(word, pos).lower() in ['lot', 'none'] and sent_t[word_idx+1].lower() in ['of']:
+            ## lots of people were great
+            lot_id = dep[0]
+            for par_idx, par_rel in par_child_dict[lot_id]['parents_with_dep']:
+                for child_idx, child_rel in par_child_dict[lot_id]['children_with_dep']:
+                    ## child_idx great
+                    for of_child_idx, of_rel in [(of_child_idx, of_rel) for of_child_idx, of_rel in par_child_dict[word_idx+1+1]['children_with_dep'] if of_rel == '1']:
+                        ## of_child_idx people
+                        new_edges.append((of_child_idx, par_idx, par_rel))
+                        new_edges.append((child_idx, of_child_idx, child_rel))
+    return new_edges
+
+def add_the_more(parse_t, stag_t):
+    new_edges = []
+    for word_idx, dep, stag in zip(range(len(parse_t)), parse_t, stag_t):
+        if stag == 't1419':
+            if stag_t[word_idx+1] == 't1420':
+                new_edges.append((parse_t[word_idx+1][0], dep[1], '1'))
+    return new_edges
+
 def add_wh_adj(parse_t, pos_t):
     new_edges = []
     for i in range(len(pos_t)):
@@ -235,7 +261,7 @@ def add_copula(sent_t, parse_t, pos_t):
 def add_nonbe(sent_t, parse_t, pos_t):
     new_edges = []
     for word, dep, pos in zip(sent_t, parse_t, pos_t):
-        lemma = lemmatize(word, pos)
+        lemma = lemmatize(word, pos).lower()
         if lemma in ['stay', 'become', 'seem', 'remain']: ## copula in TAG but not in unbounded dependency
             copula_id = dep[0]
             head_id = dep[1]
@@ -737,3 +763,5 @@ if __name__ == '__main__':
     print(lemmatize('stayed', 'V'))
     print(lemmatize('which', 'V'))
     print(lemmatize('what', 'V'))
+    print(lemmatize('None', 'V'))
+    print(lemmatize('lots', 'V'))
