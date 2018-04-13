@@ -55,6 +55,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
     parse_t += add_copula(sent_t, parse_t, pos_t)
     parse_t += add_nonbe(sent_t, parse_t, pos_t)
     parse_t += add_lot_none(parse_t, sent_t, pos_t)
+    parse_t += add_sure_of(parse_t, stag_t)
     parse_t += add_the_more(parse_t, stag_t)
     return parse_t
 #        if  debug >= 2:
@@ -201,7 +202,7 @@ def add_lot_none(parse_t, sent_t, pos_t):
     new_edges = []
     par_child_dict =  _triples2par_child_dict(parse_t, sent_t)
     for word_idx, dep, word, pos in zip(range(len(parse_t)), parse_t, sent_t, pos_t):
-        if lemmatize(word, pos).lower() in ['lot', 'none'] and sent_t[word_idx+1].lower() in ['of']:
+        if lemmatize(word, pos).lower() in ['lot', 'none', 'kind'] and sent_t[word_idx+1].lower() in ['of']:
             ## lots of people were great
             lot_id = dep[0]
             for par_idx, par_rel in par_child_dict[lot_id]['parents_with_dep']:
@@ -213,6 +214,17 @@ def add_lot_none(parse_t, sent_t, pos_t):
                         new_edges.append((child_idx, of_child_idx, child_rel))
     return new_edges
 
+def add_sure_of(parse_t, stag_t):
+    new_edges = []
+    par_child_dict =  _triples2par_child_dict(parse_t, stag_t)
+    for word_idx in range(len(stag_t)):
+        if stag_t[word_idx] == 't976':
+            for child_idx, child_rel in par_child_dict[word_idx+1]['children_with_dep']:
+                if child_rel == 'ADJ' and stag_t[child_idx-1] == 't1170':
+                    for par_idx, par_rel in par_child_dict[word_idx+1]['parents_with_dep']:
+                        if par_rel == 'ADJ':
+                            new_edges.append((par_idx, child_idx, '1'))
+    return new_edges
 def add_the_more(parse_t, stag_t):
     new_edges = []
     for word_idx, dep, stag in zip(range(len(parse_t)), parse_t, stag_t):
