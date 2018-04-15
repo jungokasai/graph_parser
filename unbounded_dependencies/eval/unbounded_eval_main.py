@@ -106,6 +106,6 @@ def evaluate(corpus_data_type, debug=False, input_data_type=None):
     print('Macro Accuracy: {}'.format(float(all_correct)/all_total))
     print('Overall Accuracy: {}'.format(float(total_scores)/nb_constructions))
 if __name__ == '__main__':
+    evaluate('test', False, 'test_emnlp')
     evaluate('test', False)
     #evaluate('test', True)
-    #evaluate('test', False, 'test_emnlp')

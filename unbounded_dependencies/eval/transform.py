@@ -282,7 +282,7 @@ def add_copula(sent_t, parse_t, pos_t):
     new_edges = []
     for word_idx, word, pos in zip(range(1, len(sent_t)+1), sent_t, pos_t):
         lemma = lemmatize(word, pos)
-        if str(lemma) in ['be', 'stay', 'become', 'seem', 'turn']: ## copula
+        if str(lemma) in ['be', 'stay', 'become']: ## copula
             copula_idx = word_idx
             par_child_dict =  _triples2par_child_dict(parse_t, sent_t)
             par_exists = False

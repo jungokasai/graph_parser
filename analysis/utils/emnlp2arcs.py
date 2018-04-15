@@ -1,9 +1,9 @@
 import pickle
 
 def main(file_name):
-    with open('emnlp/test16_ss3_bs3.pkl') as fin:
+    with open('data/emnlp/dev16_ss3_bs3.pkl') as fin:
         parses = pickle.load(fin)
-    sents = read_stags('sents/{}.txt'.format(file_name))
+    sents = read_stags('data/gold/sents/{}.txt'.format(file_name))
     arcs = []
     rels = []
     for sent, parse in zip(sents, parses):
@@ -24,8 +24,8 @@ def main(file_name):
             rels_sent.append(dep[2].replace('adj', 'ADJ').replace('root', 'ROOT').replace('co', 'CO'))
         arcs.append(arcs_sent)
         rels.append(rels_sent)
-    output_arcs_rels(arcs, 'predicted_arcs/{}.txt'.format(file_name))
-    output_arcs_rels(rels, 'predicted_rels/{}.txt'.format(file_name))
+    output_arcs_rels(arcs, 'data/emnlp/predicted_arcs/{}.txt'.format(file_name))
+    output_arcs_rels(rels, 'data/emnlp/predicted_rels/{}.txt'.format(file_name))
                 
         
 def read_stags(path_to_sents):
@@ -44,4 +44,4 @@ def output_arcs_rels(arcs, file_name):
             fout.write('\n')
 
 if __name__ == '__main__':
-    main('test_emnlp')
+    main('test')
