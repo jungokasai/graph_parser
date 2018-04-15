@@ -11,7 +11,8 @@ def evaluate(data_type, debug=False):
     if debug:
         #constructions = ['sbj_embedded']
         #constructions = ['obj_qus']
-        constructions = ['obj_extract_red_rel']
+        #constructions = ['obj_extract_red_rel']
+        constructions = ['right_node_raising']
     else:
         constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
     #constructions = ['obj_qus']
@@ -33,7 +34,7 @@ def evaluate(data_type, debug=False):
         total = 0
         correct = 0
         if debug:
-            sent_idxes = [13] 
+            sent_idxes = [70] 
         else:
             sent_idxes = range(len(unbounded_dependencies))
         with open(os.path.join(result_dir, 'results.txt'), 'wt') as fout:
@@ -67,7 +68,10 @@ def evaluate(data_type, debug=False):
                     elif 'nsubjpass' in dep[2]:
                         new_dep = (dep[0], dep[1], '1')
                     elif 'advmod' in dep[2]:
-                        new_dep = (dep[0], dep[1], '-unk-')
+                        if sent[dep[0]-1] == 'out':
+                            new_dep = (dep[0], dep[1], 'ADJ')
+                        else:
+                            new_dep = (dep[0], dep[1], '-unk-')
                     elif 'prep' in dep[2]:
                         new_dep = (dep[0], dep[1], 'ADJ')
                     elif 'infmod' in dep[2]:

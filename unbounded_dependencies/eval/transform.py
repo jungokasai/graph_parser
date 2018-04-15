@@ -57,6 +57,8 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
     parse_t += add_lot_none(parse_t, sent_t, pos_t)
     parse_t += add_sure_of(parse_t, stag_t)
     parse_t += add_the_more(parse_t, stag_t)
+    parse_t += add_may_have(parse_t, pos_t)
+    parse_t += add_there_is(parse_t, pos_t)
     return parse_t
 #        if  debug >= 2:
 #            print("parse_t extended with and_but:")
@@ -233,6 +235,34 @@ def add_the_more(parse_t, stag_t):
                 new_edges.append((parse_t[word_idx+1][0], dep[1], '1'))
     return new_edges
 
+def add_may_have(parse_t, pos_t):
+    new_edges = []
+    md_ids = []
+    par_child_dict =  _triples2par_child_dict(parse_t, pos_t)
+    for i, pos in enumerate(pos_t):
+        if pos == 'MD':
+            md_ids.append(i+1)
+    for md_id in md_ids:
+        for par_id, par_dep in par_child_dict[md_id]['parents_with_dep']:
+            for child_id, child_dep in par_child_dict[par_id]['children_with_dep']:
+                if md_id != child_id:
+                    new_edges.append((md_id, child_id, par_dep))
+    return new_edges
+
+def add_there_is(parse_t, pos_t):
+    ## there is a man
+    new_edges = []
+    ex_ids = []
+    par_child_dict =  _triples2par_child_dict(parse_t, pos_t)
+    for i, pos in enumerate(pos_t):
+        if pos == 'EX':
+            ex_ids.append(i+1)
+    for ex_id in ex_ids:
+        for par_id, par_dep in par_child_dict[ex_id]['parents_with_dep']:
+            if par_dep == '0': ## man
+                for child_id, child_dep in par_child_dict[par_id]['children_with_dep']:## is
+                    new_edges.append((par_id, child_id, '0'))
+    return new_edges
 def add_wh_adj(parse_t, pos_t):
     new_edges = []
     for i in range(len(pos_t)):
@@ -470,8 +500,8 @@ def append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict):
     modals = ['could', 'should', 'would']
     negations = ["not", "n't"]
 
-    share_partner_parent_modif = ['S', 'NP', 'VP', 'N', 'V']
-    share_partner_arg_modif = ['VP', 'V', 'S'] 
+    share_partner_parent_modif = ['S', 'NP', 'VP', 'N', 'V', 'MD']
+    share_partner_arg_modif = ['VP', 'V', 'S', 'N', 'NP', 'MD'] 
 
     if type(sent_t) == str:
         sent_t = sent_t.split()
@@ -490,7 +520,7 @@ def append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict):
     # for each and_but_tree find 1_child_of_and_but. Find parent_of_and_but. For all relations
     # of parent_of_and_but (or just for 0-relation), add the triple
     # (depnum_child_of_and_butparent, 1_child_of_and_but, depnum)
-    and_but_ids = [i for i, w in enumerate(sent_t) if w in ['and', 'but', 'or', ',']]
+    and_but_ids = [i for i, w in enumerate(sent_t) if w in ['and', 'but', 'or', ',', '--']]
 
     if and_but_ids:
 
@@ -505,7 +535,7 @@ def append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict):
 
             if modif in share_partner_parent_modif:
                 to_add += _get_partner_parent_rel( sent_t, and_but_id, par_child_dict)
-
+                par_child_dict =  _triples2par_child_dict(parse_t+to_add, sent_t)
             if modif in share_partner_arg_modif:
                 rel_case = False
                 if modif == 'S':
@@ -513,7 +543,10 @@ def append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict):
                         stag_tree = stag_t[parent_idx]
                         if t2props_dict[int(stag_tree[1:])]['rel'] in ['0', '1', '2', '3']:
                             rel_case = True
-                to_add += _get_partner_arg_rels( sent_t, pos_t, and_but_id, par_child_dict, modals, negations, rel_case )
+                to_add += _get_partner_arg_rels( sent_t, pos_t, stag_t, and_but_id, par_child_dict, modals, negations, rel_case, t2props_dict)
+                par_child_dict =  _triples2par_child_dict(parse_t+to_add, sent_t)
+            to_add += _get_adj_coordination( sent_t, pos_t, stag_t, and_but_id, par_child_dict)
+            par_child_dict =  _triples2par_child_dict(parse_t+to_add, sent_t)
 
     return(to_add)
 
@@ -522,12 +555,11 @@ def append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict):
 
 def _get_partner_parent_rel( sent_t, and_word_id, par_child_dict ):
     to_add = []
-    dep_nums = {'0', '1', '2'}
+    dep_nums = {'0', '1', '2', 'ADJ'}
 
     # Consider phrase "I think John screamed and ran away"
     # let ran and screamed be "partners". 
-    # for relation (screamed, screamed_parent, dep) 
-    # if dep in dep_nums, add (ran, screamed_parent, dep)
+    # for relation (screamed, screamed_parent, dep) # if dep in dep_nums, add (ran, screamed_parent, dep)
 
     # all naming here is relative to 'and'
     # 'and' could also be 'but'
@@ -556,56 +588,82 @@ def _get_partner_parent_rel( sent_t, and_word_id, par_child_dict ):
     return(to_add)
 
 
-def _get_partner_arg_rels( sent_t, pos_t, and_word_id, par_child_dict, modals, negations, rel_case ):
+def _get_adj_coordination( sent_t, pos_t, stag_t, and_word_id, par_child_dict):
+    ## a moral, rather than a medical, problem
+    new_edges = []
+    if stag_t[and_word_id] != 't776':
+        return new_edges
+    else:
+        for par_id, par_dep in par_child_dict[and_word_id]['parents_with_dep']:
+            if par_dep == 'ADJ':
+                ## par_id: problem
+                for child_id, child_dep in par_child_dict[and_word_id]['children_with_dep']:
+                    ## child_id: medical
+                    new_edges.append((child_id, par_id, 'ADJ'))
+    return new_edges
+            
+    
+def _get_partner_arg_rels( sent_t, pos_t, stag_t, and_word_id, par_child_dict, modals, negations, rel_case, t2props_dict):
 
     to_add = []
 
     dep_nums = {'0', '1', '2', '3'}
+    #print(par_child_dict[and_word_id]['children_with_dep'])
 
-    try:
-        child_1_id = [c_id for c_id, dep in par_child_dict[and_word_id]['children_with_dep']
-                      if dep == '1'][0]
-    except:
-        # misparsed sentence, where 'and' has no parent
-        return([])
+    child_1_ids = [c_id for c_id, dep in par_child_dict[and_word_id]['children_with_dep']
+                  if dep == '1']
+    if len(child_1_ids) == 0:
+        child_1_ids = [c_id for c_id, dep in par_child_dict[and_word_id]['children_with_dep']
+                  if dep == 'ADJ']
+    if len(child_1_ids) == 0:
+        return []
+    for child_1_id in child_1_ids:
 
-    add_modals_negations = True
-    # if child 1 has modals or negations, 
-    # don't add modals or negations from parent
-    for grand_child_id, dep in par_child_dict[child_1_id]['children_with_dep']:
+        add_modals_negations = True
+        # if child 1 has modals or negations, 
+        # don't add modals or negations from parent
+        for grand_child_id, dep in par_child_dict[child_1_id]['children_with_dep']:
 
-        # check if child_1 already has modals or negations
-        if ((sent_t[grand_child_id] in modals) or
-            (sent_t[grand_child_id] in negations)):
-            add_modals_negations = False
-        
-        # if child_1 already has a dep_num, don't add that dep_num. 
-        dep_nums.discard(dep)
+            # check if child_1 already has modals or negations
+            if ((sent_t[grand_child_id] in modals) or
+                (sent_t[grand_child_id] in negations)):
+                add_modals_negations = False
+            
+            # if child_1 already has a dep_num, don't add that dep_num. 
+            dep_nums.discard(dep)
 
 
-    # get parent_id(s) of 'and'
-    for par_id, _ in par_child_dict[and_word_id]['parents_with_dep']:
+        # get parent_id(s) of 'and'
+        for par_id, _ in par_child_dict[and_word_id]['parents_with_dep']:
 
-        # go through children of partner
-        for partner_child_id, partner_child_dep in par_child_dict[par_id]['children_with_dep']:
+            # go through children of partner
+            for partner_child_id, partner_child_dep in par_child_dict[par_id]['children_with_dep']:
+                # add if dependency is a numbered dependency
+                if partner_child_dep in ['0', '1', '2', '3']:
+                        
+                    new_dep = partner_child_dep
+                    if rel_case:
+                        for child_idx, child_dep in par_child_dict[child_1_id]['children_with_dep']:
+                            if pos_t[child_idx] in ['WDT', 'WP']:
+                                new_dep = child_dep
+                    to_add.append( (partner_child_id, child_1_id, new_dep) )
+                    rfronts = t2props_dict[int(stag_t[child_1_id][1:])]['rfronts']
+                    if 'S#s#1' in rfronts:
+                        ## cascade
+                        for cascading_par, cascading_dep in par_child_dict[child_1_id]['children_with_dep']:
+                            to_add.append((partner_child_id, cascading_par, partner_child_dep))
+                # add if word is modal or negation and child_1 has none of those
+                elif partner_child_dep == 'ADJ':
+                    if partner_child_id > and_word_id:
+                        to_add.append( (partner_child_id, child_1_id, partner_child_dep) )
+                    
+                elif (add_modals_negations and
+                    ((sent_t[partner_child_id] in modals) or (sent_t[partner_child_id] in negations))
+                   ):
+                    to_add.append( (partner_child_id, child_1_id, partner_child_dep) )
 
-            # add if dependency is a numbered dependency
-            if partner_child_dep in ['0', '1', '2', '3']:
-                new_dep = partner_child_dep
-                if rel_case:
-                    for child_idx, child_dep in par_child_dict[child_1_id]['children_with_dep']:
-                        if pos_t[child_idx] in ['WDT', 'WP']:
-                            new_dep = child_dep
-                to_add.append( (partner_child_id, child_1_id, new_dep) )
-
-            # add if word is modal or negation and child_1 has none of those
-            elif (add_modals_negations and
-                ((sent_t[partner_child_id] in modals) or (sent_t[partner_child_id] in negations))
-               ):
-                to_add.append( (partner_child_id, child_1_id, partner_child_dep) )
-
-            else:
-                pass
+                else:
+                    pass
 
     return(to_add)
 
@@ -777,3 +835,9 @@ if __name__ == '__main__':
     print(lemmatize('what', 'V'))
     print(lemmatize('None', 'V'))
     print(lemmatize('lots', 'V'))
+    from get_treeprops import get_t2props_dict, get_t2topsub_dict
+    tree_prop_file = 'd6.treeproperties'
+    t2props_dict = get_t2props_dict(tree_prop_file)
+    t2topsub_dict = get_t2topsub_dict(tree_prop_file)
+    stag = 3339 
+    print('S#s#1' in t2props_dict[stag]['rfronts'])
