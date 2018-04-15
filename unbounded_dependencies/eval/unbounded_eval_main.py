@@ -4,7 +4,9 @@ from read_unbounded import read_unbounded
 from transform import transform
 from get_treeprops import get_t2props_dict, get_t2topsub_dict
 
-def evaluate(data_type, debug=False):
+def evaluate(corpus_data_type, debug=False, input_data_type=None):
+    if input_data_type is None:
+        input_data_type = corpus_data_type
     tree_prop_file = 'd6.treeproperties'
     t2props_dict = get_t2props_dict(tree_prop_file)
     t2topsub_dict = get_t2topsub_dict(tree_prop_file)
@@ -25,11 +27,11 @@ def evaluate(data_type, debug=False):
         result_dir = os.path.join(construction, 'results', 'test')
         if not os.path.isdir(result_dir):
             os.makedirs(result_dir)
-        predicted_dependencies = read_data(construction, data_type)
-        unbounded_dependencies = read_unbounded(construction, data_type)
-        sents = read_stags(construction, data_type, 'sents')
-        predicted_stags = read_stags(construction, data_type)
-        predicted_pos = read_stags(construction, data_type, 'predicted_pos')
+        predicted_dependencies = read_data(construction, input_data_type)
+        unbounded_dependencies = read_unbounded(construction, corpus_data_type)
+        sents = read_stags(construction, input_data_type, 'sents')
+        predicted_stags = read_stags(construction, input_data_type)
+        predicted_pos = read_stags(construction, input_data_type, 'predicted_pos')
         #assert(len(predicted_dependencies) == len(unbounded_dependencies))
         total = 0
         correct = 0
@@ -106,3 +108,4 @@ def evaluate(data_type, debug=False):
 if __name__ == '__main__':
     evaluate('test', False)
     #evaluate('test', True)
+    #evaluate('test', False, 'test_emnlp')
