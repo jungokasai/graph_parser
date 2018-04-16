@@ -27,7 +27,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
         if candidate:
             to_add.append(candidate)
         # flipped modifying auxiliary clause with relation 1
-        candidate = add_flipped_modif(triple, stag_t, t2props_dict)
+        #candidate = add_flipped_modif(triple, stag_t, t2props_dict)
         if candidate:
             to_add.append(candidate)
             if  debug >= 3:
@@ -35,9 +35,20 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
                 print("orig: ", lexicalize([triple], sent_t, pos=pos_t))
                 print("candidate", lexicalize([candidate], sent_t, pos=pos_t))
                 print()
+#    # extend parse_t for predicative cases
+#    if add_predicative:
+#        to_add = append_small_clause(parse_t, stag_t, sent_t, t2props_dict)
+#        parse_t += to_add 
+#        if  debug >= 2:
+#            print("parse_t extended with predicative:")
+#            print(lexicalize(parse_t, sent_t, pos=pos_t))
+#            print()
+#
    # update parse_t with results
     parse_t += to_add
 
+   # extend parse_t for and_but cases
+    parse_t += append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict)
     # extend parse_t for predicative cases
     if add_predicative:
         to_add = append_small_clause(parse_t, stag_t, sent_t, t2props_dict)
@@ -47,8 +58,6 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
             print(lexicalize(parse_t, sent_t, pos=pos_t))
             print()
 
-   # extend parse_t for and_but cases
-    parse_t += append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict)
     ## co-anchor
     parse_t += add_coanchor(parse_t, stag_t)
     parse_t += add_wh_adj(parse_t, pos_t)
@@ -109,57 +118,6 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
 
 
 """ see if hypothesis (h) set is a subset of text (t) set, with some additional conditions """
-
-def _subset_triples(h_set, t_set, fuzz_wildcards_and_contractions=True, debug=False, return_breaking_triple=False):
-    ignored_h_tokens = ['.', 'the']
-    
-    for triple_h in h_set:
-        if debug:
-            print("triple_h: ", triple_h)
-            print()
-        # ignore dependency to root and '.' in hypothesis triple
-        if ((triple_h[2].lower() == 'root') or 
-            (triple_h[0] in ignored_h_tokens)):
-            pass
-        # skip adjunctions for verb with lemma "be", e.g. case ('is', 'waiting', 'adj')
-        elif ((triple_h[2] == 'ADJ') and (lemmatize(triple_h[0], 'V') == 'be')):
-            pass
-        elif ((triple_h[2] == 'ADJ') and (lemmatize(triple_h[0], 'V') == 'have')):
-            pass
-        # find a match for h_set in t_set
-        elif not any([_match_triple(triple_h, triple_t, fuzz_wildcards_and_contractions) 
-                      for triple_t in t_set]):
-            if not return_breaking_triple:
-                return False
-            else:
-                return(triple_h)
-    return True
-
-
-# for a triple, compare that all elements match. 
-# if an h element is a wildcard, skip it
-def _match_triple(triple_h, triple_t, fuzz_wildcards_and_contractions):
-    wildcards = ["something", "somebody", "someone"]
-    outcome = []
-    for i in range(3):
-        if fuzz_wildcards_and_contractions:
-            # accept wildcard element
-            if (triple_h[i] in wildcards):
-                pass
-            # accept contractions for not and is
-            elif (((triple_h[i] == "not") and (triple_t[i] == "n't")) or
-                  ((triple_h[i] == "is") and (triple_t[i] == "'s"))):
-                pass
-            # report mismatch
-            elif (triple_h[i] != triple_t[i]):
-                return False
-        # report mismatch
-        elif (triple_h[i] != triple_t[i]):
-            return False
-    return True
-            
-        
-
 
 
 
@@ -345,61 +303,6 @@ def add_flipped_predaux(triple, stag_t, t2props_dict):
         return(None)
     
     
-def add_flipped_modif(triple, stag_t, t2props_dict):
-    rel_0_roots = ['AP', 'PP', 'PRN', 'A', 'N']
-    rel_1_roots = ['V', 'VP']
-    allowed_roots = rel_0_roots + rel_1_roots
-    
-    id1, id2, dep = triple[0], triple[1], triple[2]
-    
-    stag = _get_stag(id1, stag_t)
-    # demand that we have a relative clause case, 
-    # and our head word 'phrase-type' is in allowed_roots
-    if ((stag is None) or 
-        (t2props_dict[stag]['rel'] not in ['NO', 'NA']) or
-        (t2props_dict[stag]['root'] not in allowed_roots)):
-        return(None)
-    
-    # if we are modifying a noun phrase, add a relation
-    # according to our head word (or root)
-    elif (t2props_dict[stag]['modif'] == "NP"):
-        if t2props_dict[stag]['root'] in rel_0_roots:
-            relation = '0'
-        else:
-            assert(t2props_dict[stag]['root'] in rel_1_roots)
-            relation = '1'
-        return((id2,id1, relation))
-    else:
-        return(None)
-
-
-
-def mod_root_S_or_not_S(parse, stags, t2props_dict):
-    new_parse = []
-    
-    for id1, id2, dep in parse:
-        
-        stag = _get_stag(id1, stags)
-        if stag is None:
-            new_parse.append((id1, id2, dep))
-        
-        elif (dep in ['0', '1', '2', '3']):
-            root = t2props_dict[stag]['root']
-            if root == 'S':
-                s_or_not_s = 'S'
-            else:
-                s_or_not_s = 'not_S'
-                
-            dep += '_' + s_or_not_s
-            
-            new_parse.append((id1, id2, dep))
-        
-        else:
-            new_parse.append((id1, id2, dep))
-            
-    return(new_parse)
-            
-
 
 def append_small_clause(parse_t, stag_t, sent_t, t2props_dict):   
     to_add = []
