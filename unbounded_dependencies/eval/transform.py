@@ -40,14 +40,14 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
 
     # extend parse_t for predicative cases
     if add_predicative:
-        to_add = append_predicative(parse_t, stag_t, sent_t, t2props_dict)
+        to_add = append_small_clause(parse_t, stag_t, sent_t, t2props_dict)
         parse_t += to_add 
         if  debug >= 2:
             print("parse_t extended with predicative:")
             print(lexicalize(parse_t, sent_t, pos=pos_t))
             print()
 
-    # extend parse_t for and_but cases
+   # extend parse_t for and_but cases
     parse_t += append_and_but(parse_t, stag_t, sent_t, pos_t, t2props_dict)
     ## co-anchor
     parse_t += add_coanchor(parse_t, stag_t)
@@ -401,7 +401,7 @@ def mod_root_S_or_not_S(parse, stags, t2props_dict):
             
 
 
-def append_predicative(parse_t, stag_t, sent_t, t2props_dict):   
+def append_small_clause(parse_t, stag_t, sent_t, t2props_dict):   
     to_add = []
 
     # split sent to list and make it 1-based by adding a 'root' token
