@@ -3,7 +3,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
     
 
     # NOTE: use list() to make a copy, instead of modifying the original parse_t
-    parse_t = list(parse_t)
+    parse_t = [(dep[0], dep[1], dep[2].replace('-unk-', 'ADJ')) for dep in parse_t]
 
     # structural transformations, used in any case
 
@@ -52,6 +52,7 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
     # extend parse_t for predicative cases
     if add_predicative:
         to_add = append_small_clause(parse_t, stag_t, sent_t, t2props_dict)
+        #to_add = []
         parse_t += to_add 
         if  debug >= 2:
             print("parse_t extended with predicative:")
@@ -64,10 +65,10 @@ def transform(t2props_dict, t2topsub_dict, sent_t, parse_t, stag_t=[], pos_t=[],
     parse_t += add_copula(sent_t, parse_t, pos_t)
     parse_t += add_nonbe(sent_t, parse_t, pos_t)
     parse_t += add_lot_none(parse_t, sent_t, pos_t)
-    parse_t += add_sure_of(parse_t, stag_t)
-    parse_t += add_the_more(parse_t, stag_t)
     parse_t += add_may_have(parse_t, pos_t)
     parse_t += add_there_is(parse_t, pos_t)
+    #parse_t += add_sure_of(parse_t, stag_t)
+    parse_t += add_the_more(parse_t, stag_t)
     return parse_t
 #        if  debug >= 2:
 #            print("parse_t extended with and_but:")
@@ -202,9 +203,10 @@ def add_may_have(parse_t, pos_t):
             md_ids.append(i+1)
     for md_id in md_ids:
         for par_id, par_dep in par_child_dict[md_id]['parents_with_dep']:
-            for child_id, child_dep in par_child_dict[par_id]['children_with_dep']:
-                if md_id != child_id:
-                    new_edges.append((md_id, child_id, par_dep))
+            if par_dep == 'ADJ':
+                for child_id, child_dep in par_child_dict[par_id]['children_with_dep']:
+                    if md_id != child_id:
+                        new_edges.append((md_id, child_id, par_dep))
     return new_edges
 
 def add_there_is(parse_t, pos_t):
@@ -240,7 +242,7 @@ def add_copula(sent_t, parse_t, pos_t):
     new_edges = []
     for word_idx, word, pos in zip(range(1, len(sent_t)+1), sent_t, pos_t):
         lemma = lemmatize(word, pos)
-        if str(lemma) in ['be', 'stay', 'become']: ## copula
+        if str(lemma) in ['be']:#, 'stay', 'become', 'remain']: ## copula
             copula_idx = word_idx
             par_child_dict =  _triples2par_child_dict(parse_t, sent_t)
             par_exists = False
@@ -262,7 +264,7 @@ def add_nonbe(sent_t, parse_t, pos_t):
     new_edges = []
     for word, dep, pos in zip(sent_t, parse_t, pos_t):
         lemma = lemmatize(word, pos).lower()
-        if lemma in ['stay', 'become', 'seem', 'remain']: ## copula in TAG but not in unbounded dependency
+        if lemma in ['be', 'stay', 'become', 'seem', 'remain']: ## copula in TAG but not in unbounded dependency
             copula_id = dep[0]
             head_id = dep[1]
             for dep in parse_t:

@@ -64,7 +64,7 @@ def evaluate(corpus_data_type, debug=False, input_data_type=None):
                         new_dep = tuple([dep[0], dep[1], '1'])
                         if construction == 'obj_qus':
                             if sent[0].lower() in ['where']:
-                                new_dep = tuple([dep[0], dep[1], '-unk-'])
+                                new_dep = tuple([dep[0], dep[1], 'ADJ'])
                     elif 'pobj' == dep[2]:
                         new_dep = tuple([dep[0], dep[1], '1'])
                     elif 'nsubjpass' in dep[2]:
@@ -73,13 +73,15 @@ def evaluate(corpus_data_type, debug=False, input_data_type=None):
                         if sent[dep[0]-1] == 'out':
                             new_dep = (dep[0], dep[1], 'ADJ')
                         else:
-                            new_dep = (dep[0], dep[1], '-unk-')
+                            new_dep = (dep[0], dep[1], 'ADJ')
                     elif 'prep' in dep[2]:
                         new_dep = (dep[0], dep[1], 'ADJ')
                     elif 'infmod' in dep[2]:
                         new_dep = (dep[0], dep[1], 'ADJ')
                     elif 'obj2' in dep[2]:
                         new_dep = (dep[0], dep[1], '1')
+                    elif 'cop' in dep[2]:
+                        new_dep = (dep[0], dep[1], '0')
                     else:
                         new_dep = (dep[0], dep[1], 'ADJ')
                     if new_dep in transformed_sent:
@@ -106,6 +108,6 @@ def evaluate(corpus_data_type, debug=False, input_data_type=None):
     print('Macro Accuracy: {}'.format(float(all_correct)/all_total))
     print('Overall Accuracy: {}'.format(float(total_scores)/nb_constructions))
 if __name__ == '__main__':
-    #evaluate('test', False, 'test_emnlp')
+    evaluate('test', False, 'test_emnlp')
     evaluate('test', False)
     #evaluate('test', True)

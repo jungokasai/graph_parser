@@ -16,7 +16,8 @@ def convert(dot_file):
     command = 'convert -flatten {} {}'.format(final_file, final_file)
     subprocess.check_call(command, shell=True)
 if __name__ == '__main__':
-    constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
+    #constructions = ['obj_extract_rel_clause', 'obj_extract_red_rel', 'sbj_extract_rel_clause', 'obj_free_rels', 'obj_qus', 'right_node_raising', 'sbj_embedded']
+    constructions = ['obj_free_rels']
     for construction in constructions:
         base_dir = os.path.join(construction, 'images', 'test')
         main(base_dir)
