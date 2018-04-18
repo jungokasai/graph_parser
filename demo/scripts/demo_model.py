@@ -17,7 +17,7 @@ def demo_model():
         with tf.Session() as session: 
             session.run(tf.global_variables_initializer())
             saver.restore(session, pretrained_model)
-            sents = 'TAG is the best formalism. We should all learn it.'
+            sents = 'I know him'
             sents = sent_tokenize(sents)
             sents = map(word_tokenize, sents)
             results = model.run_on_sents(session, sents)
