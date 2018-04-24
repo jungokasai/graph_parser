@@ -19,13 +19,13 @@ def demo_model():
             saver.restore(session, pretrained_model)
             sents = 'I know him'
             sents = sent_tokenize(sents)
-            sents = map(word_tokenize, sents)
+            sents = map(word_tokenize_period, sents)
             results = model.run_on_sents(session, sents)
             conllu = get_conllu(results, sents)
             print(conllu)
             sents = 'Can you parse this? We willll see!'
             sents = sent_tokenize(sents)
-            sents = map(word_tokenize, sents)
+            sents = map(word_tokenize_period, sents)
             results = model.run_on_sents(session, sents)
             conllu = get_conllu(results, sents)
             print(conllu)
@@ -52,13 +52,19 @@ def get_conllu(results, sents):
             start_idx += 1
         conllu += '\n'
     return conllu
+
+def word_tokenize_period(sent):
+    words = word_tokenize(sent)
+    if words[-1] not in ['.', '?']:
+        words.append('.')
+    return words
     
 def main():
     demo_model()
 if __name__ == '__main__':
     sents = 'TAG is the best formalism. We should all learn it.'
     sents = sent_tokenize(sents)
-    sents = map(word_tokenize, sents)
+    sents = map(word_tokenize_period, sents)
     sents = map(lambda x: ' '.join(x), sents)
     print(sents)
     main()
