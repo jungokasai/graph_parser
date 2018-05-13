@@ -9,10 +9,9 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 def demo_model():
     pretrained_model = 'demo/Pretrained_Parser/best_model'
     base_dir = 'demo/'
-    glove_dir = 'glovevector/'
     g = tf.Graph()
     with g.as_default():
-        model = Demo_Parser(base_dir, glove_dir)
+        model = Demo_Parser(base_dir)
         saver = tf.train.Saver(max_to_keep=1)
         with tf.Session() as session: 
             session.run(tf.global_variables_initializer())

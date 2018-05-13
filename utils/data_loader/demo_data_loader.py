@@ -10,7 +10,7 @@ import io
 
 class Demo_Dataset(object):
 
-    def __init__(self, base_dir, glove_dir, glove_size):
+    def __init__(self, base_dir, glove_size):
 
         #self.inputs_train = {}
         #self.inputs_test = {}
@@ -22,33 +22,12 @@ class Demo_Dataset(object):
         self.nb_train_samples = 0
         self.word_index = self.word_tokenizer.word_index
         self.nb_words = len(self.word_index)
-        # lookup the glove word embeddings
-        # need to reserve indices for testing file. 
-        self.embeddings_index = {}
-        print('Indexing word vectors.')
-        f = open(os.path.join(glove_dir, 'glove.6B.{}d.txt'.format(glove_size)))
-        for line in f:
-            values = line.split()
-            word = values[0]
-            coefs = np.asarray(values[1:], dtype='float32')
-            self.embeddings_index[word] = coefs
-        f.close()
-
-        print('Found {} word vectors.'.format(len(self.embeddings_index)))
-
-        unseens = list(set(self.embeddings_index.keys()) - set(self.word_index.keys())) ## list of words that appear in glove but not in the training set
-        nb_unseens = len(unseens)
+        nb_unseens = 366137
 
         self.word_embeddings = np.zeros((self.nb_words+1+nb_unseens, glove_size)) ## +1 for padding (idx 0)
-        for word, i in self.word_index.items(): ## first index the words in the training set
-            embedding_vector = self.embeddings_index.get(word)
-            if embedding_vector is not None: ## otherwise zero vector
-                self.word_embeddings[i] = embedding_vector
-        for unseen in unseens:
-            self.word_index[unseen] = len(self.word_index) + 1 ## add unseen words to the word_index dictionary
-            self.word_embeddings[self.word_index[unseen]] = self.embeddings_index[unseen]
         self.idx_to_word = invert_dict(self.word_index)
         print('End glove indexing')
+
 
         #f_test = open(path_to_text_test)
         #texts = texts +  f_test.readlines()

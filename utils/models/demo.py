@@ -13,10 +13,10 @@ from tensorflow.contrib.seq2seq import sequence_loss
 
 
 class Demo_Parser(Parsing_Model_Joint_Both):
-    def __init__(self, base_dir, glove_dir):
+    def __init__(self, base_dir):
         self.opts = Opts()
         ## build a model
-        self.loader = Demo_Dataset(base_dir, glove_dir, self.opts.embedding_dim)
+        self.loader = Demo_Dataset(base_dir, self.opts.embedding_dim)
         #self.batch_size = 100
 	#self.get_features()
         self.features = ['words', 'chars']
@@ -87,5 +87,4 @@ class Demo_Parser(Parsing_Model_Joint_Both):
 
 if __name__ == '__main__':
     base_dir = 'demo/'
-    glove_dir = 'glovevector/'
-    model = Demo_Parser(base_dir, glove_dir)
+    model = Demo_Parser(base_dir)
