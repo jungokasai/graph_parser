@@ -1,2 +1,0 @@
-NN VBZ DT JJS NN .
-PRP MD DT VB PRP .
