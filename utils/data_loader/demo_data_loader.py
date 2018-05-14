@@ -2,7 +2,6 @@ import os, sys
 sys.path.append(os.getcwd())
 import numpy as np
 from utils.data_loader.preprocessing import Tokenizer, pad_sequences, arcs2seq
-from utils.mica.nbest import output_mica_nbest
 import pickle
 import random
 import io

@@ -8,8 +8,8 @@ from __future__ import division
 import string
 import sys
 import numpy as np
-from six.moves import range
-from six.moves import zip
+#from six.moves import range
+#from six.moves import zip
 
 if sys.version_info < (3,):
     maketrans = string.maketrans

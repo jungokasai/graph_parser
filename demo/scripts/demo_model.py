@@ -1,9 +1,8 @@
 from __future__ import print_function
-import sys, os
+import sys, os, pickle
 sys.path.append('./')
 from utils.models.demo import Demo_Parser
 import tensorflow as tf
-import sys, os, pickle
 from nltk.tokenize import sent_tokenize, word_tokenize
         
 def demo_model():
