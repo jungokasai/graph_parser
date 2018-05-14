@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-Hello world
-=======
-This is a parser .
-But can it parse this sentence ?
-We willlll see .
->>>>>>> 94941f1b9c0cfb1410b59510c35d80f4984466ef
