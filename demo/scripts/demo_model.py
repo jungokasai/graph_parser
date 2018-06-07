@@ -5,6 +5,7 @@ from utils.models.demo import Demo_Parser
 import tensorflow as tf
 import sys, os, pickle
 from nltk.tokenize import sent_tokenize, word_tokenize
+print(sys.path)
         
 def demo_model():
     pretrained_model = 'demo/Pretrained_Parser/best_model'

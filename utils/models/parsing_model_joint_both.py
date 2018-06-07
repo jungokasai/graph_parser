@@ -1,6 +1,6 @@
 from __future__ import print_function
 import os, sys
-#sys.path.append(os.getcwd())
+sys.path.append(os.getcwd())
 from utils.models.basic_model import Basic_Model
 from utils.decoders.predict import predict_arcs_rels
 from utils.data_loader.data_process_secsplit import Dataset

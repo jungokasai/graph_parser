@@ -3,6 +3,7 @@ import os
 import sys
 import json 
 import tools
+sys.path.append('./')
 from tools.converters.conllu2sents import conllu2sents
 from tools.converters.sents2conllustag import output_conllu
 from argparse import ArgumentParser 

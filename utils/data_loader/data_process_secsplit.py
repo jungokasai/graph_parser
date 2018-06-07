@@ -1,8 +1,8 @@
 import numpy as np
+import os, sys
+#sys.path.append(os.getcwd())
 from utils.data_loader.preprocessing import Tokenizer, pad_sequences, arcs2seq
 from utils.mica.nbest import output_mica_nbest
-import os 
-import sys
 import pickle
 import random
 import io
@@ -39,7 +39,7 @@ class Dataset(object):
 
         ## indexing sents files
         if pretrained:
-            tokenizer_dir = os.path.join(test_opts.base_dir, 'tokenizers')
+            tokenizer_dir = os.path.join('demo', 'tokenizers')
             with open(os.path.join(tokenizer_dir, 'word_tokenizer.pkl')) as fin:
                 tokenizer = pickle.load(fin)
             texts = []
