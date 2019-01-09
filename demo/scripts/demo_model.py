@@ -21,16 +21,16 @@ def demo_model():
             sents = sent_tokenize(sents)
             sents = map(word_tokenize_period, sents)
             results, arc_probs, rel_probs = model.run_on_sents(session, sents)
-            print(arc_probs)
             conllu = get_conllu(results, sents)
             print(conllu)
-            sents = 'Can you parse this? We willll see!'
+            sents = 'Can you parse this? We willll see.'
             sents = sent_tokenize(sents)
             sents = map(word_tokenize_period, sents)
             results, arc_probs, rel_probs = model.run_on_sents(session, sents)
             conllu = get_conllu(results, sents)
             print(conllu)
-            print(arc_probs)
+            print(arc_probs[0].shape)
+            print(arc_probs[1].shape)
 
 def get_conllu(results, sents):
     start_idx = 0

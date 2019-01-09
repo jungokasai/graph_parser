@@ -81,9 +81,14 @@ class Demo_Parser(Parsing_Model_Joint_Both):
         predictions_batch['rels'] = predicted_rels
         results = self.loader.get_results(predictions_batch)
         ## nbest
-        arc_probs = arc_probs[weight]
-        rel_probs = rel_probs[weight]
-        return results, arc_probs, rel_probs
+        true_arc_probs = []
+        true_rel_probs = []
+        weight_with_root = weight.copy()
+        weight_with_root[:,0] = True
+        for sent_idx in xrange(arc_probs.shape[0]):
+            true_arc_probs.append(arc_probs[sent_idx][weight[sent_idx]][:,weight_with_root[sent_idx]])
+            true_rel_probs.append(rel_probs[sent_idx][weight[sent_idx]][:,weight_with_root[sent_idx]])
+        return results, true_arc_probs, true_rel_probs
     def add_predictions(self, output):
         predictions = tf.cast(tf.argmax(output, 2), tf.int32) ## [batch_size, seq_len]
         return predictions
