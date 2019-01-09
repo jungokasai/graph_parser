@@ -68,7 +68,7 @@ class Demo_Parser(Parsing_Model_Joint_Both):
         feed[self.hidden_prob] = 1.0
         feed[self.input_keep_prob] = 1.0
         feed[self.mlp_prob] = 1.0
-        weight, arc_outputs, rel_scores, predicted_stags, predicted_jk = session.run([self.weight, self.arc_outputs, self.rel_scores, self.predicted_stags, self.predicted_jk], feed_dict=feed)
+        weight, arc_outputs, rel_scores, predicted_stags, predicted_jk, arc_probs, rel_probs = session.run([self.weight, self.arc_outputs, self.rel_scores, self.predicted_stags, self.predicted_jk, self.arc_probs, self.rel_probs], feed_dict=feed)
         weight = weight.astype(bool)
         predicted_stags = predicted_stags[weight]
         predicted_jk = predicted_jk[weight]
@@ -80,7 +80,10 @@ class Demo_Parser(Parsing_Model_Joint_Both):
         predictions_batch['arcs'] = predicted_arcs
         predictions_batch['rels'] = predicted_rels
         results = self.loader.get_results(predictions_batch)
-        return results
+        ## nbest
+        arc_probs = arc_probs[weight]
+        rel_probs = rel_probs[weight]
+        return results, arc_probs, rel_probs
     def add_predictions(self, output):
         predictions = tf.cast(tf.argmax(output, 2), tf.int32) ## [batch_size, seq_len]
         return predictions

@@ -37,6 +37,7 @@ class Parsing_Model_Joint_Both(Basic_Model):
         arc_output = arc_equation(vectors['arc-head'], vectors['arc-dep'], weights) # [batch_size, seq_len, seq_len] dim 1: deps, dim 2: heads
 #        arc_predictions = get_arcs(arc_output, self.test_opts) # [batch_size, seq_len]
         arc_predictions = tf.argmax(arc_output, 2) # [batch_size, seq_len]
+        self.arc_probs = tf.nn.softmax(arc_output, 2)
         for rel_role in rel_roles:
             for i in xrange(self.opts.mlp_num_layers):
                 if i == 0:
@@ -50,6 +51,7 @@ class Parsing_Model_Joint_Both(Basic_Model):
             vectors[rel_role] = vector_mlp
         weights = get_rel_weights('rel', self.opts.rel_mlp_units, self.loader.nb_rels)
         rel_output, rel_scores = rel_equation(vectors['rel-head'], vectors['rel-dep'], weights, arc_predictions)  #[batch_size, seq_len, nb_rels]
+        self.rel_probs = tf.nn.softmax(arc_output, 3)
         ## joint stagging
         for joint_role in joint_roles:
             for i in xrange(self.opts.mlp_num_layers):
