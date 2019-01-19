@@ -65,22 +65,20 @@ After running this command, you should be getting the following files and direct
 
 ## <a name="pretrained"></a>Run a pre-trained TAG Parser
 We provide a pre-trained TAG parser.
-To run the pre-trained parser on your data, first [download the model](https://drive.google.com/drive/folders/1HRTQp1pBWBShE7eIVENLL6__ELi-snzO) and place the ``Pretrained_Parser`` directory in the ``pretrained`` directory. The ``pretrained`` directory already contains sample data (one sentence per line):
+To run the pretrained parser on your data, first [download the model](https://drive.google.com/drive/folders/1HRTQp1pBWBShE7eIVENLL6__ELi-snzO) and place the ``Pretrained_Parser`` directory in the ``demo`` directory. Then, run
 
-* ``sents/test.txt`` 
-
-You can replace these files by your own data.
-Then, run the following command:
+- With tokenization
 ```bash
-python scripts/run_pretrained.py pretrained/config_pretrained.json pretrained/Pretrained_Parser/best_model
+python demo/scripts/demo_model.py --infile demo/sents/test.txt --tokenize
 ```
+- Without tokenization
+```bash
+python demo/scripts/demo_model.py --infile demo/sents/test.tokenized.txt
+```
+You can replace these files by your own data. It prints out predicted elementary trees, parses, and PTB-style fine-grained POS tags in the conllu format. Note that we put elementary trees in the UPOS column.
 
 ## <a name="demo"></a>Run a demo TAG Parser
-To run the demo parser on your data, first [download the model](https://drive.google.com/drive/folders/1HRTQp1pBWBShE7eIVENLL6__ELi-snzO) and place the ``Pretrained_Parser`` directory in the ``demo`` directory. Then, run
-```bash
-python demo/scripts/demo_model.py
-```
-
+Enjoy playing around with [our TAG demo parser](http://michelangelo.ling.yale.edu/) online!
 ## Notes
 
 If you use this tool for your research, please consider citing:

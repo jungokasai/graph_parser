@@ -17,7 +17,7 @@ class Parsing_Model(Basic_Model):
         self.test_opts = test_opts
         self.loader = Dataset(opts, test_opts)
         self.batch_size = 100
-	self.get_features()
+        self.get_features()
         self.add_placeholders()
         self.inputs_dim = self.opts.embedding_dim + self.opts.jk_dim + self.opts.stag_dim + self.opts.nb_filters
         self.outputs_dim = (1+self.opts.bi)*self.opts.units

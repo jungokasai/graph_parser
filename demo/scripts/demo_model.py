@@ -5,32 +5,38 @@ from utils.models.demo import Demo_Parser
 import tensorflow as tf
 import sys, os, pickle
 from nltk.tokenize import sent_tokenize, word_tokenize
-print(sys.path)
+from argparse import ArgumentParser 
+
+parser = ArgumentParser()
+parser.add_argument("--tokenize",  help="tokenizes. False if it is already tokenized.", action="store_true", default=False)
+parser.add_argument("--infile",  help="input sentence text file")
+opts = parser.parse_args()
         
 def demo_model():
     pretrained_model = 'demo/Pretrained_Parser/best_model'
     base_dir = 'demo/'
     g = tf.Graph()
+    batch_size = 80
+    if opts.tokenize:
+        with open(opts.infile) as fin:
+            sents = fin.read()
+        sents = sent_tokenize(sents)
+    else:
+        with open(opts.infile) as fin:
+            sents = fin.readlines()
+    sents = map(word_tokenize_period, sents)
     with g.as_default():
         model = Demo_Parser(base_dir)
         saver = tf.train.Saver(max_to_keep=1)
         with tf.Session() as session: 
             session.run(tf.global_variables_initializer())
             saver.restore(session, pretrained_model)
-            sents = 'I know him'
-            sents = sent_tokenize(sents)
-            sents = map(word_tokenize_period, sents)
-            results, arc_probs, rel_probs = model.run_on_sents(session, sents)
-            conllu = get_conllu(results, sents)
-            print(conllu)
-            sents = 'Can you parse this? We willll see.'
-            sents = sent_tokenize(sents)
-            sents = map(word_tokenize_period, sents)
-            results, arc_probs, rel_probs = model.run_on_sents(session, sents)
-            conllu = get_conllu(results, sents)
-            print(conllu)
-            print(arc_probs[0].shape)
-            print(arc_probs[1].shape)
+            nb_baches = len(sents)//batch_size + 1
+            for i in xrange(nb_baches):
+                sents_batch = sents[i*batch_size:(i+1)*batch_size]
+                results, arc_probs, rel_probs = model.run_on_sents(session, sents_batch)
+                conllu = get_conllu(results, sents_batch)
+                print(conllu)
 
 def get_conllu(results, sents):
     start_idx = 0
@@ -54,7 +60,6 @@ def get_conllu(results, sents):
             start_idx += 1
         conllu += '\n'
     return conllu
-
 def word_tokenize_period(sent):
     words = word_tokenize(sent)
     if words[-1] not in ['.', '?']:
@@ -64,9 +69,4 @@ def word_tokenize_period(sent):
 def main():
     demo_model()
 if __name__ == '__main__':
-    sents = 'TAG is the best formalism. We should all learn it.'
-    sents = sent_tokenize(sents)
-    sents = map(word_tokenize_period, sents)
-    sents = map(lambda x: ' '.join(x), sents)
-    print(sents)
     main()
